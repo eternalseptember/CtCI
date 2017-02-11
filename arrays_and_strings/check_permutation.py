@@ -9,9 +9,8 @@ def is_permutation(str1, str2):
 		return 0
 
 	first_str = list(str1)
-	second_str = str2
 
-	for char in second_str:
+	for char in str2:
 		try:
 			first_str.remove(char)
 		except ValueError:
