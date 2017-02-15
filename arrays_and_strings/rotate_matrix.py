@@ -5,15 +5,27 @@ degrees. Can you do this in place?
 """
 
 
-def rotate(image):
+def rotate(N, image):
 	print(image)
 
 
 
 N = 6
-image = [[0 for i in range(N)] for j in range(N)]
 
-rotate(image)
+image = []
+starting_num = 0
+
+# fill in numbers as the image
+for row in range(N):
+	new_col = []
+	for col in range(N):
+		new_col.append(starting_num)
+		starting_num += 1
+	image.append(new_col)
+
+
+
+rotate(N, image)
 
 
 
