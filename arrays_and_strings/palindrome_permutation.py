@@ -7,15 +7,24 @@ dictionary words.
 """
 
 
-def list_permutations(str):
-	permutations = []
+from collections import Counter
 
-	return permutations
+
+def check_palindrome(str):
+	str = str.lower().replace(' ', '')
+	list_of_letters = Counter(str)
+
+
+	str_len = len(str)
+	print(str_len)
+
+
+	return list_of_letters
 
 
 
 inp = 'Tact Coa'
-permutations = list_permutations(inp)
+permutations = check_palindrome(inp)
 print(permutations)
 
 
