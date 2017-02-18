@@ -14,12 +14,23 @@ def check_palindrome(str):
 	str = str.lower().replace(' ', '')
 	list_of_letters = Counter(str)
 
-
 	str_len = len(str)
-	print(str_len)
+	if str_len % 2 == 0:
+		for num in list_of_letters.values():
+			if num % 2 == 0:
+				return True
+			else:
+				return False
+	else:
+		odd = 0
+		for num in list_of_letters.values():
+			if num % 2 == 1:
+				odd += 1
 
-
-	return list_of_letters
+		if odd == 1:
+			return True
+		else:
+			return False
 
 
 
