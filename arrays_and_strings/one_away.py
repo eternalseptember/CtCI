@@ -7,21 +7,38 @@ edit (or zero edits) away.
 
 
 def one_away(str1, str2):
-	# character replacement
-	# check this first because the strings need to be equal
+	return check_replace(str1, str2)
 
-	# insert a character
-
-	# remove a character
-
-
-	return True
+	"""
+	if check_replace(str1, str2):
+		return True
+	elif check_insert(str1, str2):
+		return True
+	elif check_remove(str1, str2):
+		return True
+	else:
+		return False
+	"""
 
 
 def check_replace(str1, str2):
 	# string length should be equal
 	# only one character should be changed
-	return True
+
+	if len(str1) != len(str2):
+		return False
+
+	diff = 0
+	num_chars = len(str1)
+
+	for index in range(num_chars):
+		if str1[index] is not str2[index]:
+			diff += 1
+
+	if diff <= 1:
+		return True
+	else:
+		return False
 
 
 def check_insert(str1, str2):
