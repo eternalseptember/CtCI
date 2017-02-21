@@ -10,16 +10,13 @@ def check_characters(str):
 		if char not in already_stored:
 			already_stored[char] = 1
 		else:
-			return 0
-	return 1
+			return False
+	return True
 
 
 test_str = ['cat', 'dog', 'squirrel']
 
 for str in test_str:
-	if check_characters(str):
-		print('True. All characters are unique')
-	else:
-		print('False. Some characters repeat.')
+	print(check_characters(str))
 
 

@@ -6,7 +6,7 @@ is a permutation of the other.
 
 def is_permutation(str1, str2):
 	if len(str1) != len(str2):
-		return 0
+		return False
 
 	first_str = list(str1)
 
@@ -14,9 +14,9 @@ def is_permutation(str1, str2):
 		try:
 			first_str.remove(char)
 		except ValueError:
-			return 0
+			return False
 
-	return 1
+	return True
 
 
 
