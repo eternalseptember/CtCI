@@ -5,15 +5,21 @@ is 0, its entire row and column are set to 0.
 
 
 def zero_matrix(M, N, matrix):
-	zero_coordinates = []
+	zero_row = []
+	zero_col = []
 
+	# find the zeros
 	for row in range(M):
 		for col in range(N):
 			if matrix[row][col] == 0:
-				zero_coordinates.append((row, col))
+				zero_row.append(row)
+				zero_col.append(col)
 
-	print('List of zeros')
-	print(zero_coordinates)
+	# set entire row and column to zero
+	for row in range(M):
+		for col in range(N):
+			if (row in zero_row) or (col in zero_col):
+				matrix[row][col] = 0
 
 	return matrix
 
@@ -29,6 +35,7 @@ print()
 
 
 zeroed_matrix = zero_matrix(M, N, matrix)
-#for row in zeroed_matrix:
-#	print(row)
+print('Zeroed matrix:')
+for row in zeroed_matrix:
+	print(row)
 
