@@ -11,6 +11,15 @@ class Node:
 		self.next = next_node
 
 
+def remove(head):
+	# remove head.next
+	if head is None:
+		return None
+	if head.next is None:
+		return head
+
+	next_node = head.next
+
 
 
 # Setup for testing
