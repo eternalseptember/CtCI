@@ -32,7 +32,7 @@ def add(head, value):
 	return head
 
 
-def remove(head):
+def remove_next_node(head):
 	# terminal base cases
 	if head is None:
 		return None
@@ -48,6 +48,22 @@ def remove(head):
 	return head
 
 
+def remove_duplicates(head):
+	unique_values = []
+
+	current_node = head
+	unique_values.append(current_node.data)
+
+	while current_node.next is not None:
+		if current_node.next.data not in unique_values:
+			unique_values.append(current_node.next.data)
+			current_node = current_node.next
+		else:
+			current_node = remove_next_node(current_node)
+
+	return head
+
+
 # Setup for testing
 values = [9, 0, 1, 3, 4, 2, 0, 2, 5, 1]
 head = None
@@ -55,6 +71,11 @@ head = None
 for value in values:
 	head = add(head, value)
 
+print('linked list adding all nodes:')
 print_linked_list(head)
+print()
 
-
+head = remove_duplicates(head)
+print('linked list after removing duplicates:')
+print_linked_list(head)
+print()
