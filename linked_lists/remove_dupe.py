@@ -48,7 +48,6 @@ def remove_next_node(head):
 	return head
 
 
-"""
 def remove_duplicates(head):
 	# this implementation uses a temporary buffer
 	unique_values = []
@@ -64,9 +63,10 @@ def remove_duplicates(head):
 			current_node = remove_next_node(current_node)
 
 	return head
+
+
+
 """
-
-
 def remove_duplicates(head):
 	# this implementation does not use a temporary buffer
 	current_node = head
@@ -83,10 +83,10 @@ def remove_duplicates(head):
 		current_node = current_node.next
 
 	return head
-
+"""
 
 # Setup for testing
-values = [9, 0, 1, 3, 4, 2, 0, 2, 5, 1]
+values = [9, 0, 1, 1, 9, 3, 4, 2, 0, 2, 5, 1]
 head = None
 
 for value in values:
