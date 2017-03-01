@@ -19,30 +19,33 @@ def print_linked_list(head):
 
 
 def add(head, value):
+	new_node = Node(value)
+
 	if head is None:
-		return Node(value)
+		return new_node, new_node
 
 	if head.next is None:
-		head.next = Node(value)
+		head.next = new_node
 	else:
 		next_node = head.next
 		while next_node.next is not None:
 			next_node = next_node.next
-		next_node.next = Node(value)
+		next_node.next = new_node
 
-	return head
+	return head, new_node
 
 
 def delete_node(node):
+	# "Deletes" the node by copying the data from the next node
 	if node is None:
 		return
 	while node.next is not None:
 		node.data = node.next.data
-		node = node.next
-	if node.next is None:
-		node.data is None
-		node.next is None
 
+		if node.next.next is None:
+			node.next = None
+		else:
+			node = node.next
 
 
 # Setup for testing
@@ -51,16 +54,20 @@ head = None
 delete_this_node = None
 
 for value in values:
-	head = add(head, value)
+	head, new_node = add(head, value)
 
 	# set a value for testing
 	if value == 4:
-		delete_this_node = head
+		delete_this_node = new_node
+
 
 print('linked list adding all nodes:')
 print_linked_list(head)
 print()
 
+print('linked list starting at the node to be deleted:')
+print_linked_list(delete_this_node)
+print()
 
 delete_node(delete_this_node)
 print('linked list after deleting a middle node:')
