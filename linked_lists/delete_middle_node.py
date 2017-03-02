@@ -6,7 +6,6 @@ singly linked list, given only access to that node.
 
 
 class Node:
-	# def __init__(self, data=None, prev=None, next_node=None):
 	def __init__(self, data=None, next_node=None):
 		self.data = data
 		self.next = next_node
