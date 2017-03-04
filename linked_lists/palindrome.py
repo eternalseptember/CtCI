@@ -32,6 +32,18 @@ def add(head, value):
 
 def is_palindrome(head):
 	string = []
+
+	while head is not None:
+		string.append(head.data)
+		head = head.next
+
+	while len(string) > 2:
+		item1 = string.pop(0)
+		item2 = string.pop()
+
+		if item1 != item2:
+			return False
+
 	return True
 
 
