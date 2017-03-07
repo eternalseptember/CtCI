@@ -36,26 +36,51 @@ def add(head, value):
 
 def add_linked_list_digits(head1, head2):
 	# convert each linked list to number representation
-	total = 0
-	return total
+	num1 = convert_to_int(head1)
+	num2 = convert_to_int(head2)
+	total = num1 + num2
 
+	# then converts the answer to a linked list in the same format
+	return convert_to_linked_list(total)
+
+
+def convert_to_int(head):
+	# converts the linked list representation to an integer
+	digits = []
+
+	while head is not None:
+		digits.insert(0, head.data)
+		head = head.next
+
+	digit_str = ''
+	for digit in digits:
+		digit_str += str(digit)
+
+	return int(digit_str)
+
+
+def convert_to_linked_list(num):
+	# convert num to a linked list with the digits stored in reverse order
+	digit_list = [int(digit) for digit in str(num)]
+	digit_list = digit_list[::-1]
+
+	head = None
+	for value in digit_list:
+		head = add(head, value)
+
+	return head
 
 
 # total should be 62
-value1 = [0, 1]  # 10
-value2 = [2, 5]  # 52
+value1 = 10
+value2 = 52
 
-head1 = None
-head2 = None
-
-for value in value1:
-	head1 = add(head1, value)
-
-for value in value2:
-	head2 = add(head2, value)
+head1 = convert_to_linked_list(value1)
+head2 = convert_to_linked_list(value2)
 
 total = add_linked_list_digits(head1, head2)
-print(total)
+print_linked_list(total)
+
 
 
 
