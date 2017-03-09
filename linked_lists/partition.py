@@ -36,7 +36,39 @@ def add(head, value):
 
 
 def partition(head, x):
-	return None
+	left_head = None
+	left_tail = None
+	right_head = None
+	right_tail = None
+
+	while head is not None:
+		if head.data < x:
+			# stick it in the left partition
+			if left_head is None:
+				left_head = Node(head.data)
+				left_tail = left_head
+			else:
+				left_tail.next = Node(head.data)
+				left_tail = left_tail.next
+		else:
+			# stick it in the right partition
+			if right_head is None:
+				right_head = Node(head.data)
+				right_tail = right_head
+			else:
+				right_tail.next = Node(head.data)
+				right_tail = right_tail.next
+
+		head = head.next
+
+
+	# after sorting, join the partition
+	if left_tail is not None:
+		if right_head is not None:
+			left_tail.next = right_head
+		return left_head
+	else:
+		return right_head
 
 
 # test case
@@ -53,6 +85,7 @@ print('linked list adding all nodes:')
 print_linked_list(head)
 print()
 
+print('linked list after partitioning:')
 partitioned_head = partition(head, x)
-
+print_linked_list(partitioned_head)
 
