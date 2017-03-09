@@ -20,5 +20,39 @@ def print_linked_list(head):
 		print_linked_list(head.next)
 
 
+def add(head, value):
+	if head is None:
+		return Node(value)
+
+	if head.next is None:
+		head.next = Node(value)
+	else:
+		next_node = head.next
+		while next_node.next is not None:
+			next_node = next_node.next
+		next_node.next = Node(value)
+
+	return head
+
+
+def partition(head, x):
+	return None
+
+
+# test case
+# expected result: 3 -> 1 -> 2 -> 10 -> 5 -> 5 -> 8
+x = 5
+
+values = [3, 5, 8, 5, 10, 2, 1]
+head = None
+
+for value in values:
+	head = add(head, value)
+
+print('linked list adding all nodes:')
+print_linked_list(head)
+print()
+
+partitioned_head = partition(head, x)
 
 
