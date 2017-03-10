@@ -17,22 +17,47 @@ def print_linked_list(head):
 
 
 def add(head, value):
+	new_node = Node(value)
+
 	if head is None:
-		return Node(value)
+		return new_node, new_node
 
 	if head.next is None:
-		head.next = Node(value)
+		head.next = new_node
 	else:
 		next_node = head.next
 		while next_node.next is not None:
 			next_node = next_node.next
-		next_node.next = Node(value)
+		next_node.next = new_node
 
-	return head
-
-
+	return head, new_node
 
 
+def detect_loop(head):
+	return None
+
+
+# test case
+# expected result: C
+values = ['A', 'B', 'C', 'D', 'E']
+head = None
+latest_node = None
+loop_node = None
+
+for value in values:
+	head, latest_node = add(head, value)
+
+	if value == 'C':
+		loop_node = latest_node
+
+# make a loop
+latest_node.next = loop_node
+
+# normally I'd print the node here, but recursion
+
+print('node at the beginning of loop')
+beg_loop_node = detect_loop(head)
+#print(beg_loop_node.data)
 
 
 
