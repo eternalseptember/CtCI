@@ -34,7 +34,20 @@ def add(head, value):
 
 
 def detect_loop(head):
-	return None
+	nodes = []
+	loop = False
+	loop_node = None
+
+	while loop is False:
+		# already assumes a loop so does not check for null nodes
+		if head not in nodes:
+			nodes.append(head)
+			head = head.next
+		else:
+			loop_node = head
+			loop = True
+
+	return loop_node
 
 
 # test case
@@ -57,7 +70,7 @@ latest_node.next = loop_node
 
 print('node at the beginning of loop')
 beg_loop_node = detect_loop(head)
-#print(beg_loop_node.data)
+print(beg_loop_node.data)
 
 
 
