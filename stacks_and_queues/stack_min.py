@@ -1,13 +1,15 @@
 """
 How would you design a stack which, in addition to push and pop,
-has a functin min which returns the minimum element? Push, pop,
+has a function min which returns the minimum element? Push, pop,
 and min should all operate in O(1) time.
 """
 
 
 class Stack:
-	stack = []
-	min_item = None
+	def __init__(self):
+		self.stack = []
+		self.min_item = None
+
 
 	def push(self, item):
 		self.stack.append(item)
@@ -17,6 +19,7 @@ class Stack:
 		else:
 			if item < self.min_item:
 				self.min_item = item
+
 
 	def pop(self):
 		item = self.stack.pop()
@@ -28,6 +31,18 @@ class Stack:
 				self.min_item = None
 
 		return item
+
+
+	def peek(self):
+		return self.stack[0]
+
+
+	def is_empty(self):
+		if len(self.stack) > 0:
+			return False
+		else:
+			return True
+
 
 	def print_min(self):
 		print(self.min_item)
