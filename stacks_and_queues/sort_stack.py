@@ -29,23 +29,38 @@ class Stack:
 		else:
 			return True
 
+	def __str__(self):
+		return str(self.stack)
+
 
 def sort(unsorted_stack):
 	# larger items are at the bottom
-	temp_stack = Stack()
-	temp_item = None
-
-	# first pass to find the largest item
+	sorted_stack = Stack()
+	
 	while unsorted_stack.is_empty() is False:
 		item = unsorted_stack.pop()
 
-		if temp_item is None:
-			temp_item = item
-		elif item > temp_item:
-			temp_stack.push(temp_item)
-			temp_item = item
+		if (sorted_stack.is_empty()) or (item <= sorted_stack.peek()):
+			sorted_stack.push(item)
 		else:
-			temp_stack.push(item)
+			num_transferred = 0
+
+			# find the place to insert the item
+			while (sorted_stack.is_empty() is False) and (item > sorted_stack.peek()):
+				transfer_item = sorted_stack.pop()
+				unsorted_stack.push(transfer_item)
+				num_transferred += 1
+
+			# insert the item
+			sorted_stack.push(item)
+
+			# move the items back to the sorted stack
+			while num_transferred > 0:
+				transfer_item = unsorted_stack.pop()
+				sorted_stack.push(transfer_item)
+				num_transferred -= 1
+
+	return sorted_stack
 
 
 # testing
@@ -55,5 +70,11 @@ stack = Stack()
 for value in values_to_add:
 	stack.push(value)
 
+print('Unsorted stack:')
+print(stack)
+
+sorted_stack = sort(stack)
+print('Sorted stack:')
+print(sorted_stack)
 
 
