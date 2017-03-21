@@ -8,16 +8,40 @@ class MyQueue:
 		self.stack1 = []
 		self.stack2 = []
 
+
 	def add(self, item):
-		# add an item to the end of the list
+		self.stack1.append(item)
+
 
 	def remove(self):
-		# remove the first item in the list
+		# move items to the second stack
+		while len(self.stack1) > 1:
+			item = self.stack1.pop()
+			self.stack2.append(item)
+
+		# the last item is reached
+		remove_item = self.stack1.pop()
+
+		# put the items back
+		while len(self.stack2) > 0:
+			item = self.stack2.pop()
+			self.stack1.append(item)
+
+		return remove_item
+
 
 	def peek(self):
-		# return the top of the queue
+		return self.stack1[0]
+
 
 	def is_empty(self):
-		# return true if and only if the queue is empty
+		if len(self.stack1) > 0:
+			return False
+		else:
+			return True
+
+
+# testing
+test_queue = MyQueue()
 
 
