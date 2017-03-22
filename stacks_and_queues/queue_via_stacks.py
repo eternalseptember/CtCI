@@ -41,7 +41,23 @@ class MyQueue:
 			return True
 
 
+	def __str__(self):
+		return str(self.stack1)
+
+
 # testing
+test_values = [9, 1, 8, 4, 5, 6, 3]
 test_queue = MyQueue()
+
+for value in test_values:
+	test_queue.add(value)
+
+print('Test queue: ', end=' ')
+print(test_queue)
+
+for i in range(7):
+	item = test_queue.remove()
+	print('item removed: {0}'.format(item))
+	print('remaining queue: {0}'.format(test_queue))
 
 
