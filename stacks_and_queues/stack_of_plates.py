@@ -13,7 +13,7 @@ there were just a single stack).
 class SetOfStacks:
 	def __init__(self, threshold=5):
 		self.threshold = threshold
-		self.set_of_stacks = []
+		self.set_of_stacks = [[]]
 		self.current_stack = 0
 
 	def push(self, item):
@@ -31,9 +31,17 @@ class SetOfStacks:
 		# check if all stack is empty
 		# return item
 
+	def __str__(self):
+		return str(self.set_of_stacks)
+
 
 
 # testing
 values_to_test = [2, 5, 2, 1, 5, 7, 3, 8, 1, 9, 8, 3, 4, 6, 4, 5, 0, 9, 2]
+stack_set = SetOfStacks()
 
+for value in values_to_test:
+	stack_set.push(value)
+
+print(stack_set)
 
