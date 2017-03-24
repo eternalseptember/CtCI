@@ -16,20 +16,29 @@ class SetOfStacks:
 		self.set_of_stacks = [[]]
 		self.current_stack = 0
 
+
 	def push(self, item):
 		# if current stack is full, create a new stack
 		if len(self.set_of_stacks[self.current_stack]) == self.threshold:
 			self.current_stack += 1
-			new_stack = [item]
-			self.set_of_stacks.append(new_stack)
-		else:
-			self.set_of_stacks[self.current_stack].append(item)
+			self.set_of_stacks.append([])
+
+		# add the item to the stack
+		self.set_of_stacks[self.current_stack].append(item)
+
 
 	def pop(self):
-		if len(self.set_of_stacks[self.current_stack] == 0):
+		# if current stack is empty, go to the previous stack
+		if len(self.set_of_stacks[self.current_stack]) == 0:
 			self.current_stack -= 1
+			self.set_of_stacks.pop()
+
 		# check if all stack is empty
-		# return item
+		if (self.current_stack == 0) and len(self.set_of_stacks[0] == 0):
+			return None
+		else:
+			return self.set_of_stacks[self.current_stack].pop()
+
 
 	def __str__(self):
 		return str(self.set_of_stacks)
@@ -43,5 +52,17 @@ stack_set = SetOfStacks()
 for value in values_to_test:
 	stack_set.push(value)
 
+print('initial stack:', end=' ')
 print(stack_set)
 
+new_values = [10, 15, 25, 34, 17, 11, 19, 20, 28, 27, 14, 30, 18]
+
+for i in range(20):
+	if (i % 4 == 0):
+		print('push: ', end=' ')
+		stack_set.push(new_values.pop())
+	else:
+		stack_set.pop()
+		print('pop: ', end=' ')
+
+	print(stack_set)
