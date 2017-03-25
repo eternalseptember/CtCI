@@ -7,6 +7,9 @@ stacks and should create a new stack once the previous one exceeds capacity.
 SetsOfStacks.push() and SetOfStacks.pop() should behave identically to a
 single stack (that is, pop() should return the same values as it would if
 there were just a single stack).
+
+Implement a function popAt(int index) which performs a pop operation on a
+specific sub-stack.
 """
 
 
@@ -40,6 +43,13 @@ class SetOfStacks:
 			return self.set_of_stacks[self.current_stack].pop()
 
 
+	def popAt(self, index):
+		if index <= self.current_stack:
+			if len(self.set_of_stacks[index]) > 0:
+				return self.set_of_stacks[index].pop()
+		return None
+
+
 	def __str__(self):
 		return str(self.set_of_stacks)
 
@@ -55,6 +65,7 @@ for value in values_to_test:
 print('initial stack:', end=' ')
 print(stack_set)
 
+"""
 new_values = [10, 15, 25, 34, 17, 11, 19, 20, 28, 27, 14, 30, 18]
 
 for i in range(20):
@@ -66,3 +77,10 @@ for i in range(20):
 		print('pop: ', end=' ')
 
 	print(stack_set)
+"""
+
+stack_set.popAt(0)
+print(stack_set)
+stack_set.popAt(0)
+print(stack_set)
+
