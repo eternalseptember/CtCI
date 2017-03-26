@@ -1,0 +1,53 @@
+"""
+An animal shelter, which holds only dogs and cats, operates on a
+strictly "first in, first out" basis. People must adopt either the
+"oldest" (based on arrival time) of all animals at the shelter, or
+they can select whether they would prefer a dog or a cat (and will
+receive the oldest animal of that type). They cannot select which
+specific animal they would like. Create the data structures to
+maintain this system and implement operations such as enqueue,
+dequeueAny, dequeueDog, and dequeueCat. You may use the built-in
+LinkedList data structure.
+"""
+
+
+class AnimalShelter:
+	def __init__(self):
+		self.master_queue = []
+		self.cats_queue = []
+		self.dogs_queue = []
+
+
+	def enqueue(self, animal_type, animal):
+		if animal_type == "cats":
+			self.master_queue.append('cat')
+			self.cats_queue.append(animal)
+		else:
+			self.master_queue.append('dog')
+			self.dogs_queue.append(animal)
+
+
+	def dequeueAny(self):
+		oldest = self.master_queue.pop(0)
+		if oldest == "cat":
+			return self.cats_queue.pop(0)
+		else:
+			return self.dogs_queue.pop(0)
+
+
+	def dequeueDog(self):
+		self.master_queue.pop(0)
+		return self.dogs_queue.pop(0)
+
+
+	def dequeueCat(self):
+		self.master_queue.pop(0)
+		return self.cats_queue.pop(0)
+
+
+# testing
+shelter = AnimalShelter()
+
+
+
+
