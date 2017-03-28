@@ -19,7 +19,7 @@ class AnimalShelter:
 
 
 	def enqueue(self, animal_type, animal):
-		if animal_type == "cats":
+		if animal_type == "cat":
 			self.master_queue.append('cat')
 			self.cats_queue.append(animal)
 		else:
@@ -45,9 +45,43 @@ class AnimalShelter:
 		return self.cats_queue.pop(0)
 
 
+	def __str__(self):
+		return '{0}\n{1}\n{2}'.format(self.master_queue, self.cats_queue, self.dogs_queue)
+
+
 # testing
 shelter = AnimalShelter()
+values = [
+		 ('cat', 'cat_1'),
+		 ('cat', 'cat_2'),
+		 ('dog', 'dog_1'),
+		 ('cat', 'cat_3'),
+		 ('dog', 'dog_2'),
+		 ('dog', 'dog_3'),
+		 ('dog', 'dog_4'),
+		 ('cat', 'cat_4'),
+		 ('cat', 'cat_5'),
+		 ('dog', 'dog_5'),
+		 ('dog', 'dog_6'),
+		 ]
 
 
+for value in values:
+	animal, name = (value)
+	shelter.enqueue(animal, name)
 
+print(shelter)
+
+for i in range(6):
+	if (i % 3 == 0):
+		item = shelter.dequeueAny()
+		print('dequeue any: {0}'.format(item))
+	elif (i % 3 == 1):
+		item = shelter.dequeueCat()
+		print('dequeue cat: {0}'.format(item))
+	else:
+		item = shelter.dequeueDog()
+		print('dequeue dog: {0}'.format(item))
+
+print(shelter)
 
