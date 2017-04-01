@@ -11,7 +11,16 @@ class Node:
 
 
 def check_bst(head):
-	#
+	if head.left is not None:
+		if head.left.data > head.data:
+			return False
+		else:
+			check_bst(head.left)
+	if head.right is not None:
+		if head.data > head.right.data:
+			return False
+		else:
+			check_bst(head.right)
 	return True
 
 
@@ -27,7 +36,7 @@ node14 = Node(14, node13)
 node10 = Node(10, None, node14)
 node8 = Node(8, node3, node10)
 
-result1 = check_bst(head8)
+result1 = check_bst(node8)
 
 # testing: false
 node2 = Node(2)
