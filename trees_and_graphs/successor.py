@@ -23,6 +23,23 @@ def print_tree(head):
 
 def next_node(head):
 	# stuff here
+	return None
 
 # testing
+node13 = Node(13)
+node14 = Node(14, node13)
+node13.prev = node14
+node10 = Node(10, None, node14)
+node4 = Node(4)
+node7 = Node(7)
+node6 = Node(6, node4, node7)
+node4.prev = node6
+node7.prev = node6
+node1 = Node(1)
+node3 = Node(3, node1, node6)
+node1.prev = node3
+node3.prev = node3
+node8 = Node(8, node3, node10)
+
+
 
