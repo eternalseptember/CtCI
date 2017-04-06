@@ -27,12 +27,37 @@ class Node:
 
 
 def is_binary(head):
-	# return
+	return False
 
 
 # testing
+# false: unbalanced
+node6 = Node(6)
+node5 = Node(5, None, node6)
+node4 = Node(4, None, node5)
+node3 = Node(3, None, node4)
+node2 = Node(2, None, node3)
+node1 = Node(1, None, node2)
+print(is_binary(node1))
 
 
+# false: unbalanced
+
+
+
+# true: balanced
+node1 = Node(1)
+node3 = Node(3)
+node2 = Node(2, node1, node3)
+node8 = Node(8)
+node7 = Node(7, None, node8)
+node5 = Node(5)
+node6 = Node(6, node5, node7)
+node4 = Node(4, node2, node6)
+print(is_binary(node4))
+
+
+# true: balanced
 
 
 
