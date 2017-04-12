@@ -19,7 +19,7 @@ def list_of_depths(head):
 	linked_lists = {}
 	queue = [(head, 0)]
 
-	while queue is not None:
+	while len(queue) > 0:
 		item = queue.pop(0)
 		current_node, depth = (item)
 
