@@ -42,12 +42,18 @@ def list_of_depths(head):
 		if current_node.right is not None:
 			queue.append((current_node.right, depth+1))
 
+	"""
+	# check answer here
+	print('list of depths:')
+	for key in depth_lists:
+		print(depth_lists[key])
+	"""
 
 	# convert results to linked lists
 	linked_lists = []
 	for key in depth_lists:
 		nodes_list = depth_lists[key]
-		
+
 		first_node = LinkedNode(nodes_list.pop(0))
 		current_node = first_node
 
@@ -75,9 +81,17 @@ node3 = Node(3, node6, node7)
 node1 = Node(1, node2, node3)
 
 lists = list_of_depths(node1)
+
 for list in lists:
-	print(list)
-print()
+	current_node = list
+	while current_node is not None:
+		print(current_node, end=' ')
+		current_node = current_node.next
+	print()
+
+print('\n')
+
+
 
 # testing: depth 4
 node5 = Node(5)
@@ -87,7 +101,12 @@ node2 = Node(2, None, node3)
 node1 = Node(1, None, node2)
 
 lists = list_of_depths(node1)
+
 for list in lists:
-	print(list)
+	current_node = list
+	while current_node is not None:
+		print(current_node, end=' ')
+		current_node = current_node.next
+	print()
 
 
