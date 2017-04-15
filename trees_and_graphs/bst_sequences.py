@@ -14,7 +14,10 @@ class Node:
 
 
 def bst_sequences(head):
-	# return something
+	possible_arrays = []
+	# stuff here
+
+	return possible_arrays
 
 
 # testing
@@ -24,7 +27,7 @@ node2 = Node(2, node1, node3)
 
 results = bst_sequences(node2)
 # results: {2, 1, 3}, {2, 3, 1}
-
+print(results)
 
 
 
