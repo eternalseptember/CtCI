@@ -14,8 +14,14 @@ class Node:
 
 
 def bst_sequences(head):
+	if head is None:
+		return None
+
 	possible_arrays = []
-	# stuff here
+	# root is the very first value that must be in every array
+	first_value = head.data
+	# left and right might not be inserted in the same order
+	
 
 	return possible_arrays
 
