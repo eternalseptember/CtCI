@@ -25,9 +25,21 @@ class Node:
 		return 'data: {0}  left: {1}  right: {2}'.format(self.data, left, right)
 
 
-
 def is_binary(head):
-	return False
+	left_height = get_height(head.left)
+	right_height = get_height(head.right)
+
+	diff = left_height - right_height
+
+	if abs(diff) <= 1:
+		return True
+	else:
+		return False
+
+
+def get_height(head, height):
+
+	return height
 
 
 # testing
