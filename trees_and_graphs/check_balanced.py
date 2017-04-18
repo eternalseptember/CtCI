@@ -38,6 +38,8 @@ def is_binary(head):
 
 
 def get_height(head, height):
+	if head is None:
+		return 0
 
 	return height
 
