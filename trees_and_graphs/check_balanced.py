@@ -26,10 +26,8 @@ class Node:
 
 
 def is_binary(head):
-	left_height = get_height(head.left)
-	right_height = get_height(head.right)
-
-	diff = left_height - right_height
+	diff = get_height_difference(head)
+	print(diff)
 
 	if abs(diff) <= 1:
 		return True
@@ -37,11 +35,20 @@ def is_binary(head):
 		return False
 
 
-def get_height(head, height):
-	if head is None:
+def get_height_difference(head):
+	if (head.left is None) and (head.right is None):
 		return 0
+	elif (head.left is None) and (head.right is not None):
+		return get_height_difference(head.right) + 1
+	elif (head.right is None) and (head.left is not None):
+		return get_height_difference(head.left) + 1
+	else:
+		left_height = get_height_difference(head.left)
+		right_height = get_height_difference(head.right)
+		return left_height - right_height
 
-	return height
+
+
 
 
 # testing
