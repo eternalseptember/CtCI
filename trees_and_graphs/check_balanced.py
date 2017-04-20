@@ -90,5 +90,9 @@ node2 = Node(2, node1)
 print(is_binary(node2))
 
 
-
+# true: balanced
+node1 = Node(1)
+node2 = Node(2)
+node3 = Node(3, node1, node2)
+print(is_binary(node3))
 
