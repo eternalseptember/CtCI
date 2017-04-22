@@ -14,7 +14,13 @@ class Node:
 
 
 def common_ancestor(node1, node2):
-	# return something
+	node_behind = node1
+
+	while node_behind.parent is not None:
+		node_ahead = node2
+		# look for parent node
+
+		node_behind = node_behind.parent
 
 
 
@@ -39,5 +45,8 @@ node8 = Node(8, node5, node4)
 node5.parent = node8
 node4.parent = node8
 
+
+# test 1: node8
+ancestor = common_ancestor(node5, node4)
 
 
