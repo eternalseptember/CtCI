@@ -17,11 +17,21 @@ def common_ancestor(node1, node2):
 	node_behind = node1
 
 	while node_behind.parent is not None:
+		parent_1 = node_behind.parent
 		node_ahead = node2
-		# look for parent node
+		
+		while node_ahead.parent is not None:
+			parent_2 = node_ahead.parent
+
+			if (parent_1.data == parent_2.data) and (parent_1.left == parent_2.left) and (parent_1.right == parent_2.right):
+					return parent_2
+
+
+			node_ahead = node_ahead.parent
 
 		node_behind = node_behind.parent
 
+	return None
 
 
 # testing
@@ -48,5 +58,6 @@ node4.parent = node8
 
 # test 1: node8
 ancestor = common_ancestor(node5, node4)
+print('ancestor node: {0}  left: {1}  right: {2}'.format(ancestor.data, ancestor.left.data, ancestor.right.data))
 
 
