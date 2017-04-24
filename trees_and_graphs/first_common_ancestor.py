@@ -16,6 +16,15 @@ class Node:
 def common_ancestor(node1, node2):
 	node_behind = node1
 
+	if node_behind.parent is None:
+		node_ahead = node2
+
+		if node_ahead.parent is None:
+			if (node_ahead.data == node_behind.data) and (node_ahead.left == node_behind.left) and (node_ahead.right == node_behind.right):
+					return node_ahead
+
+			# else go through a while loop
+
 	while node_behind.parent is not None:
 		parent_1 = node_behind.parent
 		node_ahead = node2
@@ -34,7 +43,7 @@ def common_ancestor(node1, node2):
 	return None
 
 
-# testing
+# test 1: node 8
 node9 = Node(9)
 node1 = Node(1)
 node2 = Node(2)
@@ -55,9 +64,21 @@ node8 = Node(8, node5, node4)
 node5.parent = node8
 node4.parent = node8
 
-
-# test 1: node8
 ancestor = common_ancestor(node5, node4)
 print('ancestor node: {0}  left: {1}  right: {2}'.format(ancestor.data, ancestor.left.data, ancestor.right.data))
+
+
+
+# test 2: node 2
+node1 = Node(1)
+node3 = Node(3)
+node2 = Node(2, node1, node3)
+
+ancestor = common_ancestor(node1, node3)
+print('ancestor node: {0}  left: {1}  right: {2}'.format(ancestor.data, ancestor.left.data, ancestor.right.data))
+
+
+# test 3: one node is higher than the other
+
 
 
