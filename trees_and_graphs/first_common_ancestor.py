@@ -14,31 +14,37 @@ class Node:
 
 
 def common_ancestor(node1, node2):
-	node_behind = node1
 
-	if node_behind.parent is None:
+	# assumes that only one of the nodes can be the root node
+	if node1.parent is None:
+		node_ahead = node1
+		node_behind = node2
+	elif node2.parent is None:
 		node_ahead = node2
+		node_behind = node1
 
-		if node_ahead.parent is None:
-			if (node_ahead.data == node_behind.data) and (node_ahead.left == node_behind.left) and (node_ahead.right == node_behind.right):
-					return node_ahead
 
-			# else go through a while loop
 
-	while node_behind.parent is not None:
-		parent_1 = node_behind.parent
-		node_ahead = node2
 		
-		while node_ahead.parent is not None:
-			parent_2 = node_ahead.parent
+	else:
+		# neither of the nodes are the root
+		node_ahead = node2
+		node_behind = node1
 
-			if (parent_1.data == parent_2.data) and (parent_1.left == parent_2.left) and (parent_1.right == parent_2.right):
-					return parent_2
+		while node_behind.parent is not None:
+			parent_1 = node_behind.parent
+			node_ahead = node2
+			
+			while node_ahead.parent is not None:
+				parent_2 = node_ahead.parent
+
+				if (parent_1.data == parent_2.data) and (parent_1.left == parent_2.left) and (parent_1.right == parent_2.right):
+						return parent_2
 
 
-			node_ahead = node_ahead.parent
+				node_ahead = node_ahead.parent
 
-		node_behind = node_behind.parent
+			node_behind = node_behind.parent
 
 	return None
 
@@ -73,6 +79,8 @@ print('ancestor node: {0}  left: {1}  right: {2}'.format(ancestor.data, ancestor
 node1 = Node(1)
 node3 = Node(3)
 node2 = Node(2, node1, node3)
+node1.parent = node2
+node3.parent = node3
 
 ancestor = common_ancestor(node1, node3)
 print('ancestor node: {0}  left: {1}  right: {2}'.format(ancestor.data, ancestor.left.data, ancestor.right.data))
