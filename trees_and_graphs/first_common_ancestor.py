@@ -87,6 +87,13 @@ print('ancestor node: {0}  left: {1}  right: {2}'.format(ancestor.data, ancestor
 
 
 # test 3: one node is higher than the other
+node1 = Node(1)
+node2 = Node(2, node1)
+node1.parent = node2
+
+ancestor = common_ancestor(node1, node3)
+print('ancestor node: {0}  left: {1}  right: {2}'.format(ancestor.data, ancestor.left.data, ancestor.right.data))
+
 
 
 
