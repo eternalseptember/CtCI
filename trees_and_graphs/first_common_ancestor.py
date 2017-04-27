@@ -17,9 +17,11 @@ def common_ancestor(node1, node2):
 
 	# assumes that only one of the nodes can be the root node
 	if node1.parent is None:
+		print('node1 parent is none')
 		node_ahead = node1
 		node_behind = node2
 	elif node2.parent is None:
+		print('node2 parent is none')
 		node_ahead = node2
 		node_behind = node1
 
@@ -28,6 +30,7 @@ def common_ancestor(node1, node2):
 		
 	else:
 		# neither of the nodes are the root
+		print('neither of the nodes are root')
 		node_ahead = node2
 		node_behind = node1
 
@@ -72,7 +75,7 @@ node4.parent = node8
 
 ancestor = common_ancestor(node5, node4)
 print('ancestor node: {0}  left: {1}  right: {2}'.format(ancestor.data, ancestor.left.data, ancestor.right.data))
-
+print()
 
 
 # test 2: node 2
@@ -84,6 +87,7 @@ node3.parent = node3
 
 ancestor = common_ancestor(node1, node3)
 print('ancestor node: {0}  left: {1}  right: {2}'.format(ancestor.data, ancestor.left.data, ancestor.right.data))
+print()
 
 
 # test 3: one node is higher than the other
