@@ -83,19 +83,19 @@ node1 = Node(1)
 node3 = Node(3)
 node2 = Node(2, node1, node3)
 node1.parent = node2
-node3.parent = node3
+node3.parent = node2
 
 ancestor = common_ancestor(node1, node3)
 print('ancestor node: {0}  left: {1}  right: {2}'.format(ancestor.data, ancestor.left.data, ancestor.right.data))
 print()
 
 
-# test 3: one node is higher than the other
-node1 = Node(1)
-node2 = Node(2, node1)
+# test 3: node2 is higher than node1
+node1 = Node(1)  # leaf
+node2 = Node(2, node1)  # root
 node1.parent = node2
 
-ancestor = common_ancestor(node1, node3)
+ancestor = common_ancestor(node1, node2)
 print('ancestor node: {0}  left: {1}  right: {2}'.format(ancestor.data, ancestor.left.data, ancestor.right.data))
 
 
