@@ -23,31 +23,29 @@ def common_ancestor(node1, node2):
 	elif node2.parent is None:
 		print('node2 parent is none')
 		node_ahead = node2
-		node_behind = node1
-
-
-
-		
+		node_behind = node1	
 	else:
 		# neither of the nodes are the root
 		print('neither of the nodes are root')
 		node_ahead = node2
 		node_behind = node1
 
-		while node_behind.parent is not None:
-			parent_1 = node_behind.parent
-			node_ahead = node2
-			
-			while node_ahead.parent is not None:
-				parent_2 = node_ahead.parent
-
-				if (parent_1.data == parent_2.data) and (parent_1.left == parent_2.left) and (parent_1.right == parent_2.right):
-						return parent_2
 
 
-				node_ahead = node_ahead.parent
+	while node_behind.parent is not None:
+		parent_1 = node_behind.parent
+		node_ahead = node2
+		
+		while node_ahead.parent is not None:
+			parent_2 = node_ahead.parent
 
-			node_behind = node_behind.parent
+			if (parent_1.data == parent_2.data) and (parent_1.left == parent_2.left) and (parent_1.right == parent_2.right):
+					return parent_2
+
+
+			node_ahead = node_ahead.parent
+
+		node_behind = node_behind.parent
 
 	return None
 
@@ -98,6 +96,11 @@ node1.parent = node2
 ancestor = common_ancestor(node1, node2)
 print('ancestor node: {0}  left: {1}  right: {2}'.format(ancestor.data, ancestor.left.data, ancestor.right.data))
 
-
+# test 4: node1 is higher than node2 (testing the arguments order)
+node2 = Node(2)  # leaf
+node1 = Node(1, node2)  # root
+node2.parent = node1
+ancestor = common_ancestor(node1, node2)
+print('ancestor node: {0}  left: {1}  right: {2}'.format(ancestor.data, ancestor.left.data, ancestor.right.data))
 
 
