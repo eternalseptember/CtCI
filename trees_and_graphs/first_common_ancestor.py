@@ -17,11 +17,11 @@ def common_ancestor(node1, node2):
 
 	# assumes that only one of the nodes can be the root node
 	if node1.parent is None:
-		print('node1 parent is none')
+		print('first node\'s parent is none')
 		node_ahead = node1
 		node_behind = node2
 	elif node2.parent is None:
-		print('node2 parent is none')
+		print('second node\'s parent is none')
 		node_ahead = node2
 		node_behind = node1	
 	else:
@@ -31,17 +31,22 @@ def common_ancestor(node1, node2):
 		node_behind = node1
 
 
-
-	while node_behind.parent is not None:
+	while node_behind is not None:
 		parent_1 = node_behind.parent
 		node_ahead = node2
-		
-		while node_ahead.parent is not None:
+
+		while node_ahead is not None:
 			parent_2 = node_ahead.parent
+			parents_match = False
 
-			if (parent_1.data == parent_2.data) and (parent_1.left == parent_2.left) and (parent_1.right == parent_2.right):
-					return parent_2
+			if (parent_1.data is None) and (parent_2.data is None):
+				parents_match = True
+			elif (parent_1.data == parent_2.data):
+				parents_match = True
 
+
+			if (parents_match == True) and (parent_1.left == parent_2.left) and (parent_1.right == parent_2.right):
+				return parent_2
 
 			node_ahead = node_ahead.parent
 
@@ -95,6 +100,7 @@ node1.parent = node2
 
 ancestor = common_ancestor(node1, node2)
 print('ancestor node: {0}  left: {1}  right: {2}'.format(ancestor.data, ancestor.left.data, ancestor.right.data))
+
 
 # test 4: node1 is higher than node2 (testing the arguments order)
 node2 = Node(2)  # leaf
