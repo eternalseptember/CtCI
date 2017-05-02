@@ -37,19 +37,12 @@ def common_ancestor(node1, node2):
 
 		while node_ahead is not None:
 			parent_2 = node_ahead
-			parents_match = False
 
-			print('parent1: {0}  parent2: {1}'.format(parent_1.data, parent_2.data))
-
-			if (parent_1.data is None) and (parent_2.data is None):
-				print('both parents are none:')
-				parents_match = True
-			elif (parent_1.data == parent_2.data):
-				print('both parents have data')
-				parents_match = True
-
-
-			if (parents_match == True) and (parent_1.left == parent_2.left) and (parent_1.right == parent_2.right):
+			#print('parent_1: {0}  parent_2: {1}'.format(parent_1.data, parent_2.data))
+			
+			if (parent_1.data == parent_2.data) and (parent_1.left == parent_2.left) and (parent_1.right == parent_2.right):
+				print('returning: {0}, left: {1}, right: {2}'.format(parent_2.data, parent_2.left.data, parent_2.right.data))
+				print('returning: {0}'.format(parent_2.data))
 				return parent_2
 
 			node_ahead = node_ahead.parent
