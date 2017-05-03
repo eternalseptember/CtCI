@@ -17,16 +17,15 @@ def common_ancestor(node1, node2):
 
 	# assumes that only one of the nodes can be the root node
 	if node1.parent is None:
-		print('first node\'s parent is none')
+		# print('first node\'s parent is none')
 		node_ahead = node1
 		node_behind = node2
 	elif node2.parent is None:
-		print('second node\'s parent is none')
+		# print('second node\'s parent is none')
 		node_ahead = node2
-		node_behind = node1	
+		node_behind = node1
 	else:
-		# neither of the nodes are the root
-		print('neither of the nodes are root')
+		# print('neither of the nodes are root')
 		node_ahead = node2
 		node_behind = node1
 
@@ -38,12 +37,16 @@ def common_ancestor(node1, node2):
 		while node_ahead is not None:
 			parent_2 = node_ahead
 
-			#print('parent_1: {0}  parent_2: {1}'.format(parent_1.data, parent_2.data))
-			
 			if (parent_1.data == parent_2.data) and (parent_1.left == parent_2.left) and (parent_1.right == parent_2.right):
-				print('returning: {0}, left: {1}, right: {2}'.format(parent_2.data, parent_2.left.data, parent_2.right.data))
-				print('returning: {0}'.format(parent_2.data))
-				return parent_2
+				left = None
+				if parent_2.left is not None:
+					left = parent_2.left.data
+
+				right = None
+				if parent_2.right is not None:
+					right = parent_2.right.data
+
+				return parent_2.data, left, right
 
 			node_ahead = node_ahead.parent
 
@@ -73,9 +76,8 @@ node8 = Node(8, node5, node4)
 node5.parent = node8
 node4.parent = node8
 
-ancestor = common_ancestor(node5, node4)
-print('ancestor node: {0}  left: {1}  right: {2}'.format(ancestor.data, ancestor.left.data, ancestor.right.data))
-print()
+ancestor, left, right = common_ancestor(node5, node4)
+print('ancestor node: {0}  left: {1}  right: {2}'.format(ancestor, left, right))
 
 
 # test 2: node 2
@@ -85,9 +87,8 @@ node2 = Node(2, node1, node3)
 node1.parent = node2
 node3.parent = node2
 
-ancestor = common_ancestor(node1, node3)
-print('ancestor node: {0}  left: {1}  right: {2}'.format(ancestor.data, ancestor.left.data, ancestor.right.data))
-print()
+ancestor, left, right = common_ancestor(node1, node3)
+print('ancestor node: {0}  left: {1}  right: {2}'.format(ancestor, left, right))
 
 
 # test 3: node2 is higher than node1
@@ -95,15 +96,16 @@ node1 = Node(1)  # leaf
 node2 = Node(2, node1)  # root
 node1.parent = node2
 
-ancestor = common_ancestor(node1, node2)
-print('ancestor node: {0}  left: {1}  right: {2}'.format(ancestor.data, ancestor.left.data, ancestor.right.data))
+ancestor, left, right = common_ancestor(node1, node2)
+print('ancestor node: {0}  left: {1}  right: {2}'.format(ancestor, left, right))
 
 
 # test 4: node1 is higher than node2 (testing the arguments order)
 node2 = Node(2)  # leaf
 node1 = Node(1, node2)  # root
 node2.parent = node1
-ancestor = common_ancestor(node1, node2)
-print('ancestor node: {0}  left: {1}  right: {2}'.format(ancestor.data, ancestor.left.data, ancestor.right.data))
+
+ancestor, left, right = common_ancestor(node1, node2)
+print('ancestor node: {0}  left: {1}  right: {2}'.format(ancestor, left, right))
 
 
