@@ -17,11 +17,11 @@ def common_ancestor(node1, node2):
 
 	# assumes that only one of the nodes can be the root node
 	if node1.parent is None:
-		# print('first node\'s parent is none')
+		print('first node\'s parent is none')
 		node_ahead = node1
 		node_behind = node2
 	elif node2.parent is None:
-		# print('second node\'s parent is none')
+		print('second node\'s parent is none')
 		node_ahead = node2
 		node_behind = node1
 	else:
@@ -30,11 +30,10 @@ def common_ancestor(node1, node2):
 		node_behind = node1
 
 
-	while node_behind is not None:
-		parent_1 = node_behind
-		node_ahead = node2
+	while node_ahead is not None:
+		parent_1 = node_ahead
 
-		while node_ahead is not None:
+		while node_behind is not None:
 			parent_2 = node_ahead
 
 			if (parent_1.data == parent_2.data) and (parent_1.left == parent_2.left) and (parent_1.right == parent_2.right):
@@ -48,9 +47,9 @@ def common_ancestor(node1, node2):
 
 				return parent_2.data, left, right
 
-			node_ahead = node_ahead.parent
+			node_behind = node_behind.parent
 
-		node_behind = node_behind.parent
+		node_ahead = node_ahead.parent
 
 	return None
 
@@ -91,7 +90,16 @@ ancestor, left, right = common_ancestor(node1, node3)
 print('ancestor node: {0}  left: {1}  right: {2}'.format(ancestor, left, right))
 
 
-# test 3: node2 is higher than node1
+# test 3: node1 is higher than node2 (testing the arguments order)
+node2 = Node(2)  # leaf
+node1 = Node(1, node2)  # root
+node2.parent = node1
+
+ancestor, left, right = common_ancestor(node1, node2)
+print('ancestor node: {0}  left: {1}  right: {2}'.format(ancestor, left, right))
+
+
+# test 4: node2 is higher than node1
 node1 = Node(1)  # leaf
 node2 = Node(2, node1)  # root
 node1.parent = node2
@@ -100,12 +108,6 @@ ancestor, left, right = common_ancestor(node1, node2)
 print('ancestor node: {0}  left: {1}  right: {2}'.format(ancestor, left, right))
 
 
-# test 4: node1 is higher than node2 (testing the arguments order)
-node2 = Node(2)  # leaf
-node1 = Node(1, node2)  # root
-node2.parent = node1
 
-ancestor, left, right = common_ancestor(node1, node2)
-print('ancestor node: {0}  left: {1}  right: {2}'.format(ancestor, left, right))
 
 
