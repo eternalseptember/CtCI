@@ -31,9 +31,16 @@ def print_tree(head):
 		print_tree(head.right)
 
 
-def create_BST(head, data):
+def create_minimal_tree(head, data):
 	if head is None:
 		return Node(data)
+	elif head.left is None:
+		head.left = Node(data)
+		return head
+	elif head.right is None:
+		head.right = Node(data)
+		return head
+	# think recurse somewhere...
 	
 
 
@@ -42,7 +49,7 @@ values = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 head = None
 
 for value in values:
-	head = create_bst(head, value)
+	head = create_minimal_tree(head, value)
 
 
 

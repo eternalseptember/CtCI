@@ -17,11 +17,11 @@ def common_ancestor(node1, node2):
 
 	# assumes that only one of the nodes can be the root node
 	if node1.parent is None:
-		print('first node\'s parent is none')
+		# print('first node\'s parent is none')
 		node_ahead = node1
 		node_behind = node2
 	elif node2.parent is None:
-		print('second node\'s parent is none')
+		# print('second node\'s parent is none')
 		node_ahead = node2
 		node_behind = node1
 	else:
