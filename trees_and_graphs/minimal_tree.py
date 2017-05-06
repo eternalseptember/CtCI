@@ -45,14 +45,23 @@ def create_minimal_tree(head, data):
 
 
 # testing
+"""
 values = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 head = None
 
 for value in values:
 	head = create_minimal_tree(head, value)
+"""
 
 
+# testing
+values = [0, 1, 2]
+head = None
 
+for value in values:
+	head = create_minimal_tree(head, value)
+
+print_tree(head)
 
 
 
