@@ -18,21 +18,39 @@ def bst_sequences(head):
 		return None
 
 	possible_arrays = []
+
 	# root is the very first value that must be in every array
+	# left to right
 	first_value = head.data
-	# left and right might not be inserted in the same order
-	
+	possible_set = [first_value]
+
+	if head.left is not None:
+		possible_set.append(head.left.data)
+	if head.right is not None:
+		possible_set.append(head.right.data)
+
+	possible_arrays.append(possible_set)
+
+
+	# right to left
+	possible_set = [first_value]
+
+	if head.right is not None:
+		possible_set.append(head.right.data)
+	if head.left is not None:
+		possible_set.append(head.left.data)
+
+	possible_arrays.append(possible_set)
 
 	return possible_arrays
 
 
-# testing
+# testing: {2, 1, 3}, {2, 3, 1}
 node1 = Node(1)
 node3 = Node(3)
 node2 = Node(2, node1, node3)
 
 results = bst_sequences(node2)
-# results: {2, 1, 3}, {2, 3, 1}
 print(results)
 
 
