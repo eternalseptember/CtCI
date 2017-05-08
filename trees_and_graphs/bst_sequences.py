@@ -54,4 +54,12 @@ results = bst_sequences(node2)
 print(results)
 
 
+# testing: 
+node4 = Node(4)
+node1 = Node(1, node4)
+node3 = Node(3)
+node2 = Node(2, node1, node3)
+
+results = bst_sequences(node2)
+print(results)
 
