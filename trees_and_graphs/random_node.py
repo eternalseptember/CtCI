@@ -15,7 +15,20 @@ class Node:
 
 
 	def insert(self, head, data):
-		# insert node at next available spot, then swap
+		if head is None:
+			return Node(data)
+		if head.left is None:
+			head.left = Node(data)
+			return head
+		if head.right is None:
+			head.right = Node(data)
+			return head
+
+
+		# don't think this is a min or max heap
+		queue = []
+
+
 		return head
 
 
@@ -31,5 +44,8 @@ class Node:
 
 	def get_random_node(self):
 		# return ranodm node
+		return None
 
+
+# testing
 
