@@ -24,12 +24,25 @@ class Node:
 			head.right = Node(data)
 			return head
 
-
 		# don't think this is a min or max heap
 		queue = []
+		if head.left is not None:
+			queue.append(head.left)
+		if head.right is not None:
+			queue.append(head.right)
 
+		for individual_node in queue:
+			if individual_node.left is None:
+				individual_node.left = Node(data)
+				return head
+			else:
+				queue.append(head.left)
 
-		return head
+			if individual_node.right is None:
+				individual_node.right = Node(data)
+				return head
+			else:
+				queue.append(head.right)
 
 
 	def find(self, target):
