@@ -45,17 +45,19 @@ def insert(head, data):
 
 	while len(queue) > 0:
 		single_node = queue.pop(0)
+
 		if single_node.left is not None:
-			queue.append(head.left)
+			queue.append(single_node.left)
 		else:
 			single_node.left = Node(data)
 			return head
 
 		if single_node.right is not None:
-			queue.append(head.right)
+			queue.append(single_node.right)
 		else:
 			single_node.right = Node(data)
 			return head
+
 
 
 def find(head, target):
@@ -74,8 +76,8 @@ def get_random_node(head):
 
 
 # testing
-#values = [7, 5, 3, 8, 1, 8, 0, 2, 5, 2, 4]
-values = [1, 2, 3, 4, 5, 6, 7, 8]
+values = [7, 5, 3, 8, 1, 8, 0, 2, 5, 2, 4]
+# values = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
 head = None
 
 for value in values:
