@@ -61,8 +61,37 @@ def insert(head, data):
 
 
 def find(head, target):
-	# return node
-	return None
+	# find a node based on values
+	queue = [head]
+
+	while len(queue) > 0:
+		current_node = queue.pop(0)
+
+		left_match = False
+		right_match = False
+
+		if (current_node.left is None) and (target.left is None):
+			left_match = True
+		elif (current_node.left is not None) and (target.left is not None):
+			if (current_node.left.data == target.left.data):
+				left_match = True
+
+		if (current_node.right is None) and (target.right is None):
+			right_match = True
+		elif (current_node.right is not None) and (target.right is not None):
+			if (current_node.right.data == target.right.data):
+				right_match = True
+
+
+		if (current_node.data == target.data) and (left_match is True) and (right_match is True):
+			return True
+		else:
+			if current_node.left is not None:
+				queue.append(current_node.left)
+			if current_node.right is not None:
+				queue.append(current_node.right)
+
+	return False
 
 
 def delete(head, target):
@@ -83,7 +112,21 @@ head = None
 for value in values:
 	head = insert(head, value)
 
+#print_level_order(head)
 
-print_level_order(head)
+# test case 1: true
+node2 = Node(2)
+node4 = Node(4)
+look_for_this_node = Node(1, node2, node4)
+
+found_node = find(head, look_for_this_node)
+print(found_node)
+
+
+# test case 2: true
+look_for_this_node = Node(2)
+
+found_node = find(head, look_for_this_node)
+print(found_node)
 
 
