@@ -105,14 +105,14 @@ def get_random_node(head):
 
 
 # testing
-values = [7, 5, 3, 8, 1, 8, 0, 2, 5, 2, 4]
+values = [7, 5, 3, 8, 1, 8, 0, 2, 5, 2, 4, 1]
 # values = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
 head = None
 
 for value in values:
 	head = insert(head, value)
 
-print_level_order(head)
+# print_level_order(head)
 
 # test case 1: true
 node2 = Node(2)
@@ -144,6 +144,23 @@ look_for_this_node = Node(1, node0, node4)
 
 found_node = find(head, look_for_this_node)
 print(found_node)
+
+
+# test case 5: false
+node4 = Node(4)
+look_for_this_node = Node(1, None, node4)
+
+found_node = find(head, look_for_this_node)
+print(found_node)
+
+
+# test case 6: true
+node1 = Node(1)
+look_for_this_node = Node(8, node1)
+
+found_node = find(head, look_for_this_node)
+print(found_node)
+
 
 
 
