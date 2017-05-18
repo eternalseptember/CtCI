@@ -198,8 +198,18 @@ found_node = find(head, look_for_this_node)
 print(found_node)
 """
 
-# testing delete: true
+
+# test 1 delete: true
 target_node = Node(1)
+
+delete_success = delete(head, target_node)
+print(delete_success)
+
+
+# test 2 delete: false
+node5 = Node(5)
+node2 = Node(2)
+target_node = Node(7, node5, node2)
 
 delete_success = delete(head, target_node)
 print(delete_success)
