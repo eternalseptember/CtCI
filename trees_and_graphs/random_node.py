@@ -84,52 +84,27 @@ def find(head, target):
 
 
 		if (current_node.data == target.data) and (left_match is True) and (right_match is True):
-			return True
+			return True, current_node
 		else:
 			if current_node.left is not None:
 				queue.append(current_node.left)
 			if current_node.right is not None:
 				queue.append(current_node.right)
 
-	return False
+	return False, None
 
 
 def delete(head, target):
 	# remove the first node with matching head data, left data, and right data
 	# return True if node has been deleted
 	# return False if node cannot be deleted
-	queue = [head]
+	node_found, found_head = find(head, target)
 
-	while len(queue) > 0:
-		current_node = queue.pop(0)
+	if node_found is True:
+		print('node found')
+	else:
+		print('node not found')
 
-		left_match = False
-		right_match = False
-
-		if (current_node.left is None) and (target.left is None):
-			left_match = True
-		elif (current_node.left is not None) and (target.left is not None):
-			if (current_node.left.data == target.left.data):
-				left_match = True
-
-		if (current_node.right is None) and (target.right is None):
-			right_match = True
-		elif (current_node.right is not None) and (target.right is not None):
-			if (current_node.right.data == target.right.data):
-				right_match = True
-
-
-		if (current_node.data == target.data) and (left_match is True) and (right_match is True):
-			# remove node here
-
-
-
-			return True
-		else:
-			if current_node.left is not None:
-				queue.append(current_node.left)
-			if current_node.right is not None:
-				queue.append(current_node.right)
 
 	return False
 
@@ -155,21 +130,21 @@ node2 = Node(2)
 node4 = Node(4)
 look_for_this_node = Node(1, node2, node4)
 
-found_node = find(head, look_for_this_node)
+found_node, found_head = find(head, look_for_this_node)
 print(found_node)
 
 
 # test case 2: true
 look_for_this_node = Node(2)
 
-found_node = find(head, look_for_this_node)
+found_node, found_head = find(head, look_for_this_node)
 print(found_node)
 
 
 # test case 3: false
 look_for_this_node = Node(7)
 
-found_node = find(head, look_for_this_node)
+found_node, found_head = find(head, look_for_this_node)
 print(found_node)
 
 
@@ -178,7 +153,7 @@ node0 = Node(0)
 node4 = Node(4)
 look_for_this_node = Node(1, node0, node4)
 
-found_node = find(head, look_for_this_node)
+found_node, found_head = find(head, look_for_this_node)
 print(found_node)
 
 
@@ -186,7 +161,7 @@ print(found_node)
 node4 = Node(4)
 look_for_this_node = Node(1, None, node4)
 
-found_node = find(head, look_for_this_node)
+found_node, found_head = find(head, look_for_this_node)
 print(found_node)
 
 
@@ -194,9 +169,10 @@ print(found_node)
 node1 = Node(1)
 look_for_this_node = Node(8, node1)
 
-found_node = find(head, look_for_this_node)
+found_node, found_head = find(head, look_for_this_node)
 print(found_node)
 """
+
 
 
 # test 1 delete: true
