@@ -55,8 +55,15 @@ def find_next_node(head):
 			# root node
 			return None
 		else:
-			# go up the tree
-			return head.prev
+			next_node = head.prev
+			
+			if next_node.left == head:
+				# go up the tree
+				return next_node
+			else:
+				# no more successors
+				return None
+
 
 
 
@@ -84,6 +91,7 @@ node10.prev = node8
 
 #print_tree(node8)
 
+# right half of the tree
 # test case 1: node10
 next_node = find_next_node(node8)
 print(next_node)
@@ -95,4 +103,30 @@ print(next_node)
 # test case 3: node14
 next_node = find_next_node(node13)
 print(next_node)
+
+# test case 4: None
+next_node = find_next_node(node14)
+print(next_node)
+
+# left half of the tree
+# test case 5: node3
+next_node = find_next_node(node1)
+print(next_node)
+
+# test case 6: node4
+next_node = find_next_node(node3)
+print(next_node)
+
+# test case 7: node6
+next_node = find_next_node(node4)
+print(next_node)
+
+# test case 8: node7
+next_node = find_next_node(node6)
+print(next_node)
+
+# test case 9: node8
+next_node = find_next_node(node7)
+print(next_node)
+
 
