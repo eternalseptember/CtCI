@@ -45,6 +45,7 @@ def find_next_node(head):
 		next_node = head.right
 
 		if next_node.left is not None:
+			# might need to search deeper in the tree
 			return next_node.left
 		else:
 			return next_node
@@ -61,72 +62,32 @@ def find_next_node(head):
 				# go up the tree
 				return next_node
 			else:
-				# no more successors
-				return None
+				# check if need to return the root
+				# or no more successors
+				current_node = next_node
+				next_node = current_node.prev
+
+				if next_node is None:
+					return None
+				else:
+					while next_node.prev is not None:
+						current_node = next_node
+						next_node = current_node.prev
+						# maybe the parent need should be returned
+
+					# made it to the root
+					if next_node.left == current_node:
+						return next_node
+					else:
+						return None
 
 
 
 
-# test tree. in-order: 1, 3, 4, 6, 7, 8, 10, 13, 14
-node13 = Node(13)
-node14 = Node(14, node13)
-node13.prev = node14
-node10 = Node(10, None, node14)
-node14.prev = node10
 
-node4 = Node(4)
-node7 = Node(7)
-node6 = Node(6, node4, node7)
-node4.prev = node6
-node7.prev = node6
 
-node1 = Node(1)
-node3 = Node(3, node1, node6)
-node1.prev = node3
-node6.prev = node3
 
-node8 = Node(8, node3, node10)
-node3.prev = node8
-node10.prev = node8
 
-#print_tree(node8)
 
-# right half of the tree
-# test case 1: node10
-next_node = find_next_node(node8)
-print(next_node)
-
-# test case 2: node13
-next_node = find_next_node(node10)
-print(next_node)
-
-# test case 3: node14
-next_node = find_next_node(node13)
-print(next_node)
-
-# test case 4: None
-next_node = find_next_node(node14)
-print(next_node)
-
-# left half of the tree
-# test case 5: node3
-next_node = find_next_node(node1)
-print(next_node)
-
-# test case 6: node4
-next_node = find_next_node(node3)
-print(next_node)
-
-# test case 7: node6
-next_node = find_next_node(node4)
-print(next_node)
-
-# test case 8: node7
-next_node = find_next_node(node6)
-print(next_node)
-
-# test case 9: node8
-next_node = find_next_node(node7)
-print(next_node)
 
 
