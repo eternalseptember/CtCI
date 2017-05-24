@@ -8,7 +8,7 @@ from successor import *
 # ************************************************
 # ******************** TREE 1 ********************
 # ************************************************
-
+"""
 # in-order: 1, 3, 4, 6, 7, 8, 10, 13, 14
 node13 = Node(13)
 node14 = Node(14, node13)
@@ -93,7 +93,43 @@ for single_node in list_of_nodes:
 	next_node = find_next_node(single_node)
 	print(next_node)
 print()
+"""
 
+# ************************************************
+# ******************** TREE 4 ********************
+# ************************************************
+
+
+node7 = Node(7)
+node8 = Node(8, node7)
+node7.prev = node8
+node10 = Node(10)
+node9 = Node(9, node8, node10)
+node8.prev = node9
+node10.prev = node9
+
+node4 = Node(4)
+node5 = Node(5, node4)
+node4.prev = node5
+node6 = Node(6, node5 ,node9)
+node5.prev = node6
+node9.prev = node6
+
+node3 = Node(3, None, node6)
+node6.prev = node3
+
+node1 = Node(1)
+node2 = Node(2, node1, node3)
+node1.prev = node2
+node3.prev = node2
+
+#print_tree(node2)
+
+list_of_nodes = [node1, node2, node3, node4, node5, node6, node7, node8, node9, node10]
+for single_node in list_of_nodes:
+	next_node = find_next_node(single_node)
+	print(next_node)
+print()
 
 
 
