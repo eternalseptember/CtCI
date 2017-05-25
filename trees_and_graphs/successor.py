@@ -45,8 +45,10 @@ def find_next_node(head):
 		next_node = head.right
 
 		if next_node.left is not None:
-			# might need to search deeper in the tree
-			return next_node.left
+			if next_node.left.left is not None:
+				return next_node.left.left
+			else:
+				return next_node.left
 		else:
 			return next_node
 
