@@ -133,8 +133,27 @@ print()
 # ******************** TREE 5 ********************
 # ************************************************
 
+node3 = Node(3)
+node4 = Node(4, node3)
+node3.prev = node4
+node5 = Node(5, node4)
+node4.prev = node5
+node6 = Node(6, node5)
+node5.prev = node6
+node7 = Node(7, node6)
+node6.prev = node7
+node2 = Node(2, None, node7)
+node7.prev = node2
+node1 = Node(1, None, node2)
+node2.prev = node1
 
+#print_tree(node1)
 
+list_of_nodes = [node1, node2, node3, node4, node5, node6, node7]
+for single_node in list_of_nodes:
+	next_node = find_next_node(single_node)
+	print(next_node)
+print()
 
 
 

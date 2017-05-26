@@ -44,13 +44,10 @@ def find_next_node(head):
 	if head.right is not None:
 		next_node = head.right
 
-		if next_node.left is not None:
-			if next_node.left.left is not None:
-				return next_node.left.left
-			else:
-				return next_node.left
-		else:
-			return next_node
+		while next_node.left is not None:
+			next_node = next_node.left
+
+		return next_node
 
 	else:
 		# there's no right node
