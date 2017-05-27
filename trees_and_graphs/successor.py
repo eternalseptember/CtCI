@@ -70,9 +70,11 @@ def find_next_node(head):
 					return None
 				else:
 					while next_node.prev is not None:
+						if next_node.left == current_node:
+							return next_node
+
 						current_node = next_node
 						next_node = current_node.prev
-						# maybe the parent need should be returned
 
 					# made it to the root
 					if next_node.left == current_node:
