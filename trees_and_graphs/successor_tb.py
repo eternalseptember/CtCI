@@ -91,7 +91,7 @@ for single_node in list_of_nodes:
 	next_node = find_next_node(single_node)
 	print(next_node)
 print()
-"""
+
 
 # ************************************************
 # ******************** TREE 4 ********************
@@ -154,7 +154,45 @@ for single_node in list_of_nodes:
 	next_node = find_next_node(single_node)
 	print(next_node)
 print()
+"""
 
+# ************************************************
+# ******************** TREE 6 ********************
+# ************************************************
+
+node3 = Node(3)
+node5 = Node(5)
+node4 = Node(4, node3, node5)
+node3.prev = node4
+node5.prev = node4
+node6 = Node(6, node4)
+node4.prev = node6
+node1 = Node(1)
+node2 = Node(2, node1, node6)
+node1.prev = node2
+node6.prev = node2
+node7 = Node(7, node2)
+node2.prev = node7
+
+node12 = Node(12)
+node11 = Node(11, None, node12)
+node12.prev = node11
+node9 = Node(9)
+node10 = Node(10, node9, node11)
+node9.prev = node10
+node11.prev = node10
+
+node8 = Node(8, node7, node10)
+node7.prev = node8
+node10.prev = node8
+
+#print_tree(node8)
+
+list_of_nodes = [node1, node2, node3, node4, node5, node6, node7, node8, node9, node10, node11, node12]
+for single_node in list_of_nodes:
+	next_node = find_next_node(single_node)
+	print(next_node)
+print()
 
 
 
