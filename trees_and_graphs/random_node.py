@@ -101,17 +101,35 @@ def delete(head, target):
 	node_found, found_head = find(head, target)
 
 	if node_found is True:
-		print('node found')
+		# delete policy?
+
+
+		return head
 	else:
-		print('node not found')
-
-
-	return False
+		return None
 
 
 def get_random_node(head):
-	# return ranodm node
-	return None
+	from random import randrange
+
+	list_of_nodes = []
+
+	# fill list here
+	queue = [head]
+	while (len(queue) > 0):
+		top_node = queue.pop(0)
+		list_of_nodes.append(top_node)
+
+		if top_node.left is not None:
+			queue.append(top_node.left)
+		if top_node.right is not None:
+			queue.append(top_node.right)
+
+	# get random node
+	number_of_nodes = len(list_of_nodes)
+	random_node_index = randrange(number_of_nodes)
+	return list_of_nodes[random_node_index]
+
 
 
 # testing
@@ -122,7 +140,7 @@ head = None
 for value in values:
 	head = insert(head, value)
 
-print_level_order(head)
+#print_level_order(head)
 
 """
 # test case 1: true
@@ -173,8 +191,7 @@ found_node, found_head = find(head, look_for_this_node)
 print(found_node)
 """
 
-
-
+"""
 # test 1 delete: true
 target_node = Node(1)
 
@@ -189,8 +206,14 @@ target_node = Node(7, node5, node2)
 
 delete_success = delete(head, target_node)
 print(delete_success)
+"""
 
 
+# test 1 random node:
+for i in range(15):
+	random_node = get_random_node(head)
+	print(random_node)
+	print()
 
 
 
