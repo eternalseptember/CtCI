@@ -102,6 +102,17 @@ def delete(head, target):
 
 	if node_found is True:
 		# delete policy?
+		# move the lower value upward
+		if found_head.left is not None:
+			left_value = found_head.left.data
+		else:
+			left_value = None
+
+		if found_head.right is not None:
+			right_value = found_head.right.data
+		else:
+			right_value = None
+
 
 
 		return head
@@ -191,7 +202,7 @@ found_node, found_head = find(head, look_for_this_node)
 print(found_node)
 """
 
-"""
+
 # test 1 delete: true
 target_node = Node(1)
 
@@ -206,14 +217,14 @@ target_node = Node(7, node5, node2)
 
 delete_success = delete(head, target_node)
 print(delete_success)
+
+
 """
-
-
 # test 1 random node:
 for i in range(15):
 	random_node = get_random_node(head)
 	print(random_node)
 	print()
-
+"""
 
 
