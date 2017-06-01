@@ -114,6 +114,18 @@ def delete(head, target):
 			right_value = None
 
 
+		# what if the deleted node is a leaf with no children?
+		if (left_value is not None) and (right_value is not None):
+			if left_value <= right_value:
+				print('move left_value upward')
+			else:
+				print('move right_value upward')
+		elif (left_value is None):
+			print('move right_value upward')
+		else:
+			print('mvoe left_value upward')
+
+
 
 		return head
 	else:
