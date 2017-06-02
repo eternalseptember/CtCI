@@ -62,10 +62,12 @@ def insert(head, data):
 
 def find(head, target):
 	# find a node based on values
-	queue = [head]
+	queue = [(None, head)]
+	parent_node = None
 
 	while len(queue) > 0:
-		current_node = queue.pop(0)
+		top_of_stack = queue.pop(0)
+		parent_node, current_node = (top_of_stack)
 
 		left_match = False
 		right_match = False
@@ -84,21 +86,24 @@ def find(head, target):
 
 
 		if (current_node.data == target.data) and (left_match is True) and (right_match is True):
-			return True, current_node
+			return True, current_node, parent_node
 		else:
 			if current_node.left is not None:
-				queue.append(current_node.left)
+				queue.append((current_node, current_node.left))
 			if current_node.right is not None:
-				queue.append(current_node.right)
+				queue.append((current_node, current_node.right))
 
-	return False, None
+		parent_node = current_node
+
+	return False, None, None
 
 
 def delete(head, target):
 	# remove the first node with matching head data, left data, and right data
 	# return True if node has been deleted
 	# return False if node cannot be deleted
-	node_found, found_head = find(head, target)
+	node_found, found_head, parent_head = find(head, target)
+
 
 	if node_found is True:
 		# delete policy?
@@ -113,12 +118,16 @@ def delete(head, target):
 		else:
 			right_value = None
 
+		# figure out which child of parent_head to update
 
-		# what if the deleted node is a leaf with no children?
+		# what if head of tree?
+		# what if leaf?
 		if (left_value is not None) and (right_value is not None):
 			if left_value <= right_value:
+				#move left_value upward
 				print('move left_value upward')
 			else:
+				#move right_value upward
 				print('move right_value upward')
 		elif (left_value is None):
 			print('move right_value upward')
@@ -130,6 +139,7 @@ def delete(head, target):
 		return head
 	else:
 		return None
+
 
 
 def get_random_node(head):
@@ -163,7 +173,7 @@ head = None
 for value in values:
 	head = insert(head, value)
 
-#print_level_order(head)
+print_level_order(head)
 
 """
 # test case 1: true
@@ -214,7 +224,7 @@ found_node, found_head = find(head, look_for_this_node)
 print(found_node)
 """
 
-
+print()
 # test 1 delete: true
 target_node = Node(1)
 
