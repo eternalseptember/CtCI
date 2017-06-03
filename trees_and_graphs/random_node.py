@@ -63,7 +63,6 @@ def insert(head, data):
 def find(head, target):
 	# find a node based on values
 	queue = [(None, head)]
-	parent_node = None
 
 	while len(queue) > 0:
 		top_of_stack = queue.pop(0)
@@ -93,7 +92,6 @@ def find(head, target):
 			if current_node.right is not None:
 				queue.append((current_node, current_node.right))
 
-		parent_node = current_node
 
 	return False, None, None
 
@@ -104,35 +102,42 @@ def delete(head, target):
 	# return False if node cannot be deleted
 	node_found, found_head, parent_head = find(head, target)
 
-
 	if node_found is True:
-		# delete policy?
-		# move the lower value upward
-		if found_head.left is not None:
-			left_value = found_head.left.data
-		else:
-			left_value = None
-
-		if found_head.right is not None:
-			right_value = found_head.right.data
-		else:
-			right_value = None
-
+		# delete policy: move the lower value upward
 		# figure out which child of parent_head to update
-
-		# what if head of tree?
-		# what if leaf?
-		if (left_value is not None) and (right_value is not None):
-			if left_value <= right_value:
-				#move left_value upward
-				print('move left_value upward')
-			else:
-				#move right_value upward
-				print('move right_value upward')
-		elif (left_value is None):
-			print('move right_value upward')
+		if parent_head.left == found_head:
+			match = 'left'
 		else:
-			print('mvoe left_value upward')
+			match = 'right'
+
+		# figure out which child node moves upward
+		if (found_head.left is None) and (found_head.right is None):
+			move_up_child = 'none'
+		elif (found_head.left is None):
+			move_up_child = 'right'
+		elif (found_head.right is None):
+			move_up_child = 'left'
+		else:
+			if found_head.left.data <= found_head.right.data:
+				move_up_child = 'left'
+			else:
+				move_up_child = 'right'
+
+
+		if match == 'left':
+			if move_up_child == 'left':
+				parent_head.left = found_head.left
+			elif move_up_child == 'right':
+				parent_head.left = found_head.right
+			else:
+				parent_head.left = None
+		else:
+			if move_up_child == 'left':
+				parent_head.right = found_head.left
+			elif move_up_child == 'right':
+				parent_head.right = found_head.right
+			else:
+				parent_head.right = None
 
 
 
@@ -174,6 +179,8 @@ for value in values:
 	head = insert(head, value)
 
 print_level_order(head)
+print()
+
 
 """
 # test case 1: true
@@ -224,13 +231,16 @@ found_node, found_head = find(head, look_for_this_node)
 print(found_node)
 """
 
-print()
+
 # test 1 delete: true
 target_node = Node(1)
 
 delete_success = delete(head, target_node)
-print(delete_success)
-
+if delete_success is not None:
+	print_level_order(delete_success)
+else:
+	print(delete_success)
+print()
 
 # test 2 delete: false
 node5 = Node(5)
@@ -238,7 +248,10 @@ node2 = Node(2)
 target_node = Node(7, node5, node2)
 
 delete_success = delete(head, target_node)
-print(delete_success)
+if delete_success is not None:
+	print_level_order(delete_success)
+else:
+	print(delete_success)
 
 
 """
