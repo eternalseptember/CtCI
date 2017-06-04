@@ -253,6 +253,17 @@ if delete_success is not None:
 else:
 	print(delete_success)
 
+# test 3 delete: deleting root
+node5 = Node(5)
+node3 = Node(3)
+target_node = Node(7, node5, node3)
+
+delete_success = delete(head, target_node)
+if delete_success is not None:
+	print_level_order(delete_success)
+else:
+	print(delete_success)
+
 
 """
 # test 1 random node:
