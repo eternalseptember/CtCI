@@ -184,8 +184,9 @@ head = None
 for value in values:
 	head = insert(head, value)
 
-print_level_order(head)
-print()
+#print('original tree')
+#print_level_order(head)
+#print()
 
 
 """
@@ -238,17 +239,7 @@ print(found_node)
 """
 
 
-# test 1 delete: true
-target_node = Node(1)
-
-delete_success = delete(head, target_node)
-if delete_success is not None:
-	print_level_order(delete_success)
-else:
-	print(delete_success)
-print()
-
-# test 2 delete: false
+# test 1 delete: false
 node5 = Node(5)
 node2 = Node(2)
 target_node = Node(7, node5, node2)
@@ -258,8 +249,21 @@ if delete_success is not None:
 	print_level_order(delete_success)
 else:
 	print(delete_success)
+print()
 
-# test 3 delete: deleting root
+
+# test 2 delete: true, deleting leaf
+target_node = Node(1)
+
+delete_success = delete(head, target_node)
+if delete_success is not None:
+	print_level_order(delete_success)
+else:
+	print(delete_success)
+print()
+
+
+# test 3 delete: true, deleting root
 node5 = Node(5)
 node3 = Node(3)
 target_node = Node(7, node5, node3)
@@ -269,6 +273,20 @@ if delete_success is not None:
 	print_level_order(delete_success)
 else:
 	print(delete_success)
+print()
+
+
+# test 4 delete: true, deleting middle leaf
+node2 = Node(2)
+node4 = Node(4)
+target_node = Node(1, node2, node4)
+
+delete_success = delete(head, target_node)
+if delete_success is not None:
+	print_level_order(delete_success)
+else:
+	print(delete_success)
+print()
 
 
 """
