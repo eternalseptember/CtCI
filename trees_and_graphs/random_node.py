@@ -104,8 +104,12 @@ def delete(head, target):
 
 	if node_found is True:
 		# delete policy: move the lower value upward
-		# figure out which child of parent_head to update
-		if parent_head.left == found_head:
+
+		# if the node to be deleted is the head
+		if parent_head == found_head:
+			match = 'head'
+		# otherwise, figure out which child of parent_head to update
+		elif parent_head.left == found_head:
 			match = 'left'
 		else:
 			match = 'right'
@@ -124,6 +128,8 @@ def delete(head, target):
 				move_up_child = 'right'
 
 
+		# I don't think this is quite right...
+		# it might need to keep moving values until it reaches a leaf node
 		if match == 'left':
 			if move_up_child == 'left':
 				parent_head.left = found_head.left
