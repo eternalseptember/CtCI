@@ -4,13 +4,13 @@ a route between two nodes.
 """
 
 class Node():
-	def __init__(self, data=None, routes=None):
-		self.data = data
-		
-		if routes is None:
-			self.routes = []
-		else:
-			self.routes = routes
+	def __init__(self, name=None, routes=None):
+		self.name = name
+		self.routes = []
+
+		if routes is not None:
+			for item in routes:
+				self.routes.append(item)
 
 
 	def __str__(self):
@@ -19,8 +19,18 @@ class Node():
 		for route in self.routes:
 			list_of_routes.append(route.data)
 
-		return 'data: {0}\nroutes: {1}'.format(self.data, list_of_routes)
+		return 'name: {0}\t\troutes: {1}'.format(self.name, list_of_routes)
 
 
+# first graph
+node0 = Node('node0')
+node1 = Node('node1')
+node2 = Node('node2')
+node3 = Node('node3')
+
+node0.routes = [node1, node2]
+node1.routes = [node2]
+node2.routes = [node0, node3]
+node3.routes = [node3]
 
 
