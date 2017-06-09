@@ -22,6 +22,13 @@ class Node():
 		return 'name: {0}\t\troutes: {1}'.format(self.name, list_of_routes)
 
 
+def has_route_between_nodes(from_node, to_node):
+	# return True if there is a route between the two
+	# return False if there isn't a route
+	return None
+
+
+
 # first graph
 node0 = Node('node0')
 node1 = Node('node1')
@@ -33,4 +40,14 @@ node1.routes = [node2]
 node2.routes = [node0, node3]
 node3.routes = [node3]
 
+
+# test case 1: true
+result = has_route_between_nodes(node1, node3)
+print(result)
+print()
+
+# test case 2: false
+result = has_route_between_nodes(node3, node0)
+print(result)
+print()
 
