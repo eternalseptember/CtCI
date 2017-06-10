@@ -17,7 +17,7 @@ class Node():
 		list_of_routes = []
 
 		for route in self.routes:
-			list_of_routes.append(route.data)
+			list_of_routes.append(route.name)
 
 		return 'name: {0}\t\troutes: {1}'.format(self.name, list_of_routes)
 
@@ -25,7 +25,28 @@ class Node():
 def has_route_between_nodes(from_node, to_node):
 	# return True if there is a route between the two
 	# return False if there isn't a route
-	return None
+
+	visited = []
+	queue = [from_node]
+
+	if from_node == to_node:
+		return True
+
+	while len(queue) > 0:
+		current_node = queue.pop(0)
+
+		for route in current_node.routes:
+			if route == to_node:
+				return True
+			else:
+				if (route not in queue) and (route not in visited):
+					queue.append(route)
+
+		# record node as visited if there isn't a path
+		visited.append(current_node)
+
+
+	return False
 
 
 
@@ -44,10 +65,14 @@ node3.routes = [node3]
 # test case 1: true
 result = has_route_between_nodes(node1, node3)
 print(result)
-print()
 
 # test case 2: false
 result = has_route_between_nodes(node3, node0)
 print(result)
-print()
+
+
+
+
+
+
 
