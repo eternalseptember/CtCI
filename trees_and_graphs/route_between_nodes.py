@@ -26,6 +26,10 @@ def has_route_between_nodes(from_node, to_node):
 	# return True if there is a route between the two
 	# return False if there isn't a route
 
+	if from_node == to_node:
+		if to_node not in from_node.routes:
+			return False
+
 	visited = []
 	queue = [from_node]
 
