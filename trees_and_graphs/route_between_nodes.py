@@ -54,7 +54,7 @@ def has_route_between_nodes(from_node, to_node):
 
 
 
-# graph 1
+# Graph 1
 node0 = Node('node0')
 node1 = Node('node1')
 node2 = Node('node2')
@@ -75,7 +75,7 @@ print(result)
 print()
 
 
-# graph 2
+# Graph 2
 node0 = Node('node0')
 node1 = Node('node1')
 node2 = Node('node2')
@@ -109,6 +109,23 @@ print(result)
 
 # test case 9: true
 result = has_route_between_nodes(node1, node2)
+print(result)
+print()
+
+
+# Graph 3
+nodeA = Node('nodeA')
+nodeB = Node('nodeB')
+nodeC = Node('nodeC')
+nodeD = Node('nodeD')
+
+nodeA.routes = [nodeB]
+nodeB.routes = [nodeC]
+nodeC.routes = [nodeA]
+nodeC.routes = [nodeD]
+
+# test case 10: true
+result = has_route_between_nodes(nodeA, nodeC)
 print(result)
 
 
