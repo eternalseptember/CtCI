@@ -119,13 +119,21 @@ nodeB = Node('nodeB')
 nodeC = Node('nodeC')
 nodeD = Node('nodeD')
 
-nodeA.routes = [nodeB]
+nodeA.routes = [nodeB, nodeD]
 nodeB.routes = [nodeC]
 nodeC.routes = [nodeA]
-nodeC.routes = [nodeD]
 
 # test case 10: true
 result = has_route_between_nodes(nodeA, nodeC)
 print(result)
+
+# test case 11: true
+result = has_route_between_nodes(nodeB, nodeD)
+print(result)
+
+# test case 12: true
+result = has_route_between_nodes(nodeD, nodeC)
+print(result)
+
 
 
