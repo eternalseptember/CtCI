@@ -33,6 +33,16 @@ def count_paths(head, value):
 
 
 # Binary Tree 1
+node_a = Node(-1)
+node_b = Node(5)
+node_c = Node(-11)
+node_d = Node(4)
+node_e = Node(2, None, node_a)
+node_f = Node(6, node_b, node_c)
+node_g = Node(9, node_d)
+node_h = Node(7, node_e, node_f)
+node_i = Node(5, None, node_g)
+node_j = Node(-2, node_h, node_i)
 
 
 
