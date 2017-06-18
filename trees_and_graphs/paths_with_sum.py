@@ -2,7 +2,7 @@
 You are given a binary tree in which each node contains an integer value
 (which might be positive or negative). Design an algorithm to count the
 number of paths that sum to a given value. The path does not need to
-start or end at the root or a leaf, but it must go downards (traveling
+start or end at the root or a leaf, but it must go downwards (traveling
 only from parent nodes to child nodes).
 """
 
@@ -27,7 +27,11 @@ class Node:
 
 def count_paths(head, value):
 	# return number of paths that sum to a given value
-	return 0
+	paths = []
+
+
+
+	return len(paths)
 
 
 
@@ -44,6 +48,9 @@ node_h = Node(7, node_e, node_f)
 node_i = Node(5, None, node_g)
 node_j = Node(-2, node_h, node_i)
 
+total_sum = 14
+num_of_paths = count_paths(node_j, total_sum)
+print(num_of_paths)
 
 
 
