@@ -29,6 +29,11 @@ def count_paths(head, value):
 	# return number of paths that sum to a given value
 	paths = []
 
+	sum_of_current_path = 0
+	# could backtrack once a leaf has been visited
+	nodes_in_current_path = []
+
+
 
 
 	return len(paths)
