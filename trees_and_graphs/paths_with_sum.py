@@ -30,9 +30,23 @@ def count_paths(head, value):
 	paths = []
 
 	sum_of_current_path = 0
-	# could backtrack once a leaf has been visited
 	nodes_in_current_path = []
+	# could backtrack once a leaf has been visited
 
+
+	# let's start at the root
+	current_node = head
+	sum_of_current_path += current_node.data
+	nodes_in_current_path.append(current_node)
+
+
+	if current_node.left is not None:
+		current_node = current_node.left
+		sum_of_current_path += current_node.data
+		nodes_in_current_path.append(current_node)
+
+		if sum_of_current_path == value:
+			paths.append(nodes_in_current_path)
 
 
 
