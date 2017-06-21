@@ -30,23 +30,30 @@ def count_paths(head, value):
 	paths = []
 
 	sum_of_current_path = 0
-	nodes_in_current_path = []
-	# could backtrack once a leaf has been visited
-
 
 	# let's start at the root
+	# generate all possible paths from root to leaf nodes
+	current_path = []
+	queue = []
+
 	current_node = head
-	sum_of_current_path += current_node.data
-	nodes_in_current_path.append(current_node)
 
 
-	if current_node.left is not None:
+	current_path.append(current_node)
+	if (current_node.left is not None) and (current_node.right is not None):
+		# go left first, put in queue, and then go right
+		queue.append(current_node)
+
+	elif (current_node.right is None):
 		current_node = current_node.left
-		sum_of_current_path += current_node.data
-		nodes_in_current_path.append(current_node)
 
-		if sum_of_current_path == value:
-			paths.append(nodes_in_current_path)
+	elif (current_node.left is None):
+		current_node = current_node.right
+
+	else:
+		# leaf node
+		paths.append(current_path)
+
 
 
 
