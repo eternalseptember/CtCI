@@ -40,21 +40,31 @@ def count_paths(head, value):
 def get_list_of_paths(head):
 	paths_list = get_path(head)
 
+	"""
 	for item in paths_list:
 		print(item)
+	"""
 
 	return paths_list
 
 
 def get_path(head, current_path=[]):
-	current_path.append(head)
+	if head is not None:
+		current_path.append(head)
 
 	if (head.left is None) and (head.right is None):
+		for item in current_path:
+			print(item)
+		print()
 		return current_path
 	if (head.left is not None):
 		get_path(head.left, current_path)
 	if (head.right is not None):
 		get_path(head.right, current_path)
+
+	return current_path
+
+
 
 
 
