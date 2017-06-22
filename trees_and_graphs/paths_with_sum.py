@@ -31,34 +31,30 @@ def count_paths(head, value):
 
 	sum_of_current_path = 0
 
-	# let's start at the root
-	# generate all possible paths from root to leaf nodes
-	current_path = []
-	queue = []
-
-	current_node = head
-
-
-	current_path.append(current_node)
-	if (current_node.left is not None) and (current_node.right is not None):
-		# go left first, put in queue, and then go right
-		queue.append(current_node)
-
-	elif (current_node.right is None):
-		current_node = current_node.left
-
-	elif (current_node.left is None):
-		current_node = current_node.right
-
-	else:
-		# leaf node
-		paths.append(current_path)
-
-
+	list_of_paths = get_list_of_paths(head)
 
 
 	return len(paths)
 
+
+def get_list_of_paths(head):
+	paths_list = get_path(head)
+
+	for item in paths_list:
+		print(item)
+
+	return paths_list
+
+
+def get_path(head, current_path=[]):
+	current_path.append(head)
+
+	if (head.left is None) and (head.right is None):
+		return current_path
+	if (head.left is not None):
+		get_path(head.left, current_path)
+	if (head.right is not None):
+		get_path(head.right, current_path)
 
 
 
