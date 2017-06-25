@@ -31,47 +31,41 @@ def count_paths(head, value):
 
 	sum_of_current_path = 0
 
-	list_of_paths = get_list_of_paths(head)
+	paths_list = get_paths(head)
+
+	for path in paths_list:
+		for each_node in path:
+			print(each_node)
+		print()
 
 
 	return len(paths)
 
 
-def get_list_of_paths(head):
-	paths_list = get_path(head)
+def get_paths(head, current_path=[], next_position=0, paths_list=[]):
+
+	if len(current_path) > next_position:
+		current_path = current_path[:next_position]
+	current_path.append(head)
 
 	"""
-	for path in paths_list:
-		for item in path:
-			print(item)
-		print()
+	print('current path: ')
+	for item in current_path:
+		print('\t{0}'.format(item))
+	print()
 	"""
-
-	return paths_list
-
-
-def get_path(head, current_path=[], paths_list=[]):
-	if head is None:
-		return paths_list
-	else:
-		current_path.append(head)
-
-		print('current path: ')
-		for item in current_path:
-			print(item)
-		print()		
 
 	if (head.left is None) and (head.right is None):
 		paths_list.append(current_path)
-		print('\n')
+		#print('\n')
 		return paths_list
 
 	if (head.left is not None):
-		get_path(head.left, current_path, paths_list)
+		paths_list = get_paths(head.left, current_path, next_position+1, paths_list)
 	if (head.right is not None):
-		get_path(head.right, current_path, paths_list)
+		paths_list = get_paths(head.right, current_path, next_position+1, paths_list)
 
-
+	return paths_list
 
 
 
