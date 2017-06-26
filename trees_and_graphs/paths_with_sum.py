@@ -27,19 +27,19 @@ class Node:
 
 def count_paths(head, value):
 	# return number of paths that sum to a given value
-	paths = []
-
-	sum_of_current_path = 0
-
+	total_paths = 0
 	paths_list = get_paths(head)
 
 	for path in paths_list:
+		total = 0
+
 		for each_node in path:
-			print(each_node)
-		print()
+			total += each_node.data
 
+			if total == value:
+				total_paths += 1
 
-	return len(paths)
+	return total_paths
 
 
 def get_paths(head, current_path=[], next_position=0, paths_list=[]):
@@ -83,7 +83,8 @@ node_h = Node(7, node_e, node_f)
 node_i = Node(5, None, node_g)
 node_j = Node(-2, node_h, node_i)
 
-total_sum = 14
+# Expected result: 2
+total_sum = 16
 num_of_paths = count_paths(node_j, total_sum)
 print(num_of_paths)
 
