@@ -105,10 +105,12 @@ node_l = Node(4, node_k, node_i)
 node_m = Node(-3, node_e, node_l)
 node_n = Node(10)
 node_o = Node(-10, None, node_n)
-node_p = Node(3, None, node_o)
+node_r = Node(-10)
+node_s = Node(10, node_r)
+node_p = Node(3, node_s, node_o)
 node_q = Node(7, node_m, node_p)
 
-# Expected result: 7
+# Expected result: 8
 total_sum = 10
 num_of_paths = count_paths(node_q, total_sum)
 print(num_of_paths)
