@@ -30,11 +30,21 @@ def count_paths(head, value):
 	total_paths = 0
 	paths_list = get_paths(head)
 
-	for path in paths_list:
+	for path_num in range(len(paths_list)):
+		path = paths_list[path_num]
+		same_path = None
+
 		total = 0
 
-		for each_node in path:
-			total += each_node.data
+		for node_num in range(len(path)):
+			if same_path is None:
+				same_path = False
+			else:
+				if path[node_num] == paths_list[path_num][node_num]:
+					same_path = True
+
+
+			total += path[node_num].data
 
 			if total == value:
 				total_paths += 1
