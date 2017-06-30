@@ -30,27 +30,35 @@ def count_paths(head, value):
 	total_paths = 0
 	paths_list = get_paths(head)
 
-	for path_num in range(len(paths_list)):
-		path = paths_list[path_num]
-		same_path = None
 
+	for path_num in range(len(paths_list)):
+		current_path = paths_list[path_num]
+		same_path = True
 		total = 0
 
-		for node_num in range(len(path)):
+
+		# what if paths are different lengths?
+		if path_num > 0:
+			prev_path_num = path_num - 1
+			prev_path_length = len(paths_list[prev_path_num])
+
+
+		for node_num in range(len(current_path)):
+			total += current_path[node_num].data
+
+			# determines if the path is unique
 			if path_num == 0:
 				same_path = False
 			else:
-				if same_path is None:
+				if node_num >= prev_path_length:
 					same_path = False
-				elif path[node_num] == paths_list[path_num][node_num]:
-					same_path = True
+				elif current_path[node_num].data != paths_list[prev_path_num][node_num].data:
+					same_path = False
 
 
-			total += path[node_num].data
-
-			if total == value:
-				if same_path is False:
-					total_paths += 1
+			# count unique paths
+			if (total == value) and (same_path is False):
+				total_paths += 1
 
 	return total_paths
 
