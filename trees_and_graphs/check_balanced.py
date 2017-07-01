@@ -26,8 +26,8 @@ class Node:
 
 
 def is_binary(head):
-	diff = get_height_difference(head)
-	print(diff)
+	diff = get_height(head.left) - get_height(head.right)
+	print('height_diff: {0}'.format(diff), end='\n\t')
 
 	if abs(diff) <= 1:
 		return True
@@ -35,24 +35,36 @@ def is_binary(head):
 		return False
 
 
-def get_height_difference(head):
-	if (head.left is None) and (head.right is None):
-		return 0
-	elif (head.left is None) and (head.right is not None):
-		return get_height_difference(head.right) + 1
-	elif (head.right is None) and (head.left is not None):
-		return get_height_difference(head.left) + 1
-	else:
-		left_height = get_height_difference(head.left)
-		right_height = get_height_difference(head.right)
-		return left_height - right_height
+def get_height(head):
+	if head is None:
+		return -1
+
+	left_height = get_height(head.left)
+	right_height = get_height(head.right)
+
+	return max(left_height, right_height) + 1
 
 
+# Test Case 1: True; height_diff = 0
+node1 = Node(1)
+node2 = Node(2)
+node3 = Node(3, node1, node2)
+print(is_binary(node3))
 
 
+# Test Case 2: True; height_diff = 1
+node1 = Node(1)
+node2 = Node(2, node1)
+print(is_binary(node2))
 
-# testing
-# false: unbalanced
+
+# Test Case 3: True; height_diff = -1
+node1 = Node(1)
+node2 = Node(2, None, node1)
+print(is_binary(node2))
+
+
+# Test Case 4: False; height_diff = -5
 node6 = Node(6)
 node5 = Node(5, None, node6)
 node4 = Node(4, None, node5)
@@ -62,7 +74,7 @@ node1 = Node(1, None, node2)
 print(is_binary(node1))
 
 
-# false: unbalanced
+# Test Case 5: False; height_diff = -2
 node1 = Node(1)
 node2 = Node(2, None, node1)
 node3 = Node(3)
@@ -72,7 +84,7 @@ node6 = Node(6, node5, node4)
 print(is_binary(node6))
 
 
-# true: balanced
+# Test Case 6: True; height_diff = -1
 node1 = Node(1)
 node3 = Node(3)
 node2 = Node(2, node1, node3)
@@ -84,15 +96,11 @@ node4 = Node(4, node2, node6)
 print(is_binary(node4))
 
 
-# true: balanced
+# Test Case 7: False; height_diff = -2
 node1 = Node(1)
 node2 = Node(2, node1)
-print(is_binary(node2))
+node3 = Node(3, None, node2)
+print(is_binary(node4))
 
 
-# true: balanced
-node1 = Node(1)
-node2 = Node(2)
-node3 = Node(3, node1, node2)
-print(is_binary(node3))
 
