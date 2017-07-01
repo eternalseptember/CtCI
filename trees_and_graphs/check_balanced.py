@@ -27,7 +27,7 @@ class Node:
 
 def is_binary(head):
 	diff = get_height(head.left) - get_height(head.right)
-	print('height_diff: {0}'.format(diff), end='\n\t')
+	#print('height_diff: {0}'.format(diff), end='\n\t')
 
 	if abs(diff) <= 1:
 		return True
@@ -100,7 +100,7 @@ print(is_binary(node4))
 node1 = Node(1)
 node2 = Node(2, node1)
 node3 = Node(3, None, node2)
-print(is_binary(node4))
+print(is_binary(node3))
 
 
 
