@@ -36,7 +36,8 @@ def common_ancestor(node1, node2):
 		while node_behind is not None:
 			parent_2 = node_ahead
 
-			if (parent_1.data == parent_2.data) and (parent_1.left == parent_2.left) and (parent_1.right == parent_2.right):
+			#if (parent_1.data == parent_2.data) and (parent_1.left == parent_2.left) and (parent_1.right == parent_2.right):
+			if parent_1 == parent_2:
 				left = None
 				if parent_2.left is not None:
 					left = parent_2.left.data
