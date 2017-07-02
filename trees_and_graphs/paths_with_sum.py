@@ -137,6 +137,16 @@ num_of_paths = count_paths(node_q, total_sum)
 print(num_of_paths)
 
 
+# Binary Tree 3
+node_a = Node(0)
+node_b = Node(3, None, node_a)
+node_c = Node(4, node_b)
+node_d = Node(2)
+node_e = Node(-1, node_d, node_c)
 
+# Expected result: 0
+total_sum = 0
+num_of_paths = count_paths(node_e, total_sum)
+print(num_of_paths)
 
 
