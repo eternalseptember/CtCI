@@ -40,7 +40,7 @@ def print_level_order(head):
 def count_paths(head, value):
 	# return number of paths that sum to a given value
 	total_paths = 0
-	paths_list = get_paths(head)
+	paths_list = get_paths(head, paths_list=[])
 
 
 	for path_num in range(len(paths_list)):
@@ -69,9 +69,11 @@ def count_paths(head, value):
 
 			# count unique paths
 			if (total == value) and (same_path is False):
+				"""
 				for node_counter in range(0, node_num+1):
 					print(paths_list[path_num][node_counter])
 				print()
+				"""
 
 				total_paths += 1
 
@@ -79,17 +81,10 @@ def count_paths(head, value):
 
 
 def get_paths(head, current_path=[], next_position=0, paths_list=[]):
-
+	# truncates the current path when going back up in the tree
 	if len(current_path) > next_position:
 		current_path = current_path[:next_position]
 	current_path.append(head)
-
-	"""
-	print('current path: ')
-	for item in current_path:
-		print('\t{0}'.format(item))
-	print()
-	"""
 
 	if (head.left is None) and (head.right is None):
 		paths_list.append(current_path)
@@ -104,7 +99,7 @@ def get_paths(head, current_path=[], next_position=0, paths_list=[]):
 	return paths_list
 
 
-"""
+
 # Binary Tree 1
 node_a = Node(-1)
 node_b = Node(5)
@@ -148,7 +143,7 @@ node_q = Node(7, node_m, node_p)
 total_sum = 10
 num_of_paths = count_paths(node_q, total_sum)
 print(num_of_paths)
-"""
+
 
 # Binary Tree 3
 node_a = Node(0)
@@ -161,5 +156,8 @@ node_e = Node(-1, node_d, node_c)
 total_sum = 0
 num_of_paths = count_paths(node_e, total_sum)
 print(num_of_paths)
+
+
+
 
 
