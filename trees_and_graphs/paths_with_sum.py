@@ -25,6 +25,18 @@ class Node:
 		return 'data: {0}  left: {1}  right: {2}'.format(self.data, left, right)
 
 
+def print_level_order(head):
+	queue = [head]
+
+	while len(queue) > 0:
+		head_node = queue.pop(0)
+		print(head_node)
+		if head_node.left is not None:
+			queue.append(head_node.left)
+		if head_node.right is not None:
+			queue.append(head_node.right)
+
+
 def count_paths(head, value):
 	# return number of paths that sum to a given value
 	total_paths = 0
@@ -55,9 +67,12 @@ def count_paths(head, value):
 				elif current_path[node_num].data != paths_list[prev_path_num][node_num].data:
 					same_path = False
 
-
 			# count unique paths
 			if (total == value) and (same_path is False):
+				for node_counter in range(0, node_num+1):
+					print(paths_list[path_num][node_counter])
+				print()
+
 				total_paths += 1
 
 	return total_paths
@@ -89,9 +104,7 @@ def get_paths(head, current_path=[], next_position=0, paths_list=[]):
 	return paths_list
 
 
-
-
-
+"""
 # Binary Tree 1
 node_a = Node(-1)
 node_b = Node(5)
@@ -135,7 +148,7 @@ node_q = Node(7, node_m, node_p)
 total_sum = 10
 num_of_paths = count_paths(node_q, total_sum)
 print(num_of_paths)
-
+"""
 
 # Binary Tree 3
 node_a = Node(0)
