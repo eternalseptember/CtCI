@@ -31,17 +31,24 @@ def print_tree(head):
 		print_tree(head.right)
 
 
-def create_minimal_tree(head, data):
-	if head is None:
-		return Node(data)
-	elif head.left is None:
-		head.left = Node(data)
-		return head
-	elif head.right is None:
-		head.right = Node(data)
-		return head
-	# think recurse somewhere...
-	
+def create_minimal_tree(list_of_values):
+	num_of_nodes = len(list_of_values)
+	center_index = num_of_nodes // 2
+	center_value = list_of_values[center_index]
+
+	if num_of_nodes % 2 == 0:
+		# even number of values
+
+	else:
+		# odd number of values
+
+
+	# return head
+
+
+def create_tree(list_of_values):
+	# create a left tree and right tree
+
 
 
 # testing
@@ -56,10 +63,7 @@ for value in values:
 
 # testing
 values = [0, 1, 2]
-head = None
-
-for value in values:
-	head = create_minimal_tree(head, value)
+head = create_minimal_tree(values)
 
 print_tree(head)
 
