@@ -24,48 +24,54 @@ class Node:
 
 
 def print_tree(head):
-	if head.left is not None:
-		print_tree(head.left)
-	print(head)
-	if head.right is not None:
-		print_tree(head.right)
+	queue = [head]
+
+	while len(queue) > 0:
+		head_node = queue.pop(0)
+		print(head_node)
+		if head_node.left is not None:
+			queue.append(head_node.left)
+		if head_node.right is not None:
+			queue.append(head_node.right)
 
 
 def create_minimal_tree(list_of_values):
-	num_of_nodes = len(list_of_values)
-	center_index = num_of_nodes // 2
-	center_value = list_of_values[center_index]
 
-	if num_of_nodes % 2 == 0:
-		# even number of values
+	len_of_list = len(list_of_values)
 
+	if len_of_list == 1:
+		return Node(list_of_values.pop())
+	elif len_of_list == 2:
+		smaller_node = Node(list_of_values.pop(0))
+		return Node(list_of_values.pop(), smaller_node)
+	elif len_of_list == 3:
+		bigger_node = Node(list_of_values.pop())
+		smaller_node = Node(list_of_values.pop(0))
+		return Node(list_of_values.pop(), smaller_node, bigger_node)
 	else:
-		# odd number of values
+		# divide the tree into three parts
+		center_index = len_of_list // 2
+		left_list = list_of_values[:center_index]
+		right_list = list_of_values[center_index+1:]
 
+		left_tree = create_minimal_tree(left_list)
+		right_tree = create_minimal_tree(right_list)
 
-	# return head
-
-
-def create_tree(list_of_values):
-	# create a left tree and right tree
-
-
-
-# testing
-"""
-values = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-head = None
-
-for value in values:
-	head = create_minimal_tree(head, value)
-"""
+		head = Node(list_of_values.pop(center_index), left_tree, right_tree)
+		return head
 
 
 # testing
-values = [0, 1, 2]
-head = create_minimal_tree(values)
+list_of_values = [0]
 
-print_tree(head)
+for i in range(1, 11):
+	list_of_values.append(i)
+	list_of_values_copy = list_of_values[:]
+
+	head = create_minimal_tree(list_of_values_copy)
+	print_tree(head)
+	print()
+
 
 
 
