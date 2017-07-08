@@ -28,6 +28,12 @@ class Node():
 
 def check_subtree(tree_1, tree_2):
 	# checks if tree_2 is a subtree of tree_1
+	queue = []
+
+	if tree_2 is None:
+		return True
+
+
 
 	return False
 
