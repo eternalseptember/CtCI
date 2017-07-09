@@ -28,14 +28,53 @@ class Node():
 
 def check_subtree(tree_1, tree_2):
 	# checks if tree_2 is a subtree of tree_1
-	queue = []
 
 	if tree_2 is None:
 		return True
+	if tree_1 is None:
+		return False
 
+	tree_1_queue = [tree_1]
+
+	while len(queue) > 0:
+		tree_1_node = tree_1_queue.pop(0)
+
+		if is_matching(tree_1_node, tree_2):
+			# check the rest of the tree
+			tree_1_match_queue = []
+			tree_2_match_queue = []
+
+
+		else:
+			if tree_1_node.left is not None:
+				tree_1_queue.append(tree_1_node.left)
+			if tree_1_node.right is not None:
+				tree_1_queue.append(tree_1_node.right)
 
 
 	return False
+
+
+def is_matching(node_1, node_2):
+	left_match = False
+	right_match = False
+
+	if (node_1.left is None) and (node_2.left is None):
+		left_match = True
+	elif (node_1.left is not None) and (node_2.left is not None):
+		if node_1.left.data == node_2.left.data:
+			left_match = True
+
+	if (node_1.right is None) and (node_2.right is None):
+		right_match = True
+	elif (node_1.right is not None) and (node_2.right is not None):
+		if node_1.right.data == node_2.right.data:
+			right_match = True
+
+	if (node_1.data == node_2.data) and left_match and right_match:
+		return True
+	else:
+		return False
 
 
 # Tree 1: basic tree, no similarities
