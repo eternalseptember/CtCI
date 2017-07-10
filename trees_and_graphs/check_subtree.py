@@ -34,22 +34,37 @@ def check_subtree(tree_1, tree_2):
 	if tree_1 is None:
 		return False
 
-	tree_1_queue = [tree_1]
+	tree_1_main_queue = [tree_1]
 
-	while len(queue) > 0:
-		tree_1_node = tree_1_queue.pop(0)
+	while len(tree_1_main_queue) > 0:
+		tree_1_node = tree_1_main_queue.pop(0)
+		tree_2_node = tree_2
+		tree_1_queue = []
+		tree_2_queue = []
 
-		if is_matching(tree_1_node, tree_2):
-			# check the rest of the tree
-			tree_1_match_queue = []
-			tree_2_match_queue = []
+		while is_matching(tree_1_node, tree_2_node):
 
-
-		else:
 			if tree_1_node.left is not None:
 				tree_1_queue.append(tree_1_node.left)
 			if tree_1_node.right is not None:
 				tree_1_queue.append(tree_1_node.right)
+
+			if tree_2_node.left is not None:
+				tree_2_queue.append(tree_2_node.left)
+			if tree_2_node.right is not None:
+				tree_2_queue.append(tree_2_node.right)
+
+			if (len(tree_1_queue) == 0) and (len(tree_2_queue) == 0):
+				return True
+			else:
+				tree_1_node = tree_1_queue.pop(0)			
+				tree_2_node = tree_2_queue.pop(0)
+
+		else:
+			if tree_1_node.left is not None:
+				tree_1_main_queue.append(tree_1_node.left)
+			if tree_1_node.right is not None:
+				tree_1_main_queue.append(tree_1_node.right)
 
 
 	return False
