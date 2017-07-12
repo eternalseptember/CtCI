@@ -57,14 +57,14 @@ def check_subtree(tree_1, tree_2):
 			if (len(tree_1_queue) == 0) and (len(tree_2_queue) == 0):
 				return True
 			else:
-				tree_1_node = tree_1_queue.pop(0)			
+				tree_1_node = tree_1_queue.pop(0)
 				tree_2_node = tree_2_queue.pop(0)
 
-		else:
-			if tree_1_node.left is not None:
-				tree_1_main_queue.append(tree_1_node.left)
-			if tree_1_node.right is not None:
-				tree_1_main_queue.append(tree_1_node.right)
+
+		if tree_1_node.left is not None:
+			tree_1_main_queue.append(tree_1_node.left)
+		if tree_1_node.right is not None:
+			tree_1_main_queue.append(tree_1_node.right)
 
 
 	return False
@@ -120,6 +120,20 @@ tree_2_root = Node(7, node_c, node_b)
 
 result = check_subtree(tree_1_root, tree_2_root)
 print(result)
+
+# test case 3: True
+node_a = Node(3)
+tree_2_root = Node(11, node_a)
+
+result = check_subtree(tree_1_root, tree_2_root)
+print(result)
+
+# test case 4: False
+tree_2_root = Node(4)
+
+result = check_subtree(tree_1_root, tree_2_root)
+print(result)
+
 
 
 
