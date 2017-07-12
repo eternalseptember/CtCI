@@ -26,7 +26,22 @@ class Node():
 
 
 def find_build_order(projects, dependencies):
+	dependencies_dict = {}
+
+	for dependency in dependencies:
+		build_first, build_second = (dependency)
+
+		if build_second not in dependencies_dict:
+			dependencies_dict[build_second] = [build_first]
+		else:
+			dependencies_dict[build_second].append(build_first)
+
+
 	build_order = []
+
+	for project in projects:
+		if project not in dependencies_dict.keys():
+			build_order.append(project)
 	
 	if len(build_order) == 0:
 		return None
