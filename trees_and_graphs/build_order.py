@@ -25,25 +25,54 @@ class Node():
 		return 'data: {0}  left: {1}  right: {2}'.format(self.data, left, right)
 
 
-def find_build_order(projects, dependencies):
-	dependencies_dict = {}
-
-	for dependency in dependencies:
-		build_first, build_second = (dependency)
-
-		if build_second not in dependencies_dict:
-			dependencies_dict[build_second] = [build_first]
-		else:
-			dependencies_dict[build_second].append(build_first)
-
-
+def find_build_order(projects_list, dependencies_list):
+	dependencies = {}
 	build_order = []
 
+	# organize dependencies
+	for dependency in dependencies_list:
+		build_first, build_second = (dependency)
+
+		if build_second not in dependencies:
+			dependencies[build_second] = [build_first]
+		else:
+			dependencies[build_second].append(build_first)
+
+	# projects with no prerequisites
 	for project in projects:
-		if project not in dependencies_dict.keys():
+		if project not in dependencies.keys():
 			build_order.append(project)
-	
-	if len(build_order) == 0:
+
+	# projects with prerequisites
+	new_project_built = True
+
+	while new_project_built:
+		newly_added = []
+
+		for project in dependencies.keys():
+			project_dependencies = dependencies[project]
+
+			meets_all_requirements = True
+			for project_requirement in project_dependencies:
+				if project_requirement not in build_order:
+					meets_all_requirements = False
+					break
+
+			if meets_all_requirements:
+				build_order.append(project)
+				newly_added.append(project)
+
+
+		if len(newly_added) > 0:
+			# remove newly added projects from the pending projects list
+			for project in newly_added:
+				del dependencies[project]
+		else:
+			# no project was newly added
+			new_project_built = False
+
+
+	if len(build_order) < len(projects):
 		return None
 	else:
 		return build_order
