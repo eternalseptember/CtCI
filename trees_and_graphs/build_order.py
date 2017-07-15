@@ -78,15 +78,23 @@ def find_build_order(projects_list, dependencies_list):
 		return build_order
 
 
-# Testing
+# Test Case 1
 # pairs: second project is dependent on the first project
 projects = ['a', 'b', 'c', 'd', 'e', 'f']
 dependencies = [('a', 'd'), ('f', 'b'), ('b', 'd'), ('f', 'a'), ('d', 'c')]
 
-
 # Expected result: f, e, a, b, d, c
 build_order = find_build_order(projects, dependencies)
 print(build_order)
+
+# Test Case 2
+projects = ['a', 'b', 'c', 'd', 'e']
+dependencies = [('c','a'), ('e','b'), ('b','a'), ('d','e'), ('b','d')]
+
+# Expected result: None
+build_order = find_build_order(projects, dependencies)
+print(build_order)
+
 
 
 
