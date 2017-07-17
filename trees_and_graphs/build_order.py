@@ -101,9 +101,17 @@ print(build_order)
 projects = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i']
 dependencies = [('i','e'), ('d','c'), ('f','d'), ('c','a'), ('g','e'), ('d','b'), ('h','b'), ('e','c'), ('b','g')]
 
-# Expected result: None
+# Expected result: 
 build_order = find_build_order(projects, dependencies)
 print(build_order)
 
+
+# Test Case 4
+projects = ['a', 'b', 'c']
+dependencies = [('a','b'), ('b','a')]
+
+# Expected result: None
+build_order = find_build_order(projects, dependencies)
+print(build_order)
 
 
