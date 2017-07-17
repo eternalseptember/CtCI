@@ -13,36 +13,33 @@ class Node:
 		self.right = right
 
 
-def bst_sequences(head):
+def bst_sequences(head, prev_sequences=[]):
 	if head is None:
 		return None
 
-	possible_arrays = []
-
 	# root is the very first value that must be in every array
-	# left to right
-	first_value = head.data
-	possible_set = [first_value]
+	prev_sequences.append(head.data)
+
+	if head.left is None and head.right is None:
+		return prev_sequences
+
+	all_sets = []
+	left = None
+	right = None
 
 	if head.left is not None:
-		possible_set.append(head.left.data)
-	if head.right is not None:
-		possible_set.append(head.right.data)
-
-	possible_arrays.append(possible_set)
-
-
-	# right to left
-	possible_set = [first_value]
+		left = bst_sequences(head.left, prev_sequences)
 
 	if head.right is not None:
-		possible_set.append(head.right.data)
-	if head.left is not None:
-		possible_set.append(head.left.data)
+		right = bst_sequences(head.right, prev_sequences)
 
-	possible_arrays.append(possible_set)
+	if (left is not None) and (right is not None):
+		ltr = []
+		rtl = []
 
-	return possible_arrays
+	return all_sets
+
+
 
 
 # testing: {2, 1, 3}, {2, 3, 1}
@@ -53,7 +50,7 @@ node2 = Node(2, node1, node3)
 results = bst_sequences(node2)
 print(results)
 
-
+"""
 # testing: 
 node4 = Node(4)
 node1 = Node(1, node4)
@@ -62,4 +59,7 @@ node2 = Node(2, node1, node3)
 
 results = bst_sequences(node2)
 print(results)
+"""
+
+
 
