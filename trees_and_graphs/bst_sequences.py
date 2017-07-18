@@ -37,6 +37,16 @@ def bst_sequences(head, prev_sequences=[]):
 		ltr = []
 		rtl = []
 
+		ltr.append(left)
+		ltr.append(right)
+
+		rtl.append(right)
+		rtl.append(left)
+	elif left is not None:
+		return left
+	else:
+		return right
+
 	return all_sets
 
 
