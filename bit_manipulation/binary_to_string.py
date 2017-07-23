@@ -6,12 +6,25 @@ represented accurately in binary with at most 32 characters, print "ERROR".
 
 
 def binary_to_string(num):
-	bin_string = ''
+	bin_result = []
+	div_result = num
 
-	return bin_string
+	while ((div_result > 0) and (len(bin_result) < 32)):
+		# // because testing with integer first
+		rem = div_result % 2
+		div_result = div_result // 2
+		bin_result.insert(0, rem)
+
+
+	if (div_result == 0) or (len(bin_result) <= 32):
+		bin_string = ''.join(str(x) for x in bin_result)
+		return bin_string
+	else:
+		return None
 
 
 # Test case 1: how to approach this problem using integers
+# Expected result: 10
 inp = 2
 print(binary_to_string(inp))
 
