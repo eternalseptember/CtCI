@@ -8,6 +8,7 @@ create.
 def longest_sequence_of_ones(num):
 	# convert to binary
 	bin_str = convert_to_binary(num)
+	print(bin_str)
 
 	longest_sequence = 0
 
@@ -19,9 +20,17 @@ def longest_sequence_of_ones(num):
 
 def convert_to_binary(num):
 	# return a string'ed version of the binary
-	binary = ''
+	bin_digits = []
+	quotient = num
 
-	return binary
+	while quotient > 0:
+		rem = quotient % 2
+		quotient = quotient // 2
+		bin_digits.insert(0, rem)
+
+	bin_string = ''.join(str(x) for x in bin_digits)
+
+	return bin_string
 
 
 # Testing
