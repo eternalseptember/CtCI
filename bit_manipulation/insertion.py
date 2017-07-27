@@ -9,7 +9,20 @@ because M could not fully fit between bit 3 and bit 2.
 
 
 def insert_bits(N, M, i, j):
-	return N
+	start_pos = j
+	end_pos = i
+
+	M_bit = [int(bit) for bit in str(M)]
+	N_bit =  [int(bit) for bit in str(N)]
+	N_bit = N_bit[::-1]
+
+
+
+	# Format the result to return
+	N_bit = N_bit[::-1]
+	N_str = ''.join(str(bit) for bit in N_bit)
+
+	return int(N_str)
 
 
 # Test case 1
