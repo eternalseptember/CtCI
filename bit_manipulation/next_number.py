@@ -5,14 +5,39 @@ number that have the same number of 1 bits in their binary representation.
 
 
 def next_sets_of_numbers(num):
-	smallest = None
-	largest = None
-
 	bin_num = convert_to_binary(num)
+	print(bin_num)
 
-
+	smallest = get_next_smallest(bin_num)
+	largest = get_next_largest(bin_num)
 
 	return smallest, largest
+
+
+def get_next_smallest(bin_num):
+	# expected input: binary representation of number
+	# flip 0->1 and 1->0
+	# in other words, exchange a 0 and 1
+
+	# if the last 1 is like this:
+	# x x 1 0 x x
+	# then...
+	# x x 0 1 x x
+
+	return None
+
+
+def get_next_largest(bin_num):
+	# expected input: binary representation of number
+	# flip 0->1 and 1->0
+	# in other words, exchange a 0 and 1
+
+	# if the last 1 is like this:
+	# x x 0 1 x x
+	# then...
+	# x x 1 0 x x
+
+	return None
 
 
 def convert_to_binary(num):
