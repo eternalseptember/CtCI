@@ -19,12 +19,32 @@ def get_next_smallest(bin_num):
 	# flip 0->1 and 1->0
 	# in other words, exchange a 0 and 1
 
+	# before flipping:
 	# if the last 1 is like this:
 	# x x 1 0 x x
 	# then...
 	# x x 0 1 x x
 
-	return None
+	# it's easier to do if the binary number is flipped
+	bin_num = bin_num[::-1]
+	bin_size = len(bin_num)
+
+	# after flipping:
+	# x x 0 1 x x
+	# then...
+	# x x 1 0 x x
+
+	for i in range(0, bin_size):
+		one_index = None
+		zero_index = None
+		if bin_num[i] == 1:
+			one_index = i
+
+
+	# case:
+	# 01: 1
+
+	return bin_num[::-1]
 
 
 def get_next_largest(bin_num):
