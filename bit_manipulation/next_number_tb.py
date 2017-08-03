@@ -28,26 +28,33 @@ print()
 
 # Testing
 for i in range(1, 32):
+	# target number
 	bin_arr = convert_to_binary(i)
 	num_of_ones = bin_arr.count(1)
 
+	# format the binary number in order to search the dictionary
 	bin_str = ''.join(str(x) for x in bin_arr)
 	bin_str = bin_str.zfill(5)
 
+	# this list contains the target number and the next smaller/larger number
+	# with the same number of ones in its binary representation
 	ones_array = bin_ones_count[num_of_ones]
+	ones_array_len = len(ones_array)
 	one_index = ones_array.index(bin_str)
 
+
+	print('\tinput: {0} \t\tbinary: {1} \t\t# of ones: {2}'.format(i, bin_str, num_of_ones))
 	print('smaller:', end=' ')
-	try:
-		print(ones_array[ones_index-1])
-	except:
+	if (one_index - 1) < 0:
 		print('None')
+	else:
+		print(ones_array[one_index - 1])
 
 	print('larger:', end=' ')
-	try:
-		print(ones_array[ones_index+1])
-	except:
+	if (one_index + 1) >= ones_array_len:
 		print('None')
+	else:
+		print(ones_array[one_index + 1])
 
 
 
