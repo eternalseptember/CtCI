@@ -67,7 +67,7 @@ def get_next_largest(bin_num):
 
 
 def convert_to_binary(num):
-	# return a string'ed version of the binary
+	# return an array'ed version of the binary
 	bin_digits = []
 	quotient = num
 
@@ -79,10 +79,5 @@ def convert_to_binary(num):
 	return bin_digits
 
 
-# Testing
-num = 10000
-smallest, largest = next_sets_of_numbers(num)
-
-# I think something special happens with 2 (10)
 
 
