@@ -6,13 +6,21 @@ Brute force solution for first ~32'ish values.
 from next_number import *
 
 
-test_str = ['00001', '00010', '00011', '00100', '00101', '00110', '00111', '01000', '01001', '01010', '01011', '01100', '01101', '01110', '01111', '10000', '10001', '10010', '10011', '10100', '10101', '10110', '10111', '11000', '11001', '11010', '11011', '11100', '11101', '11110', '11111']
-
-
 bin_ones_count = {}
+low = 1
+high = 32
+pad_len = 5
 
-for bin_str in test_str:
-	num_of_ones = bin_str.count('1')
+
+# Populate dictionary for the range
+for i in range(low, high):
+	# target number
+	bin_arr = convert_to_binary(i)
+	num_of_ones = bin_arr.count(1)
+
+	# format the binary number in order to search the dictionary
+	bin_str = ''.join(str(x) for x in bin_arr)
+	bin_str = bin_str.zfill(pad_len)
 
 	try:
 		bin_ones_count[num_of_ones].append(bin_str)
@@ -20,6 +28,7 @@ for bin_str in test_str:
 		bin_ones_count[num_of_ones] = [bin_str]
 
 
+# Print the contents of the bin_ones_count dictionary
 for k, v in bin_ones_count.items():
 	print('number of ones: {0}'.format(k))
 	print(v)
@@ -27,14 +36,14 @@ print()
 
 
 # Testing
-for i in range(1, 32):
+for i in range(low, high):
 	# target number
 	bin_arr = convert_to_binary(i)
 	num_of_ones = bin_arr.count(1)
 
 	# format the binary number in order to search the dictionary
 	bin_str = ''.join(str(x) for x in bin_arr)
-	bin_str = bin_str.zfill(5)
+	bin_str = bin_str.zfill(pad_len)
 
 	# this list contains the target number and the next smaller/larger number
 	# with the same number of ones in its binary representation
