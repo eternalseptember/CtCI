@@ -10,6 +10,7 @@ def is_permutation(str1, str2):
 
 	first_str = list(str1)
 
+	# case-sensitive, whitespace is significant
 	for char in str2:
 		try:
 			first_str.remove(char)
@@ -20,8 +21,8 @@ def is_permutation(str1, str2):
 
 
 
-# yes, yes, no, no
-set = [['saw', 'was'], ['cat', 'act'], ['nap', 'map'], ['swap', 'swamp']]
+# yes, yes, no, no, no (case-sensitive)
+set = [['saw', 'was'], ['cat', 'act'], ['nap', 'map'], ['swap', 'swamp'], ['God', 'dog']]
 
 for pairs in set:
 	str_1 = pairs[0]
