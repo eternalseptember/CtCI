@@ -18,9 +18,7 @@ def check_palindrome(str):
 
 	odd = False
 	for letter, count in list_of_letters.items():
-		if count % 2 == 0:
-			continue
-		else:
+		if count % 2 == 1:
 			if odd is False:
 				odd = True
 			else:
