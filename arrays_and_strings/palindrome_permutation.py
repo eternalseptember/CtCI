@@ -11,31 +11,30 @@ from collections import Counter
 
 
 def check_palindrome(str):
+	# Solution 1
+	# O(N) time, where N is length of string
 	str = str.lower().replace(' ', '')
 	list_of_letters = Counter(str)
 
-	str_len = len(str)
-	if str_len % 2 == 0:
-		for num in list_of_letters.values():
-			if num % 2 == 0:
-				return True
+	odd = False
+	for letter, count in list_of_letters.items():
+		if count % 2 == 0:
+			continue
+		else:
+			if odd is False:
+				odd = True
 			else:
 				return False
-	else:
-		odd = 0
-		for num in list_of_letters.values():
-			if num % 2 == 1:
-				odd += 1
 
-		if odd == 1:
-			return True
-		else:
-			return False
+	return True
 
 
 
-inp = 'Tact Coa'
-permutations = check_palindrome(inp)
-print(permutations)
+# True, True, True, True, False
+inp = ['Tact Coa', 'atco cta', 'tactcoapapa', 'llggo', 'logo']
+
+for phrase in inp:
+	permutations = check_palindrome(phrase)
+	print(permutations)
 
 
