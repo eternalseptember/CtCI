@@ -32,10 +32,18 @@ def next_sets_of_numbers(num):
 
 
 def get_next_smallest(bin_num):
+	num = bin_num[:]
 	# expected input: binary representation of number
 	# flip 0->1 and 1->0
 	# in other words, exchange a 0 and 1
 
+	# if there are no zeros
+	# this is the smallest possible number with those number of ones
+	if 0 not in num:
+		return None
+
+
+	"""
 	# it's easier to do if the binary number is flipped
 	bin_num = bin_num[::-1]
 	bin_size = len(bin_num)
@@ -46,12 +54,9 @@ def get_next_smallest(bin_num):
 		zero_index = None
 		if bin_num[i] == 1:
 			one_index = i
+	"""
 
-
-	# case:
-	# 01: 1
-
-	return bin_num[::-1]
+	return num
 
 
 def get_next_largest(bin_num):
