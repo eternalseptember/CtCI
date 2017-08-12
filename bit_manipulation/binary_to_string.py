@@ -8,7 +8,16 @@ represented accurately in binary with at most 32 characters, print "ERROR".
 def binary_to_string(num):
 	bin_result = []
 	div_result = num
+	dec_places = 0
+	dec_point_found = False
 
+	for char in str(num):
+		if char == '.':
+			dec_point_found = True
+		elif dec_point_found:
+			dec_places += 1
+
+	# print('number of dec places: {0}'.format(dec_places))
 
 	# testing with integer first
 	while ((div_result > 0) and (len(bin_result) < 32)):	
@@ -24,7 +33,7 @@ def binary_to_string(num):
 		bin_string = ''.join(str(x) for x in bin_result)
 		return bin_string
 	else:
-		return None
+		return 'ERROR'
 
 
 def binary_to_int(bin_str):
@@ -45,22 +54,20 @@ def binary_to_int(bin_str):
 
 # Test case 1: how to approach this problem using integers
 # Expected result: 10
-
+"""
 inp = 2
 result_1 = binary_to_string(inp)
 print(result_1)
 
 result_2 = binary_to_int(result_1)
 print(result_2)
-
-
-
 """
+
+
 # Test case 2
 # inp = 0.72
 inp = 0.893
 print(binary_to_string(inp))
-"""
 
 
 
