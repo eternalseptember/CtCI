@@ -5,35 +5,39 @@ represented accurately in binary with at most 32 characters, print "ERROR".
 """
 
 
-def binary_to_string(num):
-	bin_result = []
-	div_result = num
+def string_to_binary(num):
 	dec_places = 0
 	dec_point_found = False
+	dec_num = ''
 
+	# gets the number of decimal places and
+	# the number to convert to binary
 	for char in str(num):
 		if char == '.':
 			dec_point_found = True
 		elif dec_point_found:
+			dec_num += char
 			dec_places += 1
 
-	# print('number of dec places: {0}'.format(dec_places))
+	# converts the number after the decimal point to binary
+	bin_result = []
+	div_result = int(dec_num)
 
-	# testing with integer first
-	while ((div_result > 0) and (len(bin_result) < 32)):	
+	while ((div_result > 0) and (len(bin_result) < 32)):
 		rem = div_result % 2
 		div_result = div_result // 2
 		bin_result.insert(0, rem)
 
+	# ??? shift the binary???
 
 
-
-
+	# checks to see if result should be returned
 	if (div_result == 0) or (len(bin_result) <= 32):
 		bin_string = ''.join(str(x) for x in bin_result)
 		return bin_string
 	else:
 		return 'ERROR'
+
 
 
 def binary_to_int(bin_str):
@@ -56,7 +60,7 @@ def binary_to_int(bin_str):
 # Expected result: 10
 """
 inp = 2
-result_1 = binary_to_string(inp)
+result_1 = string_to_binary(inp)
 print(result_1)
 
 result_2 = binary_to_int(result_1)
@@ -67,7 +71,7 @@ print(result_2)
 # Test case 2
 # inp = 0.72
 inp = 0.893
-print(binary_to_string(inp))
+print(string_to_binary(inp))
 
 
 
