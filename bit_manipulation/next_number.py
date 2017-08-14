@@ -5,6 +5,8 @@ number that have the same number of 1 bits in their binary representation.
 
 """
 Implementation Notes:
+flip 0->1 and 1->0
+or: exchange a 0 and 1
 
 to get next smallest, without flipping:
 	if the last 1 is like this:
@@ -33,9 +35,6 @@ def next_sets_of_numbers(num):
 
 def get_next_smallest(bin_num):
 	num = bin_num[:]
-	# expected input: binary representation of number
-	# flip 0->1 and 1->0
-	# in other words, exchange a 0 and 1
 
 	# if there are no zeros
 	# this is the smallest possible number with those number of ones
@@ -61,9 +60,6 @@ def get_next_smallest(bin_num):
 
 def get_next_largest(bin_num):
 	num = bin_num[:]
-	# expected input: binary representation of number
-	# flip 0->1 and 1->0
-	# in other words, exchange a 0 and 1
 
 	# if there are no zeros
 	if 0 not in num:
