@@ -7,6 +7,12 @@ and bit 3 are swapped, and so on).
 
 def pairwise_swap(num):
 	# convert to integer
+	bit_num = convert_to_binary(num)
+
+	# if the integer has an odd number of bits, put a zero bit in front
+	if len(bit_num) % 2 == 1:
+		bit_num.insert(0, 0)
+
 
 	# swap
 	swapped_bits = ''
@@ -29,6 +35,11 @@ def convert_to_binary(num):
 # Testing
 # Test case 1: 101010 <-> 010101
 num = 42
+results = pairwise_swap(num)
+print(results)
+
+# Test case 2: 111 or 0111 <-> 0111 
+num = 7
 results = pairwise_swap(num)
 print(results)
 
