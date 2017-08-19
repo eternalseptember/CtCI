@@ -27,5 +27,10 @@ def convert_to_binary(num):
 
 
 # Testing
+# Test case 1: 101010 <-> 010101
+num = 42
+results = pairwise_swap(num)
+print(results)
+
 
 
