@@ -13,11 +13,17 @@ def pairwise_swap(num):
 	if len(bit_num) % 2 == 1:
 		bit_num.insert(0, 0)
 
-
 	# swap
-	swapped_bits = ''
+	bit_pairs = len(bit_num) // 2
 
-	return swapped_bits
+	for pair in range(bit_pairs):
+		# LSB numbering; bit_1 is left and bit_0 is right
+		bit_1 = pair * 2
+		bit_0 = bit_1 + 1
+
+		bit_num[bit_1], bit_num[bit_0] = bit_num[bit_0], bit_num[bit_1]
+	
+	return bit_num
 
 
 def convert_to_binary(num):
@@ -38,7 +44,8 @@ num = 42
 results = pairwise_swap(num)
 print(results)
 
-# Test case 2: 111 or 0111 <-> 0111 
+
+# Test case 2: 111 or 0111 <-> 1011 
 num = 7
 results = pairwise_swap(num)
 print(results)
