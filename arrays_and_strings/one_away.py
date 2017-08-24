@@ -25,17 +25,17 @@ def one_away(str1, str2):
 
 def check_replace(str1, str2):
 	# only one character should be changed
-	diff = 0
+	found_diff = False
 	str_len = len(str1)
 
 	for index in range(str_len):
-		if str1[index] is not str2[index]:
-			diff += 1
+		if str1[index] != str2[index]:
+			if found_diff is True:
+				return False
+			else:
+				found_diff = True
 
-	if diff <= 1:
-		return True
-	else:
-		return False
+	return True
 
 
 def check_insert_or_remove(str1, str2):
