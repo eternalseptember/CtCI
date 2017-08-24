@@ -7,15 +7,18 @@ edit (or zero edits) away.
 
 
 def one_away(str1, str2):
+	"""
+	Takes O(N) time, where n is the length of the shorter string.
+	"""
 	str1_len = len(str1)
 	str2_len = len(str2)
 
 	if str1_len == str2_len:
 		return check_replace(str1, str2)
 	elif (str2_len - str1_len) == 1:
-		return check_insert(str1, str2)
+		return check_insert_or_remove(str1, str2)
 	elif (str1_len - str2_len) == 1:
-		return check_remove(str1, str2)
+		return check_insert_or_remove(str2, str1)
 	else:
 		return False
 
@@ -35,7 +38,7 @@ def check_replace(str1, str2):
 		return False
 
 
-def check_insert(str1, str2):
+def check_insert_or_remove(str1, str2):
 	# return True if str2 inserted a character
 	diff = 0
 	str2_len = len(str2)
@@ -57,31 +60,10 @@ def check_insert(str1, str2):
 		return False
 
 
-def check_remove(str1, str2):
-	# return True if str2 removed a character
-	diff = 0
-	str1_len = len(str1)
-	str2_index = 0
-
-	for str1_index in range(str1_len):
-		if (str2_index + 1) == str1_len:
-			# str2_index would be out of bounds
-			# checks if the last letter was deleted
-			diff += 1
-		elif str1[str1_index] is not str2[str2_index]:
-			diff += 1
-		else:
-			str2_index += 1
-
-	if diff == 1:
-		return True
-	else:
-		return False
-
-
-# true, true, true, false
-str_1_set = ['pale', 'pales', 'pale', 'pale', 'pale']
-str_2_set = ['ple', 'pale', 'bale', 'bake', 'pales']
+# Testing
+# true, true, true, false, true, false
+str_1_set = ['pale', 'pales', 'pale', 'pale', 'pale', 'app']
+str_2_set = ['ple', 'pale', 'bale', 'bake', 'pales', 'apples']
 
 sets = len(str_1_set)
 for i in range(sets):
