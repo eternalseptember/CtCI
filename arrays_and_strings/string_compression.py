@@ -7,6 +7,12 @@ You can assume the string has ony uppercase and lowercase letters(a-z).
 
 
 def compress(orig_str):
+	"""
+	Runtime is O(p + k^2), where p is the size of the original string,
+	and k is the number of character sequences. It's slow because string
+	concatenation is O(n^2) time.
+	"""
+
 	str_len = len(orig_str)
 
 	letter = None
