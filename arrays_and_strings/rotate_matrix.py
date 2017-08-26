@@ -13,22 +13,41 @@ def rotate(N, image):
 			col_entry.append(image[row][col])
 		new_image.append(col_entry[::-1])
 
-	print('Original image:')
-	print(image)
-	print('Rotated image:')
-	print(new_image)
+	return new_image
 """
 
 
-def rotate(image):
+def rotate(N, image):
 	# O(N^2) time.
-	N = len(image)
 
 	# Returns False if the image doesn't exist or isn't a square.
 	if ((N == 0) or (N != len(image[0]))):
 		return False
 
 	# rotate layers
+	# what kind of division?
+	for layer in range(N // 2):
+		first = layer
+		last = N - 1 - layer
+
+		for i in range(first, last):
+			offset = i - first
+			top = image[first][i]  # save top
+
+			# left -> top
+			image[first][i] = image[last-offset][first]
+
+			# bottom -> left
+			image[last-offset][first] = image[last][last-offset]
+
+			# right -> bottom
+			image[last][last - offset] = image[i][last]
+
+			# top -> right
+			image[i][last] = top  # right <- saved top
+
+	return True
+
 
 
 # Testing
@@ -44,7 +63,12 @@ for row in range(N):
 		starting_num += 1
 	image.append(new_col)
 
-# rotate(N, image)
+# for testing the first function
+# new_image = rotate(N, image)
+# print(new_image)
 
-rotate(image)
+# for testing the answer
+rotate(N, image)
+print(image)
+
 
