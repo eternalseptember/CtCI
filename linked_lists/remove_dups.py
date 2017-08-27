@@ -48,19 +48,21 @@ def remove_next_node(head):
 	return head
 
 
+
 def remove_duplicates(head):
 	# this implementation uses a temporary buffer
 	unique_values = []
+	current_head = head
+	previous = Node()
 
-	current_node = head
-	unique_values.append(current_node.data)
-
-	while current_node.next is not None:
-		if current_node.next.data not in unique_values:
-			unique_values.append(current_node.next.data)
-			current_node = current_node.next
+	while current_head is not None:
+		if current_head in unique_values:
+			previous.next = current_head.next
 		else:
-			current_node = remove_next_node(current_node)
+			unique_values.append(current_head)
+			previous = current_head
+
+		current_head = current_head.next
 
 	return head
 
@@ -69,6 +71,7 @@ def remove_duplicates(head):
 """
 def remove_duplicates(head):
 	# this implementation does not use a temporary buffer
+	# Runs in O(1) space but O(N^2) time.
 	current_node = head
 
 	while current_node is not None:
