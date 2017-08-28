@@ -32,43 +32,27 @@ def add(head, value):
 	return head
 
 
-def remove_next_node(head):
-	# terminal base cases
-	if head is None:
-		return None
-	if head.next is None:
-		return head
-
-	# remove head.next
-	if head.next.next is None:
-		head.next = None
-	else:
-		head.next = head.next.next
-
-	return head
-
-
-
+"""
 def remove_duplicates(head):
 	# this implementation uses a temporary buffer
+	# O(N) time, where N is the number of elements in the linked list.
 	unique_values = []
 	current_head = head
-	previous = Node()
+	previous_node = None
 
 	while current_head is not None:
-		if current_head in unique_values:
-			previous.next = current_head.next
+		if current_head.data not in unique_values:
+			unique_values.append(current_head.data)
+			previous_node = current_head
 		else:
-			unique_values.append(current_head)
-			previous = current_head
+			previous_node.next = current_head.next
 
 		current_head = current_head.next
 
 	return head
-
-
-
 """
+
+
 def remove_duplicates(head):
 	# this implementation does not use a temporary buffer
 	# Runs in O(1) space but O(N^2) time.
@@ -79,14 +63,14 @@ def remove_duplicates(head):
 
 		while this_node.next is not None:
 			if this_node.next.data == current_node.data:
-				this_node = remove_next_node(this_node)
+				this_node.next = this_node.next.next
 			else:
 				this_node = this_node.next
 
 		current_node = current_node.next
 
 	return head
-"""
+
 
 # Setup for testing
 values = [9, 0, 1, 1, 9, 3, 4, 2, 0, 2, 5, 1]
