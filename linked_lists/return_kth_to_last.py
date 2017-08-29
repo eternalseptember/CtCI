@@ -2,6 +2,15 @@
 Implement an algorithm to find the kth to last element of a singly linked list.
 """
 
+"""
+Solution presented:
+k = 1 would return the last element
+k = 2 would return the second-to-last element
+
+Alternative implementation could:
+k = 0 would return last element
+"""
+
 
 class Node:
 	def __init__(self, data=None, next_node=None):
@@ -30,7 +39,14 @@ def add(head, value):
 	return head
 
 
+"""
 def find_element(k, head):
+	# This probably corresponds to
+	# Solution 1: If linked list size is known.
+
+	if head is None:
+		return None
+
 	items = []
 
 	while head.next is not None:
@@ -41,6 +57,12 @@ def find_element(k, head):
 		return None
 	else:
 		return items[-k]
+"""
+
+def find_element(k, head):
+	if head is None:
+		return None
+
 
 
 values = [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
