@@ -59,9 +59,31 @@ def find_element(k, head):
 		return items[-k]
 """
 
+
 def find_element(k, head):
+	"""
+	Use two pointers and place them k nodes apart.
+	O(N) time and O(1) space.
+	"""
 	if head is None:
 		return None
+
+	p1 = head
+	p2 = head
+
+	# Move p1 ahead of p2 by k steps
+	for steps in range(k):
+		if p1 is None:
+			return None
+		else:
+			p1 = p1.next
+
+	# When p1 hits the end, return p2
+	while p1 is not None:
+		p1 = p1.next
+		p2 = p2.next
+
+	return p2
 
 
 
@@ -78,7 +100,7 @@ print()
 k = 2
 result = find_element(k, head)
 print('{0}-to-last element in linked list:'.format(k))
-print(result)
+print(result.data)
 
 
 
