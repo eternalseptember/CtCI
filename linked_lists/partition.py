@@ -42,33 +42,37 @@ def partition(head, x):
 	right_tail = None
 
 	while head is not None:
+		next_node = head.next
+		head.next = None
+
 		if head.data < x:
 			# stick it in the left partition
 			if left_head is None:
-				left_head = Node(head.data)
+				left_head = head
 				left_tail = left_head
 			else:
-				left_tail.next = Node(head.data)
-				left_tail = left_tail.next
+				left_tail.next = head
+				left_tail = head
 		else:
 			# stick it in the right partition
 			if right_head is None:
-				right_head = Node(head.data)
+				right_head = head
 				right_tail = right_head
 			else:
-				right_tail.next = Node(head.data)
-				right_tail = right_tail.next
+				right_tail.next = head
+				right_tail = head
 
-		head = head.next
+		head = next_node
 
 
 	# after sorting, join the partition
-	if left_tail is not None:
+	if left_tail is None:
+		return right_head
+	else:
 		if right_head is not None:
 			left_tail.next = right_head
 		return left_head
-	else:
-		return right_head
+		
 
 
 # test case

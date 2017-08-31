@@ -36,8 +36,6 @@ def add(head, value):
 
 def delete_node(node):
 	# "Deletes" the node by copying the data from the next node
-	if node is None:
-		return
 	while node.next is not None:
 		node.data = node.next.data
 
