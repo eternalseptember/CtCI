@@ -76,10 +76,19 @@ value1 = 10
 value2 = 52
 
 head1 = convert_to_linked_list(value1)
+print('Value 1: {0}\nLinked List: '.format(value1), end=' ')
+print_linked_list(head1)
+print('\n')
+
 head2 = convert_to_linked_list(value2)
+print('Value 2: {0}\nLinked List: '.format(value2), end=' ')
+print_linked_list(head2)
+print('\n')
 
 total = add_linked_list_digits(head1, head2)
+print('Total in linked list: ', end=' ')
 print_linked_list(total)
+print()
 
 
 
