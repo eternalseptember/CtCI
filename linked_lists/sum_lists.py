@@ -34,6 +34,19 @@ def add(head, value):
 	return head
 
 
+def convert_to_linked_list(num):
+	# convert num to a linked list with the digits stored in reverse order
+	digit_list = [int(digit) for digit in str(num)]
+	digit_list = digit_list[::-1]
+
+	head = None
+	for value in digit_list:
+		head = add(head, value)
+
+	return head
+
+
+"""
 def add_linked_list_digits(head1, head2):
 	# convert each linked list to number representation
 	num1 = convert_to_int(head1)
@@ -57,18 +70,28 @@ def convert_to_int(head):
 		digit_str += str(digit)
 
 	return int(digit_str)
+"""
+
+def add_linked_list_digits(head1, head2):
+	# do something if either head is none
+
+	new_head = None
+	next_digit = None
+	carry_over = False
+
+	first_value = head1.data + head2.data
+
+	# if new_head is None, make a new head
+	# else make a new node and attach as next digit
+	if len(first_value) < 10:
+		new_head = Node(first_value)
+	else:
+		new_head = Node(first_value - 10)
+
+		# carry over adds 1 to the next value
 
 
-def convert_to_linked_list(num):
-	# convert num to a linked list with the digits stored in reverse order
-	digit_list = [int(digit) for digit in str(num)]
-	digit_list = digit_list[::-1]
-
-	head = None
-	for value in digit_list:
-		head = add(head, value)
-
-	return head
+	return new_head
 
 
 # total should be 62
