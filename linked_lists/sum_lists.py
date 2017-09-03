@@ -46,55 +46,54 @@ def convert_to_linked_list(num):
 	return head
 
 
-"""
-def add_linked_list_digits(head1, head2):
-	# convert each linked list to number representation
-	num1 = convert_to_int(head1)
-	num2 = convert_to_int(head2)
-	total = num1 + num2
+def add_linked_list_nums(head1, head2):
+	# Not completely sure if this is a valid assumption, but
+	# if either head is none, treat them as if they're zeros.
+	if (head1 is None) and (head2 is None):
+		return Node(0)
+	elif (head1 is None):
+		return head2
+	elif (head2 is None):
+		return head1
 
-	# then converts the answer to a linked list in the same format
-	return convert_to_linked_list(total)
 
+	# Setup
+	first_digit = None
+	current_digit = None
+	carry_over = 0
 
-def convert_to_int(head):
-	# converts the linked list representation to an integer
-	digits = []
-
-	while head is not None:
-		digits.insert(0, head.data)
-		head = head.next
-
-	digit_str = ''
-	for digit in digits:
-		digit_str += str(digit)
-
-	return int(digit_str)
-"""
-
-def add_linked_list_digits(head1, head2):
-	# do something if either head is none
-
-	new_head = None
-	next_digit = None
-	carry_over = False
-
-	first_value = head1.data + head2.data
+	# Add
+	column_sum = head1.data + head2.data
+	if column_sum < 10:
+		new_digit = column_sum
+		carry_over = 0
+	else:
+		new_digit = column_sum
+		carry_over = 1
 
 	# if new_head is None, make a new head
 	# else make a new node and attach as next digit
-	if len(first_value) < 10:
-		new_head = Node(first_value)
-	else:
-		new_head = Node(first_value - 10)
-
-		# carry over adds 1 to the next value
+	if first_digit is None:
+		first_digit = Node(new_digit)
+		current_digit = first_digit
 
 
-	return new_head
+	# carry over adds 1 to the next value
+
+	# if there is a final carry
 
 
-# total should be 62
+	return first_digit
+
+
+# Test cases
+math_problems = [
+				(10, 52),   # 62
+				(99, 201),  # 300
+				(999, 1),   # 1000
+				(102, 899)  # 1002
+				]
+
 value1 = 10
 value2 = 52
 
@@ -108,10 +107,16 @@ print('Value 2: {0}\nLinked List: '.format(value2), end=' ')
 print_linked_list(head2)
 print('\n')
 
-total = add_linked_list_digits(head1, head2)
+total = add_linked_list_nums(head1, head2)
 print('Total in linked list: ', end=' ')
 print_linked_list(total)
 print()
+
+
+# sum of different lengths and sum where final carry is the final digit
+# 99 + 201 = 300
+# 999 + 1 = 1000
+# 102 + 899 = 1002
 
 
 
