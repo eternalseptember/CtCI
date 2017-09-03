@@ -13,77 +13,77 @@ k = 0 would return last element
 
 
 class Node:
-	def __init__(self, data=None, next_node=None):
-		self.data = data
-		self.next = next_node
+    def __init__(self, data=None, next_node=None):
+        self.data = data
+        self.next = next_node
 
 
 def print_linked_list(head):
-	print(head.data, end=' ')
-	if head.next is not None:
-		print_linked_list(head.next)
+    print(head.data, end=' ')
+    if head.next is not None:
+        print_linked_list(head.next)
 
 
 def add(head, value):
-	if head is None:
-		return Node(value)
+    if head is None:
+        return Node(value)
 
-	if head.next is None:
-		head.next = Node(value)
-	else:
-		next_node = head.next
-		while next_node.next is not None:
-			next_node = next_node.next
-		next_node.next = Node(value)
+    if head.next is None:
+        head.next = Node(value)
+    else:
+        next_node = head.next
+        while next_node.next is not None:
+            next_node = next_node.next
+        next_node.next = Node(value)
 
-	return head
+    return head
 
 
 """
 def find_element(k, head):
-	# This probably corresponds to
-	# Solution 1: If linked list size is known.
+    # This probably corresponds to
+    # Solution 1: If linked list size is known.
 
-	if head is None:
-		return None
+    if head is None:
+        return None
 
-	items = []
+    items = []
 
-	while head.next is not None:
-		items.append(head.data)
-		head = head.next
+    while head.next is not None:
+        items.append(head.data)
+        head = head.next
 
-	if len(items) < k:
-		return None
-	else:
-		return items[-k]
+    if len(items) < k:
+        return None
+    else:
+        return items[-k]
 """
 
 
 def find_element(k, head):
-	"""
-	Use two pointers and place them k nodes apart.
-	O(N) time and O(1) space.
-	"""
-	if head is None:
-		return None
+    """
+    Use two pointers and place them k nodes apart.
+    O(N) time and O(1) space.
+    """
+    if head is None:
+        return None
 
-	p1 = head
-	p2 = head
+    p1 = head
+    p2 = head
 
-	# Move p1 ahead of p2 by k steps
-	for steps in range(k):
-		if p1 is None:
-			return None
-		else:
-			p1 = p1.next
+    # Move p1 ahead of p2 by k steps
+    for steps in range(k):
+        if p1 is None:
+            return None
+        else:
+            p1 = p1.next
 
-	# When p1 hits the end, return p2
-	while p1 is not None:
-		p1 = p1.next
-		p2 = p2.next
+    # When p1 hits the end, return p2
+    while p1 is not None:
+        p1 = p1.next
+        p2 = p2.next
 
-	return p2
+    return p2
 
 
 
@@ -91,7 +91,7 @@ values = [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
 head = None
 
 for value in values:
-	head = add(head, value)
+    head = add(head, value)
 
 print('linked list adding all nodes:')
 print_linked_list(head)

@@ -6,64 +6,64 @@ you'll have D linked lists).
 
 
 class Node:
-	def __init__(self, data=None, left=None, right=None):
-		self.data = data
-		self.left = left
-		self.right = right
+    def __init__(self, data=None, left=None, right=None):
+        self.data = data
+        self.left = left
+        self.right = right
 
 
 class LinkedNode:
-	def __init__(self, data=None, next=None):
-		self.data = data
-		self.next = next
+    def __init__(self, data=None, next=None):
+        self.data = data
+        self.next = next
 
-	def __str__(self):
-		return str(self.data)
+    def __str__(self):
+        return str(self.data)
 
 
 def list_of_depths(head):
-	if head is None:
-		return None
+    if head is None:
+        return None
 
-	depth_lists = {}
-	queue = [(head, 0)]
+    depth_lists = {}
+    queue = [(head, 0)]
 
-	while len(queue) > 0:
-		item = queue.pop(0)
-		current_node, depth = (item)
+    while len(queue) > 0:
+        item = queue.pop(0)
+        current_node, depth = (item)
 
-		if depth not in depth_lists:
-			depth_lists[depth] = [current_node.data]
-		else:
-			depth_lists[depth].append(current_node.data)
+        if depth not in depth_lists:
+            depth_lists[depth] = [current_node.data]
+        else:
+            depth_lists[depth].append(current_node.data)
 
-		if current_node.left is not None:
-			queue.append((current_node.left, depth+1))
-		if current_node.right is not None:
-			queue.append((current_node.right, depth+1))
+        if current_node.left is not None:
+            queue.append((current_node.left, depth+1))
+        if current_node.right is not None:
+            queue.append((current_node.right, depth+1))
 
-	"""
-	# check answer here
-	print('list of depths:')
-	for key in depth_lists:
-		print(depth_lists[key])
-	"""
+    """
+    # check answer here
+    print('list of depths:')
+    for key in depth_lists:
+        print(depth_lists[key])
+    """
 
-	# convert results to linked lists
-	linked_lists = []
-	for key in depth_lists:
-		nodes_list = depth_lists[key]
+    # convert results to linked lists
+    linked_lists = []
+    for key in depth_lists:
+        nodes_list = depth_lists[key]
 
-		first_node = LinkedNode(nodes_list.pop(0))
-		current_node = first_node
+        first_node = LinkedNode(nodes_list.pop(0))
+        current_node = first_node
 
-		while len(nodes_list) > 0:
-			current_node.next = LinkedNode(nodes_list.pop(0))
-			current_node = current_node.next
+        while len(nodes_list) > 0:
+            current_node.next = LinkedNode(nodes_list.pop(0))
+            current_node = current_node.next
 
-		linked_lists.append(first_node)
+        linked_lists.append(first_node)
 
-	return linked_lists
+    return linked_lists
 
 
 
@@ -83,11 +83,11 @@ node1 = Node(1, node2, node3)
 lists = list_of_depths(node1)
 
 for list in lists:
-	current_node = list
-	while current_node is not None:
-		print(current_node, end=' ')
-		current_node = current_node.next
-	print()
+    current_node = list
+    while current_node is not None:
+        print(current_node, end=' ')
+        current_node = current_node.next
+    print()
 
 print('\n')
 
@@ -103,10 +103,10 @@ node1 = Node(1, None, node2)
 lists = list_of_depths(node1)
 
 for list in lists:
-	current_node = list
-	while current_node is not None:
-		print(current_node, end=' ')
-		current_node = current_node.next
-	print()
+    current_node = list
+    while current_node is not None:
+        print(current_node, end=' ')
+        current_node = current_node.next
+    print()
 
 

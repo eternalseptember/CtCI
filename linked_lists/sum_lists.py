@@ -8,91 +8,91 @@ sum as a linked list.
 
 
 class Node:
-	def __init__(self, data=None, next_node=None):
-		self.data = data
-		self.next = next_node
+    def __init__(self, data=None, next_node=None):
+        self.data = data
+        self.next = next_node
 
 
 def print_linked_list(head):
-	print(head.data, end=' ')
-	if head.next is not None:
-		print_linked_list(head.next)
+    print(head.data, end=' ')
+    if head.next is not None:
+        print_linked_list(head.next)
 
 
 def add(head, value):
-	if head is None:
-		return Node(value)
+    if head is None:
+        return Node(value)
 
-	if head.next is None:
-		head.next = Node(value)
-	else:
-		next_node = head.next
-		while next_node.next is not None:
-			next_node = next_node.next
-		next_node.next = Node(value)
+    if head.next is None:
+        head.next = Node(value)
+    else:
+        next_node = head.next
+        while next_node.next is not None:
+            next_node = next_node.next
+        next_node.next = Node(value)
 
-	return head
+    return head
 
 
 def convert_to_linked_list(num):
-	# convert num to a linked list with the digits stored in reverse order
-	digit_list = [int(digit) for digit in str(num)]
-	digit_list = digit_list[::-1]
+    # convert num to a linked list with the digits stored in reverse order
+    digit_list = [int(digit) for digit in str(num)]
+    digit_list = digit_list[::-1]
 
-	head = None
-	for value in digit_list:
-		head = add(head, value)
+    head = None
+    for value in digit_list:
+        head = add(head, value)
 
-	return head
+    return head
 
 
 def add_linked_list_nums(head1, head2):
-	# Not completely sure if this is a valid assumption, but
-	# if either head is none, treat them as if they're zeros.
-	if (head1 is None) and (head2 is None):
-		return Node(0)
-	elif (head1 is None):
-		return head2
-	elif (head2 is None):
-		return head1
+    # Not completely sure if this is a valid assumption, but
+    # if either head is none, treat them as if they're zeros.
+    if (head1 is None) and (head2 is None):
+        return Node(0)
+    elif (head1 is None):
+        return head2
+    elif (head2 is None):
+        return head1
 
 
-	# Setup
-	first_digit = None
-	current_digit = None
-	carry_over = 0
+    # Setup
+    first_digit = None
+    current_digit = None
+    carry_over = 0
 
-	# Add
-	column_sum = head1.data + head2.data
-	if column_sum < 10:
-		new_digit = column_sum
-		carry_over = 0
-	else:
-		new_digit = column_sum
-		carry_over = 1
+    # Add
+    column_sum = head1.data + head2.data
+    if column_sum < 10:
+        new_digit = column_sum
+        carry_over = 0
+    else:
+        new_digit = column_sum
+        carry_over = 1
 
-	# if new_head is None, make a new head
-	# else make a new node and attach as next digit
-	if first_digit is None:
-		first_digit = Node(new_digit)
-		current_digit = first_digit
-
-
-	# carry over adds 1 to the next value
-
-	# if there is a final carry
+    # if new_head is None, make a new head
+    # else make a new node and attach as next digit
+    if first_digit is None:
+        first_digit = Node(new_digit)
+        current_digit = first_digit
 
 
-	return first_digit
+    # carry over adds 1 to the next value
+
+    # if there is a final carry
+
+
+    return first_digit
 
 
 # Test cases
 math_problems = [
-				(10, 52),   # 62
-				(99, 201),  # 300
-				(999, 1),   # 1000
-				(102, 899)  # 1002
-				]
+                (10, 52),   # 62
+                (99, 201),  # 300
+                (999, 1),   # 1000
+                (102, 899)  # 1002
+                ]
 
 value1 = 10
 value2 = 52

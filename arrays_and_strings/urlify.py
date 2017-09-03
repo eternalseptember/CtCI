@@ -5,7 +5,7 @@ characters, and that you are given the "true" length of the string.
 """
 
 def urlify(str):
-	return str.replace(' ', '%20')
+    return str.replace(' ', '%20')
 
 
 inp = 'Mr John Smith'

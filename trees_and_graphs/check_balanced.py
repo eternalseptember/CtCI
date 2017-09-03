@@ -7,42 +7,42 @@ never differ by more than one.
 
 
 class Node:
-	def __init__(self, data=None, left=None, right=None):
-		self.data = data
-		self.left = left
-		self.right = right
+    def __init__(self, data=None, left=None, right=None):
+        self.data = data
+        self.left = left
+        self.right = right
 
 
-	def __str__(self):
-		left = None
-		right = None
+    def __str__(self):
+        left = None
+        right = None
 
-		if self.left is not None:
-			left = self.left.data
-		if self.right is not None:
-			right = self.right.data
+        if self.left is not None:
+            left = self.left.data
+        if self.right is not None:
+            right = self.right.data
 
-		return 'data: {0}  left: {1}  right: {2}'.format(self.data, left, right)
+        return 'data: {0}  left: {1}  right: {2}'.format(self.data, left, right)
 
 
 def is_binary(head):
-	diff = get_height(head.left) - get_height(head.right)
-	#print('height_diff: {0}'.format(diff), end='\n\t')
+    diff = get_height(head.left) - get_height(head.right)
+    #print('height_diff: {0}'.format(diff), end='\n\t')
 
-	if abs(diff) <= 1:
-		return True
-	else:
-		return False
+    if abs(diff) <= 1:
+        return True
+    else:
+        return False
 
 
 def get_height(head):
-	if head is None:
-		return -1
+    if head is None:
+        return -1
 
-	left_height = get_height(head.left)
-	right_height = get_height(head.right)
+    left_height = get_height(head.left)
+    right_height = get_height(head.right)
 
-	return max(left_height, right_height) + 1
+    return max(left_height, right_height) + 1
 
 
 # Test Case 1: True; height_diff = 0
