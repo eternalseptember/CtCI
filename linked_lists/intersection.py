@@ -19,21 +19,6 @@ def print_linked_list(head):
         print_linked_list(head.next)
 
 
-def add(head, value):
-    if head is None:
-        return Node(value)
-
-    if head.next is None:
-        head.next = Node(value)
-    else:
-        next_node = head.next
-        while next_node.next is not None:
-            next_node = next_node.next
-        next_node.next = Node(value)
-
-    return head
-
-
 def find_intersection(head1, head2):
     # assumes that there is an intersection
     orig_head2 = head2
@@ -46,49 +31,46 @@ def find_intersection(head1, head2):
         head1 = head1.next
         head2 = orig_head2
 
-    print('no intersection found')
+    return None
 
 
-# testing
-list1 = [3, 4, 5]
-list2 = [0, 1, 2, 3, 4, 5]
+# Test cases
+# Intersecting linked list
+linked_node_a = Node(1)
+linked_node_b = Node(2, linked_node_a)
+linked_node_c = Node(7, linked_node_b)
 
-head1 = None
-head2 = None
+linked_node_d = Node(9, linked_node_c)
+linked_node_e = Node(5, linked_node_d)
+linked_node_f = Node(1, linked_node_e)
+linked_node_g = Node(3, linked_node_f)  # head_1
 
-for value in list1:
-    head1 = add(head1, value)
+linked_node_h = Node(6, linked_node_c)
+linked_node_i = Node(4, linked_node_h)  # head_2
 
-for value in list2:
-    head2 = add(head2, value)
+head_1 = linked_node_g
+head_2 = linked_node_i
+intersection = find_intersection(head_1, head_2)
 
-
-print('linked list 1: ', end=' ')
-print_linked_list(head1)
-print()
-print('linked list 2: ', end=' ')
-print_linked_list(head2)
-print()
-
-
-print('intersection: ', end=' ')
-intersection = find_intersection(head1, head2)
-print_linked_list(intersection)
-print()
+if intersection is not None:
+    print_linked_list(intersection)
+else:
+    print('No intersection')
 
 
-# intersecting linked list
-# need to reference the linked lists by their memory location, not by value
+# Non-intersecting linked lists
+# List 1
 
-node1 = Node(1)
-node2 = Node(2, node1)
-node7 = Node(7, node2)
 
-node9 = Node(9, node7)
-node5 = Node(5, node9)
-node1 = Node(1, node5)
-node3 = Node(3, node1)
 
-node6 = Node(6, node7)
-node4 = Node(4, node6)
+# List 2
+
+
+
+
+
+
+
+
+
 
