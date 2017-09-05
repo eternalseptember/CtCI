@@ -76,3 +76,19 @@ intersection = find_intersection(head1, head2)
 print_linked_list(intersection)
 print()
 
+
+# intersecting linked list
+# need to reference the linked lists by their memory location, not by value
+
+node1 = Node(1)
+node2 = Node(2, node1)
+node7 = Node(7, node2)
+
+node9 = Node(9, node7)
+node5 = Node(5, node9)
+node1 = Node(1, node5)
+node3 = Node(3, node1)
+
+node6 = Node(6, node7)
+node4 = Node(4, node6)
+
