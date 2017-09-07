@@ -25,7 +25,18 @@ def find_intersection(head1, head2):
 
     while head1 is not None:
         while head2 is not None:
-            if (head1.data == head2.data) and (head1.next.data == head2.next.data):
+            if head1.next is None:
+                head_1_next = None
+            else:
+                head_1_next = head1.next
+
+            if head2.next is None:
+                head_2_next = None
+            else:
+                head_2_next = head2.next
+
+
+            if (head1.data == head2.data) and (head_1_next == head_2_next):
                 return head2
             head2 = head2.next
         head1 = head1.next
