@@ -71,6 +71,13 @@ else:
 
 # Non-intersecting linked lists
 # List 1
+list_1_a = Node(1)
+list_1_b = Node(2, list_1_a)
+list_1_c = Node(7, list_1_b)
+list_1_d = Node(9, list_1_c)
+list_1_e = Node(5, list_1_d)
+list_1_f = Node(1, list_1_e)
+list_1_e = Node(3, list_1_f)
 
 
 
