@@ -77,12 +77,26 @@ list_1_c = Node(7, list_1_b)
 list_1_d = Node(9, list_1_c)
 list_1_e = Node(5, list_1_d)
 list_1_f = Node(1, list_1_e)
-list_1_e = Node(3, list_1_f)
-
+list_1_g = Node(3, list_1_f)  # head_1
 
 
 # List 2
+list_2_a = Node(1)
+list_2_b = Node(2, list_2_a)
+list_2_c = Node(7, list_2_b)
+list_2_d = Node(6, list_2_c)
+list_2_e = Node(4, list_2_d)  # head_2
 
+
+# testing
+head_1 = list_1_g
+head_2 = list_2_e
+intersection = find_intersection(head_1, head_2)
+
+if intersection is not None:
+    print_linked_list(intersection)
+else:
+    print('No intersection')
 
 
 
