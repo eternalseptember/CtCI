@@ -20,7 +20,10 @@ def print_linked_list(head):
 
 
 def find_intersection(head1, head2):
-    # assumes that there is an intersection
+
+    # hash table?
+
+
     orig_head2 = head2
 
     while head1 is not None:
@@ -67,7 +70,7 @@ if intersection is not None:
     print_linked_list(intersection)
 else:
     print('No intersection')
-
+print()
 
 # Non-intersecting linked lists
 # List 1
@@ -97,8 +100,14 @@ if intersection is not None:
     print_linked_list(intersection)
 else:
     print('No intersection')
+print()
 
 
+
+if list_1_a == list_2_a:
+    print('these two nodes are the same')
+else:
+    print('these two nodes are different')
 
 
 
