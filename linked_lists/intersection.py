@@ -22,30 +22,31 @@ def print_linked_list(head):
 def find_intersection(head1, head2):
 
     # hash table?
+    nodes_list = []
+    found = False
+    node_intersection = None
 
+    # indexes all nodes from head1
+    current_node = head1
+    while current_node is not None:
+        nodes_list.append(current_node)
+        current_node = current_node.next
 
-    orig_head2 = head2
-
-    while head1 is not None:
-        while head2 is not None:
-            if head1.next is None:
-                head_1_next = None
+    # search through head2 for intersection
+    current_node = head2
+    while current_node is not None:
+        if current_node in nodes_list:
+            if found is False:
+                found = True
+                node_intersection = current_node
             else:
-                head_1_next = head1.next
+                # double check that it was really an intersection
+                if current_node not in nodes_list:
+                    print('false positive somewhere')
 
-            if head2.next is None:
-                head_2_next = None
-            else:
-                head_2_next = head2.next
+        current_node = current_node.next
 
-
-            if (head1.data == head2.data) and (head_1_next == head_2_next):
-                return head2
-            head2 = head2.next
-        head1 = head1.next
-        head2 = orig_head2
-
-    return None
+    return node_intersection
 
 
 # Test cases
@@ -103,12 +104,12 @@ else:
 print()
 
 
-
+"""
 if list_1_a == list_2_a:
     print('these two nodes are the same')
 else:
     print('these two nodes are different')
-
+"""
 
 
 
