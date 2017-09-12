@@ -21,7 +21,6 @@ def print_linked_list(head):
 
 def is_intersected(head1, head2):
     # two intersecting linked list will have the same last node
-
     node_1 = head1
     while node_1.next is not None:
         node_1 = node_1.next
@@ -34,8 +33,6 @@ def is_intersected(head1, head2):
 
 
 def find_intersection(head1, head2):
-
-    # hash table?
     nodes_list = []
     found = False
     node_intersection = None
@@ -63,8 +60,10 @@ def find_intersection(head1, head2):
     return node_intersection
 
 
-# Test cases
-# Intersecting linked list
+# **************************************************************
+
+# Test case 1: Intersecting
+# Linked list setup
 linked_node_a = Node(1)
 linked_node_b = Node(2, linked_node_a)
 linked_node_c = Node(7, linked_node_b)
@@ -77,6 +76,8 @@ linked_node_g = Node(3, linked_node_f)  # head_1
 linked_node_h = Node(6, linked_node_c)
 linked_node_i = Node(4, linked_node_h)  # head_2
 
+"""
+# Expected result: a node
 head_1 = linked_node_g
 head_2 = linked_node_i
 intersection = find_intersection(head_1, head_2)
@@ -86,8 +87,11 @@ if intersection is not None:
 else:
     print('No intersection')
 print()
+"""
 
-# Non-intersecting linked lists
+# **************************************************************
+
+# Test case 2: Not intersecting
 # List 1
 list_1_a = Node(1)
 list_1_b = Node(2, list_1_a)
@@ -105,8 +109,8 @@ list_2_c = Node(7, list_2_b)
 list_2_d = Node(6, list_2_c)
 list_2_e = Node(4, list_2_d)  # head_2
 
-
-# testing
+"""
+# Expected result: no intersection
 head_1 = list_1_g
 head_2 = list_2_e
 intersection = find_intersection(head_1, head_2)
@@ -116,8 +120,13 @@ if intersection is not None:
 else:
     print('No intersection')
 print()
+"""
 
+# **************************************************************
 
+# Testing helper functions
+
+# Question: Are these nodes the same?
 """
 if list_1_a == list_2_a:
     print('these two nodes are the same')
@@ -125,8 +134,11 @@ else:
     print('these two nodes are different')
 """
 
+# Question: Are these nodes intersected?
+# Test case 1: True
+print(is_intersected(linked_node_g, linked_node_i))
 
-
-
+# Test case 2: False
+print(is_intersected(list_1_g, list_2_e))
 
 
