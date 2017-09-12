@@ -19,6 +19,20 @@ def print_linked_list(head):
         print_linked_list(head.next)
 
 
+def is_intersected(head1, head2):
+    # two intersecting linked list will have the same last node
+
+    node_1 = head1
+    while node_1.next is not None:
+        node_1 = node_1.next
+
+    node_2 = head2
+    while node_2.next is not None:
+        node_2 = node_2.next
+
+    return node_1 == node_2
+
+
 def find_intersection(head1, head2):
 
     # hash table?
