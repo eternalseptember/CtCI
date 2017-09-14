@@ -39,8 +39,7 @@ def detect_loop(head):
     loop_node = None
 
     while loop is False:
-        # already assumes a loop so does not check for null nodes
-        if head not in nodes:
+        if (head is not None) and (head not in nodes):
             nodes.append(head)
             head = head.next
         else:
@@ -68,9 +67,35 @@ latest_node.next = loop_node
 
 # normally I'd print the node here, but recursion
 
-print('node at the beginning of loop')
+print('Node at the beginning of loop: ')
 beg_loop_node = detect_loop(head)
-print(beg_loop_node.data)
+if beg_loop_node is not None:
+    print(beg_loop_node.data)
+else:
+    print('No loop detected.')
+print()
+
+
+
+# does this function work for non-circular loops?
+# test case
+# expected result: C
+values = ['A', 'B', 'C', 'D', 'E']
+head = None
+latest_node = None
+
+for value in values:
+    head, latest_node = add(head, value)
+
+print('Node at the beginning of loop: ')
+beg_loop_node = detect_loop(head)
+if beg_loop_node is not None:
+    print(beg_loop_node.data)
+else:
+    print('No loop detected.')
+print()
+
+
 
 
 

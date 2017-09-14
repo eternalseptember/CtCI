@@ -33,6 +33,8 @@ def is_intersected(head1, head2):
 
 
 def find_intersection(head1, head2):
+    # O(A+B) time, where A and B are the lengths of the two linked lists.
+    # O(1) additional space
     nodes_list = []
     found = False
     node_intersection = None
