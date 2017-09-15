@@ -47,18 +47,23 @@ def is_palindrome(head):
     return True
 
 
+def test_palindrome_function(test_str):
+    head = None
+    values = []
 
-values = ['r', 'a', 'c', 'e', 'c', 'a', 'r']
-head = None
+    for ch in test_str:
+        values.append(ch)
 
-for value in values:
-    head = add(head, value)
+    for value in values:
+        head = add(head, value)
 
-print('linked list adding all nodes:')
-print_linked_list(head)
-print()
-
-result = is_palindrome(head)
-print(result)
+    result = is_palindrome(head)
+    print(result)
 
 
+# Test cases:
+# True, True, False
+test_cases = ['racecar', 'mom', 'cat']
+
+for case in test_cases:
+    test_palindrome_function(case)
