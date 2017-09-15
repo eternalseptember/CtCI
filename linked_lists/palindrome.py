@@ -37,7 +37,7 @@ def is_palindrome(head):
         string.append(head.data)
         head = head.next
 
-    while len(string) > 2:
+    while len(string) >= 2:
         item1 = string.pop(0)
         item2 = string.pop()
 
@@ -62,8 +62,8 @@ def test_palindrome_function(test_str):
 
 
 # Test cases:
-# True, True, False
-test_cases = ['racecar', 'mom', 'cat']
+# True, True, True, True, False, False
+test_cases = ['racecar', 'mom', 'noon', 'toot', 'cat', 'plop']
 
 for case in test_cases:
     test_palindrome_function(case)
