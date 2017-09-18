@@ -8,33 +8,34 @@ and min should all operate in O(1) time.
 class Stack:
     def __init__(self):
         self.stack = []
-        self.min_item = None
+        self.min_stack = []
 
 
     def push(self, item):
         self.stack.append(item)
 
-        if self.min_item is None:
-            self.min_item = item
+        if len(self.min_stack) == 0:
+            self.min_stack.append(item)
         else:
-            if item < self.min_item:
-                self.min_item = item
+            if item <= self.min_stack[-1]:
+                self.min_stack.append(item)
 
 
     def pop(self):
         item = self.stack.pop()
 
-        if item == self.min_item:
-            if len(self.stack) > 0:
-                self.min_item = min(self.stack)
-            else:
-                self.min_item = None
+        if item == self.min_stack[-1]:
+            self.min_stack.pop()
 
         return item
 
 
     def peek(self):
-        return self.stack[-1]
+        try:
+            return self.stack[-1]
+        except IndexError:
+            return None
+
 
 
     def is_empty(self):
@@ -45,7 +46,10 @@ class Stack:
 
 
     def print_min(self):
-        print(self.min_item)
+        try:
+            print(self.min_stack[-1])
+        except IndexError:
+            print('No minimum')
 
 
 # Test
@@ -57,8 +61,8 @@ for value in values_to_add:
     new_stack.push(value)
     new_stack.print_min()
 
-
-for i in range(2):
+print()
+for i in range(4):
     new_stack.pop()
     new_stack.print_min()
 
