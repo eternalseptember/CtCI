@@ -43,10 +43,25 @@ class SetOfStacks:
             return self.set_of_stacks[self.current_stack].pop()
 
 
-    def popAt(self, index):
-        if index <= self.current_stack:
-            if len(self.set_of_stacks[index]) > 0:
-                return self.set_of_stacks[index].pop()
+    def popAt(self, requested_stack):
+        if requested_stack <= self.current_stack:
+            if len(self.set_of_stacks[requested_stack]) > 0:
+                requested_item = self.set_of_stacks[requested_stack].pop()
+
+                # Roll over items from newer stack
+                # Increases time complexity
+                this_stack = requested_stack
+
+                while this_stack < self.current_stack:
+                    next_stack = this_stack + 1
+                    transfer_item = self.set_of_stacks[next_stack].pop(0)
+                    self.set_of_stacks[this_stack].append(transfer_item)
+
+                    this_stack = next_stack
+
+                return requested_item
+
+
         return None
 
 
@@ -55,32 +70,23 @@ class SetOfStacks:
 
 
 
-# testing
+# Testing
+# Initial stack setup
 values_to_test = [2, 5, 2, 1, 5, 7, 3, 8, 1, 9, 8, 3, 4, 6, 4, 5, 0, 9, 2]
 stack_set = SetOfStacks()
 
 for value in values_to_test:
     stack_set.push(value)
 
-print('initial stack:', end=' ')
+print('Initial stack:')
 print(stack_set)
+print()
 
-"""
-new_values = [10, 15, 25, 34, 17, 11, 19, 20, 28, 27, 14, 30, 18]
+# Testing popAt function
+requested_stacks = [0, 0, 3]
 
-for i in range(20):
-    if (i % 4 == 0):
-        print('push: ', end=' ')
-        stack_set.push(new_values.pop())
-    else:
-        stack_set.pop()
-        print('pop: ', end=' ')
-
+for stack_number in requested_stacks:
+    stack_set.popAt(stack_number)
+    print('Pop a plate from stack: {0}'.format(stack_number))
     print(stack_set)
-"""
-
-stack_set.popAt(0)
-print(stack_set)
-stack_set.popAt(0)
-print(stack_set)
 
