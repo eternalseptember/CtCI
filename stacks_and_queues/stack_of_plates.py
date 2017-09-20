@@ -78,12 +78,12 @@ class SetOfStacks:
                         self.set_of_stacks[this_stack].append(transfer_item)
                     else:
                         # if the next/last(?) stack is empty, remove it
+                        self.current_stack -= 1
                         self.set_of_stacks.pop()
 
                     this_stack = next_stack
 
                 return requested_item
-
 
             return None
 
