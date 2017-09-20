@@ -20,23 +20,27 @@ class SetOfStacks:
         self.current_stack = 0
 
 
+    def __str__(self):
+        return str(self.set_of_stacks)
+
+
     def push(self, item):
-        # if current stack is full, create a new stack
+        # If current stack is full, create a new stack.
         if len(self.set_of_stacks[self.current_stack]) == self.threshold:
             self.current_stack += 1
             self.set_of_stacks.append([])
 
-        # add the item to the stack
+        # Add the item to the stack.
         self.set_of_stacks[self.current_stack].append(item)
 
 
     def pop(self):
-        # if current stack is empty, go to the previous stack
+        # If current stack is empty, go to the previous stack.
         if len(self.set_of_stacks[self.current_stack]) == 0:
             self.current_stack -= 1
             self.set_of_stacks.pop()
 
-        # check if all stack is empty
+        # Check if all stack is empty.
         if (self.current_stack == 0) and len(self.set_of_stacks[0] == 0):
             return None
         else:
@@ -44,30 +48,49 @@ class SetOfStacks:
 
 
     def popAt(self, requested_stack):
-        if requested_stack <= self.current_stack:
+        # If the requested_stack is the same the current_stack,
+        # then almost equivalent to regular pop().
+        # If requested_stack is empty, then instead of proceeding to the next stack,
+        # clean up and return None instead.
+        if requested_stack == self.current_stack:
+            if len(self.set_of_stacks[self.current_stack]) == 0:
+                self.current_stack -= 1
+                self.set_of_stacks.pop()
+                return None
+            else:
+                return self.pop()
+
+        # If the requested_stack is below the current_stack...
+        elif requested_stack < self.current_stack:
             if len(self.set_of_stacks[requested_stack]) > 0:
                 requested_item = self.set_of_stacks[requested_stack].pop()
 
-                # Roll over items from newer stack
-                # Increases time complexity
+                # Roll over items from newer stack.
+                # Increases time complexity.
                 this_stack = requested_stack
 
                 while this_stack < self.current_stack:
                     next_stack = this_stack + 1
-                    transfer_item = self.set_of_stacks[next_stack].pop(0)
-                    self.set_of_stacks[this_stack].append(transfer_item)
+
+                    # If the next stack has an item, transfer item.
+                    if len(self.set_of_stacks[next_stack]) > 0:
+                        transfer_item = self.set_of_stacks[next_stack].pop(0)
+                        self.set_of_stacks[this_stack].append(transfer_item)
+                    else:
+                        # if the next/last(?) stack is empty, remove it
+                        self.set_of_stacks.pop()
 
                     this_stack = next_stack
 
                 return requested_item
 
 
-        return None
+            return None
 
 
-    def __str__(self):
-        return str(self.set_of_stacks)
-
+        # If the requested_stack is greater than the current_stack
+        else:
+            return None
 
 
 # Testing
@@ -82,11 +105,30 @@ print('Initial stack:')
 print(stack_set)
 print()
 
+
 # Testing popAt function
-requested_stacks = [0, 0, 3]
+# Exhausting the last stack, then popAt the last-stack after it's empty
+# requested_stacks = [0, 0, 3, 3, 3, 3]
+
+# Exhausting the last stack and popAt second-to-last stack
+requested_stacks = [0, 0, 3, 3, 2]
+
+# Exhausting a stack in the middle
 
 for stack_number in requested_stacks:
     stack_set.popAt(stack_number)
     print('Pop a plate from stack: {0}'.format(stack_number))
     print(stack_set)
+print()
 
+"""
+# Testing a final pop function
+print('Final pop')
+stack_set.pop()
+print(stack_set)
+"""
+
+# Testing a final add
+print('Final add')
+stack_set.push(100)
+print(stack_set)
