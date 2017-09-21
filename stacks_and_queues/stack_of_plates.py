@@ -111,9 +111,10 @@ print()
 # requested_stacks = [0, 0, 3, 3, 3, 3]
 
 # Exhausting the last stack and popAt second-to-last stack
-requested_stacks = [0, 0, 3, 3, 2]
+# requested_stacks = [0, 0, 3, 3, 2]
 
 # Exhausting a stack in the middle
+requested_stacks = [1, 1, 1, 1, 1]
 
 for stack_number in requested_stacks:
     stack_set.popAt(stack_number)
@@ -130,5 +131,10 @@ print(stack_set)
 
 # Testing a final add
 print('Final add')
-stack_set.push(100)
-print(stack_set)
+final_add_values = [100, 101]
+
+for value in final_add_values:
+    stack_set.push(value)
+    print(stack_set)
+
+
