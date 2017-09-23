@@ -9,6 +9,15 @@ class MyQueue:
         self.oldest_stack = []
 
 
+    def __str__(self):
+        # this will probably be changed
+        return str(self.newest_stack)
+
+
+    def size(self):
+        return len(self.newest_stack) + len(self.oldest_stack)
+
+
     def add(self, item):
         self.newest_stack.append(item)
 
@@ -38,14 +47,10 @@ class MyQueue:
 
 
     def is_empty(self):
-        if len(self.newest_stack) > 0:
+        if (len(self.newest_stack) > 0) or (len(self.oldest_stack) > 0):
             return False
         else:
             return True
-
-
-    def __str__(self):
-        return str(self.newest_stack)
 
 
 # testing
@@ -66,7 +71,9 @@ for i in range(len(test_values)):
     queue_front = test_queue.peek()
     print('front of queue: {0}'.format(queue_front))
 
+    print('remaining queue size: {0}'.format(test_queue.size()))
     print('remaining queue: {0}'.format(test_queue))
+    print('queue is empty? {0}'.format(test_queue.is_empty()))
     print()
 
 
