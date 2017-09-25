@@ -10,11 +10,11 @@ class MyQueue:
 
 
     def print_oldest_queue(self):
-        return str(self.oldest_stack)
+        print(str(self.oldest_stack))
 
 
     def print_newest_queue(self):
-        return str(self.newest_stack)
+        print(str(self.newest_stack))
 
 
     def size(self):
@@ -57,13 +57,31 @@ class MyQueue:
 
 
 # testing
+
+test_op = ['push', 'push', 'push', 'pop']
 test_values = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 test_queue = MyQueue()
 
+for op in test_op:
+    if op == 'push':
+        print('push values here')
+    elif op == 'pop':
+        print('remove values here')
+
+    # after performing the operations, print relevant info
+
+    print()
+
+
+
+
+
+
+"""
 print('Adding items in queue:')
 for value in test_values:
     test_queue.add(value)
-    print(test_queue.print_newest_queue())
+    test_queue.print_newest_queue()
 print()
 
 
@@ -80,5 +98,5 @@ for i in range(len(test_values)):
     # test printing queues
 
     print()
-
+"""
 
