@@ -35,6 +35,7 @@ class Stack:
 
 def sort(unsorted_stack):
     # larger items are at the bottom
+    # O(N^2) time and O(N) space.
     sorted_stack = Stack()
     
     while unsorted_stack.is_empty() is False:

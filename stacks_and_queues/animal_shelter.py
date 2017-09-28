@@ -49,7 +49,7 @@ class AnimalShelter:
         return '{0}\n{1}\n{2}'.format(self.master_queue, self.cats_queue, self.dogs_queue)
 
 
-# testing
+# Setting up test case
 shelter = AnimalShelter()
 values = [
          ('cat', 'cat_1'),
@@ -65,13 +65,16 @@ values = [
          ('dog', 'dog_6'),
          ]
 
-
 for value in values:
     animal, name = (value)
     shelter.enqueue(animal, name)
 
+print('Animals in the shelter:')
 print(shelter)
+print()
 
+# Dequeuing test
+print('Adoption:')
 for i in range(6):
     if (i % 3 == 0):
         item = shelter.dequeueAny()
@@ -83,5 +86,5 @@ for i in range(6):
         item = shelter.dequeueDog()
         print('dequeue dog: {0}'.format(item))
 
+print('\nRemaining animals in the shelter:')
 print(shelter)
-
