@@ -36,12 +36,14 @@ class AnimalShelter:
 
 
     def dequeueDog(self):
-        self.master_queue.pop(0)
+        print('\tdequeue dog', end=' ')
+        print(self.master_queue.pop(0))
         return self.dogs_queue.pop(0)
 
 
     def dequeueCat(self):
-        self.master_queue.pop(0)
+        print('\tdequeue cat', end=' ')
+        print(self.master_queue.pop(0))
         return self.cats_queue.pop(0)
 
 
@@ -64,6 +66,7 @@ values = [
          ('dog', 'dog_5'),
          ('dog', 'dog_6'),
          ]
+requests = ['any', 'dog', 'cat', 'dog', 'dog', 'dog', 'cat', 'any']
 
 for value in values:
     animal, name = (value)
@@ -75,16 +78,16 @@ print()
 
 # Dequeuing test
 print('Adoption:')
-for i in range(6):
-    if (i % 3 == 0):
-        item = shelter.dequeueAny()
-        print('dequeue any: {0}'.format(item))
-    elif (i % 3 == 1):
+for request in requests:
+    if request == 'dog':
+        item = shelter.dequeueDog()
+        print('dequeue dog: {0}'.format(item))
+    elif request == 'cat':
         item = shelter.dequeueCat()
         print('dequeue cat: {0}'.format(item))
     else:
-        item = shelter.dequeueDog()
-        print('dequeue dog: {0}'.format(item))
+        item = shelter.dequeueAny()
+        print('dequeue any: {0}'.format(item))
 
 print('\nRemaining animals in the shelter:')
 print(shelter)
