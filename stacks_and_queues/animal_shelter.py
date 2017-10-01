@@ -98,7 +98,13 @@ print()
 
 
 # Dequeuing test
-requests = ['any', 'dog', 'cat', 'dog', 'dog', 'dog', 'cat', 'any']
+#requests = ['any', 'dog', 'cat', 'dog', 'dog', 'dog', 'cat', 'any']
+
+# Dequeue all cats, dogs, any
+#requests = ['cat', 'cat', 'cat', 'cat', 'cat', 'cat']
+#requests = ['dog', 'dog', 'dog', 'dog', 'dog', 'dog', 'dog']
+requests = ['any', 'any', 'any', 'any', 'any', 'any', 'any', 'any', 'any', 'any', 'any', 'any']
+
 
 print('Adoption:')
 for request in requests:
