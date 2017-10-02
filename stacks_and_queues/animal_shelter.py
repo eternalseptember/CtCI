@@ -33,7 +33,9 @@ class AnimalShelter:
         num_of_cats = len(self.cats_queue)
         num_of_dogs = len(self.dogs_queue)
 
-        if (num_of_cats == 0) and (num_of_dogs != 0):
+        if (num_of_cats == 0) and (num_of_dogs == 0):
+            return None
+        elif (num_of_cats == 0) and (num_of_dogs != 0):
             # if there are no cats
             return self.dequeueDog()
         elif (num_of_cats != 0) and (num_of_dogs == 0):
