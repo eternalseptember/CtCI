@@ -61,18 +61,23 @@ def create_minimal_tree(list_of_values):
         return head
 
 
-# testing
-list_of_values = [0]
+# Test case 1: odd number of elements
+# root of the tree: 5, left: 2, right: 8
+list_of_values = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
-for i in range(1, 11):
-    list_of_values.append(i)
-    list_of_values_copy = list_of_values[:]
-
-    head = create_minimal_tree(list_of_values_copy)
-    print_tree(head)
-    print()
+head = create_minimal_tree(list_of_values)
+print('Odd number of elements')
+print_tree(head)
+print()
 
 
+# Test case 2: even number of elements
+list_of_values = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+head = create_minimal_tree(list_of_values)
+print('Even number of elements')
+print_tree(head)
+print()
 
 
 
