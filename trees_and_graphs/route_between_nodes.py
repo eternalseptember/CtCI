@@ -27,8 +27,7 @@ def has_route_between_nodes(from_node, to_node):
     # return False if there isn't a route
 
     if from_node == to_node:
-        if to_node not in from_node.routes:
-            return False
+        return True
 
     visited = []
     queue = [from_node]
@@ -95,7 +94,9 @@ print(result)
 result = has_route_between_nodes(node1, node0)
 print(result)
 
-# test case 6: false
+# test case 6: true
+# Answer key assumes this to be true even if there isn't
+# a node pointing back to itself.
 result = has_route_between_nodes(node0, node0)
 print(result)
 
@@ -131,7 +132,7 @@ print(result)
 result = has_route_between_nodes(nodeB, nodeD)
 print(result)
 
-# test case 12: true
+# test case 12: false
 result = has_route_between_nodes(nodeD, nodeC)
 print(result)
 
