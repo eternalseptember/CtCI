@@ -66,6 +66,17 @@ def list_of_depths(head):
     return linked_lists
 
 
+# Implementing solution in the answer key
+def createLevelLinkedList(root, level):
+    if root is None:
+        return None
+
+
+
+
+
+
+
 
 
 
