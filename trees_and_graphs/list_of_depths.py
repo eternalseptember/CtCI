@@ -67,10 +67,18 @@ def list_of_depths(head):
 
 
 # Implementing solution in the answer key
-def createLevelLinkedList(root, level):
+def createLevelLinkedList(root, depth_lists, level):
+    # base case
     if root is None:
         return None
 
+    list_on_this_level = None
+    # stuff here
+
+
+    list_on_this_level.add(root)
+    createLevelLinkedList(root.left, depth_lists, level+1)
+    createLevelLinkedList(root.right, depth_lists, level+1)
 
 
 
