@@ -5,11 +5,22 @@ you'll have D linked lists).
 """
 
 
-class Node:
+class TreeNode:
     def __init__(self, data=None, left=None, right=None):
         self.data = data
         self.left = left
         self.right = right
+
+    def __str__(self):
+        left = None
+        right = None
+
+        if self.left is not None:
+            left = self.left.data
+        if self.right is not None:
+            right = self.right.data
+
+        return 'tree node: {0}  left: {1}  right: {2}'.format(self.data, left, right)
 
 
 class LinkedNode:
@@ -67,21 +78,45 @@ def list_of_depths(head):
 
 
 # Implementing solution in the answer key
-def createLevelLinkedList(root, depth_lists, level):
-    # base case
+def createLevelLinkedList(root, depth_lists=[], level=0):
+    # Pre-order travel. Depth-first search.
+
+    # Base case
     if root is None:
         return None
 
-    list_on_this_level = None
-    # stuff here
+    # The purpose of this section is to retrieve the linked list
+    # associated with the current level, or create one if there
+    # isn't one.
+    if len(depth_lists) == level:
+        # Level not contained in list.
+        # Levels are always traversed in order. So if this is the first time we've
+        # visited level i, we must have seen levels 0 through (i-1). We can
+        # therefore safely add the level at the end.
+
+        this_level = LinkedNode()
+        depth_list.append(this_level)
+    else:
+        # Root of the tree is depth 0.
+        this_level = depth_list[level]
 
 
-    list_on_this_level.add(root)
+    # ??? Simplify this section by putting it in the linkedlist node def?
+    if this_level.data is None:
+        this_level.data = root
+    else:
+        # Travel to the end of the linked list in order to add the node.
+        current_node = this_level
+        while current_node.next is not None:
+            current_node = current_node.next
+        current_node.next(root)
+
+
     createLevelLinkedList(root.left, depth_lists, level+1)
     createLevelLinkedList(root.right, depth_lists, level+1)
 
 
-
+    return depth_lists
 
 
 
@@ -89,15 +124,15 @@ def createLevelLinkedList(root, depth_lists, level):
 
 
 # testing; depth: 3
-node8 = Node(8)
-node9 = Node(9)
-node5 = Node(5, node8, node9)
-node4 = Node(4)
-node2 = Node(2, node4, node5)
-node6 = Node(6)
-node7 = Node(7)
-node3 = Node(3, node6, node7)
-node1 = Node(1, node2, node3)
+node8 = TreeNode(8)
+node9 = TreeNode(9)
+node5 = TreeNode(5, node8, node9)
+node4 = TreeNode(4)
+node2 = TreeNode(2, node4, node5)
+node6 = TreeNode(6)
+node7 = TreeNode(7)
+node3 = TreeNode(3, node6, node7)
+node1 = TreeNode(1, node2, node3)
 
 lists = list_of_depths(node1)
 
@@ -113,11 +148,11 @@ print('\n')
 
 
 # testing: depth 4
-node5 = Node(5)
-node4 = Node(4, None, node5)
-node3 = Node(3, node4)
-node2 = Node(2, None, node3)
-node1 = Node(1, None, node2)
+node5 = TreeNode(5)
+node4 = TreeNode(4, None, node5)
+node3 = TreeNode(3, node4)
+node2 = TreeNode(2, None, node3)
+node1 = TreeNode(1, None, node2)
 
 lists = list_of_depths(node1)
 
