@@ -36,29 +36,22 @@ def print_tree(head):
 
 
 def create_minimal_tree(list_of_values):
-
     len_of_list = len(list_of_values)
 
-    if len_of_list == 1:
-        return Node(list_of_values.pop())
-    elif len_of_list == 2:
-        smaller_node = Node(list_of_values.pop(0))
-        return Node(list_of_values.pop(), smaller_node)
-    elif len_of_list == 3:
-        bigger_node = Node(list_of_values.pop())
-        smaller_node = Node(list_of_values.pop(0))
-        return Node(list_of_values.pop(), smaller_node, bigger_node)
-    else:
-        # divide the tree into three parts
-        center_index = len_of_list // 2
-        left_list = list_of_values[:center_index]
-        right_list = list_of_values[center_index+1:]
+    # base case
+    if len_of_list == 0:
+        return None
 
-        left_tree = create_minimal_tree(left_list)
-        right_tree = create_minimal_tree(right_list)
+    # divide the tree into three parts
+    center_index = len_of_list // 2
+    left_list = list_of_values[:center_index]
+    right_list = list_of_values[center_index+1:]
 
-        head = Node(list_of_values.pop(center_index), left_tree, right_tree)
-        return head
+    left_tree = create_minimal_tree(left_list)
+    right_tree = create_minimal_tree(right_list)
+
+    head = Node(list_of_values.pop(center_index), left_tree, right_tree)
+    return head
 
 
 # Test case 1: odd number of elements
