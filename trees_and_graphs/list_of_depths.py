@@ -90,13 +90,17 @@ def list_of_depths(head):
     return linked_lists
 
 
-# Implementing solution in the answer key
-def create_level_linked_list(root, depth_lists=[], level=0):
+# Implementing solution in the answer key.
+def create_level_linked_list(root, depth_lists=None, level=0):
     # Pre-order travel. Depth-first search.
 
     # Base case
     if root is None:
         return None
+
+    # First time this function is called.
+    if depth_lists is None:
+        depth_lists = []
 
     # Retrieve the linked list associated with the current level,
     # or create one if there isn't one.
@@ -105,15 +109,13 @@ def create_level_linked_list(root, depth_lists=[], level=0):
         # Levels are always traversed in order. So if this is the first time we've
         # visited level i, we must have seen levels 0 through (i-1). We can
         # therefore safely add the level at the end.
-
         this_level = LinkedNode()
         depth_lists.append(this_level)
     else:
         # Root of the tree is depth 0.
         this_level = depth_lists[level]
 
-
-    # ??? Simplify this section by putting it in the linkedlist node def?
+    # Add the root to the current depth list.
     if this_level.data is None:
         this_level.data = root
     else:
@@ -121,15 +123,13 @@ def create_level_linked_list(root, depth_lists=[], level=0):
         current_node = this_level
         while current_node.next is not None:
             current_node = current_node.next
-        current_node.next(root)
+        current_node.next = LinkedNode(root)
 
-
+    # Recursing the next levels.
     create_level_linked_list(root.left, depth_lists, level+1)
     create_level_linked_list(root.right, depth_lists, level+1)
 
-
     return depth_lists
-
 
 
 
@@ -146,7 +146,7 @@ node7 = TreeNode(7)
 node3 = TreeNode(3, node6, node7)
 node1 = TreeNode(1, node2, node3)
 
-#lists = list_of_depths(node1)
+# lists = list_of_depths(node1)
 lists = create_level_linked_list(node1)
 print_results(lists)
 
@@ -159,7 +159,8 @@ node3 = TreeNode(3, node4)
 node2 = TreeNode(2, None, node3)
 node1 = TreeNode(1, None, node2)
 
-#lists = list_of_depths(node1)
-#print_results(lists)
+# lists = list_of_depths(node1)
+lists = create_level_linked_list(node1)
+print_results(lists)
 
 
