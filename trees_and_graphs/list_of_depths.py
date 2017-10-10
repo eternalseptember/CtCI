@@ -12,6 +12,7 @@ class TreeNode:
         self.right = right
 
     def __str__(self):
+        """
         left = None
         right = None
 
@@ -20,7 +21,9 @@ class TreeNode:
         if self.right is not None:
             right = self.right.data
 
-        return 'tree node: {0}  left: {1}  right: {2}'.format(self.data, left, right)
+        return 'Tree: {0}  Left: {1}  Right: {2}'.format(self.data, left, right)
+        """
+        return str(self.data)
 
 
 class LinkedNode:
@@ -44,8 +47,11 @@ def print_results(depth_lists):
     print()
 
 
-# Original, working solution I came up with.
+# Breadth-first search, iterative, from my original approach.
 def list_of_depths(head):
+    # Runs on O(N) time.
+    # Returns O(N) data.
+
     if head is None:
         return None
 
@@ -90,9 +96,12 @@ def list_of_depths(head):
     return linked_lists
 
 
-# Implementing solution in the answer key.
+# Depth-first search, pre-order travel, from the answer key.
 def create_level_linked_list(root, depth_lists=None, level=0):
-    # Pre-order travel. Depth-first search.
+    # Runs on O(N) time.
+    # Uses O(log N) recursive calls in a balanced tree, where each call adds a
+    # new level to the stack, but space-wise, is dwarfed by the O(N) data
+    # being returned.
 
     # Base case
     if root is None:
@@ -134,7 +143,6 @@ def create_level_linked_list(root, depth_lists=None, level=0):
 
 
 
-
 # testing; depth: 3
 node8 = TreeNode(8)
 node9 = TreeNode(9)
@@ -146,8 +154,8 @@ node7 = TreeNode(7)
 node3 = TreeNode(3, node6, node7)
 node1 = TreeNode(1, node2, node3)
 
-# lists = list_of_depths(node1)
-lists = create_level_linked_list(node1)
+lists = list_of_depths(node1)
+# lists = create_level_linked_list(node1)
 print_results(lists)
 
 
@@ -159,8 +167,8 @@ node3 = TreeNode(3, node4)
 node2 = TreeNode(2, None, node3)
 node1 = TreeNode(1, None, node2)
 
-# lists = list_of_depths(node1)
-lists = create_level_linked_list(node1)
+lists = list_of_depths(node1)
+# lists = create_level_linked_list(node1)
 print_results(lists)
 
 
