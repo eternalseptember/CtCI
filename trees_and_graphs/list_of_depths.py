@@ -34,11 +34,20 @@ class LinkedNode:
     def __str__(self):
         return str(self.data)
 
+    def append_node(self, item):
+        if self.data is None:
+            self.data = item
+        else:
+            current_node = self
+            while current_node.next is not None:
+                current_node = current_node.next
+            current_node.next = LinkedNode(item)
+
 
 def print_results(depth_lists):
-    # expects a list of linked lists
-    for list in depth_lists:
-        current_node = list
+    # Expects a list of linked lists.
+    for first_node in depth_lists:
+        current_node = first_node
         while current_node is not None:
             print(current_node, end=' ')
             current_node = current_node.next
@@ -96,8 +105,38 @@ def list_of_depths(head):
     return linked_lists
 
 
+# Breadth-first search, iterative, from the answer key.
+def create_level_linked_list_b(root):
+    # Runs on O(N) time.
+    # Returns O(N) data.
+    results_list = []
+
+    # "Visits" the root.
+    current_level = LinkedNode()
+    if root is not None:
+        current_level.append_node(root)
+
+    # Visits the rest of the tree.
+    while current_level.data is not None:
+        results_list.append(current_level)  # Add previous level
+        parents = current_level  # Go to next level
+        current_level = LinkedNode()
+
+        while parents is not None:
+            this_node = parents.data
+
+            if this_node.left is not None:
+                current_level.append_node(this_node.left)
+            if this_node.right is not None:
+                current_level.append_node(this_node.right)
+
+            parents = parents.next
+
+    return results_list
+
+
 # Depth-first search, pre-order travel, from the answer key.
-def create_level_linked_list(root, depth_lists=None, level=0):
+def create_level_linked_list_d(root, depth_lists=None, level=0):
     # Runs on O(N) time.
     # Uses O(log N) recursive calls in a balanced tree, where each call adds a
     # new level to the stack, but space-wise, is dwarfed by the O(N) data
@@ -125,18 +164,11 @@ def create_level_linked_list(root, depth_lists=None, level=0):
         this_level = depth_lists[level]
 
     # Add the root to the current depth list.
-    if this_level.data is None:
-        this_level.data = root
-    else:
-        # Travel to the end of the linked list in order to add the node.
-        current_node = this_level
-        while current_node.next is not None:
-            current_node = current_node.next
-        current_node.next = LinkedNode(root)
+    this_level.append_node(root)
 
     # Recursing the next levels.
-    create_level_linked_list(root.left, depth_lists, level+1)
-    create_level_linked_list(root.right, depth_lists, level+1)
+    create_level_linked_list_d(root.left, depth_lists, level+1)
+    create_level_linked_list_d(root.right, depth_lists, level+1)
 
     return depth_lists
 
@@ -154,8 +186,9 @@ node7 = TreeNode(7)
 node3 = TreeNode(3, node6, node7)
 node1 = TreeNode(1, node2, node3)
 
-lists = list_of_depths(node1)
-# lists = create_level_linked_list(node1)
+# lists = list_of_depths(node1)
+# lists = create_level_linked_list_d(node1)
+lists = create_level_linked_list_b(node1)
 print_results(lists)
 
 
@@ -167,8 +200,9 @@ node3 = TreeNode(3, node4)
 node2 = TreeNode(2, None, node3)
 node1 = TreeNode(1, None, node2)
 
-lists = list_of_depths(node1)
-# lists = create_level_linked_list(node1)
+# lists = list_of_depths(node1)
+# lists = create_level_linked_list_d(node1)
+lists = create_level_linked_list_b(node1)
 print_results(lists)
 
 
