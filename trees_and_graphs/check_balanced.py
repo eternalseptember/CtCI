@@ -25,6 +25,9 @@ class Node:
         return 'data: {0}  left: {1}  right: {2}'.format(self.data, left, right)
 
 
+# Original approach.
+# O(N log N) since each node is visited once per node above it.
+"""
 def is_binary(head):
     if head is None:
         return True
@@ -45,6 +48,18 @@ def get_height(head):
     right_height = get_height(head.right)
 
     return max(left_height, right_height) + 1
+"""
+
+
+# More efficient approach from the answer key.
+def is_binary(head):
+    if head is None:
+        return True
+
+
+def get_height(head):
+    if head is None:
+        return -1
 
 
 # Test Case 1: True; height_diff = 0
