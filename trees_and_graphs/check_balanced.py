@@ -53,13 +53,26 @@ def get_height(head):
 
 # More efficient approach from the answer key.
 def is_binary(head):
-    if head is None:
-        return True
+    return get_height(head)
 
 
 def get_height(head):
     if head is None:
         return -1
+
+    left_height = get_height(head.left)
+    if left_height is False:
+        return False
+
+    right_height = get_height(head.right)
+    if right_height is False:
+        return False
+
+    height_diff = left_height - right_height
+    if abs(height_diff) > 1:
+        return False
+    else:
+        return max(left_height, right_height) + 1
 
 
 # Test Case 1: True; height_diff = 0
