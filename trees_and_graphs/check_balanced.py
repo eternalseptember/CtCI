@@ -53,7 +53,10 @@ def get_height(head):
 
 # More efficient approach from the answer key.
 def is_binary(head):
-    return get_height(head)
+    if get_height(head) is False:
+        return False
+    else:
+        return True
 
 
 def get_height(head):
