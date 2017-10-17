@@ -52,6 +52,7 @@ def get_height(head):
 
 
 # More efficient approach from the answer key.
+# O(N) time and O(H) space, where H is the height of the tree.
 def is_binary(head):
     if get_height(head) is False:
         return False
