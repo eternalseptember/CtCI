@@ -24,7 +24,6 @@ def check_bst(head):
     return True
 
 
-
 # Simple test cases to handle duplicate values
 # Test case A: True
 node1 = Node(20)
@@ -32,12 +31,26 @@ node2 = Node(20, node1)
 
 print(check_bst(node2))
 
+
 # Test case B: False
 node1 = Node(20)
 node2 = Node(20, None, node1)
+
 print(check_bst(node2))
 
-# More complex trees
+
+# More simple test cases
+# Test case 1: False
+node1 = Node(25)
+node2 = Node(10, None, node1)
+node3 = Node(30)
+node4 = Node(20, node2, node3)
+
+print(check_bst(node4))
+
+
+print()
+# Complex trees
 # Test case 1: True
 node1 = Node(1)
 node4 = Node(4)
@@ -50,6 +63,7 @@ node10 = Node(10, None, node14)
 node8 = Node(8, node3, node10)
 
 print(check_bst(node8))
+
 
 # Test case 2: False
 node2 = Node(2)
