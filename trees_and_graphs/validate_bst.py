@@ -16,8 +16,9 @@ def check_bst(head):
             return False
         else:
             check_bst(head.left)
+
     if head.right is not None:
-        if head.data > head.right.data:
+        if head.data >= head.right.data:
             return False
         else:
             check_bst(head.right)
