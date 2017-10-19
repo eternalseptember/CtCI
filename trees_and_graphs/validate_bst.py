@@ -40,7 +40,8 @@ node2 = Node(20, None, node1)
 print(check_bst(node2))
 
 
-# More simple test cases
+# Definition: ALL left nodes must be less than or equal to current node,
+# which must be less than all the right nodes.
 # Test case 1: False
 node1 = Node(25)
 node2 = Node(10, None, node1)
@@ -79,5 +80,23 @@ node4 = Node(4, None, node11)
 node8 = Node(8, node5, node4)
 
 print(check_bst(node8))
+
+
+# Test case 3: True
+node3 = Node(3)
+node7 = Node(7)
+node5 = Node(5, node3, node7)
+node17 = Node(17)
+node15 = Node(15, None, node17)
+node10 = Node(10, node5, node15)
+node30 = Node(30)
+node20 = Node(20, node10, node30)
+
+print(check_bst(node20))
+
+
+
+
+
 
 
