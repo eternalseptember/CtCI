@@ -94,7 +94,16 @@ def find_next_node(head):
         return left_most_child(head.right)
     else:
         # some assignments
-        
+        q = head
+        x = q.prev
+
+        # go up until we're on left instead of right
+        while ((x is not None) and (x.left is not q)):
+            q = x
+            x = x.prev
+
+        return x
+
     return None
 
 
@@ -103,7 +112,7 @@ def left_most_child(head):
         return None
 
     while head.left is not None:
-        head = head.next
+        head = head.left
 
     return head
 
