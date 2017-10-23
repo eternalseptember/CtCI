@@ -86,6 +86,15 @@ def find_next_node(head):
 
 
 def find_next_node(head):
+    if head is None:
+        return None
+
+    # Found right children -> return left-most node of right subtree
+    if head.right is not None:
+        return left_most_child(head.right)
+    else:
+        # some assignments
+        
     return None
 
 
