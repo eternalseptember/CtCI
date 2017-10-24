@@ -94,15 +94,15 @@ def find_next_node(head):
         return left_most_child(head.right)
     else:
         # some assignments
-        q = head
-        x = q.prev
+        current_node = head
+        parent_node = current_node.prev
 
         # go up until we're on left instead of right
-        while ((x is not None) and (x.left is not q)):
-            q = x
-            x = x.prev
+        while ((parent_node is not None) and (parent_node.left is not current_node)):
+            current_node = parent_node
+            parent_node = parent_node.prev
 
-        return x
+        return parent_node
 
     return None
 
