@@ -39,7 +39,7 @@ def find_build_order(projects_list, dependencies_list):
             dependencies[build_second].append(build_first)
 
     # projects with no prerequisites
-    for project in projects:
+    for project in projects_list:
         if project not in dependencies.keys():
             build_order.append(project)
 
@@ -72,46 +72,9 @@ def find_build_order(projects_list, dependencies_list):
             new_project_built = False
 
 
-    if len(build_order) < len(projects):
+    if len(build_order) < len(projects_list):
         return None
     else:
         return build_order
-
-
-# Test Case 1
-# pairs: second project is dependent on the first project
-projects = ['a', 'b', 'c', 'd', 'e', 'f']
-dependencies = [('a', 'd'), ('f', 'b'), ('b', 'd'), ('f', 'a'), ('d', 'c')]
-
-# Expected result: f, e, a, b, d, c
-build_order = find_build_order(projects, dependencies)
-print(build_order)
-
-
-# Test Case 2
-projects = ['a', 'b', 'c', 'd', 'e']
-dependencies = [('c','a'), ('e','b'), ('b','a'), ('d','e'), ('b','d')]
-
-# Expected result: None
-build_order = find_build_order(projects, dependencies)
-print(build_order)
-
-
-# Test Case 3
-projects = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i']
-dependencies = [('i','e'), ('d','c'), ('f','d'), ('c','a'), ('g','e'), ('d','b'), ('h','b'), ('e','c'), ('b','g')]
-
-# Expected result: 
-build_order = find_build_order(projects, dependencies)
-print(build_order)
-
-
-# Test Case 4
-projects = ['a', 'b', 'c']
-dependencies = [('a','b'), ('b','a')]
-
-# Expected result: None
-build_order = find_build_order(projects, dependencies)
-print(build_order)
 
 
