@@ -40,6 +40,13 @@ build_order_results = find_build_order(projects, dependencies)
 print(build_order_results)
 
 
+# Test Case 5, from answer key
+projets = ['a', 'b', 'c', 'd', 'e', 'f', 'g']
+depenedences = [('d', 'g'), ('a', 'e'), ('b', 'e'), ('c', 'a'), ('f', 'c'), ('f', 'b'), ('b', 'a'), ('f', 'a')]
+
+# Expected result: ???
+build_order_results = find_build_order(projects, dependencies)
+print(build_order_results)
 
 
 
