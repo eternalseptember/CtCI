@@ -41,13 +41,20 @@ print(build_order_results)
 
 
 # Test Case 5, from answer key
-projets = ['a', 'b', 'c', 'd', 'e', 'f', 'g']
-depenedences = [('d', 'g'), ('a', 'e'), ('b', 'e'), ('c', 'a'), ('f', 'c'), ('f', 'b'), ('b', 'a'), ('f', 'a')]
+projects = ['a', 'b', 'c', 'd', 'e', 'f', 'g']
+dependencies = [('d', 'g'), ('a', 'e'), ('b', 'e'), ('c', 'a'), ('f', 'c'), ('f', 'b'), ('b', 'a'), ('f', 'a')]
 
 # Expected result: ???
 build_order_results = find_build_order(projects, dependencies)
 print(build_order_results)
 
 
+# Test case 6: simple test case
+# This should return a valid build order
+projects = ['a', 'b', 'c', 'd']
+dependencies = [('a', 'b'), ('c', 'd')]
+
+build_order_results = find_build_order(projects, dependencies)
+print(build_order_results)
 
 
