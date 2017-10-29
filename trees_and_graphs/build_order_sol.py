@@ -26,3 +26,13 @@ def build_graph(projects_list, dependencies):
     return None
 
 
+def order_projects(projects_list):
+    # Return a list of the projets in a correct build order
+    return None
+
+
+def add_non_dependent(project_order, projects_list, offset):
+    # Helper functio nto insert projects with zero dependencies
+    # into the project_order array, starting at index offset.
+    return offset
+
