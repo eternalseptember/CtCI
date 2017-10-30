@@ -7,6 +7,12 @@ of dependency pairs.
 """
 
 
+class graph():
+    def __init__():
+        self.nodes = []
+
+
+
 def find_build_order(projects_list, dependencies_list):
     # build graph first
     graph = build_graph(projects_list, dependencies_list)
