@@ -10,6 +10,22 @@ of dependency pairs.
 class graph():
     def __init__():
         self.nodes = []
+        self.map = {}
+
+    def get_or_create_node(self, name):
+        # stuff here
+        # return map.get(name)
+        return name
+
+    def add_edge(self, start_name, end_name):
+        start = get_or_create_node(start_name)
+        end = get_or_create_node(end_name)
+        # start.add_neighbor(end)
+
+
+
+    def get_nodes(self):
+        return self.nodes
 
 
 
