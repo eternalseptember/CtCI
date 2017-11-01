@@ -7,7 +7,7 @@ built. If there is no valid build order, return an error.
 """
 
 
-class Node():
+class Node:
     def __init__(self, data=None, left=None, right=None):
         self.data = data
         self.left = left

@@ -7,14 +7,15 @@ of dependency pairs.
 """
 
 
-class graph():
-    def __init__():
+class graph:
+    def __init__(self):
         self.nodes = []
-        self.map = {}
+        # better name for map
+        self.hashmap = {}
 
     def get_or_create_node(self, name):
         # stuff here
-        # return map.get(name)
+        # return hashmap.get(name)
         return name
 
     def add_edge(self, start_name, end_name):
@@ -26,6 +27,18 @@ class graph():
 
     def get_nodes(self):
         return self.nodes
+
+
+class project:
+    def __init__(self, name):
+        self.name = name
+        self.children = []
+        self.hashmap = {}
+        self.dependencies = 0
+
+    # add neighbor function
+
+
 
 
 
