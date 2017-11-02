@@ -23,8 +23,6 @@ class graph:
         end = get_or_create_node(end_name)
         # start.add_neighbor(end)
 
-
-
     def get_nodes(self):
         return self.nodes
 
@@ -37,6 +35,11 @@ class project:
         self.dependencies = 0
 
     # add neighbor function
+    def add_neighbor(self, project_node):
+        if project_node.name not in self.hashmap:
+            self.children.append(project_node)
+            # self.hashmap
+            self.dependencies += 1
 
 
 
