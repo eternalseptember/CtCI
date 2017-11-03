@@ -41,6 +41,23 @@ class project:
             # self.hashmap
             self.dependencies += 1
 
+    def increment_dependencies(self):
+        self.dependencies += 1
+
+    def decrement_dependencies(self):
+        self.dependencies -= 1
+
+
+    # not entirely sure these functions are necessary?
+    def get_name(self):
+        return self.name
+
+    def get_children(self):
+        return self.children
+
+    def get_num_dependencies(self):
+        return self.dependencies
+
 
 
 
@@ -70,7 +87,7 @@ def order_projects(projects_list):
 
 
 def add_non_dependent(project_order, projects_list, offset):
-    # Helper functio nto insert projects with zero dependencies
+    # Helper function to insert projects with zero dependencies
     # into the project_order array, starting at index offset.
     return offset
 
