@@ -91,5 +91,12 @@ def order_projects(projects_list):
 def add_non_dependent(project_order, projects_list, offset):
     # Helper function to insert projects with zero dependencies
     # into the project_order array, starting at index offset.
+    for project in projects_list:
+        if project.get_num_dependencies() == 0:
+            project_order[offset] = project
+            offset += 1
     return offset
+
+
+
 
