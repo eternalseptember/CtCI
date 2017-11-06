@@ -10,20 +10,20 @@ of dependency pairs.
 class Graph:
     def __init__(self):
         self.nodes = []
-        # better name for map
-        self.hashmap = {}
+        self.node_map = {}
 
     def get_or_create_node(self, name):
-        if name not in self.hashmap:
+        if name not in self.node_map:
             new_node = Project(name)
             self.nodes.append(new_node)
-            # something about map function
-        return name
+            self.node_map[name] = new_node
+        # better way of returning that node?
+        return self.node_map[name]
 
     def add_edge(self, start_name, end_name):
-        start = get_or_create_node(start_name)
-        end = get_or_create_node(end_name)
-        # start.add_neighbor(end)
+        start = self.get_or_create_node(start_name)
+        end = self.get_or_create_node(end_name)
+        start.add_neighbor(end)
 
     def get_nodes(self):
         return self.nodes
@@ -33,22 +33,21 @@ class Project:
     def __init__(self, name):
         self.name = name
         self.children = []
-        self.hashmap = {}
+        self.node_map = {}
         self.dependencies = 0
 
     # add neighbor function
-    def add_neighbor(self, project_node):
-        if project_node.name not in self.hashmap:
-            self.children.append(project_node)
-            # self.hashmap
-            self.dependencies += 1
+    def add_neighbor(self, new_node):
+        if new_node.name not in self.node_map:
+            self.children.append(new_node)
+            self.node_map[new_node.name] = new_node
+            new_node.increment_dependencies()
 
     def increment_dependencies(self):
         self.dependencies += 1
 
     def decrement_dependencies(self):
         self.dependencies -= 1
-
 
     # not entirely sure these functions are necessary?
     def get_name(self):
