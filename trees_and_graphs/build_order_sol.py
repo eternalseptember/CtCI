@@ -66,9 +66,7 @@ class Project:
 def find_build_order(projects_list, dependencies_list):
     # build graph first
     graph = build_graph(projects_list, dependencies_list)
-
-    # return order_projects()
-    return None
+    return order_projects(graph.get_nodes())
 
 
 def build_graph(projects_list, dependencies):
@@ -78,8 +76,15 @@ def build_graph(projects_list, dependencies):
     dependencies indicate that b depends on a and a must be built
     before b.
     """
+    graph = Graph()
+    for project in projects_list:
+        # ???
+        graph.get_or_create_node(project)
 
-    return None
+
+
+
+    return graph
 
 
 def order_projects(projects_list):
