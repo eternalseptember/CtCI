@@ -81,8 +81,10 @@ def build_graph(projects_list, dependencies):
         # ???
         graph.get_or_create_node(project)
 
-
-
+    for dependency in dependencies:
+        first = dependency[0]
+        second = dependency[1]
+        graph.add_edge(first, second)
 
     return graph
 
