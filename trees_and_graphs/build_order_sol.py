@@ -91,6 +91,13 @@ def build_graph(projects_list, dependencies):
 
 def order_projects(projects_list):
     # Return a list of the projets in a correct build order
+    project_order = []
+
+    # Add "roots" to the build order first.
+    end_of_list = add_non_dependent(project_order, projects_list, 0)
+
+    to_be_processed = 0
+
     return None
 
 
