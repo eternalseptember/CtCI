@@ -98,7 +98,22 @@ def order_projects(projects_list):
 
     to_be_processed = 0
 
-    return None
+    # length ???
+    while to_be_processed < len(project_order):
+        current = project_order[to_be_processed]
+
+        # We have a circular dependency since there are no remaining projects
+        # with zero dependencies.
+        if current is None:
+            return None
+
+        # Remove (current project?) as dependency
+
+
+        # Add children that have no one depending on them
+
+
+    return order
 
 
 def add_non_dependent(project_order, projects_list, offset):
