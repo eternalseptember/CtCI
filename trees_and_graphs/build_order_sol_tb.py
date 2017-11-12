@@ -11,5 +11,8 @@ for node in nodes:
     graph1.get_or_create_node(node)
 
 
-
+print('Nodes')
+print(graph1.print_nodes())
+print('Nodes Map')
+print(graph1.print_nodes_map())
 

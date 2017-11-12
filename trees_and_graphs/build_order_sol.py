@@ -29,6 +29,13 @@ class Graph:
         return self.nodes
 
 
+    def print_nodes(self):
+        return str(self.nodes)
+
+    def print_nodes_map(self):
+        return str(self.node_map)
+
+
 class Project:
     def __init__(self, name):
         self.name = name
