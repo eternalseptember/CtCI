@@ -28,7 +28,6 @@ class Graph:
     def get_nodes(self):
         return self.nodes
 
-
     def print_nodes(self):
         return str(self.nodes)
 
