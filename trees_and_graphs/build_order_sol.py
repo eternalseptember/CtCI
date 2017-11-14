@@ -65,6 +65,18 @@ class Project:
     def get_num_dependencies(self):
         return self.dependencies
 
+    # print things
+    def print_name(self):
+        return str(self.name)
+
+    def print_children(self):
+        return str(self.children)
+
+    def print_node_map(self):
+        return str(self.node_map)
+
+    def print_num_of_dep(self):
+        return str(self.dependencies)
 
 
 
