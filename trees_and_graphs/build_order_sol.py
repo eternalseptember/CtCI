@@ -28,12 +28,19 @@ class Graph:
     def get_nodes(self):
         return self.nodes
 
+    # Print things.
     def print_nodes(self):
         return str(self.nodes)
 
     def print_nodes_map(self):
         return str(self.node_map)
 
+    def __str__(self):
+        graph_str = 'Nodes\n'
+        graph_str += self.print_nodes()
+        graph_str += '\n\nNodes Map\n'
+        graph_str += self.print_nodes_map()
+        return graph_str
 
 class Project:
     def __init__(self, name):
@@ -42,7 +49,6 @@ class Project:
         self.node_map = {}
         self.dependencies = 0
 
-    # add neighbor function
     def add_neighbor(self, new_node):
         if new_node.name not in self.node_map:
             self.children.append(new_node)
@@ -65,24 +71,17 @@ class Project:
     def get_num_dependencies(self):
         return self.dependencies
 
-    # print things
-    def print_name(self):
-        return str(self.name)
+    # Print things.
+    def __str__(self):
+        return 'Project {0}'.format(self.name)
 
-    def print_children(self):
-        return str(self.children)
-
-    def print_node_map(self):
-        return str(self.node_map)
-
-    def print_num_of_dep(self):
-        return str(self.dependencies)
-
+    def __repr__(self):
+        return 'Project {0}'.format(self.name)
 
 
 
 def find_build_order(projects_list, dependencies_list):
-    # build graph first
+    # Build graph first.
     graph = build_graph(projects_list, dependencies_list)
     return order_projects(graph.get_nodes())
 
@@ -108,7 +107,7 @@ def build_graph(projects_list, dependencies):
 
 
 def order_projects(projects_list):
-    # Return a list of the projets in a correct build order
+    # Return a list of the projects in a correct build order.
     project_order = []
 
     # Add "roots" to the build order first.

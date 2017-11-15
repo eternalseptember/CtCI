@@ -11,6 +11,12 @@ for node in nodes:
     graph1.get_or_create_node(node)
 
 
+print('\t\tgraph1 object after adding nodes:')
+print(graph1)
+print()
+
+
+
 edges = [('d', 'g'), ('a', 'e'), ('b', 'e'), ('c', 'a'), ('f', 'c'), ('f', 'b'), ('b', 'a'), ('f', 'a')]
 
 for edge in edges:
@@ -18,11 +24,6 @@ for edge in edges:
     graph1.add_edge(node1, node2)
 
 
-
-
-print('Nodes')
-print(graph1.print_nodes())
-print()
-print('Nodes Map')
-print(graph1.print_nodes_map())
+print('\t\tgraph1 object after adding edges')
+print(graph1)
 
