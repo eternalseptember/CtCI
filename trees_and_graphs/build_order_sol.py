@@ -12,19 +12,21 @@ class Graph:
         self.projects_list = []
         self.projects_map = {}
 
-    def get_or_create_node(self, project_name):
+    # Each 'project' is a node.
+    def get_or_create_project(self, project_name):
         if project_name not in self.projects_map:
             new_project = Project(project_name)
             self.projects_list.append(new_project)
             self.projects_map[project_name] = new_project
         return self.projects_map[project_name]
 
-    def add_edge(self, start_name, end_name):
-        start = self.get_or_create_node(start_name)
-        end = self.get_or_create_node(end_name)
-        start.add_neighbor(end)
+    # Each 'dependency' is an edge.
+    def add_dependency(self, start_name, end_name):
+        build_first = self.get_or_create_project(start_name)
+        build_second = self.get_or_create_project(end_name)
+        build_first.add_edge(build_second)
 
-    def get_nodes(self):
+    def get_projects(self):
         return self.projects_list
 
     # Print things.
@@ -35,10 +37,10 @@ class Graph:
         return str(self.projects_map)
 
     def __str__(self):
-        graph_str = 'Projects in this graph:\n'
+        graph_str = 'Projects (nodes) in this graph:\n'
         graph_str += self.print_projects_list()
-        graph_str += '\n\nProjects Map\n'
-        graph_str += self.print_projects_map()
+        # graph_str += '\n\nProjects Map\n'
+        # graph_str += self.print_projects_map()
         return graph_str
 
 
@@ -49,7 +51,7 @@ class Project:
         self.node_map = {}
         self.dependencies = 0
 
-    def add_neighbor(self, new_node):
+    def add_edge(self, new_node):
         if new_node.name not in self.node_map:
             self.children.append(new_node)
             self.node_map[new_node.name] = new_node
@@ -89,7 +91,7 @@ class Project:
 def find_build_order(projects_list, dependencies_list):
     # Build graph first.
     graph = build_graph(projects_list, dependencies_list)
-    return order_projects(graph.get_nodes())
+    return order_projects(graph.get_projects())
 
 
 def build_graph(projects_list, dependencies_list):
@@ -100,14 +102,15 @@ def build_graph(projects_list, dependencies_list):
     before b.
     """
     graph = Graph()
-    for project in projects_list:
-        # ???
-        graph.get_or_create_node(project)
 
+    # Each 'project' is a node in the graph.
+    for project in projects_list:
+        graph.get_or_create_project(project)
+
+    # Each 'edge' establishes a dependency.
     for dependency in dependencies_list:
-        first = dependency[0]
-        second = dependency[1]
-        graph.add_edge(first, second)
+        build_first, build_second = (dependency)
+        graph.add_dependency(build_first, build_second)
 
     return graph
 

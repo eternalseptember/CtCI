@@ -7,6 +7,7 @@ built. If there is no valid build order, return an error.
 """
 
 
+# Huh, this object wasn't used.
 class Node:
     def __init__(self, data=None, left=None, right=None):
         self.data = data
