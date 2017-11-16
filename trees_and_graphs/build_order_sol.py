@@ -9,16 +9,15 @@ of dependency pairs.
 
 class Graph:
     def __init__(self):
-        self.nodes = []
-        self.node_map = {}
+        self.projects_list = []
+        self.projects_map = {}
 
-    def get_or_create_node(self, name):
-        if name not in self.node_map:
-            new_node = Project(name)
-            self.nodes.append(new_node)
-            self.node_map[name] = new_node
-        # better way of returning that node?
-        return self.node_map[name]
+    def get_or_create_node(self, project_name):
+        if project_name not in self.projects_map:
+            new_project = Project(project_name)
+            self.projects_list.append(new_project)
+            self.projects_map[project_name] = new_project
+        return self.projects_map[project_name]
 
     def add_edge(self, start_name, end_name):
         start = self.get_or_create_node(start_name)
@@ -26,21 +25,22 @@ class Graph:
         start.add_neighbor(end)
 
     def get_nodes(self):
-        return self.nodes
+        return self.projects_list
 
     # Print things.
-    def print_nodes(self):
-        return str(self.nodes)
+    def print_projects_list(self):
+        return str(self.projects_list)
 
-    def print_nodes_map(self):
-        return str(self.node_map)
+    def print_projects_map(self):
+        return str(self.projects_map)
 
     def __str__(self):
-        graph_str = 'Nodes\n'
-        graph_str += self.print_nodes()
-        graph_str += '\n\nNodes Map\n'
-        graph_str += self.print_nodes_map()
+        graph_str = 'Projects in this graph:\n'
+        graph_str += self.print_projects_list()
+        graph_str += '\n\nProjects Map\n'
+        graph_str += self.print_projects_map()
         return graph_str
+
 
 class Project:
     def __init__(self, name):
@@ -78,6 +78,12 @@ class Project:
     def __repr__(self):
         return 'Project {0}'.format(self.name)
 
+    def print_project_details(self):
+        project_str = '\tProject {0}\n'.format(self.name)
+        project_str += 'Num of prerequisites for this project: \t{0}\n'.format(self.dependencies)
+        project_str += 'This project is a prerequisite for: \t{0}\n'.format(self.children)
+        # project_str += 'This project\'s node map: {0}\n'.format(self.node_map)
+        print(project_str)
 
 
 def find_build_order(projects_list, dependencies_list):
@@ -86,7 +92,7 @@ def find_build_order(projects_list, dependencies_list):
     return order_projects(graph.get_nodes())
 
 
-def build_graph(projects_list, dependencies):
+def build_graph(projects_list, dependencies_list):
     """
     Build the graph, adding the edge (a, b) if b is dependent on a.
     Assumes a pair is listed in "build order". The pair (a, b) in
@@ -98,7 +104,7 @@ def build_graph(projects_list, dependencies):
         # ???
         graph.get_or_create_node(project)
 
-    for dependency in dependencies:
+    for dependency in dependencies_list:
         first = dependency[0]
         second = dependency[1]
         graph.add_edge(first, second)
