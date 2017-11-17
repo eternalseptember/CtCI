@@ -63,22 +63,19 @@ class Project:
     def decrement_dependencies(self):
         self.dependencies -= 1
 
-    # not entirely sure these functions are necessary?
-    def get_name(self):
-        return self.name
+    def get_num_dependencies(self):
+        return self.dependencies
 
     def get_children(self):
         return self.children
-
-    def get_num_dependencies(self):
-        return self.dependencies
 
     # Print things.
     def __str__(self):
         return 'Project {0}'.format(self.name)
 
     def __repr__(self):
-        return 'Project {0}'.format(self.name)
+        return self.name
+        #return '{0}'.format(self.name)
 
     def print_project_details(self):
         project_str = '\tProject {0}\n'.format(self.name)
@@ -117,39 +114,39 @@ def build_graph(projects_list, dependencies_list):
 
 def order_projects(projects_list):
     # Return a list of the projects in a correct build order.
-    project_order = []
+    build_order = []
+    num_of_projects = len(projects_list)
 
-    # Add "roots" to the build order first.
-    end_of_list = add_non_dependent(project_order, projects_list, 0)
+    while len(build_order) < num_of_projects:
+        to_be_processed = []
 
-    to_be_processed = 0
+        # Figure out which projects can be built.
+        for project in projects_list:
+            if project.get_num_dependencies() == 0:
+                to_be_processed.append(project)
 
-    # length ???
-    while to_be_processed < len(project_order):
-        current = project_order[to_be_processed]
-
-        # We have a circular dependency since there are no remaining projects
-        # with zero dependencies.
-        if current is None:
+        # Circular dependency: no remaining projects with zero dependencies.
+        if len(to_be_processed) == 0:
             return None
 
-        # Remove (current project?) as dependency
+        # Update dependency counts of children projects.
+        for completed_project in to_be_processed:
+            update_these_children = completed_project.get_children()
+            for project in update_these_children:
+                project.decrement_dependencies()
+
+            # Update projects_list.
+            projects_list.remove(completed_project)
+
+        # Update build_order.
+        build_order.extend(to_be_processed)
+
+    return build_order
 
 
-        # Add children that have no one depending on them
 
 
-    return order
 
-
-def add_non_dependent(project_order, projects_list, offset):
-    # Helper function to insert projects with zero dependencies
-    # into the project_order array, starting at index offset.
-    for project in projects_list:
-        if project.get_num_dependencies() == 0:
-            project_order[offset] = project
-            offset += 1
-    return offset
 
 
 
