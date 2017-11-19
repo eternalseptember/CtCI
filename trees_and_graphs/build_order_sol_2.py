@@ -51,7 +51,7 @@ class Project:
         self.name = name
         self.children = []
         self.node_map = {}
-        self.dependencies = 0
+        self.state = blank
 
     def add_edge(self, new_node):
         if new_node.name not in self.node_map:
@@ -59,14 +59,11 @@ class Project:
             self.node_map[new_node.name] = new_node
             new_node.increment_dependencies()
 
-    def increment_dependencies(self):
-        self.dependencies += 1
+    def get_state(self):
+        return self.state
 
-    def decrement_dependencies(self):
-        self.dependencies -= 1
-
-    def get_num_dependencies(self):
-        return self.dependencies
+    def set_state(self, state):
+        self.state = state
 
     def get_children(self):
         return self.children
@@ -81,7 +78,6 @@ class Project:
 
     def print_project_details(self):
         project_str = '\tProject {0}\n'.format(self.name)
-        project_str += 'Num of prerequisites for this project: \t{0}\n'.format(self.dependencies)
         project_str += 'This project is a prerequisite for: \t{0}\n'.format(self.children)
         # project_str += 'This project\'s node map: {0}\n'.format(self.node_map)
         print(project_str)

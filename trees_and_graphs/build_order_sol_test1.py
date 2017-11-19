@@ -1,8 +1,8 @@
 # Testing the provided solution for the build order problem.
 
 
-from build_order_sol import *
-
+# from build_order_sol_1 import *
+from build_order_sol_2 import *
 
 def print_graph_details(comments, graph_object):
     print('\t\t{0}'.format(comments))
