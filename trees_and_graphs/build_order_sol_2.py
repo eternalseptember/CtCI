@@ -115,7 +115,12 @@ def order_projects(projects_list):
 
 
 def do_DFS(project, project_stack):
-    return None
+    if (project.get_state() == 'Partial'):
+        return False  # Cycle
+
+    # blank
+    # complete	
+    return True
 
 
 
