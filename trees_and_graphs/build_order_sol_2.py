@@ -51,7 +51,7 @@ class Project:
         self.name = name
         self.children = []
         self.node_map = {}
-        self.state = blank
+        self.state = 'blank'
 
     def add_edge(self, new_node):
         if new_node.name not in self.node_map:
@@ -115,11 +115,20 @@ def order_projects(projects_list):
 
 
 def do_DFS(project, project_stack):
-    if (project.get_state() == 'Partial'):
+    if (project.get_state() == 'partial'):
         return False  # Cycle
 
-    # blank
-    # complete	
+    if (project.get_state() == 'blank'):
+        project.set_state('partial')
+
+        children = project.get_children()
+        for child_project in children:
+            if not do_DFS(child_project, project_stack):
+                return False
+
+        project.set_state('complete')
+        project_stack.push(project)
+
     return True
 
 
