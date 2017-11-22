@@ -111,7 +111,14 @@ def build_graph(projects_list, dependencies_list):
 
 
 def order_projects(projects_list):
-    return None
+    stack = []
+
+    for project in projects_list:
+        if (project.get_state() == 'blank'):
+            if not do_DFS(project, stack):
+                return None
+
+    return stack
 
 
 def do_DFS(project, project_stack):
