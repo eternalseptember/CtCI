@@ -57,7 +57,6 @@ class Project:
         if new_node.name not in self.node_map:
             self.children.append(new_node)
             self.node_map[new_node.name] = new_node
-            new_node.increment_dependencies()
 
     def get_state(self):
         return self.state
@@ -78,6 +77,7 @@ class Project:
 
     def print_project_details(self):
         project_str = '\tProject {0}\n'.format(self.name)
+        print_str += 'State: \t\t{0}'.format(self.state)
         project_str += 'This project is a prerequisite for: \t{0}\n'.format(self.children)
         # project_str += 'This project\'s node map: {0}\n'.format(self.node_map)
         print(project_str)
@@ -134,7 +134,7 @@ def do_DFS(project, project_stack):
                 return False
 
         project.set_state('complete')
-        project_stack.push(project)
+        project_stack.append(project)
 
     return True
 
