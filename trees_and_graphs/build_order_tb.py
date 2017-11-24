@@ -1,9 +1,9 @@
 # Test cases for build-order problems.
 # Pairs: second project is dependent on the first project
 
-from build_order import *
+# from build_order import *
 # from build_order_sol_1 import *
-# from build_order_sol_2 import *
+from build_order_sol_2 import *
 
 
 # Test Case 1

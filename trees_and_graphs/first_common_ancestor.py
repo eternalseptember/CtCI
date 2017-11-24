@@ -12,9 +12,8 @@ class Node:
         self.right = right
         self.parent = parent
 
-
+"""
 def common_ancestor(node1, node2):
-
     # assumes that only one of the nodes can be the root node
     if node1.parent is None:
         # print('first node\'s parent is none')
@@ -53,6 +52,19 @@ def common_ancestor(node1, node2):
         node_ahead = node_ahead.parent
 
     return None
+"""
+
+# solution
+def common_ancester(node1, node2):
+    return None
+
+def go_up_by(node, number):
+    return None
+
+def depth(node):
+    return None
+
+
 
 
 # test 1: node 8
