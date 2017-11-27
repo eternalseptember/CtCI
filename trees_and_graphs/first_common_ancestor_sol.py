@@ -14,6 +14,13 @@ class Node:
 
 
 def common_ancester(node1, node2):
+    delta = depth(node1) - depth(node2)
+
+    if delta > 0:
+        first_node = node2
+    else:
+        first_node = node1
+
     return None
 
 
