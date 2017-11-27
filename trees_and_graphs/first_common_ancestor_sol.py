@@ -1,5 +1,7 @@
 """
 Implementing the solution for first common ancestor problem.
+
+Solution 1: With links to parents
 """
 
 
@@ -15,8 +17,11 @@ def common_ancester(node1, node2):
     return None
 
 
-def go_up_by(node, number):
-    return None
+def go_up_by(node, delta):
+    while (node is not None) and (delta > 0):
+        node = node.parent
+        delta -= 1
+    return node
 
 
 def depth(node):
