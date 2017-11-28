@@ -17,9 +17,20 @@ def common_ancester(node1, node2):
     delta = depth(node1) - depth(node2)
 
     if delta > 0:
-        first_node = node2
+        first = node2  # shallower node
+        second = node1  # deeper node
     else:
-        first_node = node1
+        first = node1
+        second = node2
+
+    second = go_up_by(second, abs(delta))  # move deeper node up
+
+    # Find where paths intersect
+    while ((first is not None) and (second is not None) and (first != second)):
+        first = first.parent
+        second = second.parent
+
+    # figure out what to return
 
     return None
 
