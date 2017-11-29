@@ -30,9 +30,10 @@ def common_ancester(node1, node2):
         first = first.parent
         second = second.parent
 
-    # figure out what to return
-
-    return None
+    if (first is None) or (second is None):
+        return None
+    else:
+        return first
 
 
 def go_up_by(node, delta):
