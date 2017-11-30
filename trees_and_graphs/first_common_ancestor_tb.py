@@ -1,8 +1,7 @@
 # Test cases for first common ancestor problem.
 
-from first_common_ancestor import *
-# from first_common_ancestor_sol import *
-
+# from first_common_ancestor import *
+from first_common_ancestor_sol import *
 
 
 # test 1: node 8
@@ -26,8 +25,8 @@ node8 = Node(8, node5, node4)
 node5.parent = node8
 node4.parent = node8
 
-ancestor, left, right = common_ancestor(node5, node4)
-print('ancestor node: {0}  left: {1}  right: {2}'.format(ancestor, left, right))
+ancestor = common_ancestor(node5, node4)
+print(ancestor)
 
 
 # test 2: node 2
@@ -37,17 +36,18 @@ node2 = Node(2, node1, node3)
 node1.parent = node2
 node3.parent = node2
 
-ancestor, left, right = common_ancestor(node1, node3)
-print('ancestor node: {0}  left: {1}  right: {2}'.format(ancestor, left, right))
+ancestor = common_ancestor(node1, node3)
+print(ancestor)
 
 
-# test 3: node1 is higher than node2 (testing the arguments order)
+# Testing the arguments order
+# test 3: node1 is higher than node2
 node2 = Node(2)  # leaf
 node1 = Node(1, node2)  # root
 node2.parent = node1
 
-ancestor, left, right = common_ancestor(node1, node2)
-print('ancestor node: {0}  left: {1}  right: {2}'.format(ancestor, left, right))
+ancestor = common_ancestor(node1, node2)
+print(ancestor)
 
 
 # test 4: node2 is higher than node1
@@ -55,5 +55,6 @@ node1 = Node(1)  # leaf
 node2 = Node(2, node1)  # root
 node1.parent = node2
 
-ancestor, left, right = common_ancestor(node1, node2)
-print('ancestor node: {0}  left: {1}  right: {2}'.format(ancestor, left, right))
+ancestor = common_ancestor(node1, node2)
+print(ancestor)
+

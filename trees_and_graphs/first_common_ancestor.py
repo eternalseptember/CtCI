@@ -2,6 +2,8 @@
 Design an algorithm to write code to find the first common ancestor of two
 nodes in a binary tree. Avoid storing additional nodes in a data structure.
 NOTE: This is not necessarily a binary search tree.
+
+Original personal attempt
 """
 
 
@@ -12,9 +14,22 @@ class Node:
         self.right = right
         self.parent = parent
 
+    def __str__(self):
+        data = self.data
+        left = None
+        right = None
+
+        if self.left is not None:
+            left = self.left.data
+        if self.right is not None:
+            right = self.right.data
+
+        return 'node: {0}  left: {1}  right: {2}'.format(data, left, right)
+
 
 def common_ancestor(node1, node2):
-    # assumes that only one of the nodes can be the root node
+    # Assumes that only one of the nodes can be the root node.
+
     if node1.parent is None:
         # print('first node\'s parent is none')
         node_ahead = node1
@@ -35,17 +50,8 @@ def common_ancestor(node1, node2):
         while node_behind is not None:
             parent_2 = node_ahead
 
-            #if (parent_1.data == parent_2.data) and (parent_1.left == parent_2.left) and (parent_1.right == parent_2.right):
             if parent_1 == parent_2:
-                left = None
-                if parent_2.left is not None:
-                    left = parent_2.left.data
-
-                right = None
-                if parent_2.right is not None:
-                    right = parent_2.right.data
-
-                return parent_2.data, left, right
+                return parent_1
 
             node_behind = node_behind.parent
 
