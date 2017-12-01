@@ -1,7 +1,7 @@
 # Test cases for first common ancestor problem.
 
 # from first_common_ancestor import *
-from first_common_ancestor_sol import *
+from first_common_ancestor_sol_1 import *
 
 
 # test 1: node 8

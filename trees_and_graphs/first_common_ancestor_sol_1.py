@@ -1,7 +1,8 @@
 """
 Implementing the solution for first common ancestor problem.
 
-Solution 1: With links to parents
+Solution 1: With links to parents.
+O(d) time, where d is the depth of the deeper node.
 """
 
 
