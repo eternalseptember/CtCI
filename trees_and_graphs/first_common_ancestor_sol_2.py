@@ -34,7 +34,8 @@ def covers(root, p):
         return None
     if root == p:
         return True
-    # another return statement here
+
+    return covers(root.left, p) or covers(root.right, p)
 
 
 def get_sibling(node):
@@ -43,7 +44,10 @@ def get_sibling(node):
 
     parent = node.parent
 
-    # return a comparison
+    if parent.left == node:
+        return parent.right
+    else:
+        return parent.left
 
 
 
