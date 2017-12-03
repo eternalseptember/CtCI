@@ -25,7 +25,16 @@ class Node:
         return 'node: {0}  left: {1}  right: {2}'.format(data, left, right)
 
 
-def common_ancestor(node1, node2):
+def common_ancestor(root, p, q):
+    # Check if either node is not in the tree, or if one covers the other.
+    if (not covers(root, p)) or (not covers(root, q)):
+        return None
+    elif covers(p, q):
+        return p
+    elif covers(q, p):
+        return q
+
+    # more stuff here
     return None
 
 
