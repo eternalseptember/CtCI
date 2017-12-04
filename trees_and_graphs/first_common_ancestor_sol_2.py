@@ -34,8 +34,15 @@ def common_ancestor(root, p, q):
     elif covers(q, p):
         return q
 
-    # more stuff here
-    return None
+    # Traverse upward until you find a node that covers q.
+    sibling = get_sibling(p)
+    parent = p.parent
+
+    while (not covers(sibling, q)):
+        sibling = get_sibling(parent)
+        parent = parent.parent
+
+    return parent
 
 
 def covers(root, p):
