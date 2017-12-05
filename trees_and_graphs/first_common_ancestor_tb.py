@@ -1,7 +1,8 @@
 # Test cases for first common ancestor problem.
 
 # from first_common_ancestor import *
-from first_common_ancestor_sol_1 import *
+# from first_common_ancestor_sol_1 import *
+from first_common_ancestor_sol_2 import *
 
 
 # test 1: node 8
@@ -25,7 +26,9 @@ node8 = Node(8, node5, node4)
 node5.parent = node8
 node4.parent = node8
 
-ancestor = common_ancestor(node5, node4)
+# ancestor = common_ancestor(node5, node4)
+ancestor = common_ancestor(node8, node5, node4)
+
 print(ancestor)
 
 
@@ -36,7 +39,8 @@ node2 = Node(2, node1, node3)
 node1.parent = node2
 node3.parent = node2
 
-ancestor = common_ancestor(node1, node3)
+# ancestor = common_ancestor(node1, node3)
+ancestor = common_ancestor(node2, node1, node3)
 print(ancestor)
 
 
@@ -46,7 +50,8 @@ node2 = Node(2)  # leaf
 node1 = Node(1, node2)  # root
 node2.parent = node1
 
-ancestor = common_ancestor(node1, node2)
+# ancestor = common_ancestor(node1, node2)
+ancestor = common_ancestor(node1, node1, node2)
 print(ancestor)
 
 
@@ -55,6 +60,8 @@ node1 = Node(1)  # leaf
 node2 = Node(2, node1)  # root
 node1.parent = node2
 
-ancestor = common_ancestor(node1, node2)
+
+# ancestor = common_ancestor(node1, node2)
+ancestor = common_ancestor(node2, node1, node2)
 print(ancestor)
 
