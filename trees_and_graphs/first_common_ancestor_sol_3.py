@@ -29,11 +29,23 @@ def common_ancester(root, p, q):
     return None
 
 
-def ancester_helper(root, p, q):
+def ancestor_helper(root, p, q):
     if (root is None) or (root == p) or (root == q):
         return root
 
-    return None
+    p_is_left = covers(root.left, p)
+    q_is_left = covers(root.left, q)
+
+    # nodes are on different sides
+    if p_is_left is not q_is_left:
+        return root
+
+    if p_is_left:
+        child_side = root.left
+    else:
+        root.right
+
+    return ancestor_helper(child_side, p, q)
 
 
 def covers(root, p):
