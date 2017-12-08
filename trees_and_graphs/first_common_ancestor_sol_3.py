@@ -26,7 +26,11 @@ class Node:
 
 
 def common_ancester(root, p, q):
-    return None
+    # Error check - one node is not in the tree.
+    if (not covers(root, p)) or (not covers(root, q)):
+        return None
+
+    return ancestor_helper(root, p, q)
 
 
 def ancestor_helper(root, p, q):
@@ -43,7 +47,7 @@ def ancestor_helper(root, p, q):
     if p_is_left:
         child_side = root.left
     else:
-        root.right
+        child_side = root.right
 
     return ancestor_helper(child_side, p, q)
 
