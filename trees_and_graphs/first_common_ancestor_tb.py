@@ -2,7 +2,8 @@
 
 # from first_common_ancestor import *
 # from first_common_ancestor_sol_1 import *
-from first_common_ancestor_sol_2 import *
+# from first_common_ancestor_sol_2 import *
+from first_common_ancestor_sol_3 import *
 
 
 # test 1: node 8

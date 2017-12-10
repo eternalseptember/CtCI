@@ -25,7 +25,7 @@ class Node:
         return 'node: {0}  left: {1}  right: {2}'.format(data, left, right)
 
 
-def common_ancester(root, p, q):
+def common_ancestor(root, p, q):
     # Error check - one node is not in the tree.
     if (not covers(root, p)) or (not covers(root, q)):
         return None
