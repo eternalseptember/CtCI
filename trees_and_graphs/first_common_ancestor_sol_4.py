@@ -27,7 +27,14 @@ class Node:
 
 
 def common_ancestor(root, p, q):
-    return None
+    if root is None:
+        return None
+
+    if (root == p) and (root == q):
+        return root
+
+    x = common_ancestor(root.left, p, q)
+
 
 
 
