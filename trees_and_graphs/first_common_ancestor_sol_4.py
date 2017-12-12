@@ -34,6 +34,28 @@ def common_ancestor(root, p, q):
         return root
 
     x = common_ancestor(root.left, p, q)
+    if (x is not None) and (x is not p) and (x is not q):
+        # already found ancester
+        return x
+
+    y = common_ancestor(root.right, p, q)
+    if (y is not None) and (y is not p) and (y is not q):
+        # already found ancester
+        return y
+
+    if (x is not None) and (y is not None):
+        # p and q found in different subtrees
+        return root
+    elif (root is p) or (root is q):
+        return root
+    else:
+        # return the non-None value
+        if x is None:
+            return y
+        else:
+            return x
+
+
 
 
 
