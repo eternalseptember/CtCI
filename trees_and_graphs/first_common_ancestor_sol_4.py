@@ -25,7 +25,27 @@ class Node:
         return 'node: {0}  left: {1}  right: {2}'.format(data, left, right)
 
 
+class Result:
+    def __init__(self, node, is_ancestor):
+        self.node = node
+        self.is_ancestor = is_ancestor
 
+
+def common_ancestor(root, p, q):
+    r = common_ancestor_helper(root, p, q)
+    #something here
+
+
+    return None
+
+
+
+
+
+
+
+
+"""
 def common_ancestor(root, p, q):
     if root is None:
         return None
@@ -54,7 +74,7 @@ def common_ancestor(root, p, q):
             return y
         else:
             return x
-
+"""
 
 
 
