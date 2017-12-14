@@ -33,10 +33,15 @@ class Result:
 
 def common_ancestor(root, p, q):
     r = common_ancestor_helper(root, p, q)
-    #something here
 
-
+    if r.is_ancestor:
+        return r.node
     return None
+
+
+def common_ancestor_helper(root, p, q):
+    if root is None:
+        return Result(None, False)
 
 
 
