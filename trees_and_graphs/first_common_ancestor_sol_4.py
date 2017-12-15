@@ -43,6 +43,21 @@ def common_ancestor_helper(root, p, q):
     if root is None:
         return Result(None, False)
 
+    if (root == p) and (root == q):
+        return Result(root, True)
+
+    rx = common_ancestor_helper(root.left, p, q)
+    if rx.is_ancestor:
+        # found common ancestor
+        return rx
+
+    ry = common_ancestor_helper(root.right, p, q)
+    if ry.is_ancestor:
+        # found common ancestor
+        return ry
+
+
+
 
 
 
