@@ -56,6 +56,9 @@ def common_ancestor_helper(root, p, q):
         # found common ancestor
         return ry
 
+    if (rx.node is not None) and (ry.node is not None):
+        return Result(root, True)  # This is the common ancestor
+
 
 
 
