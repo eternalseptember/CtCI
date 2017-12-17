@@ -58,6 +58,22 @@ def common_ancestor_helper(root, p, q):
 
     if (rx.node is not None) and (ry.node is not None):
         return Result(root, True)  # This is the common ancestor
+    elif (root == p) or (root == q):
+        # if we're currently at p or q, and we also found one of those nodes
+        # in a subtree, then this is truly an ancestor and the flag should be
+        # true
+        if (rx.node is not None) or (ry.node is not None):
+            is_ancestor = True
+        else:
+            is_ancestor = False
+
+        return Result(root, is_ancestor)
+    else:
+        if rx.node is not None:
+            res = rx.node
+        else:
+            res = ry.node
+        return Result(res, False)
 
 
 
