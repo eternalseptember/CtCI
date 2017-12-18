@@ -45,13 +45,13 @@ def common_ancestor(node1, node2):
 
 
     while node_ahead is not None:
-        parent_1 = node_ahead
+        # parent_1 = node_ahead
 
         while node_behind is not None:
-            parent_2 = node_ahead
+            # parent_2 = node_ahead
 
-            if parent_1 == parent_2:
-                return parent_1
+            if node_behind == node_ahead:
+                return node_behind
 
             node_behind = node_behind.parent
 
