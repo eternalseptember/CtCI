@@ -29,32 +29,24 @@ class Node:
 
 def common_ancestor(node1, node2):
     # Assumes that only one of the nodes can be the root node.
-
     if node1.parent is None:
-        # print('first node\'s parent is none')
         node_ahead = node1
         node_behind = node2
-    elif node2.parent is None:
-        # print('second node\'s parent is none')
-        node_ahead = node2
-        node_behind = node1
     else:
-        # print('neither of the nodes are root')
         node_ahead = node2
         node_behind = node1
 
-
+    orig_node_behind = node_behind
     while node_ahead is not None:
-        # parent_1 = node_ahead
 
+        # reset the original node
+        node_behind = orig_node_behind
         while node_behind is not None:
-            # parent_2 = node_ahead
 
             if node_behind == node_ahead:
                 return node_behind
 
             node_behind = node_behind.parent
-
         node_ahead = node_ahead.parent
 
     return None
