@@ -12,7 +12,18 @@ def bst_sequences(head):
     result = []
 
     if head is None:
+        # add something to the result before returning
         return result
+
+    prefix = [head.data]
+
+    # Recurse on left and right subtrees.
+    left_seq = bst_sequences(node.left)
+    right_seq = bst_sequences(node.right)
+
+    # Weave together each list from the left and right sides.
+
+    return result
 
 
 def weave_lists(first_list, second_list, results, prefix):
