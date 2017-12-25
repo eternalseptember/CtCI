@@ -18,10 +18,15 @@ def bst_sequences(head):
     prefix = [head.data]
 
     # Recurse on left and right subtrees.
-    left_seq = bst_sequences(node.left)
-    right_seq = bst_sequences(node.right)
+    left_seq = bst_sequences(head.left)
+    right_seq = bst_sequences(head.right)
 
     # Weave together each list from the left and right sides.
+    for left_item in left_seq:
+        for right_item in right_seq:
+            weaved = []
+            weave_lists(left, right, weaved, prefix)
+            result.extend(weaved)
 
     return result
 
