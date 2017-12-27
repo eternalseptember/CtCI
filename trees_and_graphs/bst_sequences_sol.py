@@ -66,6 +66,11 @@ def weave_lists(first_list, second_list, results, prefix):
 
 
     # Do the same thing with second, damaging and then restoring the list.
+    head_second = second_list.remove_first()
+    prefix.add_last(head_second)
+    weave_lists(first_list, second_list, results, prefix)
+    prefix.remove_last()
+    second_list.add_first(head_second)
 
 
 
