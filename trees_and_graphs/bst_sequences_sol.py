@@ -1,11 +1,10 @@
 # Implementing the provided solution.
 
 
-class Node:
-    def __init__(self, data=None, left=None, right=None):
+class Linked_Node:
+    def __init__(self, data=None, next=None):
         self.data = data
-        self.left = left
-        self.right = right
+        self.next = next
 
     def add_first(self, item):
         return None
@@ -18,6 +17,13 @@ class Node:
 
     def remove_last(self):
         return None
+
+
+class Node:
+    def __init__(self, data=None, left=None, right=None):
+        self.data = data
+        self.left = left
+        self.right = right
 
 
 def bst_sequences(head):
