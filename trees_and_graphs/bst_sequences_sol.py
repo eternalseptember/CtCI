@@ -10,10 +10,16 @@ class Linked_Node:
         return None
 
     def add_last(self, item):
-        return None
+        current_node = self
+
+        while current_node.next is not None:
+            current_node = current_node.next
+
+        current_node.next = Linked_Node(item)
+
 
     def remove_first(self):
-        return None
+        return self
 
     def remove_last(self):
         return None
