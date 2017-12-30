@@ -7,7 +7,8 @@ class Linked_Node:
         self.next = next
 
     def add_first(self, item):
-        return None
+        new_node = Linked_Node(item, self)
+
 
     def add_last(self, item):
         current_node = self
