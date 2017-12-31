@@ -23,7 +23,20 @@ class Linked_Node:
         return self
 
     def remove_last(self):
-        return None
+        if self.next is None:
+            return None
+        else:
+            next_node = self.next
+            last_node = next_node.next
+
+            # ???
+            while last_node is not None:
+                next_node = next_node.next
+                last_node = next_node.next
+
+            next_node.next = None
+            return last_node
+
 
 
 class Node:
