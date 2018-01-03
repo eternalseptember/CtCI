@@ -19,21 +19,25 @@ class Node():
         return 'data: {0}  left: {1}  right: {2}'.format(self.data, left, right)
 
 
-def pre_order(root):
+def pre_order(root, seq):
     if root.data is None:
-        seq = ['X']
-    else:
-        seq = [root.data]
+        seq.append('X')
+        return
 
-    seq.extend(pre_order(root.left))
-    seq.extend(pre_order(root.right))
+    seq.append(root.data)
 
+    pre_order(root.left, seq)
+    pre_order(root.right, seq)
     return seq
+
+
 
 
 def check_subtree(tree_1, tree_2):
     # checks if tree_2 is a subtree of tree_1
-    return False
+    
+    res = pre_order(tree_1, [])
+    print(res)
 
 
 

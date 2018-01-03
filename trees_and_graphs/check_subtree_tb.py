@@ -1,7 +1,8 @@
 # Test cases for check subtree problem.
 
 
-from check_subtree import *
+# from check_subtree import *
+from check_subtree_sol import *
 
 
 # Tree 1: basic tree, no similarities
