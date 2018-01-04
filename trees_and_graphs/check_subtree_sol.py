@@ -20,7 +20,7 @@ class Node():
 
 
 def pre_order(root, seq):
-    if root.data is None:
+    if root is None:
         seq.append('X')
         return
 
