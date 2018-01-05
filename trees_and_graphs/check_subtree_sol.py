@@ -31,13 +31,19 @@ def pre_order(root, seq):
     return seq
 
 
+def pre_order_str(seq):
+    res = pre_order(seq, [])
+    return res
 
 
 def check_subtree(tree_1, tree_2):
     # checks if tree_2 is a subtree of tree_1
     
-    res = pre_order(tree_1, [])
-    print(res)
+    res1 = pre_order_str(tree_1)
+    print(res1)
+
+    res2 = pre_order_str(tree_2)
+    print(res2)
 
 
 
