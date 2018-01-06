@@ -33,17 +33,16 @@ def pre_order(root, seq):
 
 def pre_order_str(seq):
     res = pre_order(seq, [])
-    return res
+    res_str = ' '.join(str(val) for val in res)
+    return res_str
 
 
 def check_subtree(tree_1, tree_2):
     # checks if tree_2 is a subtree of tree_1
-    
     res1 = pre_order_str(tree_1)
-    print(res1)
-
     res2 = pre_order_str(tree_2)
-    print(res2)
+
+    return res2 in res1
 
 
 
