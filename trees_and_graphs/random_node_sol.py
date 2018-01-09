@@ -9,6 +9,12 @@ class Node:
     def get_random_node(self):
         return None
 
+    def insert_in_order(self, item):
+        return None
+
+    def find(self, item):
+        return None
+
 
     def __str__(self):
         left = None
