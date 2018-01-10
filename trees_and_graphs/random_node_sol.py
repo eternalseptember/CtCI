@@ -13,6 +13,18 @@ class Node:
         return None
 
     def find(self, item):
+        if item == self.data:
+            return self
+        elif item <= self.data:
+            if self.left is not None:
+                return self.left.find(item)
+            else:
+                return None
+        elif item > self.data:
+            if right is not None:
+                return self.right.find(item)
+            else:
+                return None
         return None
 
 
