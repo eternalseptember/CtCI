@@ -10,7 +10,18 @@ class Node:
         return None
 
     def insert_in_order(self, item):
-        return None
+        if item <= self.data:
+            if self.left is None:
+                self.left = Node(item)
+            else:
+                self.left.insert_in_order(item)
+        else:
+            if self.right is None:
+                self.right = Node(item)
+            else:
+                self.right.insert_in_order(item)
+
+        self.size += 1
 
     def find(self, item):
         if item == self.data:
