@@ -7,6 +7,10 @@ class Node:
 
 
     def get_random_node(self):
+        if self.left is None:
+            left_size = 0
+        else:
+            left_size = self.left.size
         return None
 
     def insert_in_order(self, item):
