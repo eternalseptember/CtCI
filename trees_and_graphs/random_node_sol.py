@@ -1,3 +1,9 @@
+# Implementing a solution to the random node problem.
+
+
+from random import *
+
+
 class Node:
     def __init__(self, data=None, left=None, right=None):
         self.data = data
