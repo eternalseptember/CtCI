@@ -17,6 +17,14 @@ class Node:
             left_size = 0
         else:
             left_size = self.left.size
+
+        # Java's nextInt(n) returns a random number
+        # between 0 (inclusive) and n (exclusive).
+        # randint in inclusive for both boundaries.
+        random_index = randint(0, self.size)
+
+
+
         return None
 
     def insert_in_order(self, item):
