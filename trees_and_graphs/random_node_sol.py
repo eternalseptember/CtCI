@@ -23,9 +23,13 @@ class Node:
         # randint in inclusive for both boundaries.
         random_index = randint(0, self.size)
 
+        if random_index < left_size:
+            return self.left.get_random_node()
+        elif random_index == left_size:
+            return self
+        else:
+            return self.right.get_random_node()
 
-
-        return None
 
     def insert_in_order(self, item):
         if item <= self.data:
