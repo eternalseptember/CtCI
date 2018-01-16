@@ -1,7 +1,9 @@
 # Test cases for "list of depths" problem
 
 
-from list_of_depths import *
+# from list_of_depths import *
+# from list_of_depths_sol_1 import *
+from list_of_depths_sol_2 import *
 
 
 # testing; depth: 3
@@ -15,9 +17,7 @@ node7 = TreeNode(7)
 node3 = TreeNode(3, node6, node7)
 node1 = TreeNode(1, node2, node3)
 
-# lists = list_of_depths(node1)
-# lists = create_level_linked_list_d(node1)
-lists = create_level_linked_list_b(node1)
+lists = list_of_depths(node1)
 print_results(lists)
 
 
@@ -29,9 +29,7 @@ node3 = TreeNode(3, node4)
 node2 = TreeNode(2, None, node3)
 node1 = TreeNode(1, None, node2)
 
-# lists = list_of_depths(node1)
-# lists = create_level_linked_list_d(node1)
-lists = create_level_linked_list_b(node1)
+lists = list_of_depths(node1)
 print_results(lists)
 
 

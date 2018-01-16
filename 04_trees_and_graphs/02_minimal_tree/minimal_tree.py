@@ -53,4 +53,3 @@ def create_minimal_tree(list_of_values):
     head = Node(list_of_values.pop(center_index), left_tree, right_tree)
     return head
 
-

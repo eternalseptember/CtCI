@@ -1,9 +1,10 @@
-"""
-test cases for successor problem
-"""
+# Test cases for "successor" problem.
 
 
-from successor import *
+# from successor import *
+from successor_sol import *
+
+
 """
 # ************************************************
 # ******************** TREE 1 ********************

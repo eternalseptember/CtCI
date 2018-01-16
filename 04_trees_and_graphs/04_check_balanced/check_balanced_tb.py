@@ -1,7 +1,8 @@
 # Test cases for the "check balanced" problem.
 
 
-from check_balanced import *
+# from check_balanced import *
+from check_balanced_sol import *
 
 
 # Test Case 1: True; height_diff = 0

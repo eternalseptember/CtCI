@@ -40,7 +40,6 @@ def print_tree(head):
         print_tree(head.right)
 
 
-"""
 def find_next_node(head):
     if head.right is not None:
         next_node = head.right
@@ -82,42 +81,4 @@ def find_next_node(head):
                         return next_node
                     else:
                         return None
-"""
-
-
-def find_next_node(head):
-    if head is None:
-        return None
-
-    # Found right children -> return left-most node of right subtree
-    if head.right is not None:
-        return left_most_child(head.right)
-    else:
-        # some assignments
-        current_node = head
-        parent_node = current_node.prev
-
-        # go up until we're on left instead of right
-        while ((parent_node is not None) and (parent_node.left is not current_node)):
-            current_node = parent_node
-            parent_node = parent_node.prev
-
-        return parent_node
-
-    return None
-
-
-def left_most_child(head):
-    if head is None:
-        return None
-
-    while head.left is not None:
-        head = head.left
-
-    return head
-
-
-
-
-
 

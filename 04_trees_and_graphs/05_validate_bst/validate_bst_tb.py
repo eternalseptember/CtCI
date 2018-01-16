@@ -1,7 +1,8 @@
 # Test cases for the "validate bst" problem.
 
 
-from validate_bst import *
+# from validate_bst import *
+from validate_bst_sol import *
 
 
 # Simple test cases to handle duplicate values
@@ -72,7 +73,4 @@ node30 = Node(30)
 node20 = Node(20, node10, node30)
 
 print(check_bst(node20))
-
-
-
 
