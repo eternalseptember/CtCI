@@ -225,6 +225,3 @@ for single_node in list_of_nodes:
     print(next_node)
 print()
 
-
-
-

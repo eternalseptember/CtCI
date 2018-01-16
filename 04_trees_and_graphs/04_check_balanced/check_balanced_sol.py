@@ -45,3 +45,4 @@ def get_height(head):
         return False
     else:
         return max(left_height, right_height) + 1
+
