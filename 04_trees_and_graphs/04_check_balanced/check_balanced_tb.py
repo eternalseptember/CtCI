@@ -62,5 +62,3 @@ node2 = Node(2, node1)
 node3 = Node(3, None, node2)
 print(is_binary(node3))
 
-
-
