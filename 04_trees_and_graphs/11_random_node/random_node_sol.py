@@ -73,6 +73,17 @@ class Node:
         return 'data: {0}  left: {1}  right: {2}  size: {3}'.format(self.data, left, right, self.size)
 
 
+def print_tree(head):
+    queue = [head]
+
+    while len(queue) > 0:
+        head_node = queue.pop(0)
+        print(head_node)
+        if head_node.left is not None:
+            queue.append(head_node.left)
+        if head_node.right is not None:
+            queue.append(head_node.right)
+
 
 
 
