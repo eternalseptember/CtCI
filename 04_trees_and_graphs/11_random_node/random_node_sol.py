@@ -54,7 +54,7 @@ class Node:
             else:
                 return None
         elif item > self.data:
-            if right is not None:
+            if self.right is not None:
                 return self.right.find(item)
             else:
                 return None

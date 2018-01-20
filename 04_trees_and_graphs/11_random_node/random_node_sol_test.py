@@ -18,7 +18,13 @@ for val in nodes_list:
         head.insert_in_order(val)
 
 
-print_tree(head)
+# print_tree(head)
 
+# Testing find function
+# False/None
+found = head.find(18)
+print(found)
 
-
+# True
+found = head.find(20)
+print(found)
