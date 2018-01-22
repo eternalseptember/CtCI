@@ -24,21 +24,32 @@ for val in nodes_list:
 print_tree(head)
 
 # Testing find function
-# False/None
-print('\n\nTesting find:')
-found = head.find(18)
-print(found)
-
-# True
+# Finding the head
+print('\n\n\tHead node found?')
 found = head.find(20)
 print(found)
 
-# Finding the head
-print('\nHead node found?')
-found = head.find(10)
+
+# Left of the tree
+print('\tFind something to the left of the root:')
+# True
+found = head.find(7)
 print(found)
 
-# need more tests for find function
+# False/None
+found = head.find(18)
+print(found)
+
+
+# Right of the tree
+print('\tFind something to the right of the root:')
+# True
+found = head.find(30)
+print(found)
+
+# False/None
+found = head.find(25)
+print(found)
 
 
 print('\nRandom node:')
