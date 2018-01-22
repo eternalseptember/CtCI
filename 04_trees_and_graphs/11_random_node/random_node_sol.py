@@ -21,12 +21,14 @@ class Node:
         # Java's nextInt(n) returns a random number
         # between 0 (inclusive) and n (exclusive).
         # randint in inclusive for both boundaries.
-        random_index = randint(0, self.size)
+        random_index = randint(0, self.size-1)
 
         # Testing
+        """
         print('Current node:\n\t', end='')
         print(self)
         print('Random index: {0}'.format(random_index))
+        """
 
         if random_index < left_size:
             return self.left.get_random_node()
