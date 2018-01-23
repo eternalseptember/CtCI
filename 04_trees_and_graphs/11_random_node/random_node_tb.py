@@ -17,28 +17,28 @@ print_level_order(head)
 print()
 
 
-
+"""
 # test case 1: true
 node2 = Node(2)
 node4 = Node(4)
 look_for_this_node = Node(1, node2, node4)
 
-found_node, found_head = find(head, look_for_this_node)
-print(found_node)
+found_status, found_node, parent_node = find(head, look_for_this_node)
+print(found_status)
 
 
 # test case 2: true
 look_for_this_node = Node(2)
 
-found_node, found_head = find(head, look_for_this_node)
-print(found_node)
+found_status, found_node, parent_node = find(head, look_for_this_node)
+print(found_status)
 
 
 # test case 3: false
 look_for_this_node = Node(7)
 
-found_node, found_head = find(head, look_for_this_node)
-print(found_node)
+found_status, found_node, parent_node = find(head, look_for_this_node)
+print(found_status)
 
 
 # test case 4: false
@@ -46,27 +46,28 @@ node0 = Node(0)
 node4 = Node(4)
 look_for_this_node = Node(1, node0, node4)
 
-found_node, found_head = find(head, look_for_this_node)
-print(found_node)
+found_status, found_node, parent_node = find(head, look_for_this_node)
+print(found_status)
 
 
 # test case 5: false
 node4 = Node(4)
 look_for_this_node = Node(1, None, node4)
 
-found_node, found_head = find(head, look_for_this_node)
-print(found_node)
+found_status, found_node, parent_node = find(head, look_for_this_node)
+print(found_status)
 
 
 # test case 6: true
 node1 = Node(1)
 look_for_this_node = Node(8, node1)
 
-found_node, found_head = find(head, look_for_this_node)
-print(found_node)
-
-
+found_status, found_node, parent_node = find(head, look_for_this_node)
+print(found_status)
 """
+
+
+
 # FIX DELETE FUNCTION
 # test 1 delete: false
 node5 = Node(5)
@@ -129,7 +130,7 @@ if delete_success is not None:
 else:
     print(delete_success)
 print()
-"""
+
 
 
 
