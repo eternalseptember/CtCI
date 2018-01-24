@@ -103,6 +103,11 @@ def delete(head, target):
     node_found, found_head, parent_head = find(head, target)
 
     if node_found is True:
+        # check content of nodes
+        print('parent head: {0}'.format(parent_head))
+        print('found head: {0}'.format(found_head))
+
+
         # delete policy: move the lower value upward
 
         # if the node to be deleted is the head
