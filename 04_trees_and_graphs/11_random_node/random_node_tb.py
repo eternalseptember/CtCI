@@ -68,8 +68,10 @@ print(found_status)
 
 
 
+"""
 # FIX DELETE FUNCTION
 # test 1 delete: false
+print('delete test case 1')
 node5 = Node(5)
 node2 = Node(2)
 target_node = Node(7, node5, node2)
@@ -83,6 +85,7 @@ print()
 
 
 # test 2 delete: true, deleting leaf
+print('delete test case 2')
 target_node = Node(1)
 
 delete_success = delete(head, target_node)
@@ -91,9 +94,11 @@ if delete_success is not None:
 else:
     print(delete_success)
 print()
+"""
 
 
 # test 3 delete: true, deleting root
+print('delete test case 3')
 node5 = Node(5)
 node3 = Node(3)
 target_node = Node(7, node5, node3)
@@ -106,7 +111,9 @@ else:
 print()
 
 
+"""
 # test 4 delete: true, deleting middle leaf, left has lower value
+print('delete test case 4')
 node2 = Node(2)
 node4 = Node(4)
 target_node = Node(1, node2, node4)
@@ -120,6 +127,7 @@ print()
 
 
 # test 5 delete: true, deleting middle leaf, right has lower value
+print('delete test case 5')
 node8 = Node(8)
 node1 = Node(1)
 target_node = Node(5, node8, node1)
@@ -130,7 +138,7 @@ if delete_success is not None:
 else:
     print(delete_success)
 print()
-
+"""
 
 
 
@@ -141,3 +149,4 @@ for i in range(15):
     print(random_node)
     print()
 """
+

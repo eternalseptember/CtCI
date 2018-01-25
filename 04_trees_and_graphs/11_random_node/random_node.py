@@ -59,7 +59,6 @@ def insert(head, data):
             return head
 
 
-
 def find(head, target):
     # find a node based on values
     queue = [(None, head)]
