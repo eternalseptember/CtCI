@@ -103,14 +103,13 @@ def delete(head, target):
 
     if node_found is True:
         # check content of nodes
-        print('parent head: {0}'.format(parent_head))
         print('found head: {0}'.format(found_head))
+        print('parent head: {0}'.format(parent_head))
 
 
         # delete policy: move the lower value upward
-
         # if the node to be deleted is the head
-        if parent_head == found_head:
+        if parent_head is None:  # ???
             match = 'head'
         # otherwise, figure out which child of parent_head to update
         elif parent_head.left == found_head:
@@ -130,6 +129,10 @@ def delete(head, target):
                 move_up_child = 'left'
             else:
                 move_up_child = 'right'
+
+
+        # testing
+        print('child to move up: {0}'.format(move_up_child))
 
 
         # I don't think this is quite right...
