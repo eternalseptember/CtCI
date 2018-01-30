@@ -6,15 +6,23 @@ from random import *
 
 class Tree:
     def __init__(self, root):
-        self.root = root
+        self.root = root  # should be a TreeNode
 
-    # size
+
+    def get_size(self):
+        if self.root is None:
+            return 0
+        else:
+            return self.root.size
+
 
     def get_random_node(self):
         if self.root is None:
             return None
 
-        # more stuff here
+        random_index = randint(0, self.root.size-1)
+        return self.root.get_ith_node(random_index)
+
 
     def insert_in_order(self, value):
         if self.root is None:
