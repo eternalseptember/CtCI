@@ -43,8 +43,15 @@ class TreeNode:
             left_size = 0
         else:
             self.left.size()
+
         # skipping over left_size + 1 nodes, so subtract them
 
+    def insert_in_order(self, item):
+        return None
+
+    def find(self, item):
+        # return TreeNode
+        return None
 
 
 
