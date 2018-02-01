@@ -42,9 +42,15 @@ class TreeNode:
         if self.left is None:
             left_size = 0
         else:
-            self.left.size()
+            left_size = self.left.size
 
-        # skipping over left_size + 1 nodes, so subtract them
+        if i < left_size:
+            return self.left.get_ith_node(i)
+        elif i == left_size:
+            return self
+        else:
+            # skipping over left_size + 1 nodes, so subtract them
+            return self.right.get_ith_node(i - (left_size + 1))
 
     def insert_in_order(self, item):
         return None
