@@ -6,7 +6,7 @@ from random import *
 
 class Tree:
     def __init__(self, root):
-        self.root = root  # should be a TreeNode
+        self.root = root  # should be a TreeNode.
 
 
     def get_size(self):
@@ -32,11 +32,12 @@ class Tree:
 
 
 class TreeNode:
-    def __init__(self, value, left=None, right=None):
-        self.value = value
+    def __init__(self, data, left=None, right=None):
+        self.data = data
         self.left = left
         self.right = right
         self.size = 1
+
 
     def get_ith_node(self, i):
         if self.left is None:
@@ -52,12 +53,49 @@ class TreeNode:
             # skipping over left_size + 1 nodes, so subtract them
             return self.right.get_ith_node(i - (left_size + 1))
 
+
     def insert_in_order(self, item):
-        return None
+        if item <= self.data:
+            if self.left is None:
+                self.left = Node(item)
+            else:
+                self.left.insert_in_order(item)
+        else:
+            if self.right is None:
+                self.right = Node(item)
+            else:
+                self.right.insert_in_order(item)
+
+        self.size += 1
+
 
     def find(self, item):
-        # return TreeNode
+        # returns a TreeNode
+        if item == self.data:
+            return self
+        elif item <= self.data:
+            if self.left is not None:
+                return self.left.find(item)
+            else:
+                return None
+        elif item > self.data:
+            if self.right is not None:
+                return self.right.find(item)
+            else:
+                return None
         return None
+
+
+    def __str__(self):
+        left = None
+        right = None
+
+        if self.left is not None:
+            left = self.left.data
+        if self.right is not None:
+            right = self.right.data
+
+        return 'data: {0}  left: {1}  right: {2}  size: {3}'.format(self.data, left, right, self.size)
 
 
 

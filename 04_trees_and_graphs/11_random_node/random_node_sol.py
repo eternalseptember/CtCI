@@ -1,4 +1,5 @@
-# Implementing a solution to the random node problem.
+# Option 6
+# O(log N), where N is the number of nodes.
 
 
 from random import *
@@ -51,6 +52,7 @@ class Node:
                 self.right.insert_in_order(item)
 
         self.size += 1
+
 
     def find(self, item):
         if item == self.data:
