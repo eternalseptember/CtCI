@@ -1,7 +1,7 @@
-# Testing the provided solution for the random node problem.
+# Testing option 6.
 
 
-from random_node_sol import *
+from random_node_sol_1 import *
 
 
 # Example tree from solutions manual

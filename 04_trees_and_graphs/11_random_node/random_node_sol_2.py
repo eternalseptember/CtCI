@@ -5,7 +5,7 @@ from random import *
 
 
 class Tree:
-    def __init__(self, root):
+    def __init__(self, root=None):
         self.root = root  # should be a TreeNode.
 
 
@@ -29,6 +29,10 @@ class Tree:
             self.root = TreeNode(value)
         else:
             self.root.insert_in_order(value)
+
+
+    def __str__(self):
+        return str(self.root)
 
 
 class TreeNode:
@@ -57,12 +61,12 @@ class TreeNode:
     def insert_in_order(self, item):
         if item <= self.data:
             if self.left is None:
-                self.left = Node(item)
+                self.left = TreeNode(item)
             else:
                 self.left.insert_in_order(item)
         else:
             if self.right is None:
-                self.right = Node(item)
+                self.right = TreeNode(item)
             else:
                 self.right.insert_in_order(item)
 
@@ -98,6 +102,17 @@ class TreeNode:
         return 'data: {0}  left: {1}  right: {2}  size: {3}'.format(self.data, left, right, self.size)
 
 
+def print_tree(root):
+    head = root.root
+    queue = [head]
+
+    while len(queue) > 0:
+        head_node = queue.pop(0)
+        print(head_node)
+        if head_node.left is not None:
+            queue.append(head_node.left)
+        if head_node.right is not None:
+            queue.append(head_node.right)
 
 
 
