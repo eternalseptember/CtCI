@@ -31,6 +31,13 @@ class Tree:
             self.root.insert_in_order(value)
 
 
+    def find(self, value):
+        if self.root is None:
+            return None
+        else:
+            self.root.find(value)
+
+
     def __str__(self):
         return str(self.root)
 
