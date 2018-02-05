@@ -35,7 +35,7 @@ class Tree:
         if self.root is None:
             return None
         else:
-            self.root.find(value)
+            return self.root.find(value)
 
 
     def __str__(self):
@@ -80,18 +80,18 @@ class TreeNode:
         self.size += 1
 
 
-    def find(self, item):
+    def find(self, value):
         # returns a TreeNode
-        if item == self.data:
+        if value == self.data:
             return self
-        elif item <= self.data:
+        elif value <= self.data:
             if self.left is not None:
-                return self.left.find(item)
+                return self.left.find(value)
             else:
                 return None
-        elif item > self.data:
+        elif value > self.data:
             if self.right is not None:
-                return self.right.find(item)
+                return self.right.find(value)
             else:
                 return None
         return None
