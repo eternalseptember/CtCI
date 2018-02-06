@@ -18,7 +18,7 @@ for val in nodes_list:
 
 # print_tree(head)
 
-
+"""
 # Testing find function
 # Finding the head
 print('\tHead node found?')
@@ -46,6 +46,11 @@ print(found)
 # False/None
 found = head.find(25)
 print(found)
+"""
 
+# Testing the get random node function
+for i in range(20):
+    random_node = head.get_random_node()
+    print(random_node)
 
 
