@@ -100,63 +100,6 @@ def get_paths(head, current_path=[], next_position=0, paths_list=[]):
 
 
 
-# Binary Tree 1
-node_a = Node(-1)
-node_b = Node(5)
-node_c = Node(-11)
-node_d = Node(4)
-node_e = Node(2, None, node_a)
-node_f = Node(6, node_b, node_c)
-node_g = Node(9, node_d)
-node_h = Node(7, node_e, node_f)
-node_i = Node(5, None, node_g)
-node_j = Node(-2, node_h, node_i)
-
-# Expected result: 2
-total_sum = 16
-num_of_paths = count_paths(node_j, total_sum)
-print(num_of_paths)
-
-
-# Binary Tree 2
-node_a = Node(3)
-node_b = Node(-2)
-node_c = Node(1, node_a, node_b)
-node_d = Node(4)
-node_e = Node(2, node_c, node_d)
-node_f = Node(5)
-node_g = Node(-4, node_f)
-node_h = Node(1)
-node_i = Node(1, node_h, node_g)
-node_j = Node(3)
-node_k = Node(-1, None, node_j)
-node_l = Node(4, node_k, node_i)
-node_m = Node(-3, node_e, node_l)
-node_n = Node(10)
-node_o = Node(-10, None, node_n)
-node_r = Node(-10)
-node_s = Node(10, node_r)
-node_p = Node(3, node_s, node_o)
-node_q = Node(7, node_m, node_p)
-
-# Expected result: 8
-total_sum = 10
-num_of_paths = count_paths(node_q, total_sum)
-print(num_of_paths)
-
-
-# Binary Tree 3
-node_a = Node(0)
-node_b = Node(3, None, node_a)
-node_c = Node(4, node_b)
-node_d = Node(2)
-node_e = Node(-1, node_d, node_c)
-
-# Expected result: 0
-total_sum = 0
-num_of_paths = count_paths(node_e, total_sum)
-print(num_of_paths)
-
 
 
 
