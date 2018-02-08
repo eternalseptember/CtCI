@@ -62,5 +62,21 @@ num_of_paths = count_paths(node_e, total_sum)
 print(num_of_paths)
 
 
+# Binary Tree from the solution
+node_a = Node(3)
+node_b = Node(-2)
+node_c = Node(3, node_a, node_b)
+node_d = Node(1)
+node_e = Node(2, None, node_d)
+node_f = Node(5, node_c, node_e)
+node_g = Node(11)
+node_h = Node(-3, None, node_g)
+node_i = Node(10, node_f, node_h)
+
+
+total_sum = 8
+num_of_paths = count_paths(node_i, total_sum)
+print(num_of_paths)
+
 
 

@@ -95,6 +95,7 @@ def find(head, target):
     return False, None, None
 
 
+# Wasn't implemented in the solution
 def delete(head, target):
     # remove the first node with matching head data, left data, and right data
     # return True if node has been deleted
