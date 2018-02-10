@@ -1,7 +1,8 @@
 # Testing original solution to paths with sum problem.
 
 
-from paths_with_sum import *
+# from paths_with_sum import *
+from paths_with_sum_sol import *
 
 
 # Binary Tree 1

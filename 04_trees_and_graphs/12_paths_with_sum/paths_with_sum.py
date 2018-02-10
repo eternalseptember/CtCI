@@ -37,8 +37,8 @@ def print_level_order(head):
             queue.append(head_node.right)
 
 
-def count_paths(head, value):
-    # return number of paths that sum to a given value
+def count_paths(head, target_sum):
+    # return number of paths that sum to a given target_sum
     total_paths = 0
     paths_list = get_paths(head, paths_list=[])
 
@@ -68,7 +68,7 @@ def count_paths(head, value):
                     same_path = False
 
             # count unique paths
-            if (total == value) and (same_path is False):
+            if (total == target_sum) and (same_path is False):
                 """
                 for node_counter in range(0, node_num+1):
                     print(paths_list[path_num][node_counter])
