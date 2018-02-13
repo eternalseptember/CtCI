@@ -30,5 +30,15 @@ def count_paths(head, target_sum, running_sum=0, path_count={}):
     # total_paths = path_count.get_or_default(current_sum, 0)
 
 
+def increment_hash_table(hash_table, key, delta):
+    # new_count = hash_table.get_or_default(key, 0) + delta
+    new_count = 0  # placefiller line
+    if new_count == 0:
+        # remove when zero to reduce space usage
+        hash_table.remove(key)
+    else:
+        hash_table.put(key, new_count)
+
+
 
 
