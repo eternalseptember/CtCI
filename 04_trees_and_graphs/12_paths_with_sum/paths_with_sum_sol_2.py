@@ -24,5 +24,11 @@ def count_paths(head, target_sum, running_sum=0, path_count={}):
     if head is None:
         return None
 
+    # Count paths with sum ending at the current node.
+    running_sum += head.data
+    current_sum = running_sum - target_sum
+    # total_paths = path_count.get_or_default(current_sum, 0)
+
+
 
 
