@@ -28,6 +28,17 @@ def count_paths(head, target_sum, running_sum=0, path_count={}):
     running_sum += head.data
     current_sum = running_sum - target_sum
     # total_paths = path_count.get_or_default(current_sum, 0)
+    total_paths = 0  # placefiller line
+
+    # If running_sum equals target_sum, then one additional path starts at root.
+    # Add in this path.
+    if running_sum == target_sum:
+        total_paths += 1
+
+    # Increment path_count, recurse, then decrement path_count
+
+
+    return total_paths
 
 
 def increment_hash_table(hash_table, key, delta):
