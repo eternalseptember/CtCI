@@ -36,7 +36,10 @@ def count_paths(head, target_sum, running_sum=0, path_count={}):
         total_paths += 1
 
     # Increment path_count, recurse, then decrement path_count
-
+    increment_hash_table(path_count, running_sum, 1)  # Increment path_count
+    total_paths += count_paths(head.left, target_sum, running_sum, path_count)
+    total_paths += count_paths(head.right, target_sum, running_sum, path_count)
+    increment_hash_table(path_count, running_sum, -1)  # Decrement path_count
 
     return total_paths
 
