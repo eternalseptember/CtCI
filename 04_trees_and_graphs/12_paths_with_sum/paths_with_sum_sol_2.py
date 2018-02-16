@@ -46,7 +46,12 @@ def count_paths(head, target_sum, running_sum=0, path_count={}):
 
 def increment_hash_table(hash_table, key, delta):
     # new_count = hash_table.get_or_default(key, 0) + delta
-    new_count = 0  # placefiller line
+    if key not in hash_table:
+        new_count = delta
+    else:
+        new_count = hash_table[key] + delta
+
+
     if new_count == 0:
         # remove when zero to reduce space usage
         hash_table.remove(key)
