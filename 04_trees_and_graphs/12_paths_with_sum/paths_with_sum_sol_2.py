@@ -28,7 +28,10 @@ def count_paths(head, target_sum, running_sum=0, path_count={}):
     running_sum += head.data
     current_sum = running_sum - target_sum
     # total_paths = path_count.get_or_default(current_sum, 0)
-    total_paths = 0  # placefiller line
+    if current_sum not in path_count:
+        total_paths = 0
+    else:
+        total_paths = path_count[current_sum]
 
     # If running_sum equals target_sum, then one additional path starts at root.
     # Add in this path.
