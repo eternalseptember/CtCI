@@ -59,7 +59,7 @@ def increment_hash_table(hash_table, key, delta):
         # remove when zero to reduce space usage
         hash_table.remove(key)
     else:
-        hash_table.put(key, new_count)
+        hash_table[key] = new_count
 
 
 

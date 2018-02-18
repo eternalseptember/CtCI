@@ -2,8 +2,8 @@
 # MISCOUNTED NUMBER OF PATHS FOR EXPECTED RESULTS
 
 # from paths_with_sum import *
-from paths_with_sum_sol_1 import *
-# from paths_with_sum_sol_2 import *
+# from paths_with_sum_sol_1 import *
+from paths_with_sum_sol_2 import *
 
 
 # Binary Tree 1
