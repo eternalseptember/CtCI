@@ -22,7 +22,7 @@ class Node:
 def count_paths(head, target_sum, running_sum=0, path_count={}):
     # Base case
     if head is None:
-        return None
+        return 0
 
     # Count paths with sum ending at the current node.
     running_sum += head.data
@@ -57,7 +57,7 @@ def increment_hash_table(hash_table, key, delta):
 
     if new_count == 0:
         # remove when zero to reduce space usage
-        hash_table.remove(key)
+        hash_table.pop(key)
     else:
         hash_table[key] = new_count
 
