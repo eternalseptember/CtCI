@@ -1,9 +1,9 @@
 # Testing original solution to paths with sum problem.
 # MISCOUNTED NUMBER OF PATHS FOR EXPECTED RESULTS
 
-# from paths_with_sum import *
+from paths_with_sum import *
 # from paths_with_sum_sol_1 import *
-from paths_with_sum_sol_2 import *
+# from paths_with_sum_sol_2 import *
 
 
 # Binary Tree 1
@@ -45,7 +45,7 @@ node_s = Node(10, node_r)
 node_p = Node(3, node_s, node_o)
 node_q = Node(7, node_m, node_p)
 
-# Expected result: 8
+# Expected result: 10
 total_sum = 10
 num_of_paths = count_paths(node_q, total_sum)
 print(num_of_paths)
@@ -58,7 +58,7 @@ node_c = Node(4, node_b)
 node_d = Node(2)
 node_e = Node(-1, node_d, node_c)
 
-# Expected result: 0
+# Expected result: 1
 total_sum = 0
 num_of_paths = count_paths(node_e, total_sum)
 print(num_of_paths)
@@ -75,7 +75,7 @@ node_g = Node(11)
 node_h = Node(-3, None, node_g)
 node_i = Node(10, node_f, node_h)
 
-
+# Expected result: 3
 total_sum = 8
 num_of_paths = count_paths(node_i, total_sum)
 print(num_of_paths)

@@ -24,6 +24,17 @@ class Node:
 
         return 'data: {0}  left: {1}  right: {2}'.format(self.data, left, right)
 
+    def __repr__(self):
+        left = None
+        right = None
+
+        if self.left is not None:
+            left = self.left.data
+        if self.right is not None:
+            right = self.right.data
+
+        return 'data: {0}  left: {1}  right: {2}'.format(self.data, left, right)
+
 
 def print_level_order(head):
     queue = [head]
@@ -41,6 +52,12 @@ def count_paths(head, target_sum):
     # return number of paths that sum to a given target_sum
     total_paths = 0
     paths_list = get_paths(head, paths_list=[])
+
+
+    # fixing counting error:
+    for path in paths_list:
+        print(path)
+
 
 
     for path_num in range(len(paths_list)):
