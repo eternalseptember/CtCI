@@ -118,9 +118,15 @@ def get_paths(head, current_path=[], next_position=0, paths_list=[]):
 """
 
 
-def count_paths(head, target_sum):
+def count_paths(head, target_sum, running_sum=0, paths_list={}):
+    if head is None:
+        return 0
+
+    running_sum += head.data
+
+
     total_paths = 0
-    paths_list = get_paths(head, paths_list=[])
+    
 
     return total_paths
 
