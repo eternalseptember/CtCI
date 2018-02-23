@@ -1,4 +1,8 @@
 # Solution 2: Optimized
+# O(N) time, where N is the number of nodes in the tree,
+# because it travels to each ndoe once, doing O(1) work each time.
+# In a balanced tree, the space is O(log N) due to the hash table.
+# In an unbalanced tree, space can grow to O(N).
 
 
 class Node:

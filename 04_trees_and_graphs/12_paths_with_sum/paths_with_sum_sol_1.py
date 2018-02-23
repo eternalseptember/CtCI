@@ -1,4 +1,6 @@
 # Solution 1: Brute Force
+# In a balanced tree, runtime is O(N log N).
+# In an unbalanced tree, O(N^2).
 
 
 class Node:
