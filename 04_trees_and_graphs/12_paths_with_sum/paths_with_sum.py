@@ -48,84 +48,15 @@ def print_level_order(head):
             queue.append(head_node.right)
 
 
-"""
-def count_paths(head, target_sum):
-    # return number of paths that sum to a given target_sum
-    total_paths = 0
-    paths_list = get_paths(head, paths_list=[])
-
-
-    # fixing counting error:
-    for path in paths_list:
-        print(path)
-
-
-
-    for path_num in range(len(paths_list)):
-        current_path = paths_list[path_num]
-        same_path = True
-        total = 0
-
-
-        # what if paths are different lengths?
-        if path_num > 0:
-            prev_path_num = path_num - 1
-            prev_path_length = len(paths_list[prev_path_num])
-
-
-        for node_num in range(len(current_path)):
-            total += current_path[node_num].data
-
-            # determines if the path is unique
-            if path_num == 0:
-                same_path = False
-            else:
-                if node_num >= prev_path_length:
-                    same_path = False
-                elif current_path[node_num].data != paths_list[prev_path_num][node_num].data:
-                    same_path = False
-
-            # count unique paths
-            if (total == target_sum) and (same_path is False):
-    
-                #for node_counter in range(0, node_num+1):
-                #	print(paths_list[path_num][node_counter])
-                #print()
-
-
-                total_paths += 1
-
-    return total_paths
-
-
-def get_paths(head, current_path=[], next_position=0, paths_list=[]):
-    # truncates the current path when going back up in the tree
-    if len(current_path) > next_position:
-        current_path = current_path[:next_position]
-    current_path.append(head)
-
-    if (head.left is None) and (head.right is None):
-        paths_list.append(current_path)
-        #print('\n')
-        return paths_list
-
-    if (head.left is not None):
-        paths_list = get_paths(head.left, current_path, next_position+1, paths_list)
-    if (head.right is not None):
-        paths_list = get_paths(head.right, current_path, next_position+1, paths_list)
-
-    return paths_list
-"""
-
-
 def count_paths(head, target_sum, running_sum=0, paths_list={}):
     # Base case
     if head is None:
         return 0
 
+    # Current total
     running_sum += head.data
 
-    # find total_paths
+    # Find total_paths
     total_paths = 0  # placeholder
 
     if running_sum == target_sum:
@@ -134,14 +65,16 @@ def count_paths(head, target_sum, running_sum=0, paths_list={}):
     current_sum = running_sum - target_sum
 
 
-    total_paths = 0
+
+    # Count
+    total_paths += count_paths(head.left, target_sum, running_sum, paths_list)
+    total_paths += count_paths(head.right, target_sum, running_sum, paths_list)
+
     
 
     return total_paths
 
 
-def get_paths(head, paths_list):
-    return paths_list
 
 
 
