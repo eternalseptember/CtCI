@@ -65,6 +65,12 @@ def count_paths(head, target_sum, running_sum=0, paths_list={}):
     current_sum = running_sum - target_sum
 
 
+    # Manage paths list
+    if running_sum not in paths_list:
+        paths_list[running_sum] = 1  # First path with that running sum
+    else:
+        paths_list[running_sum] += 1
+
 
     # Count
     total_paths += count_paths(head.left, target_sum, running_sum, paths_list)
