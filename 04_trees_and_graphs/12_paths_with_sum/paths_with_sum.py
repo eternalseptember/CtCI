@@ -48,33 +48,64 @@ def print_level_order(head):
             queue.append(head_node.right)
 
 
-def count_paths(head, target_sum, running_sum=0, paths_list={}):
+"""
+Original attempt was brute force:
+First, it enumerated all of the paths in the tree and stored those paths
+in a list. Time: O(N log N), where N is the number of nodes.
+
+Then, my algorithm went through each path in the list and totalled the
+value of the nodes. The total_paths was incremented if and only if the
+total was equal to the target sum, and the path was unique.
+
+
+Errors in reasoning:
+1.) The problem said that the path does not need to start at the root
+    or end at the the leaf. My original attempt did not account for this,
+    which resulted in wrong expected answers in my test cases.
+2.) I only counted paths that were unique. The original purpose was to
+    not count the same path fragment multiple times (in the event that I
+    correctly accounted for the caveat in the previous point), but it does
+    not account for the valid possibility that some values/paths could be
+    duplicated in the tree.
+3.) And therefore, I didn't have to store the list of paths. I only had to
+    store the number of paths for each sum.
+4.) In the optimized solution, the decrement hash table does what my
+    original get_paths function did by backtracking the counts.
+"""
+
+
+def count_paths(head, target_sum, running_sum=0, paths_counts={}):
     # Base case
     if head is None:
         return 0
 
-    # Current total
+    # Placeholder!!!
+    total_paths = 0
+
+    # The sum ends at the current node.
+    # running_sum begins at the root.
     running_sum += head.data
-
-    # Find total_paths
-    total_paths = 0  # placeholder
-
     if running_sum == target_sum:
         total_paths += 1
+
+
 
     current_sum = running_sum - target_sum
 
 
+    
+
+
     # Manage paths list
-    if running_sum not in paths_list:
-        paths_list[running_sum] = 1  # First path with that running sum
+    if running_sum not in paths_counts:
+        paths_counts[running_sum] = 1  # First path with that running sum
     else:
-        paths_list[running_sum] += 1
+        paths_counts[running_sum] += 1
 
 
     # Count
-    total_paths += count_paths(head.left, target_sum, running_sum, paths_list)
-    total_paths += count_paths(head.right, target_sum, running_sum, paths_list)
+    total_paths += count_paths(head.left, target_sum, running_sum, paths_counts)
+    total_paths += count_paths(head.right, target_sum, running_sum, paths_counts)
 
     
 
