@@ -96,7 +96,7 @@ def count_paths(head, target_sum, running_sum=0, paths_counts={}):
     
 
 
-    # Manage paths list
+    # Increment paths list
     if running_sum not in paths_counts:
         paths_counts[running_sum] = 1  # First path with that running sum
     else:
@@ -107,7 +107,13 @@ def count_paths(head, target_sum, running_sum=0, paths_counts={}):
     total_paths += count_paths(head.left, target_sum, running_sum, paths_counts)
     total_paths += count_paths(head.right, target_sum, running_sum, paths_counts)
 
-    
+
+    # Decrement paths list
+    if (paths_counts[running_sum] - 1) == 0:
+        paths_counts.pop(running_sum)
+    else:
+        paths_counts[running_sum] -= 1
+
 
     return total_paths
 
