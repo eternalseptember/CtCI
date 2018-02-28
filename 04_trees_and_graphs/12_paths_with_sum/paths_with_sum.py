@@ -79,21 +79,23 @@ def count_paths(head, target_sum, running_sum=0, paths_counts={}):
     if head is None:
         return 0
 
-    # Placeholder!!!
-    total_paths = 0
 
     # The sum ends at the current node.
     # running_sum begins at the root.
+    # current_sum 
     running_sum += head.data
-    if running_sum == target_sum:
-        total_paths += 1
-
-
-
     current_sum = running_sum - target_sum
 
 
-    
+    # 
+    if current_sum not in paths_counts:
+        total_paths = 0
+    else:
+        total_paths = paths_counts[current_sum]
+
+    # 
+    if running_sum == target_sum:
+        total_paths += 1
 
 
     # Increment paths list
