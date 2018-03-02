@@ -73,6 +73,18 @@ num_of_paths = count_paths(node_a, total_sum)
 print(num_of_paths)
 
 
+
+# Binary Tree 5
+node_a = Node(4)
+node_b = Node(4)
+node_c = Node(4, node_a, node_b)
+
+# Expected result: 3
+total_sum = 4
+num_of_paths = count_paths(node_c, total_sum)
+print(num_of_paths)
+
+
 # Binary Tree from the solution
 node_a = Node(3)
 node_b = Node(-2)
