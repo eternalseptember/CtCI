@@ -1,8 +1,8 @@
 # Test cases for insertion problem.
 
 
-from insertion import *
-# from insertion_sol import *
+# from insertion import *
+from insertion_sol import *
 
 
 # Test case 1
