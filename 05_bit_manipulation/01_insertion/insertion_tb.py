@@ -13,6 +13,7 @@ i = 2
 j = 6
 
 new_bit = insert_bits(N, M, i, j)
-print(new_bit)
+# result is being printed in the main function as it's being tested
+# print(new_bit)
 
 
