@@ -13,8 +13,15 @@ def string_to_binary(num):
         if len(binary_str) >= 32:
             return "Error"
 
+        r = num * 2
+        if (r >= 1):
+            binary_str += '1'
+            num = r - 1
+        else:
+            binary_str += '0'
+            num = r
 
 
-    return None
+    return binary_str
 
 
