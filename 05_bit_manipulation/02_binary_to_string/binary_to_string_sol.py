@@ -3,7 +3,7 @@
 
 def string_to_binary(num):
     if (num >= 1) or (num <= 0):
-        return "Error"
+        return "Error 1"
 
 
     binary_str = '.'
@@ -11,7 +11,7 @@ def string_to_binary(num):
     while num > 0:
         # setting a limit on length: 32 characters
         if len(binary_str) >= 32:
-            return "Error"
+            return "Error 2"
 
         r = num * 2
         if (r >= 1):

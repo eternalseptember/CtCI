@@ -1,8 +1,8 @@
 # Test cases for the binary to string problem.
 
 
-from binary_to_string import *
-# from binary_to_string_sol import *
+# from binary_to_string import *
+from binary_to_string_sol import *
 
 
 # Test case 1: how to approach this problem using integers
