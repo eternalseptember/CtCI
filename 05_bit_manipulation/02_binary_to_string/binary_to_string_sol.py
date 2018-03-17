@@ -16,7 +16,7 @@ def string_to_binary(num):
             return "Error 2"
 
         r = num * 2
-        print(r)
+        print('r: {0}'.format(r))
 
         if (r >= 1):
             binary_str += '1'
@@ -24,6 +24,9 @@ def string_to_binary(num):
         else:
             binary_str += '0'
             num = r
+
+        print('binary str: {0}'.format(binary_str))
+        print('num: {0}'.format(num))
 
         print()
 

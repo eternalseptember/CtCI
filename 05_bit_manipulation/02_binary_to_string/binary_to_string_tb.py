@@ -18,8 +18,8 @@ print(result_2)
 
 
 # Test case 2
-# inp = 0.72
-inp = 0.893
+inp = 0.72
+# inp = 0.893
 print(string_to_binary(inp))
 
 
