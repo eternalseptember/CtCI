@@ -5,7 +5,7 @@
 from binary_to_string_sol import *
 
 
-# Test case 1: how to approach this problem using integers
+# Test case 1: How to approach this problem using integers?
 # Expected result: 10
 """
 inp = 2
@@ -16,11 +16,21 @@ result_2 = binary_to_int(result_1)
 print(result_2)
 """
 
-
 # Test case 2
-inp = 0.72
-# inp = 0.893
+# Expected result = 0.101
+inp = 0.625
 print(string_to_binary(inp))
 
+"""
+# Test case 3
+# Expected result = ???
+inp = 0.72
+print(string_to_binary(inp))
+
+# Test case 4
+# Expected result = ???
+inp = 0.893
+print(string_to_binary(inp))
+"""
 
 
