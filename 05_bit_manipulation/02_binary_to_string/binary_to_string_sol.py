@@ -3,7 +3,7 @@
 
 def string_to_binary(num):
     if (num >= 1) or (num <= 0):
-        return "Error 1"
+        return "Error. Range is 0 < number < 1."
 
 
     binary_str = '.'
@@ -13,7 +13,7 @@ def string_to_binary(num):
 
         # setting a limit on length: 32 characters
         if len(binary_str) >= 32:
-            return "Error 2"
+            return "Error. Cannot be represented accurately with at most 32 chars."
 
         r = num * 2
         # print('r: {0}'.format(r))
@@ -25,11 +25,10 @@ def string_to_binary(num):
             binary_str += '0'
             num = r
 
-        """
+
         print('binary str: {0}'.format(binary_str))
-        print('num: {0}'.format(num))
-        print()
-        """
+        # print('num: {0}'.format(num))
+        # print()
 
 
     return binary_str
