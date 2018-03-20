@@ -23,37 +23,20 @@ def string_to_binary(num):
     bin_result = []
     div_result = int(dec_num)
 
-    while ((div_result > 0) and (len(bin_result) < 32)):
+    while (div_result > 0):
+        # The result should not be returned.
+        if len(bin_result) >= 32:
+            return 'ERROR'
+
         rem = div_result % 2
         div_result = div_result // 2
         bin_result.insert(0, rem)
 
-    # ??? shift the binary???
+
+    bin_string = ''.join(str(x) for x in bin_result)
+    return bin_string
 
 
-    # checks to see if result should be returned
-    if (div_result == 0) or (len(bin_result) <= 32):
-        bin_string = ''.join(str(x) for x in bin_result)
-        return bin_string
-    else:
-        return 'ERROR'
-
-
-
-def binary_to_int(bin_str):
-    bin_list = []
-    int_total = 0
-    bit_pos = 0
-
-    for bit in list(bin_str):
-        bin_list.append(int(bit))
-
-    while len(bin_list) > 0:
-        current_bit = bin_list.pop()
-        int_total += (current_bit * 2**bit_pos)
-        bit_pos += 1
-
-    return int_total
 
 
 
