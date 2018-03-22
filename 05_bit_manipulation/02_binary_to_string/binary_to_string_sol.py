@@ -30,7 +30,7 @@ def string_to_binary(num):
 
 def string_to_binary(num):
     if (num >= 1) or (num <= 0):
-        return "Error. Range is 0 < number < 1."
+        return "ERROR. Range is 0 < number < 1."
 
     binary_str = '.'
     frac = 0.5
@@ -38,7 +38,7 @@ def string_to_binary(num):
     while num > 0:
         # setting a limit on length: 32 characters
         if len(binary_str) >= 32:
-            return "Error. Cannot be represented accurately with at most 32 chars."
+            return "ERROR. Cannot be represented accurately with at most 32 chars."
 
         if (num >= frac):
             binary_str += '1'
