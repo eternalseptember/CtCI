@@ -6,35 +6,27 @@ represented accurately in binary with at most 32 characters, print "ERROR".
 
 
 def string_to_binary(num):
-    dec_places = 0
-    dec_point_found = False
-    dec_num = ''
+    if (num >= 1) or (num <= 0):
+        return "ERROR. Range is 0 < number < 1."
 
-    # gets the number of decimal places and
-    # the number to convert to binary
-    for char in str(num):
-        if char == '.':
-            dec_point_found = True
-        elif dec_point_found:
-            dec_num += char
-            dec_places += 1
+    bin_result = '.'
 
-    # converts the number after the decimal point to binary
-    bin_result = []
-    div_result = int(dec_num)
-
-    while (div_result > 0):
+    while (num > 0):
         # The result should not be returned.
         if len(bin_result) >= 32:
-            return 'ERROR'
+            return 'ERROR. Cannot be represented accurately with at most 32 chars.'
 
-        rem = div_result % 2
-        div_result = div_result // 2
-        bin_result.insert(0, rem)
+        mult_result = num * 2
+
+        if (mult_result >= 1):
+            bin_result += '1'
+            num = mult_result - 1
+        else:
+            bin_result += '0'
+            num = mult_result
 
 
-    bin_string = ''.join(str(x) for x in bin_result)
-    return bin_string
+    return bin_result
 
 
 
