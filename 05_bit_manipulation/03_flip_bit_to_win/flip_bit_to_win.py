@@ -63,15 +63,6 @@ def convert_to_binary(num):
     return bin_digits
 
 
-# Testing
-# Input: 1775 (11 0 111 0 1111)
-# Output: 8 (11 0 111 1 1111)
-
-inp = 1775
-conseq_ones = longest_sequence_of_ones(inp)
-print(conseq_ones)
-
-
 
 
 
