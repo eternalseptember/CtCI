@@ -17,5 +17,10 @@ print(longest_sequence_of_ones(1775))
 print(longest_sequence_of_ones(0))
 
 
+# Test case 3
+# Input: -1
+# Output: ???
+print(longest_sequence_of_ones(-1))
+
 
 
