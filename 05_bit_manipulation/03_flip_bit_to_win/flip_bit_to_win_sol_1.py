@@ -31,11 +31,18 @@ def get_alternating_sequences(num):
         counter += 1
         # n >>>= 1
 
+    seq_list.append(counter)
+
     return seq_list
 
 
 def find_longest_sequence(seq_list):
+    # Given the lengths of alternating sequence of 0's and 1's,
+    # find the longest one we can build.
     max_seq = 1
+
+    for i in range(0, len(seq_list), 2):
+        # zeros_seq = seq.get(1)
 
     return max_seq
 
