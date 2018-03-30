@@ -42,7 +42,19 @@ def find_longest_sequence(seq_list):
     max_seq = 1
 
     for i in range(0, len(seq_list), 2):
-        # zeros_seq = seq.get(1)
+        zeros_seq = seq_list[i]
+
+        if (i - 1) >= 0:
+            ones_seq_right = seq_list[i - 1]
+        else:
+            ones_seq_right = 0
+
+        if (i + 1) < len(seq_list):
+            ones_seq_left = seq_list[i + 1]
+        else:
+            ones_seq_left = 0
+
+        this_seq = 0
 
     return max_seq
 
