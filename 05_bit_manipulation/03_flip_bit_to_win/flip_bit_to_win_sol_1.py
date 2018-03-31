@@ -55,6 +55,17 @@ def find_longest_sequence(seq_list):
             ones_seq_left = 0
 
         this_seq = 0
+        if zeros_seq == 1:
+            # can merge
+            this_seq = ones_seq_left + 1 + ones_seq_right
+        elif zeros_seq > 1:
+            # just add a zero to either side
+            this_seq = 1 + max(ones_seq_right, ones_seq_left)
+        elif zeros_seq == 0:
+            # no zero, but take either side
+            this_seq = max(ones_seq_right, ones_seq_left)
+
+        max_seq = max(this_seq, max_seq)
 
     return max_seq
 
