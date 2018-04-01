@@ -29,7 +29,9 @@ def get_alternating_sequences(num):
             counter = 0
 
         counter += 1
-        # n >>>= 1
+
+        # num >>>= 1; >>> is zero-fill right shift
+        num = num >> 1
 
     seq_list.append(counter)
 
