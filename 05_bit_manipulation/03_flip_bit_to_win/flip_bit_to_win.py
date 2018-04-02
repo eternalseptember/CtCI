@@ -6,6 +6,9 @@ create.
 
 
 def longest_sequence_of_ones(num):
+    if num == -1:
+        return 32
+
     # convert to binary
     bin_str = convert_to_binary(num)
     bin_str_len = len(bin_str)
@@ -18,7 +21,9 @@ def longest_sequence_of_ones(num):
         if bin_str[i] == 0:
             zero_indexes.append(i)
             num_of_zeros += 1
-    
+
+
+
     # finds the longest sequence of ones
     longest_sequence = 0
 

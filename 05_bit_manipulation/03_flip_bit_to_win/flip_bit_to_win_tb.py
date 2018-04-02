@@ -1,8 +1,8 @@
 # Test cases for flip bit problem.
 
 
-# from flip_bit_to_win import *
-from flip_bit_to_win_sol_1 import *
+from flip_bit_to_win import *
+# from flip_bit_to_win_sol_1 import *
 
 
 # Test case 1
@@ -13,13 +13,13 @@ print(longest_sequence_of_ones(1775))
 
 # Test case 2
 # Input: 0
-# Output: 0
+# Output: 0 ???
 print(longest_sequence_of_ones(0))
 
 
 # Test case 3
 # Input: -1
-# Output: ???
+# Output: 32 ???
 print(longest_sequence_of_ones(-1))
 
 
