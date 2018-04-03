@@ -7,11 +7,14 @@ create.
 
 def longest_sequence_of_ones(num):
     if num == -1:
-        return 32
+        return "No bits are flipped."
+
 
     # convert to binary
-    bin_str = convert_to_binary(num)
+    bin_str = bin(num)[2:]  # gets the binary string
+    bin_str = [int(bit) for bit in list(bin_str)]
     bin_str_len = len(bin_str)
+
 
     # counts zeros and gets their indexes
     num_of_zeros = 0
@@ -21,7 +24,6 @@ def longest_sequence_of_ones(num):
         if bin_str[i] == 0:
             zero_indexes.append(i)
             num_of_zeros += 1
-
 
 
     # finds the longest sequence of ones
@@ -51,22 +53,6 @@ def longest_sequence_of_ones(num):
 
 
     return longest_sequence
-
-
-def convert_to_binary(num):
-    # return a string'ed version of the binary
-    bin_digits = []
-    quotient = num
-
-    while quotient > 0:
-        rem = quotient % 2
-        quotient = quotient // 2
-        bin_digits.insert(0, rem)
-
-    #bin_string = ''.join(str(x) for x in bin_digits)
-
-    return bin_digits
-
 
 
 

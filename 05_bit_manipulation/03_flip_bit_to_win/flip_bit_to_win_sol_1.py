@@ -1,12 +1,13 @@
 # Brute force solution
+# Integer.BYTES = 32?
+# O(b) time and O(b) memory, where b is the length of the sequence.
 
 
 def longest_sequence_of_ones(num):
     if num == -1:
         # -1 in binary is a string of all ones.
         # This is already the longest sequence.
-        # return Integer.bytes * 8 = 32?
-        return 32
+        return "No bits are flipped."
 
     sequences = get_alternating_sequences(num)
     return find_longest_sequence(sequences)
@@ -22,10 +23,10 @@ def get_alternating_sequences(num):
     counter = 0
 
     # i in range Integer.BYTES
-    for i in range(32):
+    for i in range(32 * 8):
         if ((num & 1) != searching_for):
             seq_list.append(counter)
-            searching_for = num & 1  # Flip 1 to 0 or 0 to 1
+            searching_for = num & 1  # Flip [1 to 0] or [0 to 1].
             counter = 0
 
         counter += 1
