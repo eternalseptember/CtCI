@@ -1,8 +1,8 @@
 # Test cases for flip bit problem.
 
 
-# from flip_bit_to_win import *
-from flip_bit_to_win_sol_1 import *
+from flip_bit_to_win import *
+# from flip_bit_to_win_sol_1 import *
 
 
 # Test case 1
@@ -32,7 +32,6 @@ print(longest_sequence_of_ones(14))
 # Test case 5
 # Input: 7 (0111)
 # Output: 4
-print(bin(7))
-print(longest_sequence_of_ones(4))
+print(longest_sequence_of_ones(7))
 
 

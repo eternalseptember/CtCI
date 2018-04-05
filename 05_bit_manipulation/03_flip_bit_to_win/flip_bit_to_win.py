@@ -26,6 +26,11 @@ def longest_sequence_of_ones(num):
             num_of_zeros += 1
 
 
+    # if the string is all ones
+    if (num_of_zeros == 0) and (bin_str_len < 33):
+        return bin_str_len + 1
+
+
     # finds the longest sequence of ones
     longest_sequence = 0
 
