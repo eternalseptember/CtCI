@@ -4,6 +4,7 @@ Brute force solution for first ~32'ish values.
 
 
 from next_number import *
+# from next_number_sol1 import *
 
 
 bin_ones_count = {}
