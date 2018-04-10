@@ -11,6 +11,11 @@ def next_sets_of_numbers(num):
 
 
 def get_next_smallest(num):
+
+    return None
+
+
+def get_next_largest(num):
     c = num
     c0 = 0
     c1 = 0
@@ -23,12 +28,15 @@ def get_next_smallest(num):
         c1 += 1
         c >>= 1
 
-    #
 
-    return None
+    p = c0 + c1  # position of right-most non-trailing zero
+
+    # Error if n == 11.. 1100... 00,
+    # then there is no bigger number with the same number of 1's.
+    if (p == 31) or (p == 0):
+        return -1
 
 
-def get_next_largest(num):
     return None
 
 
