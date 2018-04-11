@@ -36,8 +36,11 @@ def get_next_largest(num):
     if (p == 31) or (p == 0):
         return -1
 
+    num = num | (1 << p)  # flip right-most non-trailing zero
+    num = num & (~((1 << p) - 1))  # clear all bits to the right of p
+    num = num | ((1 << (c1 - 1)) - 1)  # insert (c1 - 1) ones on the right
 
-    return None
+    return num
 
 
 
