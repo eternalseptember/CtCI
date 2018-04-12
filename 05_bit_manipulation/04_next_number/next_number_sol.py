@@ -11,8 +11,20 @@ def next_sets_of_numbers(num):
 
 
 def get_next_smallest(num):
+    temp = n
+    c0 = 0
+    c1 = 0
 
-    return None
+    while (temp & 1 == 1):
+        c0 += 1
+        temp = (temp >> 1)
+
+    if (temp == 0):
+        return -1
+
+    # more stuff here
+
+    return num
 
 
 def get_next_largest(num):
