@@ -11,7 +11,7 @@ def next_sets_of_numbers(num):
 
 
 def get_next_smallest(num):
-    temp = n
+    temp = num
     c0 = 0
     c1 = 0
 
@@ -22,7 +22,11 @@ def get_next_smallest(num):
     if (temp == 0):
         return -1
 
-    # more stuff here
+    p = c0 + c1  # position of right-most non-trailing zero
+    num = num & ((~0) << (p + 1))  # clears from bit p onwards
+
+    mask = (1 << (c1 + 1)) - 1  # sequence of (c1 + 1) ones
+    num = num | (mask << (c0 - 1))
 
     return num
 
