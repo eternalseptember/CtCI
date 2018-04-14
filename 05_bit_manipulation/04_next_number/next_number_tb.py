@@ -3,8 +3,8 @@ Brute force solution for first ~32'ish values.
 """
 
 
-from next_number import *
-# from next_number_sol1 import *
+# from next_number import *
+from next_number_sol import *
 
 
 bin_ones_count = {}
@@ -16,12 +16,8 @@ pad_len = 5
 # Populate dictionary for the range
 for i in range(low, high):
     # target number
-    bin_arr = convert_to_binary(i)
-    num_of_ones = bin_arr.count(1)
-
-    # format the binary number in order to search the dictionary
-    bin_str = ''.join(str(x) for x in bin_arr)
-    bin_str = bin_str.zfill(pad_len)
+    bin_str = bin(i)[2:].zfill(pad_len)
+    num_of_ones = bin_str.count('1')
 
     try:
         bin_ones_count[num_of_ones].append(bin_str)
@@ -39,12 +35,9 @@ print()
 # Testing
 for i in range(low, high):
     # target number
-    bin_arr = convert_to_binary(i)
-    num_of_ones = bin_arr.count(1)
+    bin_str = bin(i)[2:].zfill(pad_len)
+    num_of_ones = bin_str.count('1')
 
-    # format the binary number in order to search the dictionary
-    bin_str = ''.join(str(x) for x in bin_arr)
-    bin_str = bin_str.zfill(pad_len)
 
     # this list contains the target number and the next smaller/larger number
     # with the same number of ones in its binary representation

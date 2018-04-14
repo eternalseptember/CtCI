@@ -68,23 +68,3 @@ def get_next_largest(bin_num):
     return num
 
 
-def convert_to_binary(num):
-    # return an array'ed version of the binary
-    bin_digits = []
-    quotient = num
-
-    while quotient > 0:
-        rem = quotient % 2
-        quotient = quotient // 2
-        bin_digits.insert(0, rem)
-
-    return bin_digits
-
-
-# Test
-sm, lg = next_sets_of_numbers(15)
-print('next smallest: {0}'.format(sm))
-print('next largest: {0}'.format(lg))
-
-
-
