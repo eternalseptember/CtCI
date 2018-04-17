@@ -1,8 +1,9 @@
-from conversion import *
-# from conversion_sol import *
+# from conversion import *
+from conversion_sol import *
 
 
 # Testing
+# Expected result: 2
 int_a = 29  # 11101
 int_b = 15  # 01111
 result = number_of_bits_to_flip(int_a, int_b)
