@@ -20,8 +20,8 @@ def number_of_bits_to_flip(int_a, int_b):
 
     c = int_a ^ int_b
     while (c != 0):
-        count = count + (c & 1)
-        c = c & (c - 1)
+        count += 1
+        c = c & (c - 1)  # clear the least significant bit in c.
 
     return count
 
