@@ -27,28 +27,13 @@ def pairwise_swap(num):
 
 
 def convert_to_binary(num):
-    bin_digits = []
-    quotient = num
-
-    while quotient > 0:
-        rem = quotient % 2
-        quotient = quotient // 2
-        bin_digits.insert(0, rem)
+    bin_digits = bin(num)[2:]
+    bin_digits = [int(x) for x in bin_digits]
 
     return bin_digits
 
 
-# Testing
-# Test case 1: 101010 <-> 010101
-num = 42
-results = pairwise_swap(num)
-print(results)
 
-
-# Test case 2: 111 or 0111 <-> 1011 
-num = 7
-results = pairwise_swap(num)
-print(results)
 
 
 
