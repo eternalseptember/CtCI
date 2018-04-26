@@ -7,30 +7,27 @@ and bit 3 are swapped, and so on).
 
 def pairwise_swap(num):
     # convert to integer
-    bit_num = convert_to_binary(num)
+    bit_num = bin(num)[2:]
+    bit_num = [int(x) for x in bit_num]
 
     # if the integer has an odd number of bits, put a zero bit in front
     if len(bit_num) % 2 == 1:
         bit_num.insert(0, 0)
 
     # swap
-    bit_pairs = len(bit_num) // 2
+    bit_len = len(bit_num)
 
-    for pair in range(bit_pairs):
+    for bit_1 in range(0, bit_len, 2):
         # LSB numbering; bit_1 is left and bit_0 is right
-        bit_1 = pair * 2
         bit_0 = bit_1 + 1
 
         bit_num[bit_1], bit_num[bit_0] = bit_num[bit_0], bit_num[bit_1]
-    
-    return bit_num
 
 
-def convert_to_binary(num):
-    bin_digits = bin(num)[2:]
-    bin_digits = [int(x) for x in bin_digits]
+    res_str = ''.join(str(bit) for bit in bit_num)
 
-    return bin_digits
+    return int(res_str, 2)
+
 
 
 
