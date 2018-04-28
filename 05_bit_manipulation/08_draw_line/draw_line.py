@@ -20,7 +20,8 @@ def draw_line(screen, width, x1, x2, y):
 
 def draw_screen(screen):
     for row in screen:
-        row_binary = int_to_binary(row)
+        row_binary = bin(row)[2:]
+        row_binary = [int(bit) for bit in row_binary]
 
         # pad the binary representation for 8 bits long
         while len(row_binary) < 8:
@@ -33,36 +34,6 @@ def draw_screen(screen):
             else:
                 print('x', end=' ')
         print()
-
-
-def int_to_binary(num):
-    bin_digits = []
-    quotient = num
-
-    while quotient > 0:
-        rem = quotient % 2
-        quotient = quotient // 2
-        bin_digits.insert(0, rem)
-
-    return bin_digits
-
-
-# Testing
-# blank screen
-screen = [0, 0, 0, 0]
-draw_screen(screen)
-
-
-# _ is a blank placeholder; represents 0
-"""
-________ : 0
-__xxxx__ : 
-________ : 0
-________ : 0
-"""
-
-
-
 
 
 
