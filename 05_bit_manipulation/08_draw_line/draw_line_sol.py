@@ -1,7 +1,7 @@
 # Solution
 
 
-def draw_screen(screen, width, x1, x2, y):
+def draw_line(screen, width, x1, x2, y):
     start_offset = x1 % 8
     first_full_byte = x1 // 8
     if (start_offset != 0):

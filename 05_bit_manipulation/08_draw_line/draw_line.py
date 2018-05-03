@@ -14,8 +14,8 @@ drawLine(byte[] screen, int width, int xl, int x2, int y)
 def draw_line(screen, width, x1, x2, y):
     # length and height are synonomous in this problem
     height = len(screen)
-    
-    return None
+
+    # adjusts the screen
 
 
 def draw_screen(screen):
