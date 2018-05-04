@@ -37,3 +37,24 @@ def draw_line(screen, width, x1, x2, y):
             screen[byte_number] = screen[byte_number] | end_mask
 
 
+
+# This is not part of the solution, but is here for testing purposes.
+def draw_screen(screen):
+    for row in screen:
+        row_binary = bin(row)[2:]
+        row_binary = [int(bit) for bit in row_binary]
+
+        # pad the binary representation for 8 bits long
+        while len(row_binary) < 8:
+            row_binary.insert(0, 0)
+
+        # print the row
+        for pixel in row_binary:
+            if pixel == 0:
+                print('_', end='')
+            else:
+                print('x', end='')
+        print()
+
+
+

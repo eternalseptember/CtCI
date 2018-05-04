@@ -1,19 +1,20 @@
-from draw_line import *
-# from draw_line_sol import *
+# from draw_line import *
+from draw_line_sol import *
 
 
 # Test: Drawing blank screen
-screen = [0, 0, 0, 0]
-draw_screen(screen)
+# screen = [0, 0, 0, 0]
+# draw_screen(screen)
 
 
 # Initial test
 screen = [0, 0, 0, 0]
 width = 1
 x1 = 2
-s2 = 6
-y = 3
+x2 = 5
+y = 1
 draw_line(screen, width, x1, x2, y)
+# print(screen)
 draw_screen(screen)
 
 
