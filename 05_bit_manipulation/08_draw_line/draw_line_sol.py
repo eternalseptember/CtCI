@@ -56,5 +56,7 @@ def draw_screen(screen):
                 print('x', end='')
         print()
 
+    print()
+
 
 

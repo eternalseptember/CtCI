@@ -8,8 +8,14 @@ from draw_line_sol import *
 
 
 # Initial test
+"""
+________
+__xxxx__
+________
+________
+"""
 screen = [0, 0, 0, 0]
-width = 1
+width = 8
 x1 = 2
 x2 = 5
 y = 1
@@ -20,12 +26,18 @@ draw_screen(screen)
 
 
 
+# Testing the problem
+screen = [0, 0, 0, 0]
+width = 8
+x1 = 2
+x2 = 5
+y = 7
+draw_line(screen, width, x1, x2, y)
+# print(screen)
+draw_screen(screen)
 
-# _ is a blank placeholder; represents 0
-"""
-________ : 0
-__xxxx__ : 
-________ : 0
-________ : 0
-"""
+
+
+
+
 
