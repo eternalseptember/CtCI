@@ -3,15 +3,14 @@
 
 def insert_bits(N, M, i, j):
     # Create a mask to clear bits i through j in n.
-
-    # since the problem states 32-bit numbers
-    # all_ones = 0b1111111111111111111111111111111
-    # all_ones = 0b111
-    all_ones = bin(-1)[2:]
+    # all_ones = (1 << 32) - 1  # string of 32 ones
+    num_of_bits = len(str(N))
+    all_ones = (1 << num_of_bits) - 1
     format_print('all ones', all_ones)
 
     # 1's before position j, then 0's.
     left = all_ones << (j + 1)
+    left = int(bin(left)[-num_of_bits:], 2)  # formatting mask
     format_print('left mask', left)
 
     # 1's after position i.
@@ -33,9 +32,8 @@ def insert_bits(N, M, i, j):
 
 
 def format_print(text, item):
-    # print('{0:032b}'.format(item))  # 32-bit numbers
-    print('{0:>12}: {1:08b}'.format(text, item))
-    # print('{0:>12}: {1:b}'.format(text, item))
+    # print('{0:>12}: {1:08b}'.format(text, item))
+    print('{0:>12}: {1:b}'.format(text, item))
 
 
 

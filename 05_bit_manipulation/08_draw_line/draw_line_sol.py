@@ -2,6 +2,7 @@
 
 
 def draw_line(screen, width, x1, x2, y):
+    # Draw a horizontal line from (xl, y) to (x2, y).
     start_offset = x1 % 8
     first_full_byte = x1 // 8
     if (start_offset != 0):
