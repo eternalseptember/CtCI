@@ -22,12 +22,10 @@ def insert_bits(N, M, i, j):
     format_print('mask', mask)
 
     # Clear bits j through i, then put m in there.
-    n_cleared = N & mask  # Clear bits j through i.
-
-    # testing
-    format_print('n cleared', n_cleared)
-
-    m_shifted = M << i  # Move m into correct position.
+    new_N = int(str(N), 2)
+    new_M = int(str(M), 2)
+    n_cleared = new_N & mask  # Clear bits j through i.
+    m_shifted = new_M << i  # Move m into correct position.
 
     # OR them.
     result = n_cleared | m_shifted
