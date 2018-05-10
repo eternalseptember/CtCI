@@ -7,7 +7,8 @@ from insertion_sol import *
 # left  = 11100000
 # right = 00000011
 # mask  = 11100011
-N = 10000000000
+# N = 10000000000
+N = 10000011100  # the bits need to be cleared are marked
 M = 101
 i = 2
 j = 4
@@ -18,7 +19,8 @@ print()
 
 
 # Test case 1: N = 10001001100
-N = 10000000000
+# N = 10000000000
+N = 10001111100  # the bits need to be cleared are marked
 M = 10011
 i = 2
 j = 6
