@@ -16,8 +16,16 @@ new_bit = insert_bits(N, M, i, j)
 print('{0:b}'.format(new_bit))
 
 
-# Test case 1: N = 10001001100
-# N = 10000000000
+# Test case 1: N = 10000010100
+N = 10000000000
+M = 101
+i = 2
+j = 4
+new_bit = insert_bits(N, M, i, j)
+print('{0:b}'.format(new_bit))
+
+
+# Test case 2: N = 10001001100
 N = 10001111100  # the bits need to be cleared are marked
 M = 10011
 i = 2
@@ -26,14 +34,15 @@ new_bit = insert_bits(N, M, i, j)
 print('{0:b}'.format(new_bit))
 
 
-# Test case 2: N = 10001001100
-# N = 10000000000
+# Test case 3: N = 10001001100
 N = 10000000000
 M = 10011
 i = 2
 j = 6
 new_bit = insert_bits(N, M, i, j)
 print('{0:b}'.format(new_bit))
+
+
 
 
 
