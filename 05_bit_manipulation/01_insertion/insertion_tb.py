@@ -43,6 +43,14 @@ new_bit = insert_bits(N, M, i, j)
 print('{0:b}'.format(new_bit))
 
 
+# Test case 4: 10000010
+# Even-numbered digits
+N = 10101010
+M = 0000
+i = 2
+j = 5
+new_bit = insert_bits(N, M, i, j)
+print('{0:b}'.format(new_bit))
 
 
 
