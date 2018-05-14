@@ -53,6 +53,16 @@ new_bit = insert_bits(N, M, i, j)
 print('{0:b}'.format(new_bit))
 
 
+# Test case 5: 1110110
+# Clearing the whole thing
+N = 1001001
+M = 1110110
+i = 0
+j = 6
+new_bit = insert_bits(N, M, i, j)
+print('{0:b}'.format(new_bit))
+
+
 
 
 
