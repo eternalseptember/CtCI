@@ -28,6 +28,10 @@ def draw_line(screen, width, x1, x2, y):
     if ((x1 // 8) == (x2 // 8)):
         # x1 and x2 are in the same byte.
         mask = start_mask & end_mask  # cast result to byte
+
+        # testing
+        index_val = (width // 8) * y + (x1 // 8)
+        print('index bound: {0}'.format(index_val))
         screen[(width // 8) * y + (x1 // 8)] = (screen[(width // 8) * y + (x1 // 8)]) | mask
     else:
         if (start_offset != 0):
