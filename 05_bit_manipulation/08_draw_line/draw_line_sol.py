@@ -13,10 +13,27 @@ def draw_line(screen, width, x1, x2, y):
     if (end_offset != 7):
         last_full_byte -= 1
 
+    # testing
+    print('start offset: {0}'.format(start_offset))
+    print('first full byte: {0}'.format(first_full_byte))
+    print('end offset: {0}'.format(end_offset))
+    print('last full byte: {0}'.format(last_full_byte))
+    print()
+
 
     # Set full bytes.
     for b in range(first_full_byte, last_full_byte + 1):
+        # testing
+        pixel = (width // 8) * y + b
+        print('pixel: {0}'.format(pixel))
+
         screen[(width // 8) * y + b] = 0xFF  # cast result to byte
+
+    # testing
+    print()
+    print('printing the screen after \'set full bytes\'')
+    print(screen)
+    print()
 
 
     # Create masks for start and end of line.
@@ -30,8 +47,8 @@ def draw_line(screen, width, x1, x2, y):
         mask = start_mask & end_mask  # cast result to byte
 
         # testing
-        index_val = (width // 8) * y + (x1 // 8)
-        print('index bound: {0}'.format(index_val))
+        #index_val = (width // 8) * y + (x1 // 8)
+        #print('index bound: {0}'.format(index_val))
         screen[(width // 8) * y + (x1 // 8)] = (screen[(width // 8) * y + (x1 // 8)]) | mask
     else:
         if (start_offset != 0):
