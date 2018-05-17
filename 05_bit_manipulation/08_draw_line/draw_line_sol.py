@@ -66,13 +66,6 @@ def draw_screen(screen):
         row_binary = bin(row)[2:]
         row_binary = [int(bit) for bit in row_binary]
 
-        # pad the binary representation for 8 bits long
-        extra_bits = len(row_binary) % 8
-
-        if (extra_bits != 0):
-            for bit_padding in range(extra_bits, 8):
-                row_binary.insert(0, 0)
-
         # print the row
         for pixel in row_binary:
             if pixel == 0:

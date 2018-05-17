@@ -2,10 +2,6 @@
 from draw_line_sol import *
 
 
-# Test: Drawing blank screen
-# screen = [0, 0, 0, 0]
-# draw_screen(screen)
-
 """
 # 'xxxx' on second line from top
 screen = [0, 0, 0, 0]
@@ -38,15 +34,18 @@ draw_screen(screen)
 """
 
 
-# Trying to get a longer line
-# width: 16; height: 8
-screen = [0, 0, 0, 0, 0, 0, 0, 0]
-width = 16  # can be larger than the number of entries in the screen
-x1 = 10
-x2 = 14
-y = 7  # 7 is the max limit because row split
+# Trying to get a longer line.
+# Each byte is 8 consecutive pixels.
+# Two consecutive bytes make up a line on the screen.
+# Screen's width is 16.
+# Screen's height is 8.
+
+screen = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+width = 16  # Can be larger than the number of entries in the screen?
+x1 = 0
+x2 = 15 # Theoretically, this is one full line.
+y = 7  # Width is numbered 0 to 7. 7 is the last line.
 draw_line(screen, width, x1, x2, y)
-print(screen)
 draw_screen(screen)
 
 

@@ -32,7 +32,7 @@ def draw_screen(screen):
             if pixel == 0:
                 print('_', end='')
             else:
-                print('x', end=' ')
+                print('x', end='')
         print()
 
 
