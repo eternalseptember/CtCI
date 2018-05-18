@@ -13,42 +13,20 @@ def draw_line(screen, width, x1, x2, y):
     if (end_offset != 7):
         last_full_byte -= 1
 
-    # testing
-    print('start offset: {0}'.format(start_offset))
-    print('first full byte: {0}'.format(first_full_byte))
-    print('end offset: {0}'.format(end_offset))
-    print('last full byte: {0}'.format(last_full_byte))
-    print()
-
-
     # Set full bytes.
     for b in range(first_full_byte, last_full_byte + 1):
-        # testing
-        pixel = (width // 8) * y + b
-        print('pixel: {0}'.format(pixel))
-
-        screen[(width // 8) * y + b] = 0xFF  # cast result to byte
-
-    # testing
-    print()
-    print('printing the screen after \'set full bytes\'')
-    print(screen)
-    print()
+        screen[(width // 8) * y + b] = 0xFF
 
 
     # Create masks for start and end of line.
-    start_mask = (0xFF >> start_offset)  # cast result to byte
-    end_mask = ~(0xFF >> (end_offset + 1))  # cast result to byte
+    start_mask = (0xFF >> start_offset)
+    end_mask = ~(0xFF >> (end_offset + 1))
 
 
     # Set start and end of line.
     if ((x1 // 8) == (x2 // 8)):
         # x1 and x2 are in the same byte.
-        mask = start_mask & end_mask  # cast result to byte
-
-        # testing
-        #index_val = (width // 8) * y + (x1 // 8)
-        #print('index bound: {0}'.format(index_val))
+        mask = start_mask & end_mask
         screen[(width // 8) * y + (x1 // 8)] = (screen[(width // 8) * y + (x1 // 8)]) | mask
     else:
         if (start_offset != 0):
@@ -59,22 +37,31 @@ def draw_line(screen, width, x1, x2, y):
             screen[byte_number] = screen[byte_number] | end_mask
 
 
-
 # This is not part of the solution, but is here for testing purposes.
-def draw_screen(screen):
-    for row in screen:
-        row_binary = bin(row)[2:]
-        row_binary = [int(bit) for bit in row_binary]
+def draw_screen(screen, width):
+    height = len(screen) * 8 // width
+    columns = width // 8
+    screen_index = 0
 
-        # print the row
-        for pixel in row_binary:
-            if pixel == 0:
-                print('_', end='')
-            else:
-                print('x', end='')
+    for row in range(height):
+
+        for column in range(columns):
+            pixel_group = screen[screen_index]
+
+            # Convert pixel to bit representation.
+            pixels = bin(pixel_group)[2:].zfill(8)
+
+            # Print line.
+            for pixel in pixels:
+                if pixel == '0':
+                    print('_', end='')
+                elif pixel == '1':
+                    print('x', end='')
+
+            screen_index += 1
+
         print()
 
     print()
-
 
 

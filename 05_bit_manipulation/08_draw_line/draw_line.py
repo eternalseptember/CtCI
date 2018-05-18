@@ -12,27 +12,33 @@ drawLine(byte[] screen, int width, int xl, int x2, int y)
 
 
 def draw_line(screen, width, x1, x2, y):
-    # length and height are synonomous in this problem
-    height = len(screen)
+    height = len(screen) * 8 // width
 
     # adjusts the screen
 
 
-def draw_screen(screen):
-    for row in screen:
-        row_binary = bin(row)[2:]
-        row_binary = [int(bit) for bit in row_binary]
+def draw_screen(screen, width):
+    height = len(screen) * 8 // width
+    columns = width // 8
+    screen_index = 0
 
-        # pad the binary representation for 8 bits long
-        while len(row_binary) < 8:
-            row_binary.insert(0, 0)
+    for row in range(height):
 
-        # print the row
-        for pixel in row_binary:
-            if pixel == 0:
-                print('_', end='')
-            else:
-                print('x', end='')
+        for column in range(columns):
+            pixel_group = screen[screen_index]
+
+            # Convert pixel to bit representation.
+            pixels = bin(pixel_group)[2:].zfill(8)
+
+            # Print line.
+            for pixel in pixels:
+                if pixel == '0':
+                    print('_', end='')
+                elif pixel == '1':
+                    print('x', end='')
+
+            screen_index += 1
+
         print()
 
 
