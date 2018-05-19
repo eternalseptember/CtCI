@@ -3,15 +3,16 @@
 
 def draw_line(screen, width, x1, x2, y):
     # Draw a horizontal line from (xl, y) to (x2, y).
-    start_offset = x1 % 8
     first_full_byte = x1 // 8
+    start_offset = x1 % 8
     if (start_offset != 0):
         first_full_byte += 1
 
-    end_offset = x2 % 8
     last_full_byte = x2 // 8
+    end_offset = x2 % 8
     if (end_offset != 7):
         last_full_byte -= 1
+
 
     # Set full bytes.
     for b in range(first_full_byte, last_full_byte + 1):
@@ -38,7 +39,7 @@ def draw_line(screen, width, x1, x2, y):
 
 
 # This is not part of the solution, but is here for testing purposes.
-def draw_screen(screen, width):
+def print_screen(screen, width):
     height = len(screen) * 8 // width
     columns = width // 8
     screen_index = 0

@@ -12,12 +12,41 @@ drawLine(byte[] screen, int width, int xl, int x2, int y)
 
 
 def draw_line(screen, width, x1, x2, y):
-    height = len(screen) * 8 // width
+    columns = width // 8
+    first_index = y * columns
+    last_index = first_index + columns  # exclusive
+    this_index = first_index
+    y_pixel = 0
 
-    # adjusts the screen
+
+    # Draw line from left to right.
+    if x2 < x1:
+        x1, x2 = x2, x1
+
+    while this_index < last_index:
+        last_pixel_here = y_pixel + 7  # inclusive
+
+        if last_pixel_here < x1:
+            # Line has not begun.
+            y_pixel += 8
+        else:
+            # x1 <= last_pixel_here
+    
+            # Entire line is set.
+
+            # Line begins on this pixel group.
+            # Start drawing the line.
+
+            # Convert to binary.
+
+            # Store the new value.
 
 
-def draw_screen(screen, width):
+
+        this_index += 1
+
+
+def print_screen(screen, width):
     height = len(screen) * 8 // width
     columns = width // 8
     screen_index = 0
