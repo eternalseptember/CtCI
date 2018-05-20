@@ -18,30 +18,41 @@ def draw_line(screen, width, x1, x2, y):
     this_index = first_index
     y_pixel = 0
 
-
-    # Draw line from left to right.
+    # Fix coordinates to draw from left to right.
     if x2 < x1:
         x1, x2 = x2, x1
 
+    # Start at the correct line height.
     while this_index < last_index:
         last_pixel_here = y_pixel + 7  # inclusive
 
-        if last_pixel_here < x1:
+        if (last_pixel_here < x1):
             # Line has not begun.
             y_pixel += 8
+
         else:
-            # x1 <= last_pixel_here
-    
-            # Entire line is set.
+            # Line begins or continues here.
+            pixel_group = screen[this_index]
+            pixel_group = bin(pixel_group)[2:].zfill(8)
+            new_value = ''
 
-            # Line begins on this pixel group.
             # Start drawing the line.
+            for bit in pixel_group:
+                # Check when line should begin and stop.
+                if (x1 <= y_pixel) and (y_pixel <= x2):
+                    new_value += '1'
+                else:
+                    new_value += bit
 
-            # Convert to binary.
+                y_pixel += 1
 
-            # Store the new value.
+            # Convert string back to integer and store in screen array.
+            new_value = int(new_value, 2)
+            screen[this_index] = new_value
 
-
+        # Check if the line ends here.
+        if (x2 <= last_pixel_here):
+            break
 
         this_index += 1
 
@@ -69,6 +80,8 @@ def print_screen(screen, width):
             screen_index += 1
 
         print()
+
+    print()
 
 
 

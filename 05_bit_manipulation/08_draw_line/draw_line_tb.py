@@ -1,5 +1,5 @@
-# from draw_line import *
-from draw_line_sol import *
+from draw_line import *
+# from draw_line_sol import *
 
 
 # Each byte is 8 consecutive pixels.
@@ -63,6 +63,7 @@ x1 = 0
 x2 = 15  # Full line across.
 y = 7  # 7 is the last line.
 draw_line(screen, width, x1, x2, y)
+
 print_screen(screen, width)
 
 
@@ -96,9 +97,36 @@ x1 = 7
 x2 = 16  # Full byte in the middle and an extra pixel on each side.
 y = 4
 draw_line(screen, width, x1, x2, y)
+
 print_screen(screen, width)
 
 
+# *****************************************************************************
+
+
+# Screen's width is 48.
+# Screen's height is 16.
+# A line across the screen is 6 consecutive bytes.
+# Each line of the array has a screen height of 2.
+screen = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+width = 48
+
+"""
+# Line 1
+x1 = 0
+x2 = 0
+y = 0
+draw_line(screen, width, x1, x2, y)
+"""
+
+print_screen(screen, width)
 
 
 
