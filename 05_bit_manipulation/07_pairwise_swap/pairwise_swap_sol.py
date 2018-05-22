@@ -7,9 +7,8 @@ def pairwise_swap(num):
     # >>> is zero-fill right shift
     odd_mask = (num & 0xaaaaaaaa) >> 1
     even_mask = (num & 0x55555555) << 1
-    result = odd_mask | even_mask
-    # print(result)
-    return result
+    return odd_mask | even_mask
+
 
 
 
