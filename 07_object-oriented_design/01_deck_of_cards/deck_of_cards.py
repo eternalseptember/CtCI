@@ -37,7 +37,8 @@ class Deck():
         num_of_cards = len(self.cards)
         new_deck = []
 
-        for rand_num in randrange(num_of_cards):
+        while num_of_cards > 0:
+            rand_num = randrange(num_of_cards)
             new_deck.append(self.cards.pop(rand_num))
             num_of_cards -= 1
 
@@ -65,7 +66,8 @@ class Deck():
 
 class Blackjack_Game():
     def __init__(self):
-        new_deck = Deck().shuffle()
+        deck = Deck()
+        deck.shuffle()
 
     # aces are 1 or 11
     # deal two cards to players
