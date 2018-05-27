@@ -64,10 +64,35 @@ class Deck():
         return deck_list
 
 
+class Hand():
+    def __init__(self, player_name):
+        self.player_name = player_name
+        self.hand = []
+
+
+    def get_card(self, new_card):
+        self.hand.append(new_card)
+
+
+    def __str__(self):
+        return '{0}\'s hand: \n\t{1}'.format(self.player_name, self.hand)
+
+
 class Blackjack_Game():
     def __init__(self):
-        deck = Deck()
-        deck.shuffle()
+        self.players = {}
+        self.deck = Deck()
+        self.deck.shuffle()
+
+
+    def add_player(self, player_name):
+        self.players[player_name] = Hand(player_name)
+
+
+    def deal_cards_to_everyone(self):
+        for player in self.players:
+            new_card = self.deck.deal()
+            self.players[player].get_card(new_card)
 
     # aces are 1 or 11
     # deal two cards to players
