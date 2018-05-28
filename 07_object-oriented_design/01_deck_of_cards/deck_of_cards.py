@@ -80,28 +80,57 @@ class Hand():
 
 class Blackjack_Game():
     def __init__(self):
+        self.play_order = []
         self.players = {}
         self.deck = Deck()
         self.deck.shuffle()
 
 
     def add_player(self, player_name):
+        self.play_order.append(player_name)
         self.players[player_name] = Hand(player_name)
 
 
     def deal_cards_to_everyone(self):
-        for player in self.players:
-            new_card = self.deck.deal()
-            self.players[player].get_card(new_card)
+        for player in self.play_order:
+            if len(self.deck) > 0:
+                new_card = self.deck.deal()
+                self.players[player].get_card(new_card)
 
-    # aces are 1 or 11
-    # deal two cards to players
-    # anyone with ace and ten/suits wins
 
-    # players decide to draw or not
-    # when all players have stopped drawing cards
-    # the players with 21 in their hand wins
-    # else the players closest to 21 without going over wins
+    def check_for_winners(self):
+        # aces are 1 or 11
+        # anyone with ace and ten/suits wins
+
+        # the players with 21 in their hand wins
+        # else the players closest to 21 without going over wins
+        # return the list of winners
+        return None
+
+
+    def deal_additional_cards(self):
+        # ask which players want an additional card
+        want_more_cards = self.play_order[:]
+
+        # if the player does not want another card
+        # remove from want_more_cards
+
+        return None
+
+
+    def begin_game(self):
+        if len(self.play_order) <= 0:
+            print("No players in the game")
+            return
+
+        self.deal_cards_to_everyone()
+        self.deal_cards_to_everyone()
+
+        """
+        self.check_for_winners()
+        self.deal_additional_cards()
+        self.check_for_winners()
+        """
 
 
 
