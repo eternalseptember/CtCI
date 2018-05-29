@@ -3,11 +3,24 @@ Design the data structure for a generic deck of cards.
 Explain how you would subclass the data structures to implement blackjack.
 """
 
+"""
+Blackjack rules implemented:
+All players are dealt face up cards.
+Dealer gets one card faced up and one card faced down.
+"""
+
 
 class Card():
     def __init__(self, rank, suit):
         self.rank = rank
         self.suit = suit
+
+        if type(rank) is int:
+            self.value = rank
+        elif rank is not 'Ace':
+            self.value = 10
+        else:
+            self.value = 'Ace'
 
     def __str__(self):
         return '{0} of {1}'.format(self.rank, self.suit)
@@ -47,9 +60,13 @@ class Deck():
 
     def deal(self):
         if len(self.cards) > 0:
-            return self.cards.pop()
+            return self.cards.pop(0)
         else:
             return None
+
+
+    def __len__(self):
+        return len(self.cards)
 
 
     def __str__(self):
@@ -68,14 +85,35 @@ class Hand():
     def __init__(self, player_name):
         self.player_name = player_name
         self.hand = []
+        self.totals = 0
 
 
     def get_card(self, new_card):
         self.hand.append(new_card)
 
 
+    def calculate_values(self):
+        num_of_aces = 0
+        base_total = 0
+
+        for card in self.hand:
+            if type(card.value) is int:
+                base_total += card.value
+            else:
+                num_of_aces += 1
+
+
+
     def __str__(self):
-        return '{0}\'s hand: \n\t{1}'.format(self.player_name, self.hand)
+        if len(self.hand) == 0:
+            in_hand = 'Empty'
+        else:
+            in_hand = ''
+
+            for card in self.hand:
+                in_hand += '{0}\n'.format(card)
+
+        return '\t\t{0}\'s hand: \n{1}'.format(self.player_name, in_hand)
 
 
 class Blackjack_Game():
@@ -87,8 +125,11 @@ class Blackjack_Game():
 
 
     def add_player(self, player_name):
-        self.play_order.append(player_name)
-        self.players[player_name] = Hand(player_name)
+        if player_name in self.players:
+            print('{0} is already in the game.'.format(player_name))
+        else:
+            self.play_order.append(player_name)
+            self.players[player_name] = Hand(player_name)
 
 
     def deal_cards_to_everyone(self):
@@ -98,13 +139,10 @@ class Blackjack_Game():
                 self.players[player].get_card(new_card)
 
 
-    def check_for_winners(self):
-        # aces are 1 or 11
-        # anyone with ace and ten/suits wins
+    def check_dealer_blackjack(self):
+        # if the dealer has blackjack, then
+        # the game ends if no other players have blackjack.
 
-        # the players with 21 in their hand wins
-        # else the players closest to 21 without going over wins
-        # return the list of winners
         return None
 
 
@@ -118,6 +156,18 @@ class Blackjack_Game():
         return None
 
 
+    def check_for_winners(self):
+        winners = []
+        # higher than dealer without bust
+
+
+        if len(winners) > 0:
+            return winners
+        else:
+            # All players have busted their hands.
+            return None
+
+
     def begin_game(self):
         if len(self.play_order) <= 0:
             print("No players in the game")
@@ -125,12 +175,10 @@ class Blackjack_Game():
 
         self.deal_cards_to_everyone()
         self.deal_cards_to_everyone()
-
-        """
-        self.check_for_winners()
+        self.check_dealer_blackjack()
         self.deal_additional_cards()
         self.check_for_winners()
-        """
+
 
 
 
