@@ -3,8 +3,6 @@ from deck_of_cards import *
 
 # deck = Deck()
 # deck.shuffle()
-
-
 test_player = Hand('Player 1')
 
 """
@@ -38,13 +36,19 @@ test_player.get_card(Card('Ace', 'Spades'))
 test_player.get_card(Card(7, 'Hearts'))
 test_player.get_card(Card(8, 'Clubs'))
 test_player.get_card(Card(6, 'Diamonds'))
-"""
+
 
 # Test case 5: Busted hand. One ace.
 test_player.get_card(Card('Ace', 'Diamonds'))
 test_player.get_card(Card(9, 'Hearts'))
 test_player.get_card(Card('Jack', 'Clubs'))
 test_player.get_card(Card(2, 'Diamonds'))
+"""
+
+# Test case 6: Not winning hand. Two aces.
+test_player.get_card(Card('Ace', 'Diamonds'))
+# test_player.get_card(Card('Ace', 'Hearts'))
+test_player.get_card(Card('Jack', 'Clubs'))
 
 
 print(test_player)
