@@ -247,32 +247,50 @@ class Blackjack():
     def hit_or_stand(self):
         # Players' turn
         acceptable_options = ['s', 'S', 'h', 'H']
-        hit_order = self.play_order[:]
+        hit = self.play_order[:]
+        stand = []
+        eliminated = []
 
-        for player_name in hit_order:
-            choice = ''
-
-            # Ask each player hit or stand.
-            while choice not in acceptable_options:
-                print('{0}...'.format(player_name), end=' ')
-                choice = input('[H]it or [S]tand? ')
-
-            if choice.upper() == 'H':
-                # Hit
+        while len(hit) > 0:
+            # As long as there are players who want cards...
+            # Ask all of those players to hit or stand.
+            for player_name in hit:
                 player_hand = self.players[player_name]
+                choice = ''
 
-                # Player gets a new card.
-                new_card = self.deck.deal()
-                player_hand.get_card(new_card)
+                while choice not in acceptable_options:
+                    print('{0}...'.format(player_name), end=' ')
+                    choice = input('[H]it or [S]tand? ')
 
-                # If the player busts, they are eliminated from the game.
-                if player_hand.bust:
-                    hit_order.remove(player_name)
-                    self.play_order.remove(player_name)
+                if choice.upper() == 'H':  # Hit
+                    # Player gets a new card.
+                    new_card = self.deck.deal()
+                    player_hand.get_card(new_card)
 
-            elif choice.upper() == 'S':
-                # stand
-                hit_order.remove(player_name)
+                    # Print new hand.
+                    print(player_hand)
+
+                    # If the player busts, they are eliminated from the game.
+                    if player_hand.bust:
+                        eliminated.append(player_name)
+
+                elif choice.upper() == 'S':  # Stand
+                    print(player_hand)
+                    stand.append(player_name)
+
+
+            # Remove players who chose to keep their hand.
+            for player_name in stand:
+                hit.remove(player_name)
+
+            # Remove players who got eliminated.
+            for player_name in eliminated:
+                hit.remove(player_name)
+                self.play_order.remove(player_name)
+
+            # Reset the lists.
+            stand = []
+            eliminated = []
 
 
     def dealers_turn(self):
@@ -288,6 +306,7 @@ class Blackjack():
         # This function runs when the dealer has not busted, and
         # there are players remaining in the game.
         dealer_hand = self.dealer.max_value  # ???
+        tied = []
         winners = []
 
         # Players with higher value than the dealer wins.
@@ -297,9 +316,11 @@ class Blackjack():
 
             if (dealer_hand < player_min) or (dealer_hand < player_max):
                 winners.append(player_name)
+            elif (dealer_hand == player_min) or (dealer_hand == player_max):
+                tied.append(player_name)
 
-        # If winners is an empty list, then the dealer wins.
-        return winners
+        # If winners is an empty list, then tie or the dealer wins.
+        return tied, winners
 
 
     def begin_game(self):
@@ -357,10 +378,21 @@ class Blackjack():
 
 
         # The dealer has not busted and there are remaining players.
-        winning_players = self.check_for_winners()
+        tied, winning_players = self.check_for_winners()
 
         if len(winning_players) <= 0:
-            print('The dealer wins.')
+            if len(tied) > 0:
+                print('The game is a tie.')
+                print('\tDealer\'s hand:')
+                self.dealer.show_whole_hand()
+
+                print('Tied player(s):')
+                self.show_winning_players(tied)
+
+            else:
+                print('The dealer wins.')
+                self.dealer.show_whole_hand()
+
         else:
             print('Winning player(s):')
             self.show_winning_players(winning_players)
