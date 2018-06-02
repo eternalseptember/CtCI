@@ -101,17 +101,18 @@ class Hand():
         self.num_of_aces = 0  # Same as if all aces equal 1.
         self.min_value = 0  # All aces are 1 point each.
         self.max_value = 0  # One ace is 11 points without busting hand.
-        self.blackjack = False  # Natural.
         self.winning_hand = False  # Hand equals 21.
         self.bust = False
 
 
     def show_first_card(self):
+        # To be used by the dealer.
         print(self.hand[0])
         print()
 
 
     def show_whole_hand(self):
+        # To be used by the dealer.
         for card in self.hand:
             print(card)
         print()
@@ -133,7 +134,7 @@ class Hand():
     def calculate_hand(self):
         # Min value when (No aces) OR (All aces are 1 point each).
         self.min_value = self.base_total + self.num_of_aces
-        self.max_value = self.min_value  # Presetting this value
+        self.max_value = self.min_value  # Presetting this value.
 
         # Check if hand is bust.
         if self.min_value > 21:
@@ -153,10 +154,6 @@ class Hand():
         if (self.min_value == 21) or (self.max_value == 21):
             self.winning_hand = True
 
-            # Check for natural blackjack.
-            if len(self.hand) == 2:
-                self.blackjack = True
-
         else:
             # Just in case someone wants to blow their winning hand.
             self.winning_hand = False
@@ -168,7 +165,6 @@ class Hand():
         desc += '# of Aces: \t\t{0}\n'.format(self.num_of_aces)
         desc += 'Min value: \t\t{0}\n'.format(self.min_value)
         desc += 'Max value: \t\t{0}\n'.format(self.max_value)
-        desc += 'Blackjack: \t\t{0}\n'.format(self.blackjack)
         desc += 'Winning hand: \t{0}\n'.format(self.winning_hand)
         desc += 'Bust: \t\t\t{0}\n'.format(self.bust)
 
@@ -197,15 +193,14 @@ class Blackjack():
 
 
     def show_blackjack_table(self):
-        # Show each player's hand.
+        # Show each player's starting hand.
         for player_name in self.play_order:
             print(self.players[player_name])
 
 
     def show_winning_players(self, winning_players):
         for player_name in winning_players:
-            print('\t{0}'.format(player_name))
-            self.players[player_name].show_whole_hand()
+            print(self.players[player_name])
 
 
     def add_player(self, player_name):
@@ -238,14 +233,14 @@ class Blackjack():
         blackjack_winners = []
 
         for player_name in self.play_order:
-            if self.players[player_name].blackjack:
+            if self.players[player_name].winning_hand:
                 blackjack_winners.append(player_name)
 
-        return self.dealer.blackjack, blackjack_winners
+        return self.dealer.winning_hand, blackjack_winners
 
 
     def hit_or_stand(self):
-        # Players' turn
+        # Players' turn.
         acceptable_options = ['s', 'S', 'h', 'H']
         hit = self.play_order[:]
         stand = []
@@ -301,6 +296,8 @@ class Blackjack():
             self.dealer.get_card(new_card)
             print(new_card)
 
+        print('\n\n')
+
 
     def check_for_winners(self):
         # This function runs when the dealer has not busted, and
@@ -342,18 +339,30 @@ class Blackjack():
         if dealer_wins or (len(winning_players) > 0):
             # Game ends if anyone has a natural blackjack.
             if (dealer_wins is True) and (len(winning_players) > 0):
+                print('**************************')
                 print('\tThe game is a tie.')
+                print('**************************')
 
-            if dealer_wins:
                 print('\tDealer has blackjack.')
                 self.dealer.show_whole_hand()
 
-            if len(winning_players) > 0:
-                print('\tWinning player(s):')
+                print('\tPlayer(s) with blackjack:')
+                self.show_winning_players(winning_players)
+
+            elif dealer_wins:
+                print('*****************************')
+                print('\tDealer has blackjack.')
+                print('*****************************')
+                self.dealer.show_whole_hand()
+
+            elif len(winning_players) > 0:
+                print('*********************************')
+                print('\tPlayer(s) with blackjack:')
+                print('*********************************')
                 self.show_winning_players(winning_players)
             return
 
-        print('No one has a natural blackjack.')
+        print('No one has a natural blackjack.\n')
 
 
         # Players' turn.
@@ -361,18 +370,23 @@ class Blackjack():
 
         if len(self.play_order) <= 0:
             # If all players bust, then dealer automatically wins.
-            print('All players have busted. The dealer wins.')
+            print('*************************************************')
+            print('\tAll players have busted. The dealer wins.')
+            print('*************************************************')
             return
 
 
         # Dealer's turn.
         print('\tDealer\'s hand:')
         self.dealer.show_whole_hand()
+        print('\tDealer draws:')
         self.dealers_turn()
 
         # If dealer busted, then the remaining players win.
         if self.dealer.bust:
-            print('The dealer busted. The remaining player(s) win.')
+            print('*******************************************************')
+            print('\tThe dealer busted. The remaining player(s) win.')
+            print('*******************************************************')
             self.show_winning_players(self.play_order)
             return
 
@@ -382,19 +396,25 @@ class Blackjack():
 
         if len(winning_players) <= 0:
             if len(tied) > 0:
-                print('The game is a tie.')
-                print('\tDealer\'s hand:')
+                print('**************************')
+                print('\tThe game is a tie.')
+                print('**************************')
+                print('\tDealer\'s hand: ')
                 self.dealer.show_whole_hand()
 
-                print('Tied player(s):')
+                print('\tTied player(s):')
                 self.show_winning_players(tied)
 
             else:
-                print('The dealer wins.')
+                print('************************')
+                print('\tThe dealer wins.')
+                print('************************')
                 self.dealer.show_whole_hand()
 
         else:
-            print('Winning player(s):')
+            print('**************************')
+            print('\tWinning player(s):')
+            print('**************************')
             self.show_winning_players(winning_players)
 
 
