@@ -9,8 +9,15 @@ dispatchCall() which assigns a call to the first available employee.
 """
 
 
-def dispatch_call():
-    return None
+class Call_Center():
+    def __init__(self):
+        self.respondent_queue = []
+        self.manager_queue = []
+        self.director_queue = []
+
+
+    def dispatch_call():
+        return None
 
 
 
