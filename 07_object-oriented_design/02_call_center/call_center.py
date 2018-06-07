@@ -10,33 +10,37 @@ dispatchCall() which assigns a call to the first available employee.
 
 
 class Employee():
-    def __init__(self, name, level=0):
+    def __init__(self, name, level):
         self.name = name
+        self.level = level
+        self.in_call = None
 
-        if level == 1:
-            self.level = 'manager'
-        elif level == 2:
-            self.level = 'director'
-        else:
-            self.level = 'respondent'
-
-
-        self.status = 'available'
-        # other statuses: in call
-
-
-
+    def get_call(self, call_id):
+        self.in_call = call_id
 
 
 
 class Call_Center():
     def __init__(self):
-        self.respondent_queue = []
-        self.manager_queue = []
-        self.director_queue = []
+        self.respondent_free = []
+        self.respondent_in_call = []
+        self.manager_free = []
+        self.manager_in_call = []
+        self.director_free = []
+        self.director_in_call = []
 
-    def add_employee(self, name, level):
-        employee = Employee(name, level)
+
+    def add_employee(self, name, level=0):
+        if level == 1:
+            employee_level = 'manager'
+        elif level == 2:
+            employee_level = 'director'
+        else:
+            employee_level = 'respondent'
+
+        employee = Employee(name, employee_level)
+
+
         # add to a queue?
 
 
