@@ -15,9 +15,27 @@ class Employee():
         self.level = level
         self.in_call = None
 
+
+    def __str__(self):
+        employee = 'Employee #{0} '.format(self.employee_id)
+
+        if self.level == 1:
+            employee += '(Manager) '
+        elif self.level == 2:
+            employee += '(Director) '
+        else:
+            employee += '(Respondent) '
+
+        if self.in_call is None:
+            employee += 'is available.'
+        else:
+            employee += 'is in call #{0}.\n'.format(self.in_call)
+
+        return employee
+
+
     def get_call(self, call_id):
         self.in_call = call_id
-
 
 
 class Call_Center():
@@ -42,6 +60,9 @@ class Call_Center():
         self.respondent_call_queue = []
         self.director_call_queue = []
 
+
+    def __str__(self):
+        return str(self.assigned_calls)
 
 
     def add_employee(self, level=0):
