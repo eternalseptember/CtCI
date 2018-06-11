@@ -1,13 +1,20 @@
 from call_center import *
 
 
-new_employee = Employee(6, 0)
-print(new_employee)
+employee_1 = Employee(6, 0)
+print(employee_1)
 
 
-new_employee = Employee(7, 1)
-new_employee.in_call = 3
-print(new_employee)
+employee_2 = Employee(7, 1)
+employee_2.get_call(3)
+print(employee_2)
+escalated_call = employee_2.escalate_call()
+print('escalated call: {0}'.format(escalated_call))
+print(employee_2)
+
+
+
+
 
 
 """

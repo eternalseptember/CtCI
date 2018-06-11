@@ -10,21 +10,17 @@ dispatchCall() which assigns a call to the first available employee.
 
 
 class Employee():
-    def __init__(self, employee_id, level):
+    employee_type = {0: 'Respondent', 1: 'Manager', 2: 'Director'}
+
+    def __init__(self, employee_id, level=0):
         self.employee_id = employee_id
         self.level = level
         self.in_call = None
 
 
     def __str__(self):
-        employee = 'Employee #{0} '.format(self.employee_id)
-
-        if self.level == 1:
-            employee += '(Manager) '
-        elif self.level == 2:
-            employee += '(Director) '
-        else:
-            employee += '(Respondent) '
+        employee = self.employee_type[self.level]
+        employee += ' #{0} '.format(self.employee_id)
 
         if self.in_call is None:
             employee += 'is available.'
@@ -38,41 +34,62 @@ class Employee():
         self.in_call = call_id
 
 
+    def end_call(self):
+        self.in_call = None
+
+
+    def escalate_call(self):
+        escalated_call = self.in_call
+        self.in_call = None
+        return escalated_call
+
+
+class Staff_Queue():
+    employee_type = {0: 'Respondent', 1: 'Manager', 2: 'Director'}
+
+    def __init__(self, level):
+        self.level = level
+        self.employees_available = []
+        self.assigned_calls = {}
+        self.calls_on_hold = []
+
+
+    def __str__(self):
+        # ???
+        return None
+
+
+    def add_employee(self, new_employee):
+        # Should get an Employee object
+        self.employees_available.append(new_employee)
+
+
+    def assign_call(self, call_number):
+        if len(self.employees_available) == 0:
+            # put the call in the queue
+            self.calls_on_hold.append(call_number)
+        else:
+            assigned_employee = self.employees_available.pop(0)
+            assigned_employee.get_call(call_number)
+
+
+
 class Call_Center():
     def __init__(self):
         self.call_id = 1
         self.employee_id = 1
-        self.assigned_calls = {}  # assigned_calls[call_id] = Employee
-
-        # Employees are added to their appropriate queues.
-        # Employee.in_call = None
-        self.respondent_free = []
-        self.manager_free = []
-        self.director_free = []
-
-        # List of employees on a call.
-        # Employee.in_call = call_id
-        self.respondent_in_call = []
-        self.manager_in_call = []
-        self.director_in_call = []
-
-        # Queues for calls on hold.
-        self.respondent_call_queue = []
-        self.director_call_queue = []
+        self.assigned_calls = {}  # assigned_calls[call_id] = employee_id?
+        self.staffers = [Staff_Queue(0), Staff_Queue(1), Staff_Queue(2)]
 
 
     def __str__(self):
+        # ???
         return str(self.assigned_calls)
 
 
     def add_employee(self, level=0):
-        if level == 1:  # manager
-            self.manager_free.append(Employee(self.employee_id, level))
-        elif level == 2:  # director
-            self.employee_free.append(Employee(self.employee_id, level))
-        else:  # respondent
-            self.respondent_free.append(Employee(self.employee_id, level))
-
+        new_employee = Employee(self.employee_id, level)
+        self.staffers[level].add_employee(new_employee)
         self.employee_id += 1
 
 
@@ -87,19 +104,12 @@ class Call_Center():
 
         # Get information to escalate phone call.
         else:
-            employee = self.assigned_calls[call_id]
+            forwarding_employee = self.assigned_calls[call_id]
 
 
-        if new_call:
-            # New calls are allocated to a respondent who is free first.
-            if len(self.respondent_free) > 0:
-                assigned_respondent = self.respondent.free.pop(0)
-                assigned_respondent.in_call = call_id
-                self.respondent_in_call.append(assigned_respondent)
+        # New calls are allocated to a respondent who is free first.
+        # If all respondents are busy, puts the call in the queue.
 
-            # If all respondents are busy, puts the call in the queue.
-            else:
-                self.respondent_call_queue.append(call_id)
 
 
 
