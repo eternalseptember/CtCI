@@ -55,8 +55,10 @@ class Staff_Queue():
 
 
     def __str__(self):
-        # ???
-        return None
+        queue_str = '{0} Queue:\n'.format(self.employee_type[self.level])
+        queue_str += 'Employees available: {0}'.format(self.employees_available)
+        queue_str += 'Num of calls on hold: {0}'.format(self.calls_on_hold)
+        return queue_str
 
 
     def add_employee(self, new_employee):
