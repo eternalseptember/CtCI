@@ -62,17 +62,23 @@ class Staff_Queue():
 
 
     def add_employee(self, new_employee):
-        # Should get an Employee object
+        # Should get an Employee object.
         self.employees_available.append(new_employee)
 
 
     def assign_call(self, call_number):
         if len(self.employees_available) == 0:
-            # put the call in the queue
+            # Places the call in the queue.
             self.calls_on_hold.append(call_number)
         else:
+            # Should probably re-check this to make sure queue is managed.
             assigned_employee = self.employees_available.pop(0)
             assigned_employee.get_call(call_number)
+
+
+    def escalate_call(self):
+        # return the call number
+        return None
 
 
 
