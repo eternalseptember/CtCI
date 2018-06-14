@@ -91,8 +91,13 @@ class Call_Center():
 
 
     def __str__(self):
-        # ???
-        return str(self.assigned_calls)
+        queue_list = ''
+
+        for staff_list in self.staffers:
+            queue_list += str(staff_list)
+            queue_list += '\n'
+
+        return queue_list
 
 
     def add_employee(self, level=0):
