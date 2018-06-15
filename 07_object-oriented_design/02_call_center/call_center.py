@@ -9,41 +9,6 @@ dispatchCall() which assigns a call to the first available employee.
 """
 
 
-class Employee():
-    employee_type = {0: 'Respondent', 1: 'Manager', 2: 'Director'}
-
-    def __init__(self, employee_id, level=0):
-        self.employee_id = employee_id
-        self.level = level
-        self.in_call = None
-
-
-    def __str__(self):
-        employee = self.employee_type[self.level]
-        employee += ' #{0} '.format(self.employee_id)
-
-        if self.in_call is None:
-            employee += 'is available.'
-        else:
-            employee += 'is in call #{0}.\n'.format(self.in_call)
-
-        return employee
-
-
-    def get_call(self, call_id):
-        self.in_call = call_id
-
-
-    def end_call(self):
-        self.in_call = None
-
-
-    def escalate_call(self):
-        escalated_call = self.in_call
-        self.in_call = None
-        return escalated_call
-
-
 class Staff_Queue():
     employee_type = {0: 'Respondent', 1: 'Manager', 2: 'Director'}
 
@@ -62,18 +27,25 @@ class Staff_Queue():
 
 
     def add_employee(self, new_employee):
-        # Should get an Employee object.
         self.employees_available.append(new_employee)
 
 
+    def add_call_to_queue(self, call_number):
+        # Calls will be answered in order.
+        self.calls_on_hold.append(call_number)
+
+
+
     def assign_call(self, call_number):
-        if len(self.employees_available) == 0:
-            # Places the call in the queue.
-            self.calls_on_hold.append(call_number)
-        else:
-            # Should probably re-check this to make sure queue is managed.
+        if len(self.employees_available) > 0:
             assigned_employee = self.employees_available.pop(0)
-            assigned_employee.get_call(call_number)
+            self.assigned_calls[call_number] = assigned_employee
+
+
+    def end_call(self, call_number):
+        employee = self.assigned_calls[call_number]
+        self.employees_available.append(employee)
+        del self.assigned_calls[call_number]
 
 
     def escalate_call(self):
@@ -86,7 +58,7 @@ class Call_Center():
     def __init__(self):
         self.call_id = 1
         self.employee_id = 1
-        self.assigned_calls = {}  # assigned_calls[call_id] = employee_id?
+        self.assigned_calls = {}
         self.staffers = [Staff_Queue(0), Staff_Queue(1), Staff_Queue(2)]
 
 
@@ -101,8 +73,7 @@ class Call_Center():
 
 
     def add_employee(self, level=0):
-        new_employee = Employee(self.employee_id, level)
-        self.staffers[level].add_employee(new_employee)
+        self.staffers[level].add_employee(self.employee_id)
         self.employee_id += 1
 
 
@@ -116,8 +87,6 @@ class Call_Center():
             self.call_id += 1
 
         # Get information to escalate phone call.
-        else:
-            forwarding_employee = self.assigned_calls[call_id]
 
 
         # New calls are allocated to a respondent who is free first.
