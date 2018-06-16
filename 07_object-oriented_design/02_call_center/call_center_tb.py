@@ -1,8 +1,6 @@
 from call_center import *
 
 
-
-"""
 call_center = Call_Center()
 
 # Add 10 respondents
@@ -18,5 +16,8 @@ for i in range(4):
 # Add 2 directors
 for i in range(2):
     call_center.add_employee(2)
-"""
+
+
+print(call_center)
+
 

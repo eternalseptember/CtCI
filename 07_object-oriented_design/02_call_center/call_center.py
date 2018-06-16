@@ -21,8 +21,8 @@ class Staff_Queue():
 
     def __str__(self):
         queue_str = '{0} Queue:\n'.format(self.employee_type[self.level])
-        queue_str += 'Employees available: {0}'.format(self.employees_available)
-        queue_str += 'Num of calls on hold: {0}'.format(self.calls_on_hold)
+        queue_str += 'Employees available: {0}\n'.format(self.employees_available)
+        queue_str += 'Num of calls on hold: {0}\n'.format(self.calls_on_hold)
         return queue_str
 
 
@@ -33,7 +33,6 @@ class Staff_Queue():
     def add_call_to_queue(self, call_number):
         # Calls will be answered in order.
         self.calls_on_hold.append(call_number)
-
 
 
     def assign_call(self, call_number):
@@ -77,17 +76,16 @@ class Call_Center():
         self.employee_id += 1
 
 
+    def new_call(self):
+        call_id = self.call_id
+        self.call_id += 1
+
+        return self.dispatch_call(call_id)
+
+
+
     def dispatch_call(self, call_id=None):
-        new_call = False
-
-        # Assign call_id for new calls.
-        if call_id is None:
-            new_call = True
-            call_id = self.call_id
-            self.call_id += 1
-
-        # Get information to escalate phone call.
-
+        # This function runs for new calls and escalated calls.
 
         # New calls are allocated to a respondent who is free first.
         # If all respondents are busy, puts the call in the queue.
