@@ -21,3 +21,10 @@ for i in range(2):
 print(call_center)
 
 
+# Testing call
+
+call_center.new_call()
+print(call_center)
+
+
+
