@@ -18,11 +18,12 @@ for i in range(2):
     call_center.add_employee(2)
 
 
+print('After adding employees in call center.')
 print(call_center)
 
 
 # Testing call
-
+print('New call.')
 call_center.new_call()
 print(call_center)
 

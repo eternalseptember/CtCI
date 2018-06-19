@@ -21,6 +21,11 @@ class Staff_Queue():
 
     def __str__(self):
         queue_str = '{0} Queue:\n'.format(self.employee_type[self.level])
+
+        for call in self.assigned_calls.keys():
+            active_call = 'Call #{0} is received by Employee #{1}\n'.format(call, self.assigned_calls[call])
+            queue_str += active_call
+
         queue_str += 'Employees available: {0}\n'.format(self.employees_available)
         queue_str += 'Num of calls on hold: {0}\n'.format(self.calls_on_hold)
         return queue_str
