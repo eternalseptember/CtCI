@@ -85,6 +85,13 @@ class Call_Center():
         return self.dispatch_call(call_id)
 
 
+    def end_call(self, call_id):
+        queue = self.assigned_calls[call_id]
+
+        # go into staff_levels queue and clean up employees
+        return None
+
+
     def escalate_call(self, call_id):
         return self.dispatch_call(call_id)
 
