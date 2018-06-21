@@ -20,12 +20,14 @@ class Staff_Queue():
 
 
     def __str__(self):
-        queue_str = '{0} Queue:\n'.format(self.employee_type[self.level])
+        queue_str = '\t\t{0}s:\n'.format(self.employee_type[self.level])
 
         for call in self.assigned_calls.keys():
-            active_call = 'Call #{0} is received by Employee #{1}\n'.format(call, self.assigned_calls[call])
+            active_call = 'Call #{0} is received by Employee #{1}\n'\
+                .format(call, self.assigned_calls[call])
             queue_str += active_call
 
+        queue_str += '***\n'
         queue_str += 'Employees available: {0}\n'.format(self.employees_available)
         queue_str += 'Num of calls on hold: {0}\n'.format(self.calls_on_hold)
         return queue_str
@@ -36,12 +38,13 @@ class Staff_Queue():
 
 
     def assign_call(self, call_id):
-        # NEED TO CHECK AND ASSIGN CALLS ON HOLD.
         if len(self.employees_available) > 0:
             assigned_employee = self.employees_available.pop(0)
             self.assigned_calls[call_id] = assigned_employee
         else:
             self.calls_on_hold.append(call_id)
+
+        return call_id
 
 
     def end_call(self, call_id):
@@ -50,17 +53,11 @@ class Staff_Queue():
         del self.assigned_calls[call_id]
 
 
-    def escalate_call(self, call_id):
-        self.end_call(call_id)
-        return call_id
-
-
-
 class Call_Center():
     def __init__(self):
         self.call_id = 1
         self.employee_id = 1
-        self.assigned_calls = {}  # assigned_calls[call_id] = staff_level_num
+        self.assigned_calls = {}  # assigned_calls[call_id] = staff_level
         self.staff_levels = [Staff_Queue(0), Staff_Queue(1), Staff_Queue(2)]
 
 
@@ -80,33 +77,43 @@ class Call_Center():
 
 
     def new_call(self):
+        # This function is publicly called.
         call_id = self.call_id
         self.call_id += 1
-        return self.dispatch_call(call_id)
+        return self.dispatch_call(call_id, False)
 
 
-    def end_call(self, call_id):
-        queue = self.assigned_calls[call_id]
+    def end_call(self, call_id, escalate):
+        # This function is publicly called.
+        # escalate is True or False
+        level = self.assigned_calls[call_id]
+        self.staff_levels[level].end_call(call_id)
 
-        # go into staff_levels queue and clean up employees
-        return None
-
-
-    def escalate_call(self, call_id):
-        return self.dispatch_call(call_id)
+        return self.dispatch_call(call_id, escalate)
 
 
-    def dispatch_call(self, call_id):
-        # New and escalated calls use this function.
-        # New calls are allocated to a respondent who is free first.
+    def dispatch_call(self, call_id, escalate=False):
+        # This function is privately called by new_call() and end_call().
+
+        # New calls.
         if call_id not in self.assigned_calls:
             self.assigned_calls[call_id] = 0
             return self.staff_levels[0].assign_call(call_id)
+
+        # Call ends or escalates.
         else:
-            prev_level = self.assigned_calls[call_id]
-            next_level = prev_level + 1
-            self.assigned_calls[call_id] = next_level
-            return self.staff_levels[next_level].assign_call(call_id)
+            if escalate:
+                # check escalation rules
+                # ???
+                prev_level = self.assigned_calls[call_id]
+                next_level = prev_level + 1
+                self.assigned_calls[call_id] = next_level
+
+                return self.staff_levels[next_level].assign_call(call_id)
+            else:
+                print('call ends')
+
+            # After a call ends, check and assign calls on hold.
 
 
 
