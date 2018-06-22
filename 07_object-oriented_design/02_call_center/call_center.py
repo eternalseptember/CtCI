@@ -111,7 +111,7 @@ class Call_Center():
 
                 return self.staff_levels[next_level].assign_call(call_id)
             else:
-                print('call ends')
+                del self.assigned_calls[call_id]
 
             # After a call ends, check and assign calls on hold.
 
