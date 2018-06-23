@@ -53,6 +53,14 @@ class Staff_Queue():
         del self.assigned_calls[call_id]
 
 
+    def can_answer_call(self):
+        if len(self.employees_available) > 0:
+            return True
+        else:
+            return False
+
+
+
 class Call_Center():
     def __init__(self):
         self.call_id = 1
@@ -103,12 +111,21 @@ class Call_Center():
         # Call ends or escalates.
         else:
             if escalate:
-                # check escalation rules
-                # ???
                 prev_level = self.assigned_calls[call_id]
-                next_level = prev_level + 1
-                self.assigned_calls[call_id] = next_level
 
+                # Escalation can only happen from level 0 or 1.
+                if prev_level == 0:
+                    # If the manager is not free or not able to handle it,
+                    # then the call should be escalated to a director.
+                    if self.staff_levels[1].can_answer_call():
+                        next_level = prev_level + 1
+                    else:
+                        next_level = prev_level + 2
+
+                elif prev_level == 1:
+                    next_level = prev_level + 1
+
+                self.assigned_calls[call_id] = next_level
                 return self.staff_levels[next_level].assign_call(call_id)
             else:
                 del self.assigned_calls[call_id]
