@@ -17,12 +17,11 @@ for i in range(2):
 
 
 
-# Testing new call
+# Testing new calls
 for i in range(13):
     call_center.new_call()
 print(call_center)
 print()
-
 
 
 # Testing end call
@@ -33,10 +32,11 @@ print(call_center)
 
 
 # Testing escalate call
-call_id = 2
-print('Escalating call #{0}.'.format(call_id))
-call_center.end_call(call_id, True)
-print(call_center)
+for call in range(2, 7):
+    call_id = 2
+    print('Escalating call #{0}.'.format(call))
+    call_center.end_call(call_id, True)
+    print(call_center)
 
 
 
