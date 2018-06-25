@@ -127,6 +127,7 @@ class Call_Center():
 
                 self.assigned_calls[call_id] = next_level
                 return self.staff_levels[next_level].assign_call(call_id)
+
             else:
                 del self.assigned_calls[call_id]
 
