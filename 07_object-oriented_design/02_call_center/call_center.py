@@ -60,6 +60,13 @@ class Staff_Queue():
             return False
 
 
+    def have_calls_on_hold(self):
+        if len(self.calls_on_hold) > 0:
+            return True
+        else:
+            return False
+
+
 
 class Call_Center():
     def __init__(self):
@@ -126,12 +133,19 @@ class Call_Center():
                     next_level = prev_level + 1
 
                 self.assigned_calls[call_id] = next_level
-                return self.staff_levels[next_level].assign_call(call_id)
+
+                self.staff_levels[next_level].assign_call(call_id)
 
             else:
                 del self.assigned_calls[call_id]
 
             # After a call ends, check and assign calls on hold.
+            if self.staff_levels[prev_level].have_calls_on_hold():
+                # should be a call_id
+                next_call = self.staff_levels[prev_level].calls_on_hold.pop(0)
+                self.staff_levels[prev_level].assign_call(next_call)
+
+
 
 
 
