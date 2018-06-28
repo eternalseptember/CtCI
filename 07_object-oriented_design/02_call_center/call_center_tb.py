@@ -16,7 +16,7 @@ for i in range(2):
     call_center.add_employee(2)
 
 # Testing new calls
-for i in range(13):
+for i in range(17):
     call_center.new_call()
 # print(call_center)
 # print()
@@ -33,13 +33,23 @@ print(call_center)
 
 
 # Testing escalate call
-for call in range(2, 7):
+for call in range(2, 9):
     print('************************************************')
-    call_id = call
     print('Escalating call #{0}.'.format(call))
-    call_center.end_call(call_id, True)
+    call_center.end_call(call, True)
     print('************************************************')
     print(call_center)
 
+
+# There's no queue for managers, but there's a queue for directors.
+
+# Some escalated calls end.
+escalated_calls = [2, 4, 7]
+for call in escalated_calls:
+    print('************************************************')
+    print('Escalated call #{0} ends.'.format(call))
+    call_center.end_call(call, False)
+    print('************************************************')
+    print(call_center)
 
 
