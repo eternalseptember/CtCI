@@ -38,13 +38,15 @@ class Staff_Queue():
 
 
     def assign_call(self, call_id):
+        assigned_employee = None
+
         if len(self.employees_available) > 0:
             assigned_employee = self.employees_available.pop(0)
             self.assigned_calls[call_id] = assigned_employee
         else:
             self.calls_on_hold.append(call_id)
 
-        return call_id
+        return (call_id, self.level, assigned_employee)
 
 
     def end_call(self, call_id):
@@ -119,7 +121,10 @@ class Call_Center():
         # New calls.
         if call_id not in self.assigned_calls:
             self.assigned_calls[call_id] = 0
-            return self.staff_levels[0].assign_call(call_id)
+            assignment = self.staff_levels[0].assign_call(call_id)
+
+            # Print summary.
+            self.print_call_assignment(0, assignment)
 
         # Call ends or escalates.
         else:
@@ -139,7 +144,10 @@ class Call_Center():
                     next_level = prev_level + 1
 
                 self.assigned_calls[call_id] = next_level
-                self.staff_levels[next_level].assign_call(call_id)
+                assignment = self.staff_levels[next_level].assign_call(call_id)
+
+                # Print summary.
+                self.print_call_assignment(2, assignment)
 
             else:
                 del self.assigned_calls[call_id]
@@ -149,9 +157,32 @@ class Call_Center():
             if self.staff_levels[prev_level].have_calls_on_hold():
                 # next_call should be a call_id
                 next_call = self.staff_levels[prev_level].get_call_on_hold()
-                self.staff_levels[prev_level].assign_call(next_call)
+                assignment = self.staff_levels[prev_level].assign_call(next_call)
+
+                # Print summary.
+                self.print_call_assignment(0, assignment)
 
 
+
+
+    def print_call_assignment(self, assignment_type, assignment):
+        # assignment_type = 0 for new calls.
+
+        if assignment_type == 0:
+            call_num, assigned_level, assigned_employee = assignment
+
+            if assigned_employee is None:
+                print('Call {0} is on hold at level {1}.\n'
+                    .format(call_num, assigned_level))
+            else:
+                print('Call {0} is answered by level {1} employee {2}.\n'
+                    .format(call_num, assigned_level, assigned_employee))
+
+        elif assignment_type == 1:
+            print('call ended')
+
+        elif assignment_type == 2:
+            print('call escalated')
 
 
 
