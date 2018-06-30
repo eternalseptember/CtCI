@@ -54,6 +54,8 @@ class Staff_Queue():
         self.employees_available.append(employee)
         del self.assigned_calls[call_id]
 
+        return (self.level, employee)
+
 
     def can_answer_call(self):
         if len(self.employees_available) > 0:
@@ -110,7 +112,10 @@ class Call_Center():
         # This function is publicly called.
         # escalate is True or False
         level = self.assigned_calls[call_id]
-        self.staff_levels[level].end_call(call_id)
+        result = self.staff_levels[level].end_call(call_id)
+
+        # Print
+        self.print_call_assignment(1, result)
 
         return self.dispatch_call(call_id, escalate)
 
@@ -179,7 +184,9 @@ class Call_Center():
                     .format(call_num, assigned_level, assigned_employee))
 
         elif assignment_type == 1:
-            print('call ended')
+            prev_level, available_employee = assignment
+            print('{0} queue: {1} is now available.\n'
+                .format(prev_level, available_employee))
 
         elif assignment_type == 2:
             print('call escalated')
