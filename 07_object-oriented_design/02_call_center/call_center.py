@@ -54,7 +54,7 @@ class Staff_Queue():
         self.employees_available.append(employee)
         del self.assigned_calls[call_id]
 
-        return (self.level, employee)
+        return (call_id, self.level, employee)
 
 
     def can_answer_call(self):
@@ -131,14 +131,17 @@ class Call_Center():
             prev_level = self.assigned_calls[call_id]
             end_call_result = self.staff_levels[prev_level].end_call(call_id)
 
-            if self.print_summary:
-                self.print_call_assignment(1, end_call_result)
-
             if escalate:
                 # Only level 0 or 1 calls can escalate.
-                # assignment_type = 2 is normal escalation.
-                # assignment_type = 3 is if the manager queue is full.
-                assignment_type = 2
+
+                # Information about who escalated the call.
+                if self.print_summary:
+                    self.print_call_assignment(2, end_call_result)
+
+
+                # assignment_type = 3 is normal escalation.
+                # assignment_type = 4 is if the manager queue is full.
+                assignment_type = 3
 
                 if prev_level == 0:
                     # If the manager is not free or not able to handle it,
@@ -147,7 +150,7 @@ class Call_Center():
                         next_level = prev_level + 1
                     else:
                         next_level = prev_level + 2
-                        assignment_type = 3
+                        assignment_type = 4
 
                 elif prev_level == 1:
                     next_level = prev_level + 1
@@ -161,6 +164,9 @@ class Call_Center():
             else:
                 del self.assigned_calls[call_id]
 
+                if self.print_summary:
+                    self.print_call_assignment(1, end_call_result)
+
 
             # After a call ends, check and assign calls on hold.
             if self.staff_levels[prev_level].have_calls_on_hold():
@@ -169,12 +175,11 @@ class Call_Center():
                 assignment = self.staff_levels[prev_level].assign_call(next_call)
 
                 if self.print_summary:
-                    self.print_call_assignment(4, assignment)
-
-
+                    self.print_call_assignment(5, assignment)
 
 
     def print_call_assignment(self, assignment_type, assignment):
+        # Normal call assignment.
         if assignment_type == 0:
             call_num, assigned_level, assigned_employee = assignment
 
@@ -185,14 +190,20 @@ class Call_Center():
                 print('Level {0}: Call {1} is picked up by employee {2}.'
                     .format(assigned_level, call_num, assigned_employee))
 
-
+        # Call ends with no escalation.
         elif assignment_type == 1:
-            prev_level, available_employee = assignment
-            print('Level {0}: Employee {1} is now available.'
-                .format(prev_level, available_employee))
+            call_num, prev_level, available_employee = assignment
+            print('Level {0}: Employee {1} ended call {2}.'
+                .format(prev_level, available_employee, call_num))
 
-
+        # Which employee escalated the call?
         elif assignment_type == 2:
+            call_num, prev_level, available_employee = assignment
+            print('Level {0}: Employee {1} escalated call {2}.'
+                .format(prev_level, available_employee, call_num))
+
+        # Normal escalation.
+        elif assignment_type == 3:
             call_num, assigned_level, assigned_employee = assignment
 
             print('Call {0} is escalated to level {1}.'
@@ -200,13 +211,13 @@ class Call_Center():
 
             self.print_call_assignment(0, assignment)
 
-
-        elif assignment_type == 3:
+        # Escalating straight from respondent to directors.
+        elif assignment_type == 4:
             print('Manager queue is full. Escalating to directors.')
             self.print_call_assignment(0, assignment)
 
-
-        elif assignment_type == 4:
+        # Call on hold being picked up.
+        elif assignment_type == 5:
             call_num, assigned_level, assigned_employee = assignment
             print('Level {0}: Call on hold {1} is picked up by employee {2}.'
                 .format(assigned_level, call_num, assigned_employee))
