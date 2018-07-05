@@ -3,6 +3,11 @@ Design a musical jukebox using object-oriented principles.
 """
 
 
+class Coin():
+    def __init__(self, value):
+        self.value = value
+
+
 class Jukebox():
     def __init__(self):
         self.music_list = []
