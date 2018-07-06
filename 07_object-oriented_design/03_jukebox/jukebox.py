@@ -10,11 +10,17 @@ class Coin():
 
 class Jukebox():
     def __init__(self):
-        self.music_list = []
+        self.song_id = 0
+        self.music_menu = {}  # music_menu[song_id] = 'song name'
+        self.play_count = {}  # play_count[song_id] = times_played
+        self.coin_inserted = {}
+        self.money_collected = 0
 
 
     def add_song(self, song):
-        if song not in self.music_list:
-            self.music_list.append(song)
+        if song not in self.music_menu:
+            self.music_menu[self.song_id] = song
+            self.play_count[self.song_id] = 0
+            self.song_id += 1
 
 
