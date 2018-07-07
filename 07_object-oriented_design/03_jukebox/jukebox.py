@@ -13,7 +13,7 @@ class Jukebox():
         self.song_id = 0
         self.music_menu = {}  # music_menu[song_id] = 'song name'
         self.play_count = {}  # play_count[song_id] = times_played
-        self.coin_inserted = {}
+        self.coin_inserted = []
         self.money_collected = 0
 
 
@@ -22,5 +22,11 @@ class Jukebox():
             self.music_menu[self.song_id] = song
             self.play_count[self.song_id] = 0
             self.song_id += 1
+
+
+    def play_song(self, song_id):
+        # internally called once enough money is collected
+        self.play_count[song_id] += 1
+        return self.music_menu[song_id]
 
 
