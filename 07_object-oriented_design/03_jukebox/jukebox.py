@@ -3,18 +3,13 @@ Design a musical jukebox using object-oriented principles.
 """
 
 
-class Coin():
-    def __init__(self, value):
-        self.value = value
-
-
 class Jukebox():
     def __init__(self):
         self.song_id = 0
         self.music_menu = {}  # music_menu[song_id] = 'song name'
         self.play_count = {}  # play_count[song_id] = times_played
-        self.coin_inserted = []
-        self.money_collected = 0
+        self.money_inserted = 0
+        self.total_collected = 0
 
 
     def add_song(self, song):
@@ -28,5 +23,18 @@ class Jukebox():
         # internally called once enough money is collected
         self.play_count[song_id] += 1
         return self.music_menu[song_id]
+
+
+    def insert_money(self, value):
+        # if they are still inserting money without asking for a refund
+        self.money_inserted += value
+
+
+        # after enough money has been inserted and song was selected
+        self.total_collected += self.money_inserted
+        self.coin_serted = 0
+
+        # play song
+
 
 
