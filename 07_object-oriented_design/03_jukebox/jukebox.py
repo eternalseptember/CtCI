@@ -13,6 +13,12 @@ class Jukebox():
         self.price = 75  # price per song, for testing purpose
 
 
+    def __str__(self):
+        jukebox_info = ''
+        # money
+        # tally of each song played
+
+
     def add_song(self, song):
         if song not in self.music_menu:
             self.music_menu[self.song_id] = song
