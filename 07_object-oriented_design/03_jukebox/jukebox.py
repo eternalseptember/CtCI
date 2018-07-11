@@ -14,9 +14,15 @@ class Jukebox():
 
 
     def __str__(self):
-        jukebox_info = ''
-        # money
+        jukebox_info = 'Money collected in cents: {0}\n'\
+            .format(self.total_collected)
+
         # tally of each song played
+        for song in self.play_count.keys():
+            jukebox_info += '{0} played {1} times.\n'\
+                .format(song, self.play_count[song])
+
+        return jukebox_info
 
 
     def add_song(self, song):
