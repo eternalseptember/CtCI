@@ -41,6 +41,8 @@ class Jukebox():
 
             self.play_count[song_id] += 1
             return self.music_menu[song_id]
+        else:
+            return None
 
 
     def insert_money(self, value):
