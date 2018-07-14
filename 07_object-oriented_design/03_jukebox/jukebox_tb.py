@@ -4,6 +4,7 @@ from jukebox import *
 jukebox = Jukebox()
 
 jukebox.add_song('test song 1')
+jukebox.add_song('test song 2')
 print(jukebox)
 
 
