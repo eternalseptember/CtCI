@@ -10,7 +10,6 @@ class Jukebox():
         self.play_count = {}  # play_count[song_id] = times_played
         self.money_inserted = 0  # unit in cents
         self.total_collected = 0
-        self.price = 75  # price per song, for testing purpose
 
 
     def __str__(self):
@@ -33,14 +32,31 @@ class Jukebox():
 
 
     def play_song(self, song_id):
-        # how much money to play song??
-        if self.money_inserted >= self.price:
-            # make change??
-            self.total_collected += self.price
-            self.money_inserted = 0
+        # Insert 50 cents to play a song 7 times.
+        # Insert 25 cents to play a song 3 times.
+        # Insert 10 cents to play a song 1 time.
 
+        if self.money_inserted >= 50:
+            # make change??
+            self.total_collected += 50
+            self.money_inserted = 0
+            self.play_count[song_id] += 7
+            return self.music_menu[song_id]
+
+        elif self.money_inserted >= 25:
+            # make change?
+            self.total_collected += 25
+            self.money_inserted = 0
+            self.play_count[song_id] += 3
+            return self.music_menu[song_id]
+
+        elif self.money_inserted >= 10:
+            # make change?
+            self.total_collected += 10
+            self.money_inserted = 0
             self.play_count[song_id] += 1
             return self.music_menu[song_id]
+
         else:
             return None
 
