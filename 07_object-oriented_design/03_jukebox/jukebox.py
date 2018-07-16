@@ -9,7 +9,7 @@ class Jukebox():
         self.music_menu = {}  # music_menu[song_id] = 'song name'
         self.play_count = {}  # play_count[song_id] = times_played
         self.money_inserted = 0  # unit in cents
-        self.total_collected = 0
+        self.total_collected = 0  # unit in cents
 
 
     def __str__(self):
@@ -18,8 +18,8 @@ class Jukebox():
 
         # tally of each song played
         for song in self.play_count.keys():
-            jukebox_info += '{0} played {1} times.\n'\
-                .format(song, self.play_count[song])
+            jukebox_info += "'{0}' was played {1} time(s).\n"\
+                .format(self.music_menu[song], self.play_count[song])
 
         return jukebox_info
 
