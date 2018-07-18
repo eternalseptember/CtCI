@@ -6,4 +6,17 @@ class Parking_Lot():
         self.num_spots = num_spots
 
 
+    def initial_parking_spaces(self, num_spots):
+        parking_spots = {}
+
+        for i in range(1, num_spots + 1):
+            parking_spots[i] = None
+
+        return parking_spots
+
+
+    # list of available spots
+    # car park on a spot
+    # car leaves
+
 
