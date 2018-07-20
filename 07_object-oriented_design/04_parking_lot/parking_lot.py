@@ -4,7 +4,10 @@
 class Parking_Lot():
     def __init__(self, num_spots):
         self.num_spots = num_spots
+        self.num_of_free_spots = num_spots
+
         self.spots = self.initial_parking_spaces(num_spots)
+
 
 
     def initial_parking_spaces(self, num_spots):
@@ -16,16 +19,21 @@ class Parking_Lot():
         return parking_spots
 
 
+    def num_of_free_spots(self):
+        return self.num_of_free_spots
+
+
     def available_spots(self):
+        # print a list of free spots?
         return None
 
 
     def car_park(self, car):
-        return None
+        self.num_of_free_spots -= 1
 
 
     def car_leave(self, car):
-        return None
+        self.num_of_free_spots += 1
 
 
 
