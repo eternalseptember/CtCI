@@ -2,8 +2,8 @@
 
 
 class Car():
-    def __init__(self, owner):
-        self.owner = owner
+    def __init__(self, license_plate):
+        self.license_plate = license_plate
 
 
 
