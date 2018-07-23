@@ -5,6 +5,8 @@ class Car():
     def __init__(self, license_plate):
         self.license_plate = license_plate
 
+    def __str__(self):
+        return str(license_plate)
 
 
 class Parking_Lot():
@@ -12,7 +14,7 @@ class Parking_Lot():
         self.num_spots = num_spots
         self.num_of_free_spots = num_spots
 
-        self.spots = self.initial_parking_spaces(num_spots)
+        self.parking_lot = self.initial_parking_spaces(num_spots)
 
 
 
@@ -34,7 +36,9 @@ class Parking_Lot():
         return None
 
 
-    def car_park(self, car):
+    def car_park(self, spot, car):
+        # Parking lots are numbered from 1 to num_spots.
+        self.parking_lot[spot] = car
         self.num_of_free_spots -= 1
 
 
