@@ -42,9 +42,13 @@ class Parking_Lot():
         self.num_of_free_spots -= 1
 
 
-    def car_leave(self, car):
+    def car_leave(self, spot):
+        self.parking_lot[spot] = None
         self.num_of_free_spots += 1
 
+
+    def __str__(self):
+        info = ''
 
 
 
