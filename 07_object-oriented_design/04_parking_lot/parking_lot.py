@@ -11,7 +11,7 @@ class Car():
 
 class Parking_Lot():
     def __init__(self, num_spots):
-        self.num_spots = num_spots
+        self.num_of_spots = num_spots
         self.num_of_free_spots = num_spots
 
         self.parking_lot = self.initial_parking_spaces(num_spots)
@@ -38,6 +38,7 @@ class Parking_Lot():
 
     def car_park(self, spot, car):
         # Parking lots are numbered from 1 to num_spots.
+        # should probably add something in so people don't park in the same spot.
         self.parking_lot[spot] = car
         self.num_of_free_spots -= 1
 
@@ -49,6 +50,11 @@ class Parking_Lot():
 
     def __str__(self):
         info = ''
+
+        for spot in range(1, self.num_of_spots+1):
+            info += 'Spot {0}: {1}\n'.format(spot, self.parking_lot[spot])
+
+        return info
 
 
 
