@@ -6,7 +6,7 @@ class Car():
         self.license_plate = license_plate
 
     def __str__(self):
-        return str(license_plate)
+        return str(self.license_plate)
 
 
 class Parking_Lot():
