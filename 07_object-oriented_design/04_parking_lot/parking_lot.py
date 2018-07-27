@@ -38,7 +38,10 @@ class Parking_Lot():
 
     def car_park(self, spot, car):
         # Parking lots are numbered from 1 to num_spots.
-        # should probably add something in so people don't park in the same spot.
+        # Check to see if the spot is free.
+        if self.parking_lot[spot] is not None:
+            return None
+
         self.parking_lot[spot] = car
         self.num_of_free_spots -= 1
 
