@@ -52,11 +52,13 @@ class Parking_Lot():
 
         self.parking_lot[spot] = car
         self.num_of_free_spots -= 1
+        self.free_spaces.remove(spot)
 
 
     def car_leave(self, spot):
         self.parking_lot[spot] = None
         self.num_of_free_spots += 1
+        self.free_spaces.append(spot)
 
 
     def __str__(self):
