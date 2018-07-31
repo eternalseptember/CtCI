@@ -28,23 +28,23 @@ class Parking_Lot():
 
     def initial_free_space_list(self, num_spots):
         init_list = []
+
         for i in range(1, num_spots + 1):
             init_list.append(i)
 
         return init_list
 
 
-
-    def num_of_free_spots(self):
+    def how_many_free_spots(self):
         return self.num_of_free_spots
 
 
-    def available_spots(self):
-        # print a list of free spots?
-        return None
+    def which_spots_are_available(self):
+        self.free_spaces.sort()
+        return self.free_spaces
 
 
-    def car_park(self, spot, car):
+    def car_enters(self, spot, car):
         # Parking lots are numbered from 1 to num_spots.
         # Check to see if the spot is free.
         if self.parking_lot[spot] is not None:
@@ -55,7 +55,7 @@ class Parking_Lot():
         self.free_spaces.remove(spot)
 
 
-    def car_leave(self, spot):
+    def car_leaves(self, spot):
         self.parking_lot[spot] = None
         self.num_of_free_spots += 1
         self.free_spaces.append(spot)
