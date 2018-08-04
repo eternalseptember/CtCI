@@ -9,6 +9,21 @@ class Book():
         self.year = year
         self.publisher = publisher
 
+    def __str__(self):
+        desc = str(self.title)
+        return desc
+
+
+class Entry():
+    def __init__(self, book):
+        self.book = book
+        self.date_added = None  # should automatically fill this
+        self.last_accessed = None
+        self.favorites = False
+        self.last_page_read = None  # page number when last_accessed has a value
+        self.bookmarked_pages = []
+
+
 
 class Library():
     def __init__(self):
@@ -18,15 +33,7 @@ class Library():
     def add_book(self, book):
         books.append(book)
 
-
-"""
-library should keep track of
-- when the book was added
-- when the book was last accessed
-- last page read
-- favorites
-- bookmarked pages
-"""
+        # when a book is added, use the entry object instead
 
 
 
