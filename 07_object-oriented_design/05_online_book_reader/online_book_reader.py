@@ -2,18 +2,41 @@
 
 
 class Book():
-    def __init__(self, id, title, author, year, publisher):
-        self.id = id
-        self.title = title
+    def __init__(self, author, title, publisher, year):
         self.author = author
-        self.year = year
+        self.title = title
         self.publisher = publisher
+        self.year = year
 
     def __str__(self):
-        desc = str(self.title)
+        desc = '{0} - '.format(self.author)
+        desc += '{0}, '.format(self.title)
+        desc += '{0}, '.format(self.publisher)
+        desc += '{0}'.format(self.year)
         return desc
 
 
+# Library accessed by the service, rather than individual users.
+class Service_Library():
+    def __init__(self):
+        self.id = 1
+        self.list_of_books = {}  # list_of_books[id] = Book()
+
+
+    def add_book(self, author, title, publisher, year):
+        new_book = Book(author, title, publisher, year)
+        self.list_of_books[self.id] = new_book
+        self.id += 1
+
+
+    def __str__(self):
+        for book_id in self.list_of_books.keys():
+            print(str(self.list_of_books[book_id]))
+
+
+
+
+# User-specific info
 class Entry():
     def __init__(self, book):
         self.book = book
@@ -25,15 +48,7 @@ class Entry():
 
 
 
-class Library():
-    def __init__(self):
-        books = None
 
-
-    def add_book(self, book):
-        books.append(book)
-
-        # when a book is added, use the entry object instead
 
 
 
