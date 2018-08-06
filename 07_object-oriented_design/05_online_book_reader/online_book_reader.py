@@ -16,7 +16,7 @@ class Book():
         return desc
 
 
-# Library accessed by the service, rather than individual users.
+# Library managed by the service, rather than individual users.
 class Service_Library():
     def __init__(self):
         self.id = 1
