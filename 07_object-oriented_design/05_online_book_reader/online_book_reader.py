@@ -23,15 +23,19 @@ class Service_Library():
         self.list_of_books = {}  # list_of_books[id] = Book()
 
 
-    def add_book(self, author, title, publisher, year):
+    def add_book(self, book):
+        author, title, publisher, year = book
         new_book = Book(author, title, publisher, year)
         self.list_of_books[self.id] = new_book
         self.id += 1
 
 
     def __str__(self):
+        summary = ''
         for book_id in self.list_of_books.keys():
-            print(str(self.list_of_books[book_id]))
+            summary += '{0}\n'.format(self.list_of_books[book_id])
+
+        return summary
 
 
 
