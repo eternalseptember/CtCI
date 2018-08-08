@@ -20,13 +20,13 @@ class Book():
 class Service_Library():
     def __init__(self):
         self.id = 1
-        self.list_of_books = {}  # list_of_books[id] = Book()
+        self.list_of_books = {}  # list_of_books[id] = Book_Entry()
 
 
     def add_book(self, book):
         author, title, publisher, year = book
         new_book = Book(author, title, publisher, year)
-        self.list_of_books[self.id] = new_book
+        self.list_of_books[self.id] = Book_Entry(new_book)
         self.id += 1
 
 
@@ -36,6 +36,27 @@ class Service_Library():
             summary += '{0}\n'.format(self.list_of_books[book_id])
 
         return summary
+
+
+class Book_Entry():
+    def __init__(self, book):
+        self.book = book  # book object
+        self.readers = 0  # number of people who have the book
+        self.favorited = 0  # number of pepole who favorited the book
+
+
+    def __str__(self):
+        summary = '{0}\n'.format(self.book)
+        summary += '\tReaders: {0}\n'.format(self.readers)
+        summary += '\tFavorited: {0}\n'.format(self.favorited)
+
+        return summary
+
+
+
+
+
+
 
 
 
