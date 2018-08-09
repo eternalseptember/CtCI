@@ -55,14 +55,13 @@ class Book_Entry():
 
 
 
+# Individual users' libraries.
+class User_Library():
+    def __init__(self):
+        self.list_of_books = []  # each user's books
 
 
-
-
-
-
-# User-specific info
-class Entry():
+class User_Entry():
     def __init__(self, book):
         self.book = book
         self.date_added = None  # should automatically fill this
