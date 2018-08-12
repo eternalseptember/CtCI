@@ -60,6 +60,10 @@ class User_Library():
     def __init__(self):
         self.list_of_books = []  # each user's books
 
+    def add_book(self, book):
+        # use user_entry()
+        print('add book here')
+
 
 class User_Entry():
     def __init__(self, book):
