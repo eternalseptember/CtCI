@@ -58,16 +58,16 @@ class Book_Entry():
 # Individual users' libraries.
 class User_Library():
     def __init__(self):
-        self.list_of_books = []  # each user's books
+        self.list_of_books = {}  # each user's books
+
 
     def add_book(self, book):
-        # use user_entry()
-        print('add book here')
+        if book not in self.list_of_books:
+            self.list_of_books[book] = User_Entry()
 
 
 class User_Entry():
-    def __init__(self, book):
-        self.book = book
+    def __init__(self):
         self.date_added = None  # should automatically fill this
         self.last_accessed = None
         self.favorites = False
