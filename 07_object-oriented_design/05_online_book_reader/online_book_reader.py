@@ -33,6 +33,7 @@ class Service_Library():
     def __str__(self):
         summary = ''
         for book_id in self.list_of_books.keys():
+            summary += 'Book ID: {0}\n '.format(book_id)
             summary += '{0}\n'.format(self.list_of_books[book_id])
 
         return summary
@@ -46,7 +47,7 @@ class Book_Entry():
 
 
     def __str__(self):
-        summary = '{0}\n'.format(self.book)
+        summary = '\t{0}\n'.format(self.book)
         summary += '\tReaders: {0}\n'.format(self.readers)
         summary += '\tFavorited: {0}\n'.format(self.favorited)
 
