@@ -17,7 +17,7 @@ books_to_add = [hp1, hp2, hp3, lotr, asoiaf1, asoiaf2, asoiaf3]
 service_library = Service_Library()
 
 for book in books_to_add:
-    service_library.add_book(book)
+    service_library.add_book_to_catalog(book)
 
 print(service_library)
 
@@ -30,7 +30,7 @@ print(service_library)
 user1 = User_Library()
 
 # when user adds book to their own library, it updates the system's library
-
+# add book by book_id
 
 
 
