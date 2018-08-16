@@ -14,11 +14,8 @@ for book in books_to_add:
 print(service_library)
 
 
-
-
-
 # Add users
-
+users_to_add = []
 
 
 # Users adding books to their own library

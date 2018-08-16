@@ -79,7 +79,8 @@ class Service_Library():
         self.user_libraries = {}  # user_libraries[user_id] = User_Library()
 
 
-    def add_user(self, first_name, last_name):
+    def add_user(self, user):
+        first_name, last_name = user
         new_user = User(self.user_id, first_name, last_name)
         self.user_libraries[self.user_id] = new_user
         self.user_id += 1
@@ -106,6 +107,11 @@ class Service_Library():
         for book_id in self.list_of_books.keys():
             summary += 'Book ID: {0}\n '.format(book_id)
             summary += '{0}\n'.format(self.list_of_books[book_id])
+
+        summary += '**********************************************************\n'
+
+        for user_id in self.user_libraries.keys():
+            summary += '{0}\n'.format(self.user_libraries[user_id])
 
         return summary
 
