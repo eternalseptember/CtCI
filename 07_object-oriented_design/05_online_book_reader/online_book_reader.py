@@ -26,7 +26,19 @@ class Catalog_Entry():
 
     def __str__(self):
         summary = '\t{0}\n'.format(self.book)
-        # list of user_ids of people who own the book
+
+        # format the list of user_ids who have the book
+        list_of_readers = ''
+        for reader in self.readers:
+            # add commas if there is a list of user ID's
+            if len(list_of_readers) > 0:
+                list_of_readers += ', '
+
+            list_of_readers += str(reader)
+        list_of_readers += '\n'
+
+        summary += ('\tReaders: ' + list_of_readers)
+
         summary += '\tNum of Readers: {0}\n'.format(self.num_of_readers)
         summary += '\tFavorited: {0}\n'.format(self.favorited)
 
@@ -69,7 +81,7 @@ class User_Library():
 
 
 
-# Service library manages everything
+# Service library manages everything.
 class Service_Library():
     def __init__(self):
         self.book_id = 1
@@ -80,6 +92,7 @@ class Service_Library():
 
 
     def add_user(self, user):
+        # Multiple users may have the same name.
         first_name, last_name = user
         new_user = User(self.user_id, first_name, last_name)
         self.user_libraries[self.user_id] = new_user
@@ -94,7 +107,7 @@ class Service_Library():
 
 
     def add_book_to_user_library(self, user_id, book_id):
-        # RECHECK THIS AREA
+        # CHECK THIS AREA
         book_entry = self.list_of_books[book_id]
         book_entry.append(user_id)
         book_entry.num_of_readers += 1
