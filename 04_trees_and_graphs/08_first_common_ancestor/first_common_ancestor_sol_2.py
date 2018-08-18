@@ -2,6 +2,14 @@
 Implementing the solution for first common ancestor problem.
 
 Solution 2: With links to parent (better worst-case runtime)
+
+Trace tree 1's path upwards and check if any nodes cover tree 2.
+The first node that covers q must be the first common ancestor.
+
+O(t) time, where t is the size of the subtree for the first common ancestor.
+Worst case: O(n), where n is the number of nodes in tree 1.
+Each node in the subtree is searched once;
+don't need to recheck the entire subtree.
 """
 
 

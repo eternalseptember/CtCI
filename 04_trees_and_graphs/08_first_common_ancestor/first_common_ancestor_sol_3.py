@@ -2,6 +2,20 @@
 Implementing the solution for first common ancestor problem.
 
 Solution 3: Without links to parents.
+
+Follow a chain in which p and q are on the same side.
+If both are on the left or right side of the node,
+branch in that direction to look for the common ancestor.
+Common ancestor is found when p and q are no longer on the same side.
+
+
+covers is called on 2n nodes in the first call:
+    n nodes for the left side and
+    n nodes for the right side.
+
+Then the algorithm branches left or right, where
+covers will be called on (2n/2) nodes, then (2n/4) nodes, etc.,
+resulting in O(n) time on a balanced tree.
 """
 
 

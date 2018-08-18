@@ -1,4 +1,7 @@
-# Simple approach: check substring?
+# Simple approach: check substring
+# Time: O(n + m)
+# Space: O(n + m)
+# n = nodes in tree 1; m = nodes in tree 2
 
 
 class Node():

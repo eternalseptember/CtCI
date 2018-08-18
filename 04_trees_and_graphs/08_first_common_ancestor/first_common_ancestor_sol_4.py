@@ -2,6 +2,14 @@
 Implementing the solution for first common ancestor problem.
 
 Solution 4: Optimized
+
+In solution 3, covers searches all nodes under root for p and q,
+including the nodes in each subtree (root.left and root.right).
+Then it picks one of the subtrees and searches all of its nodes.
+Each subtree is searched over and over again.
+
+Should only need to search the entire tree once to find p and q.
+Should then "bubble up" the findings to earlier nodes in the stack.
 """
 
 

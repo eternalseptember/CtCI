@@ -2,7 +2,8 @@
 
 
 # from check_subtree import *
-from check_subtree_sol import *
+# from check_subtree_sol_1 import *
+from check_subtree_sol_2 import *
 
 
 # Tree 1: basic tree, no similarities
