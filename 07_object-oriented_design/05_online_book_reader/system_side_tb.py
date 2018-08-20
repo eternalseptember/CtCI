@@ -1,6 +1,7 @@
 from online_book_reader import *
 from test_books import *
 from test_users import *
+from test_add_book import *
 
 
 service_library = Service_Library()
@@ -23,11 +24,11 @@ for user in users_to_add:
     service_library.add_user(user)
 
 
-print(service_library)
-
-
 # Users adding books to their own library
+user_book_pair = (2, 1)  # user_id, book_id
+service_library.add_book_to_user_library(user_book_pair)
 
+print(service_library)
 
 # Users accessing and updating the book
 

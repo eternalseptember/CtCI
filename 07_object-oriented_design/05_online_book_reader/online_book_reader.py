@@ -106,13 +106,17 @@ class Service_Library():
         self.book_id += 1
 
 
-    def add_book_to_user_library(self, user_id, book_id):
+    def add_book_to_user_library(self, user_book_pair):
+        user_id, book_id = user_book_pair
         book_entry = self.list_of_books[book_id]
         book_entry.readers.append(user_id)
         book_entry.num_of_readers += 1
-        
+
         user_library = self.user_libraries[user_id]
-        user_entry = user_library[book_id]
+        user_library.add_book(book_id)
+
+        # this is for updating
+        # user_entry = user_library[book_id]
         # update date updated
 
 
