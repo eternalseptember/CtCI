@@ -37,8 +37,7 @@ class Catalog_Entry():
             list_of_readers += str(reader)
         list_of_readers += '\n'
 
-        summary += ('\tReaders: ' + list_of_readers)
-
+        summary += ('\tIDs of Readers: ' + list_of_readers)
         summary += '\tNum of Readers: {0}\n'.format(self.num_of_readers)
         summary += '\tFavorited: {0}\n'.format(self.favorited)
 
@@ -71,12 +70,30 @@ class User_Book_Entry():
 
 class User_Library():
     def __init__(self):
-        self.list_of_books = {}  # each user's books
+        self.list_of_books = []
+        self.user_book_info = {}  # user_book_info[book_id] = User_Book_Entry()
 
 
     def add_book(self, book_id):
         if book_id not in self.list_of_books:
-            self.list_of_books[book_id] = User_Book_Entry()
+            self.list_of_books.append(book_id)
+            self.user_book_info[book_id] = User_Book_Entry()
+
+
+    def __str__(self):
+        book_list = ''
+
+        # printing book_id for now
+        for book in self.list_of_books:
+            # add commmas if there are more than one book
+            if len(book_list) > 0:
+                book_list += ', '
+
+            book_list += '{0}'.format(book)
+        book_list += '\n'
+
+        book_str = '\tBooks Owned: ' + book_list
+        return book_str
 
 
 
@@ -88,6 +105,7 @@ class Service_Library():
         self.list_of_books = {}  # list_of_books[book_id] = Catalog_Entry()
 
         self.user_id = 1
+        self.list_of_users = {}  # list_of_users[user_id] = User()
         self.user_libraries = {}  # user_libraries[user_id] = User_Library()
 
 
@@ -95,7 +113,8 @@ class Service_Library():
         # Multiple users may have the same name.
         first_name, last_name = user
         new_user = User(self.user_id, first_name, last_name)
-        self.user_libraries[self.user_id] = new_user
+        self.list_of_users[self.user_id] = new_user
+        self.user_libraries[self.user_id] = User_Library()
         self.user_id += 1
 
 
@@ -129,7 +148,8 @@ class Service_Library():
 
         summary += '**********************************************************\n'
 
-        for user_id in self.user_libraries.keys():
+        for user_id in self.list_of_users.keys():
+            summary += '{0}'.format(self.list_of_users[user_id])
             summary += '{0}\n'.format(self.user_libraries[user_id])
 
         return summary
