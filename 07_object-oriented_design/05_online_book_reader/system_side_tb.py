@@ -25,8 +25,10 @@ for user in users_to_add:
 
 
 # Users adding books to their own library
-user_book_pair = (2, 1)  # user_id, book_id
-service_library.add_book_to_user_library(user_book_pair)
+ownership_list = [ownership_pair_01]
+
+for user_book_pair in ownership_list:
+    service_library.add_book_to_user_library(user_book_pair)
 
 print(service_library)
 
