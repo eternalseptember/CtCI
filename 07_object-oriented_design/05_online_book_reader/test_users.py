@@ -16,10 +16,6 @@ user12 = ('Roselee', 'Dehaan')
 user13 = ('Malik', 'Karls')
 user14 = ('Gale', 'Vivier')
 user15 = ('Maribeth', 'Lattin')
-user16 = ('Ronda', 'Nunez')
-user17 = ('Johanna', 'Bonier')
-user18 = ('Delphine', 'Schimpf')
-user19 = ('Cameron', 'Lilley')
-user20 = ('Ester', 'Downie')
+
 
 
