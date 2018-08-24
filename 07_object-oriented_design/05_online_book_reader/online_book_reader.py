@@ -138,6 +138,15 @@ class Service_Library():
         # user_entry = user_library[book_id]
         # update date updated
 
+    def user_favorite_book(self, user, book):
+        # probably unpack a tuple
+
+        # update book's catalog entry
+
+        # update user info
+
+        return None
+
 
 
     def __str__(self):
