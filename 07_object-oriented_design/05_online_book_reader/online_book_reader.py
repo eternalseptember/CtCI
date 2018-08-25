@@ -141,6 +141,8 @@ class Service_Library():
     def user_favorite_book(self, user, book):
         # probably unpack a tuple
 
+        # check if user owns the book first?
+
         # update book's catalog entry
 
         # update user info

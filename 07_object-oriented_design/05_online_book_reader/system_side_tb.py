@@ -2,6 +2,7 @@ from online_book_reader import *
 from test_books import *
 from test_users import *
 from test_add_book import *
+from test_favorites import *
 
 
 service_library = Service_Library()
