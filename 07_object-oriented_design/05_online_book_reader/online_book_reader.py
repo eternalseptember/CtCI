@@ -63,8 +63,8 @@ class User_Book_Entry():
     def __init__(self):
         self.date_added = None  # should automatically fill this
         self.last_accessed = None
-        self.favorite = False
         self.last_page_read = None  # page number when last_accessed has a value
+        self.favorite = False
         self.bookmarked_pages = []
 
 
@@ -136,14 +136,25 @@ class Service_Library():
 
         # this is for updating
         # user_entry = user_library[book_id]
-        # update date updated
+        # update date_added
+
+
+    def user_read_book(self, user, book):
+        # probably unpack a tuple
+
+        # check if user owns the book first?
+
+        # update the user info: page last read and date last accessed
+
+        return None
+
 
     def user_favorite_book(self, user, book):
         # probably unpack a tuple
 
         # check if user owns the book first?
 
-        # update book's catalog entry
+        # update book's catalog.favorites
 
         # update user info
 
