@@ -60,7 +60,7 @@ class User():
 
 
 class User_Book_Entry():
-    def __init__(self):
+    def __init__(self, date_added):
         self.date_added = None  # should automatically fill this
         self.last_accessed = None
         self.last_page_read = None  # page number when last_accessed has a value
@@ -77,7 +77,7 @@ class User_Library():
     def add_book(self, book_id):
         if book_id not in self.list_of_books:
             self.list_of_books.append(book_id)
-            self.user_book_info[book_id] = User_Book_Entry()
+            self.user_book_info[book_id] = User_Book_Entry()  # DATE ADDED
 
 
     def __str__(self):
@@ -127,20 +127,20 @@ class Service_Library():
 
     def add_book_to_user_library(self, user_book_pair):
         user_id, book_id = user_book_pair
+
+        # Update book's catalog entry with new reader.
         book_entry = self.list_of_books[book_id]
         book_entry.readers.append(user_id)
         book_entry.num_of_readers += 1
 
+        # Update user's library with new book.
         user_library = self.user_libraries[user_id]
         user_library.add_book(book_id)
 
-        # this is for updating
-        # user_entry = user_library[book_id]
-        # update date_added
 
-
-    def user_read_book(self, user, book):
+    def user_read_book(self, read_book_info):
         # probably unpack a tuple
+        user_id, book_id, last_page = read_book_info
 
         # check if user owns the book first?
 
@@ -149,8 +149,9 @@ class Service_Library():
         return None
 
 
-    def user_favorite_book(self, user, book):
+    def user_favorite_book(self, favorite_book):
         # probably unpack a tuple
+        user_id, book_id = favorite_book
 
         # check if user owns the book first?
 
