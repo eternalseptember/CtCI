@@ -1,6 +1,9 @@
 # Design the data structures for an online book reader system.
 
 
+from datetime import *
+
+
 class Book():
     def __init__(self, author, title, publisher, year):
         self.author = author
@@ -61,7 +64,7 @@ class User():
 
 class User_Book_Entry():
     def __init__(self, date_added):
-        self.date_added = None  # should automatically fill this
+        self.date_added = date_added  # should automatically fill this
         self.last_accessed = None
         self.last_page_read = None  # page number when last_accessed has a value
         self.favorite = False
@@ -77,7 +80,8 @@ class User_Library():
     def add_book(self, book_id):
         if book_id not in self.list_of_books:
             self.list_of_books.append(book_id)
-            self.user_book_info[book_id] = User_Book_Entry()  # DATE ADDED
+            date_added = str(datetime.now())
+            self.user_book_info[book_id] = User_Book_Entry(date_added)
 
 
     def __str__(self):
@@ -139,19 +143,18 @@ class Service_Library():
 
 
     def user_read_book(self, read_book_info):
-        # probably unpack a tuple
         user_id, book_id, last_page = read_book_info
 
         # check if user owns the book first?
 
         # update the user info: page last read and date last accessed
+        date_accessed = str(datetime.now())
 
         return None
 
 
-    def user_favorite_book(self, favorite_book):
-        # probably unpack a tuple
-        user_id, book_id = favorite_book
+    def user_favorite_book(self, favorite_info):
+        user_id, book_id = favorite_info
 
         # check if user owns the book first?
 
