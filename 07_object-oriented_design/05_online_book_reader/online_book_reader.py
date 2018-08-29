@@ -84,6 +84,13 @@ class User_Library():
             self.user_book_info[book_id] = User_Book_Entry(date_added)
 
 
+    def read_book(self, book_id, date_accessed, last_page):
+        if book_id in self.list_of_books:
+            user_book_entry = self.user_book_info[book_id]
+            user_book_entry.last_accessed = date_accessed
+            user_book_entry.last_page_read = last_page
+
+
     def __str__(self):
         book_list = ''
 
@@ -145,12 +152,17 @@ class Service_Library():
     def user_read_book(self, read_book_info):
         user_id, book_id, last_page = read_book_info
 
-        # check if user owns the book first?
-
-        # update the user info: page last read and date last accessed
+        # Update the user's book info.
+        user_library = self.user_libraries[user_id]
         date_accessed = str(datetime.now())
+        user_library.read_book(book_id, date_accessed, last_page)
 
-        return None
+    
+    def user_bookmark_page(self, bookmark_info):
+        user_id, book_id, page_info = bookmark_info
+
+        # update bookmarked pages
+
 
 
     def user_favorite_book(self, favorite_info):

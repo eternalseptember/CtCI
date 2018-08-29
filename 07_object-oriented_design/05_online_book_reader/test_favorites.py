@@ -1,5 +1,5 @@
 # Testing favorites and bookmarking
-# user_id, book_id
+# (user_id, book_id)
 # 15 users, 7 books
 
 
