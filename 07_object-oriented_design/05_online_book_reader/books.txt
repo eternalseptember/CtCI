@@ -1,0 +1,8 @@
+"J. K. Rowling", "Harry Potter and the Philosopher's Stone", "Scholastic", 1998
+"J. K. Rowling", "Harry Potter and the Chamber of Secrets", "Scholastic", 1998
+"J. K. Rowling", "Harry Potter and the Prisoner of Azkaban", "Scholastic", 1999
+"J. R. R. Tolkien", "The Lord of the Rings", "Allen & Unwin", 1954
+"George R. R. Martin", "A Game of Thrones", "Bantam Books", 1996
+"George R. R. Martin", "A Clash of Kings", "Bantam Books", 1998
+"George R. R. Martin", "A Storm of Swords", "Bantam Books", 2000
+"C.S. Lewis", "The Lion, the Witch, and the Wardrobe", "HarperCollins", 1950

@@ -1,14 +1,12 @@
-from online_book_reader import *
-from test_books import *
-from test_users import *
-from test_add_book import *
-from test_reading import *
-from test_favorites import *
+# Testing the online book reader system.
+
+
+from online_book_reader_system import *
 
 
 service_library = Service_Library()
 
-
+"""
 # Add Books to Library.
 books_to_add = [hp1, hp2, hp3, lotr, asoiaf1, asoiaf2, asoiaf3]
 
@@ -33,6 +31,7 @@ ownership_list = [ownership_pair_01, ownership_pair_02, ownership_pair_03,
 
 for user_book_pair in ownership_list:
     service_library.add_book_to_user_library(user_book_pair)
+"""
 
 print(service_library)
 

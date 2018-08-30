@@ -1,0 +1,55 @@
+	books.txt
+
+List of books to add to the system.
+"Author", "Title", "Publisher", Year
+
+7 books.
+
+===============================================================================
+	users.txt
+
+List of users add to the system.
+"First Name", "Last Name"
+
+15 users.
+
+===============================================================================
+	users_bookmarks.txt
+
+Users bookmarking pages.
+user_id, book_id, [page numbers]?
+
+* Need to be filled in.
+
+===============================================================================
+	users_books.txt
+
+Adding books to users' libraries.
+user_id, book_id, "date_added"
+
+User 1 owns the three HP books.
+User 2 owns the first HP book.
+User 3 owns first HP book, LOTR, and first ASOIAF.
+User 4 owns the three ASOIAF.
+
+* Need to put in dates.
+
+===============================================================================
+	users_favorites.txt
+
+Users favoriting books.
+user_id, book_id
+
+*Need more filled in.
+
+===============================================================================
+	users_read.txt
+
+Users reading books.
+user_id, book_id, last_page, "date_accessed"
+
+*Need to be filled in.
+
+
+
+
