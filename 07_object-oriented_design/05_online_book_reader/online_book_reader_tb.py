@@ -2,36 +2,47 @@
 
 
 from online_book_reader_system import *
+import csv
 
 
 service_library = Service_Library()
 
-"""
-# Add Books to Library.
-books_to_add = [hp1, hp2, hp3, lotr, asoiaf1, asoiaf2, asoiaf3]
 
-for book in books_to_add:
-    service_library.add_book_to_catalog(book)
+# Add books to system library.
+with open("books.txt", "r") as books_list:
+    books_info = csv.reader(books_list, skipinitialspace=True, quotechar='"')
+
+    for book in books_info:
+        author = book[0]
+        title = book[1]
+        publisher = book[2]
+        year = int(book[3])
+
+        service_library.add_book_to_catalog(author, title, publisher, year)
 
 
 # Add users.
-users_to_add = [user01, user02, user03, user04, user05,
-                user06, user07, user08, user09, user10,
-                user11, user12, user13, user14, user15]
+with open("users.txt", "r") as users_list:
+    users_info = csv.reader(users_list, skipinitialspace=True, quotechar='"')
 
-for user in users_to_add:
-    service_library.add_user(user)
+    for user in users_info:
+        first_name = user[0]
+        last_name = user[1]
+
+        service_library.add_user(first_name, last_name)
 
 
 # Users adding books to their own library.
-ownership_list = [ownership_pair_01, ownership_pair_02, ownership_pair_03,
-                  ownership_pair_04, ownership_pair_05, ownership_pair_06,
-                  ownership_pair_07, ownership_pair_08, ownership_pair_09,
-                  ownership_pair_10]
+with open("users_books.txt", "r") as ownership_list:
+    ownership_info = csv.reader(ownership_list, skipinitialspace=True, quotechar='"')
 
-for user_book_pair in ownership_list:
-    service_library.add_book_to_user_library(user_book_pair)
-"""
+    for ownership in ownership_info:
+        user_id = int(ownership[0])
+        book_id = int(ownership[1])
+        date_added = ownership[2]
+
+        service_library.add_book_to_user_library(user_id, book_id, date_added)
+
 
 print(service_library)
 

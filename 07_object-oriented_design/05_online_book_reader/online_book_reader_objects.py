@@ -28,6 +28,7 @@ class Catalog_Entry():
 
     def __str__(self):
         summary = '\t{0}\n'.format(self.book)
+        summary += '\tNum of Readers: {0}\n'.format(self.num_of_readers)
 
         # format the list of user_ids who have the book
         list_of_readers = ''
@@ -40,7 +41,6 @@ class Catalog_Entry():
         list_of_readers += '\n'
 
         summary += ('\tIDs of Readers: ' + list_of_readers)
-        summary += '\tNum of Readers: {0}\n'.format(self.num_of_readers)
         summary += '\tFavorited: {0}\n'.format(self.favorited)
 
         return summary

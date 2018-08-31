@@ -12,5 +12,5 @@ with open("books.txt", "r") as books_list:
         print('Author: {0}'.format(book[0]))
         print('Title: {0}'.format(book[1]))
         print('Publisher: {0}'.format(book[2]))
-        print('Year: {0}'.format(book[3]))
+        print('Year: {0}'.format(int(book[3])))
         print()
