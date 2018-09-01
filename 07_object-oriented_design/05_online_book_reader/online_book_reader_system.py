@@ -61,18 +61,18 @@ class Service_Library():
         return None
 
 
+    def print_users_info(self):
+        for user_id in self.list_of_users.keys():
+            summary += '{0}'.format(self.list_of_users[user_id])
+            summary += '{0}\n'.format(self.user_libraries[user_id])
+
+
 
     def __str__(self):
         summary = ''
         for book_id in self.list_of_books.keys():
             summary += 'Book ID: {0}\n '.format(book_id)
             summary += '{0}\n'.format(self.list_of_books[book_id])
-
-        summary += '**********************************************************\n'
-
-        for user_id in self.list_of_users.keys():
-            summary += '{0}'.format(self.list_of_users[user_id])
-            summary += '{0}\n'.format(self.user_libraries[user_id])
 
         return summary
 

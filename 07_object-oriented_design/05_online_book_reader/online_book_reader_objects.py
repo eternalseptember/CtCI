@@ -21,9 +21,10 @@ class Book():
 class Catalog_Entry():
     def __init__(self, book):
         self.book = book  # book object
-        self.readers = []  # list of user_ids of people who own the book
         self.num_of_readers = 0  # number of people who have the book
-        self.favorited = 0  # number of pepole who favorited the book
+        self.readers = []  # list of user_ids of people who own the book
+        self.num_of_favorites = 0  # number of people who favorited the book
+        self.favorites = []  # list of user_ids who favorited the book
 
 
     def __str__(self):
@@ -41,7 +42,8 @@ class Catalog_Entry():
         list_of_readers += '\n'
 
         summary += ('\tIDs of Readers: ' + list_of_readers)
-        summary += '\tFavorited: {0}\n'.format(self.favorited)
+        summary += '\tNum of Favorited: {0}\n'.format(self.num_of_favorites)
+        # print list of users who favorited the book
 
         return summary
 
@@ -73,6 +75,7 @@ class User_Book_Entry():
 class User_Library():
     def __init__(self):
         self.list_of_books = []
+        self.list_of_favorites = []
         self.user_book_info = {}  # user_book_info[book_id] = User_Book_Entry()
 
 
@@ -87,6 +90,14 @@ class User_Library():
             user_book_entry = self.user_book_info[book_id]
             user_book_entry.last_accessed = date_accessed
             user_book_entry.last_page_read = last_page
+
+
+    def favorite_book(self, book_id):
+        # probably set a toggle to turn favorites on and off
+        self.list_of_books.append(book_id)
+
+        book = self.user_book_info[book_id]
+        book.favorite = True
 
 
     def __str__(self):
