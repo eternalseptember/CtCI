@@ -54,6 +54,8 @@ class Service_Library():
     def user_favorite_book(self, user_id, book_id):
         # check if user owns the book first?
 
+        # toggle favorites?
+        # return value from favorites function says whether the book is favorited or not
         # update book's catalog.favorites
 
         # update user info

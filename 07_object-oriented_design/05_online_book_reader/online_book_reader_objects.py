@@ -93,11 +93,17 @@ class User_Library():
 
 
     def favorite_book(self, book_id):
-        # probably set a toggle to turn favorites on and off
-        self.list_of_books.append(book_id)
-
+        # Toggle favorites
         book = self.user_book_info[book_id]
-        book.favorite = True
+
+        if book.favorite:
+            self.list_of_books.remove(book_id)
+            book.favorite = False
+            return False
+        else:
+            self.list_of_books.append(book_id)
+            book.favorite = True
+            return True
 
 
     def __str__(self):
