@@ -52,11 +52,11 @@ class Service_Library():
 
 
     def user_favorite_book(self, user_id, book_id):
-        # check if user owns the book first?
+        user_library = self.user_libraries[user_id]
+        favorite = user_library.favorite_book(book_id)
 
-        # toggle favorites?
-        # return value from favorites function says whether the book is favorited or not
         # update book's catalog.favorites
+
 
         # update user info
 
