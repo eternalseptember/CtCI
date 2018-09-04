@@ -43,8 +43,18 @@ class Catalog_Entry():
 
         summary += ('\tIDs of Readers: ' + list_of_readers)
         summary += '\tNum of Favorited: {0}\n'.format(self.num_of_favorites)
-        # print list of users who favorited the book
 
+        # format the list user_ids who favorited the book
+        list_of_favorited_users = ''
+        for reader in self.favorites:
+            # add commas if there is a list of user ID's
+            if len(list_of_favorited_users) > 0:
+                list_of_favorited_users += ', '
+
+            list_of_favorited_users += str(reader)
+        list_of_favorited_users += '\n'
+
+        summary += ('\tWho favorited: ' + list_of_favorited_users)
         return summary
 
 

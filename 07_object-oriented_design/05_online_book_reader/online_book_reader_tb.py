@@ -53,7 +53,14 @@ print(service_library)
 
 
 # Users favoriting the book.
+with open("users_favorites.txt", "r") as favorites_list:
+    favorites_info = csv.reader(favorites_list, skipinitialspace=True, quotechar='"')
 
+    for favorite in favorites_info:
+        user_id = int(favorite[0])
+        book_id = int(favorite[1])
+
+        service_library.user_favorite_book(user_id, book_id)
 
 
 
