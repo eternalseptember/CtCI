@@ -52,15 +52,19 @@ class Service_Library():
 
 
     def user_favorite_book(self, user_id, book_id):
+        # update user info
         user_library = self.user_libraries[user_id]
         favorite = user_library.favorite_book(book_id)
 
         # update book's catalog.favorites
+        book_entry = self.list_of_books[book_id]
+        if favorite:
+            book_entry.num_of_favorites += 1
+            book_entry.favorites.append(user_id)
+        else:
+            book_entry.num_of_favorites -= 1
+            book_entry.favorites.remove(user_id)
 
-
-        # update user info
-
-        return None
 
 
     def print_users_info(self):
