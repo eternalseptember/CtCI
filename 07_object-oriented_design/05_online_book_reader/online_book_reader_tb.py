@@ -26,10 +26,11 @@ with open("users.txt", "r") as users_list:
     users_info = csv.reader(users_list, skipinitialspace=True, quotechar='"')
 
     for user in users_info:
-        first_name = user[0]
-        last_name = user[1]
+        user_name = user[0]
+        first_name = user[1]
+        last_name = user[2]
 
-        service_library.add_user(first_name, last_name)
+        service_library.add_user(user_name, first_name, last_name)
 
 
 # Users adding books to their own library.
@@ -43,8 +44,6 @@ with open("users_books.txt", "r") as ownership_list:
 
         service_library.add_book_to_user_library(user_id, book_id, date_added)
 
-
-print(service_library)
 
 # Users reading the book.
 
@@ -61,6 +60,12 @@ with open("users_favorites.txt", "r") as favorites_list:
         book_id = int(favorite[1])
 
         service_library.user_favorite_book(user_id, book_id)
+
+
+
+print(service_library)
+service_library.print_users_info()
+
 
 
 

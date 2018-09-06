@@ -20,9 +20,9 @@ class Service_Library():
         self.book_id += 1
 
 
-    def add_user(self, first_name, last_name):
-        # Multiple users may have the same name.
-        new_user = User(self.user_id, first_name, last_name)
+    def add_user(self, user_name, first_name, last_name):
+        # should probably check for duplicate usernames?
+        new_user = User(self.user_id, user_name, first_name, last_name)
         self.list_of_users[self.user_id] = new_user
         self.user_libraries[self.user_id] = User_Library()
         self.user_id += 1
