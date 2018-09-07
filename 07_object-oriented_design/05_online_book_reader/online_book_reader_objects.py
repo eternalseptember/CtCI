@@ -129,7 +129,7 @@ class User_Library():
             book_list += '{0}'.format(book)
         book_list += '\n'
 
-        book_str = '\tBooks Owned: ' + book_list
-        return book_str
+        # book_str = '\tBooks Owned: ' + book_list
+        return book_list
 
 
