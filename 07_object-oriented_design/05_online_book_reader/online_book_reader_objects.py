@@ -108,11 +108,11 @@ class User_Library():
         book = self.user_book_info[book_id]
 
         if book.favorite:
-            self.list_of_books.remove(book_id)
+            self.list_of_favorites.remove(book_id)
             book.favorite = False
             return False
         else:
-            self.list_of_books.append(book_id)
+            self.list_of_favorites.append(book_id)
             book.favorite = True
             return True
 
