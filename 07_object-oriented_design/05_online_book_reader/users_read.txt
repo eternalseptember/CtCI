@@ -1,5 +1,2 @@
-
-
-
-
-
+"user_id", "book_id", "last_page", "date_accessed"
+1, 1, 1, "2018-02-02"

@@ -1,3 +1,4 @@
+"user_name", "first_name", "last_name"
 "mosteller_c", Chadwick", "Mosteller"
 "pangburn_e", "Elliott", "Pangburn"
 "castro_l", "Lamonica", "Castro"

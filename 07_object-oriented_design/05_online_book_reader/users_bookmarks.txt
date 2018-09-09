@@ -1,0 +1,2 @@
+"user_id", "book_id", "page_num"
+1, 1, 1

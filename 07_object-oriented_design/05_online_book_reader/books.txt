@@ -1,3 +1,4 @@
+"Author", "Title", "Publisher", "Year"
 "J. K. Rowling", "Harry Potter and the Philosopher's Stone", "Scholastic", 1998
 "J. K. Rowling", "Harry Potter and the Chamber of Secrets", "Scholastic", 1998
 "J. K. Rowling", "Harry Potter and the Prisoner of Azkaban", "Scholastic", 1999
