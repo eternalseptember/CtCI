@@ -59,11 +59,11 @@ with open("users_favorites.txt", "r") as favorites_list:
         user_id = int(favorite[0])
         book_id = int(favorite[1])
 
-        service_library.user_favorite_book(user_id, book_id)
+        service_library.user_favorites_book(user_id, book_id)
 
 
 
-print(service_library)
+service_library.print_books_info()
 service_library.print_users_info()
 
 

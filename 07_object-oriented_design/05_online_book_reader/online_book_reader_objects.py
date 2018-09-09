@@ -22,39 +22,39 @@ class Catalog_Entry():
     def __init__(self, book):
         self.book = book  # book object
         self.num_of_readers = 0  # number of people who have the book
-        self.readers = []  # list of user_ids of people who own the book
+        self.readers = []  # user_ids of owners
         self.num_of_favorites = 0  # number of people who favorited the book
-        self.favorites = []  # list of user_ids who favorited the book
+        self.favorites = []  # user_ids of favoriting users
 
 
     def __str__(self):
-        summary = '\t{0}\n'.format(self.book)
-        summary += '\tNum of Readers: {0}\n'.format(self.num_of_readers)
+        summary = '{0}\n'.format(self.book)
+        summary += 'Num of Readers: {0}\n'.format(self.num_of_readers)
 
-        # format the list of user_ids who have the book
+        # Format the list of user_ids of owners.
         list_of_readers = ''
         for reader in self.readers:
-            # add commas if there is a list of user ID's
+            # Add commas if there is a list of user ID's.
             if len(list_of_readers) > 0:
                 list_of_readers += ', '
 
             list_of_readers += str(reader)
         list_of_readers += '\n'
 
-        summary += ('\tIDs of Readers: ' + list_of_readers)
-        summary += '\tNum of Favorited: {0}\n'.format(self.num_of_favorites)
+        summary += ('IDs of Readers: ' + list_of_readers)
+        summary += 'Num of Favorited: {0}\n'.format(self.num_of_favorites)
 
-        # format the list user_ids who favorited the book
+        # Format the list user_ids who favorited the book.
         list_of_favorited_users = ''
         for reader in self.favorites:
-            # add commas if there is a list of user ID's
+            # Add commas if there is a list of user ID's.
             if len(list_of_favorited_users) > 0:
                 list_of_favorited_users += ', '
 
             list_of_favorited_users += str(reader)
         list_of_favorited_users += '\n'
 
-        summary += ('\tWho favorited: ' + list_of_favorited_users)
+        summary += ('Who favorited: ' + list_of_favorited_users)
         return summary
 
 
@@ -66,17 +66,13 @@ class User():
         self.last_name = last_name
         # other info, like phone number, billing, etc
 
-
     def __str__(self):
-        user_info = '{0} - {1}\n'\
-            .format(self.user_id, self.user_name)
-
-        return user_info
+        return str(self.user_name)
 
 
 class User_Book_Entry():
     def __init__(self, date_added):
-        self.date_added = date_added  # should automatically fill this
+        self.date_added = date_added
         self.last_accessed = None
         self.last_page_read = None  # page number when last_accessed has a value
         self.favorite = False
@@ -85,8 +81,8 @@ class User_Book_Entry():
 
 class User_Library():
     def __init__(self):
-        self.list_of_books = []
-        self.list_of_favorites = []
+        self.list_of_books = []  # book_id
+        self.list_of_favorites = []  # book_id
         self.user_book_info = {}  # user_book_info[book_id] = User_Book_Entry()
 
 
@@ -103,18 +99,37 @@ class User_Library():
             user_book_entry.last_page_read = last_page
 
 
-    def favorite_book(self, book_id):
-        # Toggle favorites
-        book = self.user_book_info[book_id]
+    def bookmark_page(self, book_id, page_num):
+        if book_id not in self.list_of_books:
+            return None
 
-        if book.favorite:
-            self.list_of_favorites.remove(book_id)
-            book.favorite = False
-            return False
         else:
-            self.list_of_favorites.append(book_id)
-            book.favorite = True
-            return True
+            book = self.user_book_info[book_id]
+
+            # Toggle bookmarked page.
+            if page_num in book.bookmarked_pages:
+                book.bookmarked_pages.remove(page_num)
+            else:
+                book.bookmarked_pages.append(page_num)
+                book.bookmarked_pages.sort()
+
+
+    def favorite_book(self, book_id):
+        if book_id not in self.list_of_books:
+            return None
+
+        else:
+            book = self.user_book_info[book_id]
+
+            # Toggle favorites
+            if book.favorite:
+                self.list_of_favorites.remove(book_id)
+                book.favorite = False
+                return False
+            else:
+                self.list_of_favorites.append(book_id)
+                book.favorite = True
+                return True
 
 
     def __str__(self):
