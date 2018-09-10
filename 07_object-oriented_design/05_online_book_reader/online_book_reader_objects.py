@@ -21,41 +21,8 @@ class Book():
 class Catalog_Entry():
     def __init__(self, book):
         self.book = book  # book object
-        self.num_of_readers = 0  # number of people who have the book
         self.readers = []  # user_ids of owners
-        self.num_of_favorites = 0  # number of people who favorited the book
         self.favorites = []  # user_ids of favoriting users
-
-
-    def __str__(self):
-        summary = '{0}\n'.format(self.book)
-        summary += 'Num of Readers: {0}\n'.format(self.num_of_readers)
-
-        # Format the list of user_ids of owners.
-        list_of_readers = ''
-        for reader in self.readers:
-            # Add commas if there is a list of user ID's.
-            if len(list_of_readers) > 0:
-                list_of_readers += ', '
-
-            list_of_readers += str(reader)
-        list_of_readers += '\n'
-
-        summary += ('IDs of Readers: ' + list_of_readers)
-        summary += 'Num of Favorited: {0}\n'.format(self.num_of_favorites)
-
-        # Format the list user_ids who favorited the book.
-        list_of_favorited_users = ''
-        for reader in self.favorites:
-            # Add commas if there is a list of user ID's.
-            if len(list_of_favorited_users) > 0:
-                list_of_favorited_users += ', '
-
-            list_of_favorited_users += str(reader)
-        list_of_favorited_users += '\n'
-
-        summary += ('Who favorited: ' + list_of_favorited_users)
-        return summary
 
 
 class User():
@@ -130,21 +97,5 @@ class User_Library():
                 self.list_of_favorites.append(book_id)
                 book.favorite = True
                 return True
-
-
-    def __str__(self):
-        book_list = ''
-
-        # printing book_id for now
-        for book in self.list_of_books:
-            # add commmas if there are more than one book
-            if len(book_list) > 0:
-                book_list += ', '
-
-            book_list += '{0}'.format(book)
-        book_list += '\n'
-
-        # book_str = '\tBooks Owned: ' + book_list
-        return book_list
 
 

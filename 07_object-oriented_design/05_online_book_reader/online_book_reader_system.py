@@ -37,7 +37,6 @@ class Service_Library():
         # Update book's catalog entry with new reader.
         book_entry = self.list_of_books[book_id]
         book_entry.readers.append(user_id)
-        book_entry.num_of_readers += 1
 
         # Update user's library with new book.
         user_library = self.user_libraries[user_id]
@@ -65,44 +64,95 @@ class Service_Library():
         if favorite is not None:
             book_entry = self.list_of_books[book_id]
             if favorite:
-                book_entry.num_of_favorites += 1
                 book_entry.favorites.append(user_id)
             else:
-                book_entry.num_of_favorites -= 1
                 book_entry.favorites.remove(user_id)
 
 
-    def print_users_info(self):
-        summary = ''
-
-        for user_id in self.list_of_users.keys():
-            user_entry = self.list_of_users[user_id]
-
-            summary += '{0}: '.format(user_entry)
-            summary += '{0}\n'.format(self.user_libraries[user_id])
-
-        print(summary)
-
-
     def print_books_info(self):
+        # Print system's catalog entry for each book.
         summary = ''
 
         for book_id in self.list_of_books.keys():
+            # Set up the information to be printed.
             book_entry = self.list_of_books[book_id]
-            book_title = str(book_entry.book)
+            book_info = str(book_entry.book)
+            readers = book_entry.readers  # list of user_ids
+            num_of_readers = len(readers)
+            favorites = book_entry.favorites  # list of user_ids
+            num_of_favorites = len(favorites)
+
+            # Format the output.
+            summary += '{0}\n'.format(book_info)
+            summary += '\tBook ID: {0}\n'.format(book_id)
+            summary += '\tReaders: {0}\n'.format(num_of_readers)
+
+            # Format the usernames of readers.
+            list_of_readers = ''
+            for user_id in readers:
+                # Add commas if there is a list of user ID's.
+                if len(list_of_readers) > 0:
+                    list_of_readers += ', '
+
+                reader_username = self.list_of_users[user_id]
+                list_of_readers += str(reader_username)
 
 
-            summary += 'Book ID: {0}\n'.format(book_id)
-            summary += '{0}\n'.format(self.list_of_books[book_id])
+            summary += '\t\t{0}\n'.format(list_of_readers)
+            summary += '\tFavorites: {0}\n'.format(num_of_favorites)
+
+            # Format the usernames who favorited the book.
+            list_of_favorited_users = ''
+            for user_id in favorites:
+                # Add commas if there is a list of user ID's.
+                if len(list_of_readers) > 0:
+                    list_of_readers += ', '
+
+                reader_username = self.list_of_users[user_id]
+                list_of_favorited_users += str(reader_username)
+
+
+            summary += '\t\t{0}\n'.format(list_of_favorited_users)
+            summary += '\n'
 
         print(summary)
 
 
+    def print_users_info(self):
+        # Print information about each user's library.
+        summary = ''
 
+        for user_id in self.list_of_users.keys():
+            # Get info about user and user's library.
+            user_entry = self.list_of_users[user_id]
+            user_library = self.user_libraries[user_id]
+            list_of_books = user_library.list_of_books
 
+            # Print the username.
+            summary += '{0}: \n'.format(user_entry)
 
+            # Format output for each book in the user's library.
+            for book_id in list_of_books:
+                book_entry = str(self.list_of_books[book_id].book)
+                user_book_entry = user_library.user_book_info[book_id]
+                date_added = user_book_entry.date_added
+                date_last_accessed = user_book_entry.last_accessed
+                last_page_read = user_book_entry.last_page_read
+                favorite = user_book_entry.favorite
+                bookmarked_pages = str(user_book_entry.bookmarked_pages)
 
+                if favorite:
+                    summary += '\t* {0} *\n'.format(book_entry)
+                else:
+                    summary += '\t{0}\n'.format(book_entry)
 
+                summary += '\t\tAdded: {0}\n'.format(date_added)
+                summary += '\t\tLast Read: {0}\n'.format(date_last_accessed)
+                summary += '\t\tLast Page Read: {0}\n'.format(last_page_read)
+                summary += '\t\tPages Bookmarked: {0}\n'.format(bookmarked_pages)
+                summary += '\n'
+
+        print(summary)
 
 
 
