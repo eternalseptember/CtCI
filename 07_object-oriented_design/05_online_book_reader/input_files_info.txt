@@ -13,7 +13,9 @@ List of users add to the system.
 	users_bookmarks.txt
 Users bookmarking pages.
 
-* Need to be filled in.
+User 1 toggled a bookmarked page.
+User 2 has multiple pages of a book bookmarked.
+User 7 has multiple pages of a book marked.
 
 ===============================================================================
 	users_books.txt
@@ -23,6 +25,9 @@ User 1 owns the three HP books.
 User 2 owns the first HP book.
 User 3 owns first HP book, LOTR, and first ASOIAF.
 User 4 owns the three ASOIAF.
+User 5 owns Narnia 1.
+User 6 owns Narnia 1.
+User 7 owns Narnia 1.
 
 ===============================================================================
 	users_favorites.txt
@@ -34,7 +39,7 @@ User 1 toggled favorites of HP1.
 	users_read.txt
 Users reading books.
 
-* Need to be filled in.
+* More examples.
 
 
 

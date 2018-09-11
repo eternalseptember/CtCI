@@ -57,6 +57,8 @@ class User_Library():
         if book_id not in self.list_of_books:
             self.list_of_books.append(book_id)
             self.user_book_info[book_id] = User_Book_Entry(date_added)
+        else:
+            return None  # For error checking.
 
 
     def read_book(self, book_id, date_accessed, last_page):
@@ -64,11 +66,13 @@ class User_Library():
             user_book_entry = self.user_book_info[book_id]
             user_book_entry.last_accessed = date_accessed
             user_book_entry.last_page_read = last_page
+        else:
+            return None  # For error checking.
 
 
     def bookmark_page(self, book_id, page_num):
         if book_id not in self.list_of_books:
-            return None
+            return None  # For error checking.
 
         else:
             book = self.user_book_info[book_id]
@@ -83,7 +87,7 @@ class User_Library():
 
     def favorite_book(self, book_id):
         if book_id not in self.list_of_books:
-            return None
+            return None  # For error checking.
 
         else:
             book = self.user_book_info[book_id]

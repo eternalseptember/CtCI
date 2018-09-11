@@ -34,6 +34,12 @@ class Service_Library():
 
 
     def add_book_to_user_library(self, user_id, book_id, date_added):
+        # Checks whether user_id and book_id are valid.
+        if (user_id < 1) or (user_id >= self.user_id):
+            return None
+        if (book_id < 1) or (book_id >= self.book_id):
+            return None
+
         # Update book's catalog entry with new reader.
         book_entry = self.list_of_books[book_id]
         book_entry.readers.append(user_id)
@@ -105,8 +111,8 @@ class Service_Library():
             list_of_favorited_users = ''
             for user_id in favorites:
                 # Add commas if there is a list of user ID's.
-                if len(list_of_readers) > 0:
-                    list_of_readers += ', '
+                if len(list_of_favorited_users) > 0:
+                    list_of_favorited_users += ', '
 
                 reader_username = self.list_of_users[user_id]
                 list_of_favorited_users += str(reader_username)

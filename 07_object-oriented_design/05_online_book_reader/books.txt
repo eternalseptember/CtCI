@@ -7,3 +7,4 @@
 "George R. R. Martin", "A Clash of Kings", "Bantam Books", 1998
 "George R. R. Martin", "A Storm of Swords", "Bantam Books", 2000
 "C.S. Lewis", "The Lion, the Witch, and the Wardrobe", "HarperCollins", 1950
+"C.S. Lewis", "Prince Caspian", "HarperCollins", 1951
