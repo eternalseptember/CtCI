@@ -16,6 +16,17 @@ class Puzzle_Piece():
         self.left_edge = left_edge
 
 
+class Puzzle():
+    def __init__(self, size):
+        self.size = size
+
+    def generate_puzzle(self):
+        # Create sample puzzle.
+        # Number of pieces = n * n.
+        # Shuffle pieces.
+        return None
+
+
 class Puzzle_Solution():
     def __init__(self, puzzle_size):
         self.puzzle_size = puzzle_size  # N
