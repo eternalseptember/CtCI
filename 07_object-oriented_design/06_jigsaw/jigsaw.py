@@ -16,6 +16,30 @@ class Puzzle_Piece():
         self.left_edge = left_edge
 
 
+    def rotate_clockwise(self):
+        old_top_edge = self.top_edge
+        old_right_edge = self.right_edge
+        old_bottom_edge = self.bottom_edge
+        old_left_edge = self.left_edge
+
+        self.top_edge = old_left_edge
+        self.right_edge = old_top_edge
+        self.bottom_edge = old_right_edge
+        self.left_edge = old_bottom_edge
+
+
+    def rotate_counterclockwise(self):
+        old_top_edge = self.top_edge
+        old_right_edge = self.right_edge
+        old_bottom_edge = self.bottom_edge
+        old_left_edge = self.left_edge
+
+        self.top_edge = old_right_edge
+        self.right_edge = old_bottom_edge
+        self.bottom_edge = old_left_edge
+        self.left_edge = old_top_edge
+
+
 class Puzzle():
     def __init__(self, size):
         self.size = size
