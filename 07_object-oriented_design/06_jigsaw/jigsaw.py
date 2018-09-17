@@ -43,12 +43,53 @@ class Puzzle_Piece():
 class Puzzle():
     def __init__(self, size):
         self.size = size
+        self.puzzle_pieces = self.generate_puzzle(size)
 
-    def generate_puzzle(self):
-        # Create sample puzzle.
-        # Number of pieces = n * n.
-        # Shuffle pieces.
-        return None
+    def generate_puzzle(self, size):
+        # Assumes size is at least 2.
+        # Pieces are numbered from 1 to (size * size).
+        puzzle_pieces = []
+
+        for row in range(1, size+1):
+            for col in range(1, size+1):
+                piece_num = (row-1) * size + col
+
+                # Define default edges.
+                left_edge = piece_num - 1
+                right_edge = piece_num + 1
+                top_edge = piece_num - size
+                bottom_edge = piece_num + size
+
+                # Define edge pieces.
+                if col == 1:  # left edge piece
+                    left_edge = None
+                elif col == size:  # right edge piece
+                    right_edge = None
+                if row == 1:  # top edge piece
+                    top_edge = None
+                elif row == size:  # bottom edge piece
+                    bottom_edge = None
+
+                piece = Puzzle_Piece(
+                    piece_num,
+                    top_edge,
+                    right_edge,
+                    bottom_edge,
+                    left_edge
+                    )
+
+                puzzle_pieces.append(piece)
+
+
+                print(piece_num, end='\t')
+            print()
+
+
+
+        # Shuffle and randomly rotate pieces.
+
+
+        return puzzle_pieces
 
 
 class Puzzle_Solution():
@@ -59,7 +100,7 @@ class Puzzle_Solution():
 
     def blank_puzzle_mat(self, puzzle_size):
         # len(mat) is row; len(mat[0]) is col
-        blank_mat = [[0 for i in range(puzzle_size)] for i in range(puzzle_size)]
+        blank_mat = [[None for col in range(puzzle_size)] for row in range(puzzle_size)]
         return blank_mat
 
 
