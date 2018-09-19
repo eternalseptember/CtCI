@@ -39,6 +39,14 @@ class Puzzle_Piece():
         self.bottom_edge = old_left_edge
         self.left_edge = old_top_edge
 
+    def __str__(self):
+        summary = ''
+        summary += 'Top: {0}\t\t'.format(self.top_edge)
+        summary += 'Right: {0}\t\t'.format(self.right_edge)
+        summary += 'Bottom: {0}\t\t'.format(self.bottom_edge)
+        summary += 'Left: {0}\t\t'.format(self.left_edge)
+        return summary
+
 
 class Puzzle():
     def __init__(self, size):
@@ -81,8 +89,7 @@ class Puzzle():
                 puzzle_pieces.append(piece)
 
 
-                print(piece_num, end='\t')
-            print()
+                print(piece)
 
 
 
