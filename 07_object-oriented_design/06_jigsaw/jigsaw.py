@@ -104,9 +104,25 @@ class Puzzle():
 
 
         # Shuffle and randomly rotate pieces.
-        # shuffling
         random.shuffle(puzzle_pieces)
+
+        for piece in puzzle_pieces:
+            rand = random.randint(1, 4)
+
+            # 1: stay the same
+            # 2: rotate clockwise
+            # 3: rotate counter-clockwise
+            # 4: rotate twice for upside-down
+            if rand == 2:
+                piece.rotate_clockwise()
+            elif rand == 3:
+                piece.rotate_counterclockwise()
+            elif rand == 4:
+                piece.rotate_clockwise()
+                piece.rotate_clockwise()
+
         return puzzle_pieces
+
 
     def print_pieces(self):
         for piece in self.puzzle_pieces:
