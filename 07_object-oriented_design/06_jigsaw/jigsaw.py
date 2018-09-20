@@ -6,6 +6,9 @@ belong together.
 """
 
 
+import random
+
+
 class Puzzle_Piece():
     def __init__(self, piece_num, top_edge, right_edge, bottom_edge, left_edge):
         self.piece_num = piece_num
@@ -41,10 +44,21 @@ class Puzzle_Piece():
 
     def __str__(self):
         summary = ''
+        summary += 'Piece: {0}\t\t'.format(self.piece_num)
         summary += 'Top: {0}\t\t'.format(self.top_edge)
         summary += 'Right: {0}\t\t'.format(self.right_edge)
         summary += 'Bottom: {0}\t\t'.format(self.bottom_edge)
-        summary += 'Left: {0}\t\t'.format(self.left_edge)
+        summary += 'Left: {0}'.format(self.left_edge)
+        return summary
+
+
+    def __repr__(self):
+        summary = ''
+        summary += 'Piece: {0}\t\t'.format(self.piece_num)
+        summary += 'Top: {0}\t\t'.format(self.top_edge)
+        summary += 'Right: {0}\t\t'.format(self.right_edge)
+        summary += 'Bottom: {0}\t\t'.format(self.bottom_edge)
+        summary += 'Left: {0}'.format(self.left_edge)
         return summary
 
 
@@ -89,14 +103,15 @@ class Puzzle():
                 puzzle_pieces.append(piece)
 
 
-                print(piece)
-
-
-
         # Shuffle and randomly rotate pieces.
-
-
+        # shuffling
+        random.shuffle(puzzle_pieces)
         return puzzle_pieces
+
+    def print_pieces(self):
+        for piece in self.puzzle_pieces:
+            print(piece)
+
 
 
 class Puzzle_Solution():
