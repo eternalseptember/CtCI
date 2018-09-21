@@ -11,12 +11,33 @@ import random
 
 class Puzzle_Piece():
     def __init__(self, piece_num, top_edge, right_edge, bottom_edge, left_edge):
+        # Order of edges defined: clock-wise
+        # Correct puzzle solution
         self.piece_num = piece_num
-        # clock-wise
         self.top_edge = top_edge
         self.right_edge = right_edge
         self.bottom_edge = bottom_edge
         self.left_edge = left_edge
+
+        # Status of each pieces' connections as puzzle is being solved.
+        # 'None' means that side is an edge.
+        # 'False' means side is not an edge, and is available for connection.
+        # When a connection is made, it points to the next piece.
+        self.top = False
+        self.right = False
+        self.bottom = False
+        self.left = False
+
+        if self.top_edge is None:
+            self.top = None
+        if self.right_edge is None:
+            self.right = None
+        if self.bottom_edge is None:
+            self.bottom = None
+        if self.left is None:
+            self.left = None
+
+        is_connected_to_another_piece = False  # used for rotating
 
 
     def rotate_clockwise(self):
@@ -41,6 +62,7 @@ class Puzzle_Piece():
         self.right_edge = old_bottom_edge
         self.bottom_edge = old_left_edge
         self.left_edge = old_top_edge
+
 
     def __str__(self):
         summary = ''
@@ -101,7 +123,6 @@ class Puzzle():
                     )
 
                 puzzle_pieces.append(piece)
-
 
         # Shuffle and randomly rotate pieces.
         random.shuffle(puzzle_pieces)
