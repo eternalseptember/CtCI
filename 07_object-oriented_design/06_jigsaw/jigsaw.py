@@ -169,9 +169,16 @@ class Puzzle_Solution():
             print(row)
 
 
-    def fits_with(edge_1, edge_2):
-        # return True if the two edges belong together
-        return None
+    def fits_with(piece_1, piece_2):
+            if (piece_1.piece_num == piece_2.top_edge) or \
+                (piece_1.piece_num == piece_2.right_edge) or \
+                (piece_1.piece_num == piece_2.bottom_edge) or \
+                (piece_1.piece_num == piece_2.left_edge):
+                # connect the pieces
+
+                return True
+            else:
+                return False
 
 
 
