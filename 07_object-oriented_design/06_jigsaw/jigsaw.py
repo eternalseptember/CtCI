@@ -174,7 +174,17 @@ class Puzzle_Solution():
                 (piece_1.piece_num == piece_2.right_edge) or \
                 (piece_1.piece_num == piece_2.bottom_edge) or \
                 (piece_1.piece_num == piece_2.left_edge):
+
                 # connect the pieces
+                # align pieces for left-right or top-bottom connection
+                if piece_1.top == piece_2.piece_num:
+                    edge_1 = top
+                elif piece_1.right == piece_2.piece_num:
+                    edge_1 = right
+                elif piece_1.bottom == piece_2.piece_num:
+                    edge_1 = bottom
+                elif piece_1.left == piece_2.piece_num:
+                    edge_1.left
 
                 return True
             else:
