@@ -26,6 +26,22 @@ class Puzzle_Solution():
         return blank_mat
 
 
+    def print_sorted_pieces(self):
+        print('Corner pieces:')
+        for piece in self.corner_pieces:
+            print(piece)
+
+        print()
+        print('Edge pieces:')
+        for piece in self.edge_pieces:
+            print(piece)
+
+        print()
+        print('Interior pieces:')
+        for piece in self.interior_pieces:
+            print(piece)
+
+
     def print_solution(self):
         # Prints the solution with pieces already placed.
         for row in self.solution:
@@ -54,19 +70,37 @@ class Puzzle_Solution():
             else:
                 self.interior_pieces.append(piece)
 
-        print('Corner pieces:')
-        for piece in self.corner_pieces:
-            print(piece)
 
-        print()
-        print('Edge pieces:')
-        for piece in self.edge_pieces:
-            print(piece)
+        # Going to pretend that corner pieces can be clearly identified,
+        # as if the corners are unique and that looking at the box art will
+        # yield the correct placement.
+        max_dim = self.puzzle_size - 1  # maximum array size
 
-        print()
-        print('Interior pieces:')
-        for piece in self.interior_pieces:
-            print(piece)
+        while len(self.corner_pieces) > 0:
+            piece = self.corner_pieces.pop()
+
+            if piece.piece_num == 1:
+                # Top left corner
+                if (piece.top_edge is None) and (piece.left_edge is None):
+                    self.solution[0][0] = piece
+
+            elif piece.piece_num == self.puzzle_size:
+                # Top right corner
+                if (piece.top_edge is None) and (piece.right_edge is None):
+                    self.solution[0][max_dim] = piece
+
+            elif piece.piece_num == (self.puzzle_size * self.puzzle_size):
+                # Bottom right corner
+                if (piece.bottom_edge is None) and (piece.right_edge is None):
+                    self.solution[max_dim][max_dim] = piece
+
+            else:
+                # Bottom left corner
+                if (piece.bottom_edge is None) and (piece.left_edge is None):
+                    self.solution[max_dim][0] = piece
+
+
+        # self.print_sorted_pieces()
 
 
     def fits_with(edge_1, edge_2):
