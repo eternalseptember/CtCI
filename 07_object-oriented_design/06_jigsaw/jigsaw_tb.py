@@ -4,8 +4,8 @@ from puzzle_solution import *
 
 # Generate puzzle.
 unsolved_puzzle = Puzzle(6)
-unsolved_puzzle.print_pieces()
-print()
+# unsolved_puzzle.print_pieces()
+# print()
 
 # Solve puzzle.
 puzzle_in_progress = Puzzle_Solution(6)
