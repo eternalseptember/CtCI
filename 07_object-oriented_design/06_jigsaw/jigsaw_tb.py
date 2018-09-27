@@ -12,5 +12,6 @@ puzzle_in_progress = Puzzle_Solution(6)
 puzzle_in_progress.solve_puzzle(unsolved_puzzle)
 print()
 puzzle_in_progress.print_solution()
-
+print()
+puzzle_in_progress.print_piece_details()
 

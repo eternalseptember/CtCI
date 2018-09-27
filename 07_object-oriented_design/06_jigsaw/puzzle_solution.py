@@ -53,6 +53,12 @@ class Puzzle_Solution():
             print()
 
 
+    def print_piece_details(self):
+        for row in self.solution:
+            for col in row:
+                print(col)
+
+
     def solve_puzzle(self, unsolved_puzzle):
         # Sort corner, other, and interior pieces.
         while len(unsolved_puzzle.puzzle_pieces) > 0:
