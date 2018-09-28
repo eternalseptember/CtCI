@@ -18,6 +18,7 @@ class Puzzle_Solution():
         self.corner_pieces = []
         self.edge_pieces = []
         self.interior_pieces = []
+        self.placed_pieces = []  # piece number instead of object
 
 
     def blank_puzzle_mat(self, puzzle_size):
@@ -137,6 +138,10 @@ class Puzzle_Solution():
                         piece.rotate_clockwise()
 
                 self.solution[max_dim][0] = piece
+
+
+        # Edge pieces
+
 
 
         self.print_sorted_pieces()
