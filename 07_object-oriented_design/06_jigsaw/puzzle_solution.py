@@ -9,6 +9,7 @@ This is the puzzle solver.
 
 
 from puzzle_piece import *
+from collections import deque
 
 
 class Puzzle_Solution():
@@ -16,8 +17,8 @@ class Puzzle_Solution():
         self.puzzle_size = puzzle_size  # N
         self.solution = self.blank_puzzle_mat(puzzle_size)
         self.corner_pieces = []
-        self.edge_pieces = []
-        self.interior_pieces = []
+        self.edge_pieces = deque()
+        self.interior_pieces = deque()
         self.placed_pieces = []  # piece number instead of object
 
 
@@ -90,6 +91,7 @@ class Puzzle_Solution():
 
         while len(self.corner_pieces) > 0:
             piece = self.corner_pieces.pop()
+            self.placed_pieces.append(piece.piece_num)
 
             if piece.piece_num == 1:
                 # Top left corner
@@ -141,6 +143,7 @@ class Puzzle_Solution():
 
 
         # Edge pieces
+        self.placed_pieces.sort()
 
 
 
