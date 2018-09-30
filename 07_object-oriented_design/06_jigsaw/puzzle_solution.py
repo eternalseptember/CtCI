@@ -144,6 +144,12 @@ class Puzzle_Solution():
 
         # Edge pieces
         self.placed_pieces.sort()
+        while (len(self.edge_pieces) > 0):
+            piece = self.edge_pieces.popleft()
+            if piece.piece_num not in self.placed_pieces:
+                self.edge_pieces.append(piece)
+            else:
+                print('figure out the piece rotation')
 
 
 
