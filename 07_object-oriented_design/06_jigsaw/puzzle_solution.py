@@ -149,7 +149,10 @@ class Puzzle_Solution():
             if piece.piece_num not in self.placed_pieces:
                 self.edge_pieces.append(piece)
             else:
-                print('figure out the piece rotation')
+                for row in self.solution:
+                    for col in self.solution:
+                        if col is not None:
+                            print('check if the piece connects here')
 
 
 
