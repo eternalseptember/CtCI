@@ -8,7 +8,6 @@ This is the puzzle solver.
 """
 
 
-from puzzle_piece import *
 from collections import deque
 
 
@@ -24,7 +23,9 @@ class Puzzle_Solution():
 
     def blank_puzzle_mat(self, puzzle_size):
         # len(mat) is row; len(mat[0]) is col
-        blank_mat = [[None for col in range(puzzle_size)] for row in range(puzzle_size)]
+        blank_mat = [
+            [None for col in range(puzzle_size)] for row in range(puzzle_size)
+            ]
         return blank_mat
 
 
@@ -146,7 +147,16 @@ class Puzzle_Solution():
         self.placed_pieces.sort()
         while (len(self.edge_pieces) > 0):
             piece = self.edge_pieces.popleft()
+            edges = [
+                piece.top_edge,
+                piece.right_edge,
+                piece.bottom_edge,
+                piece.left_edge
+                ]
+
+
             if piece.piece_num not in self.placed_pieces:
+                # starting to think this isn't quite right
                 self.edge_pieces.append(piece)
             else:
                 for row in self.solution:

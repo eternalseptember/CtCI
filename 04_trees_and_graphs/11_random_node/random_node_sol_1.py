@@ -79,7 +79,8 @@ class Node:
         if self.right is not None:
             right = self.right.data
 
-        return 'data: {0}  left: {1}  right: {2}  size: {3}'.format(self.data, left, right, self.size)
+        return 'data: {0}  left: {1}  right: {2}  size: {3}'\
+            .format(self.data, left, right, self.size)
 
 
 def print_tree(head):
