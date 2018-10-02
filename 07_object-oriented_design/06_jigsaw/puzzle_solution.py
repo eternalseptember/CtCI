@@ -143,7 +143,7 @@ class Puzzle_Solution():
                 self.solution[max_dim][0] = piece
 
 
-        # Edge pieces
+        # Placing edge pieces.
         self.placed_pieces.sort()
         while (len(self.edge_pieces) > 0):
             piece = self.edge_pieces.popleft()
@@ -154,15 +154,25 @@ class Puzzle_Solution():
                 piece.left_edge
                 ]
 
+            for row in range(self.puzzle_size):
+                for col in range(self.puzzle_size):
 
-            if piece.piece_num not in self.placed_pieces:
-                # starting to think this isn't quite right
-                self.edge_pieces.append(piece)
-            else:
-                for row in self.solution:
-                    for col in self.solution:
-                        if col is not None:
-                            print('check if the piece connects here')
+
+                    # THIS??!?!
+                    # Or find a placed piece, and then look at adjacent spaces for empty spots.
+                    placed_piece = self.solution[row][col]
+
+                    if placed_piece is not None:
+                        placed_edges = [
+                            placed_piece.top_edge,
+                            placed_piece.right_edge,
+                            placed_piece.bottom_edge,
+                            placed_piece.left_edge
+                            ]
+
+
+
+            # if the unsorted piece doesn't fit, append back to list
 
 
 
@@ -170,6 +180,8 @@ class Puzzle_Solution():
 
 
     def fits_with(edge_1, edge_2):
+        if (edge_1 is None) or (edge_2 is None):
+            return False
         # return True if edges fit together
         return None
 
