@@ -18,7 +18,6 @@ class Puzzle_Solution():
         self.corner_pieces = []
         self.edge_pieces = deque()
         self.interior_pieces = deque()
-        self.placed_pieces = []  # piece number instead of object
 
 
     def blank_puzzle_mat(self, puzzle_size):
@@ -63,6 +62,69 @@ class Puzzle_Solution():
 
 
     def solve_puzzle(self, unsolved_puzzle):
+        max_dim = self.puzzle_size - 1  # maximum array size
+        self.sort_pieces(unsolved_puzzle)
+        self.place_corner_pieces()
+
+
+        # Solving edge pieces.
+        # Going clockwise, starting with the top-left corner:
+        row = 0
+        col = 0
+
+        while len(self.edge_pieces > 0):
+            placed_piece = self.solution[row][col]
+
+            # Check to see if next spot is empty
+            if (row == 0):
+                if col == max_dim:
+                    # Top-right corner going down
+                    row += 1
+                else:
+                    # Top-left corner going right
+                    col += 1
+
+            elif(row == max_dim):
+                if col == 0:
+                    # Bottom-left corner going up
+                    row -= 1
+                else:
+                    # Bottom-right corner going left
+                    col -= 1
+
+            else:
+                if (col == max_dim):
+                    # Top-right going down
+                    row += 1
+                elif (col == 0):
+                    # Bottom-left going up
+                    row -= 1
+
+
+            next_spot = self.solution[row][col]
+            if next_spot is None:
+                #look for a piece that will fit
+                edge_piece = self.edge
+
+
+
+
+
+
+
+        self.print_sorted_pieces()
+
+
+
+    def fits_with(edge_1, edge_2):
+        if (edge_1 is None) or (edge_2 is None):
+            return False
+        # return True if edges fit together
+        return None
+
+
+
+    def sort_pieces(self, unsolved_puzzle):
         # Sort corner, other, and interior pieces.
         while len(unsolved_puzzle.puzzle_pieces) > 0:
             piece = unsolved_puzzle.puzzle_pieces.pop()
@@ -85,6 +147,7 @@ class Puzzle_Solution():
                 self.interior_pieces.append(piece)
 
 
+    def place_corner_pieces(self):
         # Going to pretend that corner pieces can be clearly identified,
         # as if the corners are unique and that looking at the box art will
         # yield the correct placement.
@@ -92,7 +155,6 @@ class Puzzle_Solution():
 
         while len(self.corner_pieces) > 0:
             piece = self.corner_pieces.pop()
-            self.placed_pieces.append(piece.piece_num)
 
             if piece.piece_num == 1:
                 # Top left corner
@@ -141,50 +203,6 @@ class Puzzle_Solution():
                         piece.rotate_clockwise()
 
                 self.solution[max_dim][0] = piece
-
-
-        # Placing edge pieces.
-        self.placed_pieces.sort()
-        while (len(self.edge_pieces) > 0):
-            piece = self.edge_pieces.popleft()
-            edges = [
-                piece.top_edge,
-                piece.right_edge,
-                piece.bottom_edge,
-                piece.left_edge
-                ]
-
-            for row in range(self.puzzle_size):
-                for col in range(self.puzzle_size):
-
-
-                    # THIS??!?!
-                    # Or find a placed piece, and then look at adjacent spaces for empty spots.
-                    placed_piece = self.solution[row][col]
-
-                    if placed_piece is not None:
-                        placed_edges = [
-                            placed_piece.top_edge,
-                            placed_piece.right_edge,
-                            placed_piece.bottom_edge,
-                            placed_piece.left_edge
-                            ]
-
-
-
-            # if the unsorted piece doesn't fit, append back to list
-
-
-
-        self.print_sorted_pieces()
-
-
-    def fits_with(edge_1, edge_2):
-        if (edge_1 is None) or (edge_2 is None):
-            return False
-        # return True if edges fit together
-        return None
-
 
 
 
