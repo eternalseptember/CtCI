@@ -72,7 +72,7 @@ class Puzzle_Solution():
         row = 0
         col = 0
 
-        while len(self.edge_pieces > 0):
+        while len(self.edge_pieces) > 0:
             placed_piece = self.solution[row][col]
 
             # Check to see if next spot is empty
@@ -104,7 +104,12 @@ class Puzzle_Solution():
             next_spot = self.solution[row][col]
             if next_spot is None:
                 #look for a piece that will fit
-                edge_piece = self.edge
+                edge_piece = self.edge_pieces.popleft()
+
+                # fits_with
+                # if fits_with is false, rotate
+                # after four times, append piece back to the list
+
 
 
 
