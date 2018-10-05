@@ -122,11 +122,19 @@ class Puzzle_Solution():
 
 
     def fits_with(edge_1, edge_2):
+        # Assume edge_1 has been placed.
         if (edge_1 is None) or (edge_2 is None):
             return False
-        # return True if edges fit together
-        return None
 
+        # if piece_1.right_edge connects to piece_2.left_edge
+        # if piece_1.bottom_edge connects to piece_2.top_edge
+        if edge_1 == (edge_2 - 1):
+            return True
+
+        # if piece_1.left_edge connects to piece_2.right_edge
+        # if piece_1.top_edge connects to piece_2.bottom_edge
+        elif edge_1 == (edge_2 + 1):
+            return True
 
 
     def sort_pieces(self, unsolved_puzzle):
