@@ -108,7 +108,17 @@ class Puzzle_Solution():
 
                 # fits_with
                 # if fits_with is false, rotate
-                # after four times, append piece back to the list
+                
+
+                # Rotate piece so the edge lines up
+                if (row == 0):
+                    print('rotate until top_edge is none')
+                elif (row == max_dim):
+                    print('rotate until bottom_edge is none')
+                elif (col == 0):
+                    print('rotate until left_edge is none')
+                elif (col == max_dim):
+                    print('rotate until right_edge is none')
 
 
 
