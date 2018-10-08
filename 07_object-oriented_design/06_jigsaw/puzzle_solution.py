@@ -112,15 +112,20 @@ class Puzzle_Solution():
 
                 # Rotate piece so the edge lines up
                 if (row == 0):
-                    print('rotate until top_edge is none')
+                    while edge_piece.top_edge is not None:
+                        edge_piece.rotate_clockwise()
                 elif (row == max_dim):
-                    print('rotate until bottom_edge is none')
+                    while edge_piece.bottom_edge is not None:
+                        edge_piece.rotate_clockwise()
                 elif (col == 0):
-                    print('rotate until left_edge is none')
+                    while edge_piece.left_edge is not None:
+                        edge_piece.rotate_clockwise()
                 elif (col == max_dim):
-                    print('rotate until right_edge is none')
+                    while edge_piece.right_edge is not None:
+                        edge_piece.rotate_clockwise()
 
 
+                # Then compare edges
 
 
 
