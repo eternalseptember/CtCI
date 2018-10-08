@@ -101,31 +101,42 @@ class Puzzle_Solution():
                     row -= 1
 
 
-            next_spot = self.solution[row][col]
-            if next_spot is None:
-                #look for a piece that will fit
-                edge_piece = self.edge_pieces.popleft()
+            print('next row: {0}'.format(row))
+            print('next col: {0}'.format(col))
 
-                # fits_with
-                # if fits_with is false, rotate
-                
+
+            while self.solution[row][col] is None:
+                # Look for a piece that will fit
+                edge_piece = self.edge_pieces.popleft()
+                piece_fits = False
 
                 # Rotate piece so the edge lines up
                 if (row == 0):
                     while edge_piece.top_edge is not None:
                         edge_piece.rotate_clockwise()
+                    piece_fits = self.fits_with(placed_piece.right_edge, edge_piece.left_edge)
+
                 elif (row == max_dim):
                     while edge_piece.bottom_edge is not None:
                         edge_piece.rotate_clockwise()
+                    piece_fits = self.fits_with(placed_piece.left_edge, edge_piece.right_edge)
+
                 elif (col == 0):
                     while edge_piece.left_edge is not None:
                         edge_piece.rotate_clockwise()
+                    piece_fits = self.fits_with(placed_piece.top_edge, edge_piece.bottom_edge)
+
                 elif (col == max_dim):
                     while edge_piece.right_edge is not None:
                         edge_piece.rotate_clockwise()
+                    piece_fits = self.fits_with(placed_piece.bottom_edge, edge_piece.top_edge)
 
 
                 # Then compare edges
+                if piece_fits:
+                    self.solution[row][col] = edge_piece
+                else:
+                    self.edge_pieces.append(edge_piece)
 
 
 
@@ -136,7 +147,7 @@ class Puzzle_Solution():
 
 
 
-    def fits_with(edge_1, edge_2):
+    def fits_with(self, edge_1, edge_2):
         # Assume edge_1 has been placed.
         if (edge_1 is None) or (edge_2 is None):
             return False
