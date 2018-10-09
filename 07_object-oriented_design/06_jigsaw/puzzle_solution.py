@@ -62,105 +62,25 @@ class Puzzle_Solution():
 
 
     def solve_puzzle(self, unsolved_puzzle):
-        max_dim = self.puzzle_size - 1  # maximum array size
         self.sort_pieces(unsolved_puzzle)
         self.place_corner_pieces()
+        self.place_edge_pieces()
 
-
-        # Solving edge pieces.
-        # Going clockwise, starting with the top-left corner:
-        row = 0
-        col = 0
-
-        while len(self.edge_pieces) > 0:
-            placed_piece = self.solution[row][col]
-
-            # Check to see if next spot is empty
-            if (row == 0):
-                if col == max_dim:
-                    # Top-right corner going down
-                    row += 1
-                else:
-                    # Top-left corner going right
-                    col += 1
-
-            elif(row == max_dim):
-                if col == 0:
-                    # Bottom-left corner going up
-                    row -= 1
-                else:
-                    # Bottom-right corner going left
-                    col -= 1
-
-            else:
-                if (col == max_dim):
-                    # Top-right going down
-                    row += 1
-                elif (col == 0):
-                    # Bottom-left going up
-                    row -= 1
-
-
-            print('next row: {0}'.format(row))
-            print('next col: {0}'.format(col))
-
-
-            while self.solution[row][col] is None:
-                # Look for a piece that will fit
-                edge_piece = self.edge_pieces.popleft()
-                piece_fits = False
-
-                # Rotate piece so the edge lines up
-                if (row == 0):
-                    while edge_piece.top_edge is not None:
-                        edge_piece.rotate_clockwise()
-                    piece_fits = self.fits_with(placed_piece.right_edge, edge_piece.left_edge)
-
-                elif (row == max_dim):
-                    while edge_piece.bottom_edge is not None:
-                        edge_piece.rotate_clockwise()
-                    piece_fits = self.fits_with(placed_piece.left_edge, edge_piece.right_edge)
-
-                elif (col == 0):
-                    while edge_piece.left_edge is not None:
-                        edge_piece.rotate_clockwise()
-                    piece_fits = self.fits_with(placed_piece.top_edge, edge_piece.bottom_edge)
-
-                elif (col == max_dim):
-                    while edge_piece.right_edge is not None:
-                        edge_piece.rotate_clockwise()
-                    piece_fits = self.fits_with(placed_piece.bottom_edge, edge_piece.top_edge)
-
-
-                # Then compare edges
-                if piece_fits:
-                    self.solution[row][col] = edge_piece
-                else:
-                    self.edge_pieces.append(edge_piece)
+        # place interior pieces
 
 
 
 
 
-
-        self.print_sorted_pieces()
-
+        print('puzzle solved')
 
 
-    def fits_with(self, edge_1, edge_2):
-        # Assume edge_1 has been placed.
-        if (edge_1 is None) or (edge_2 is None):
+
+    def fits_with(self, placed_piece, edge):
+        if edge == placed_piece:
+            return True
+        else:
             return False
-
-        # if piece_1.right_edge connects to piece_2.left_edge
-        # if piece_1.bottom_edge connects to piece_2.top_edge
-        if edge_1 == (edge_2 - 1):
-            return True
-
-        # if piece_1.left_edge connects to piece_2.right_edge
-        # if piece_1.top_edge connects to piece_2.bottom_edge
-        elif edge_1 == (edge_2 + 1):
-            return True
 
 
     def sort_pieces(self, unsolved_puzzle):
@@ -243,6 +163,78 @@ class Puzzle_Solution():
 
                 self.solution[max_dim][0] = piece
 
+
+    def place_edge_pieces(self):
+        # Solving edge pieces.
+        max_dim = self.puzzle_size - 1  # maximum array size
+
+        # Going clockwise, starting with the top-left corner:
+        row = 0
+        col = 0
+
+        while len(self.edge_pieces) > 0:
+            placed_piece = self.solution[row][col]
+
+            # Where is the next spot?
+            if (row == 0):
+                if col == max_dim:
+                    # Top-right corner going down
+                    row += 1
+                else:
+                    # Top-left corner going right
+                    col += 1
+
+            elif(row == max_dim):
+                if col == 0:
+                    # Bottom-left corner going up
+                    row -= 1
+                else:
+                    # Bottom-right corner going left
+                    col -= 1
+
+            else:
+                if (col == max_dim):
+                    # Top-right going down
+                    row += 1
+                elif (col == 0):
+                    # Bottom-left going up
+                    row -= 1
+
+
+            # Testing traveling along the edge clockwise.
+            # Checks to see if the next spot is empty:
+            while self.solution[row][col] is None:
+                edge_piece = self.edge_pieces.popleft()
+
+
+                if row == 0:
+                    while edge_piece.top_edge is not None:
+                        edge_piece.rotate_clockwise()
+                    edge = edge_piece.left_edge
+
+                elif row == max_dim:
+                    while edge_piece.bottom_edge is not None:
+                        edge_piece.rotate_clockwise()
+                    edge = edge_piece.right_edge
+
+                elif col == 0:
+                    while edge_piece.left_edge is not None:
+                        edge_piece.rotate_clockwise()
+                    edge = edge_piece.bottom_edge
+
+                elif col == max_dim:
+                    while edge_piece.right_edge is not None:
+                        edge_piece.rotate_clockwise()
+                    edge = edge_piece.top_edge
+
+
+                piece_fits = self.fits_with(placed_piece.piece_num, edge)
+
+
+                if piece_fits:
+                    self.solution[row][col] = edge_piece
+                else:
+                    self.edge_pieces.append(edge_piece)
 
 
 
