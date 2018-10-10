@@ -67,9 +67,21 @@ class Puzzle_Solution():
         self.place_edge_pieces()
 
         # place interior pieces
+        max_dim = self.puzzle_size - 1  # maximum array size
+        row = 0
+        col = 0
 
+        while len(self.interior_pieces) > 0:
+            placed_piece = self.solution[row][col]
 
+            # next spot
+            if col == max_dim:
+                row += 1
+                col == 0
+            else:
+                col += 1
 
+            next_spot = self.solution[row][col]
 
 
         print('puzzle solved')
