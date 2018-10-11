@@ -83,6 +83,13 @@ class Puzzle_Solution():
 
             next_spot = self.solution[row][col]
 
+            while next_spot is None:
+                piece = self.interior_pieces.popleft()
+
+                # check whether piece fits
+                # rotate
+                # if it doesn't fit, append back
+
 
         print('puzzle solved')
 
