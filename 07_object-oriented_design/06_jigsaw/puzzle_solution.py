@@ -85,10 +85,25 @@ class Puzzle_Solution():
 
             while next_spot is None:
                 piece = self.interior_pieces.popleft()
+                edge = piece.left_edge
 
                 # check whether piece fits
+                piece_fits = self.fits_with(placed_piece.piece_num, edge)
+                side = 1
+
                 # rotate
-                # if it doesn't fit, append back
+                while ((not piece_fits) and (side < 5)):
+                    piece.rotate_clockwise()
+                    side += 1
+                    piece_fits = self.fits_with(placed_piece.piece_num, edge)
+
+
+
+                if piece_fits:
+                    self.solution[row][col] = piece
+                else:
+                    self.interior_pieces.append(piece)
+
 
 
         print('puzzle solved')
