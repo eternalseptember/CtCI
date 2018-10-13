@@ -77,31 +77,36 @@ class Puzzle_Solution():
             # next spot
             if col == max_dim:
                 row += 1
-                col == 0
+                col = 0
             else:
                 col += 1
 
-            next_spot = self.solution[row][col]
+            print('next row: {0}'.format(row))
+            print('next col: {0}'.format(col))
 
-            while next_spot is None:
+            while self.solution[row][col] is None:
                 piece = self.interior_pieces.popleft()
-                edge = piece.left_edge
+                print(piece)
 
                 # check whether piece fits
-                piece_fits = self.fits_with(placed_piece.piece_num, edge)
+                piece_fits = self.fits_with(placed_piece.piece_num, piece.left_edge)
                 side = 1
 
                 # rotate
-                while ((not piece_fits) and (side < 5)):
+                while ((not piece_fits) and (side < 4)):
+                    print('rotate')
                     piece.rotate_clockwise()
+                    print(piece)
                     side += 1
-                    piece_fits = self.fits_with(placed_piece.piece_num, edge)
+                    piece_fits = self.fits_with(placed_piece.piece_num, piece.left_edge)
 
 
 
                 if piece_fits:
+                    print('piece fits')
                     self.solution[row][col] = piece
                 else:
+                    print('checking next piece...')
                     self.interior_pieces.append(piece)
 
 
