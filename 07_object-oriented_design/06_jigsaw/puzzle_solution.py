@@ -65,54 +65,8 @@ class Puzzle_Solution():
         self.sort_pieces(unsolved_puzzle)
         self.place_corner_pieces()
         self.place_edge_pieces()
-
-        # place interior pieces
-        max_dim = self.puzzle_size - 1  # maximum array size
-        row = 0
-        col = 0
-
-        while len(self.interior_pieces) > 0:
-            placed_piece = self.solution[row][col]
-
-            # next spot
-            if col == max_dim:
-                row += 1
-                col = 0
-            else:
-                col += 1
-
-            print('next row: {0}'.format(row))
-            print('next col: {0}'.format(col))
-
-            while self.solution[row][col] is None:
-                piece = self.interior_pieces.popleft()
-                print(piece)
-
-                # check whether piece fits
-                piece_fits = self.fits_with(placed_piece.piece_num, piece.left_edge)
-                side = 1
-
-                # rotate
-                while ((not piece_fits) and (side < 4)):
-                    print('rotate')
-                    piece.rotate_clockwise()
-                    print(piece)
-                    side += 1
-                    piece_fits = self.fits_with(placed_piece.piece_num, piece.left_edge)
-
-
-
-                if piece_fits:
-                    print('piece fits')
-                    self.solution[row][col] = piece
-                else:
-                    print('checking next piece...')
-                    self.interior_pieces.append(piece)
-
-
-
-        print('puzzle solved')
-
+        self.place_interior_pieces()
+        print('Puzzle solved!')
 
 
     def fits_with(self, placed_piece, edge):
@@ -275,6 +229,48 @@ class Puzzle_Solution():
                 else:
                     self.edge_pieces.append(edge_piece)
 
+
+    def place_interior_pieces(self):
+        # Solve interior pieces.
+        max_dim = self.puzzle_size - 1  # maximum array size
+        row = 0
+        col = 0
+
+        while len(self.interior_pieces) > 0:
+            left_piece = self.solution[row][col]
+
+            # Next spot.
+            if col == max_dim:
+                row += 1
+                col = 0
+            else:
+                col += 1
+
+            top_piece = self.solution[row - 1][col]  # Top row is complete.
+
+
+            while self.solution[row][col] is None:
+                piece = self.interior_pieces.popleft()
+
+
+                # Check whether piece fits.
+                fits_left = self.fits_with(left_piece.piece_num, piece.left_edge)
+                fits_top = self.fits_with(top_piece.piece_num, piece.top_edge)
+                side = 1
+
+                while ((not fits_left) and (not fits_top) and (side < 4)):
+                    piece.rotate_clockwise()
+                    side += 1
+
+                    fits_left = self.fits_with(left_piece.piece_num, piece.left_edge)
+                    fits_top = self.fits_with(top_piece.piece_num, piece.top_edge)
+
+
+                # If piece does not fit here, then put it back into the pile.
+                if fits_left and fits_top:
+                    self.solution[row][col] = piece
+                else:
+                    self.interior_pieces.append(piece)
 
 
 
