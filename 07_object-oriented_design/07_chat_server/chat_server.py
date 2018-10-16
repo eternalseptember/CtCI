@@ -5,6 +5,16 @@ the hardest problems to solve?
 """
 
 
+class User():
+    def __init__(self, username):
+        self.username = username
+        self.contacts = []
+        self.status_message = ''
+
+
+# group chat?
+
+
 class Chat_Server():
     def __init__(self):
         self.log = ''
