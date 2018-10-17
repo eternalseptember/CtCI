@@ -12,7 +12,11 @@ class User():
         self.status_message = ''
 
 
-# group chat?
+class Chat():
+    def __init__(self, participants):
+        # group chat?
+        self.participants = participants  # list of users in the chat
+        self.log = ''  # write this to a log
 
 
 class Chat_Server():
