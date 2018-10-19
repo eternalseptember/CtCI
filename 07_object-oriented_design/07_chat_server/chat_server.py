@@ -12,6 +12,17 @@ class User():
         self.status_message = ''
 
 
+    def add_contact(self, potential_contact):
+        print('send contact request')
+        # if accepted, add potential_contact to contacts list
+
+
+    def check_contact_requests(self, sender):
+        # return True if invite is accepted
+        return False
+
+
+
 class Chat():
     def __init__(self, participants):
         # group chat?
