@@ -8,16 +8,19 @@ the hardest problems to solve?
 class User():
     def __init__(self, username):
         self.username = username
-        self.contacts = []
         self.status_message = ''
+        self.contacts = []
+        self.sent_requests = []
+        self.received_requests = []  # Requests sent by others. Accept or deny.
 
 
-    def add_contact(self, potential_contact):
-        print('send contact request')
+    def send_contact_request(self, potential_contact):
+        self.sent_requests.append(potential_contact)  # data format?
         # if accepted, add potential_contact to contacts list
 
 
     def check_contact_requests(self, sender):
+        # Check 
         # return True if invite is accepted
         return False
 
