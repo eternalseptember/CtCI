@@ -14,13 +14,14 @@ class User():
         self.received_requests = []  # Requests sent by others. Accept or deny.
 
 
-    def send_contact_request(self, potential_contact):
-        self.sent_requests.append(potential_contact)  # data format?
-        # if accepted, add potential_contact to contacts list
+    def send_contact_request(self, chat_server, target_contact):
+        self.sent_requests.append(target_contact)  # data format?
+        # send contact request through the server
+        
 
 
-    def check_contact_requests(self, sender):
-        # Check 
+    def check_contact_requests(self, chat_server, sender):
+        # Check the server for contact requests?
         # return True if invite is accepted
         return False
 
@@ -46,14 +47,28 @@ class Chat():
         print()
 
 
+
 class Chat_Server():
     def __init__(self):
-        self.users = []  # username and status?
+        self.user_list = []
+        self.users = {}  # users[username] = User()
         self.log = ''
 
 
     def add_user(self, username):
-        self.users.append(username)
+        user = User(username)
+        self.user_list.append(username)
+        self.users[username] = user
+
+
+    def user_contact_request(self, sender, recipient):
+        if sender not in self.users:
+            return None
+        if recipient not in self.users:
+            return None
+
+    # get recipient's User object and send friend request
+
 
 
 
