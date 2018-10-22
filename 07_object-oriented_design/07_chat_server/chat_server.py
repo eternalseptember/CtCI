@@ -17,7 +17,11 @@ class User():
     def send_contact_request(self, chat_server, target_contact):
         self.sent_requests.append(target_contact)  # data format?
         # send contact request through the server
-        
+        chat_server.user_contact_request(self.username, target_contact)
+
+
+    def receive_contact_request(self, sender):
+        self.received_requests.append(sender)
 
 
     def check_contact_requests(self, chat_server, sender):
@@ -67,7 +71,10 @@ class Chat_Server():
         if recipient not in self.users:
             return None
 
-    # get recipient's User object and send friend request
+        # get recipient's User object and send friend request
+        recipient_object = self.users[recipient]
+        recipient_object.receive_contact_request(sender)
+
 
 
 
