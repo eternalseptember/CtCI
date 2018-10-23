@@ -25,9 +25,12 @@ class User():
 
 
     def check_contact_requests(self, chat_server, sender):
-        # Check the server for contact requests?
         # return True if invite is accepted
         return False
+
+
+    def __str__(self):
+        return str(self.username)
 
 
 
