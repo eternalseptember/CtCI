@@ -30,7 +30,18 @@ class User():
 
 
     def __str__(self):
-        return str(self.username)
+        summary = '{0}\n'.format(self.username)
+
+        contacts_list = ''
+        for contact in self.contacts:
+            if len(contacts_list) > 0:
+                contacts_list += ', '
+            contacts_list += str(self.contact)
+
+        summary += 'Contacts list: '
+        summary += contacts_list
+
+        return summary
 
 
 

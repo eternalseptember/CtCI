@@ -10,3 +10,6 @@ print(user1)
 print(user2)
 print(user3)
 
+
+user1.send_contact_request(chat_server, 'user2')
+
