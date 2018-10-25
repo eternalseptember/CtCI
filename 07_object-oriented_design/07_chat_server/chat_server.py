@@ -36,10 +36,27 @@ class User():
         for contact in self.contacts:
             if len(contacts_list) > 0:
                 contacts_list += ', '
-            contacts_list += str(self.contact)
+            contacts_list += str(contact)
+
+        sent_list = ''
+        for contact in self.sent_requests:
+            if len(sent_list) > 0:
+                sent_list += ', '
+            sent_list += str(contact)
+
+        received_list = ''
+        for contact in self.received_requests:
+            if len(received_list) > 0:
+                received_list += ', '
+            received_list += str(contact)
+
 
         summary += 'Contacts list: '
-        summary += contacts_list
+        summary += '{0}\n'.format(contacts_list)
+        summary += 'Sent list: '
+        summary += '{0}\n'.format(sent_list)
+        summary += 'Received list: '
+        summary += '{0}\n'.format(received_list)
 
         return summary
 
