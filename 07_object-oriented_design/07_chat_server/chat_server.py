@@ -15,9 +15,12 @@ class User():
 
 
     def send_contact_request(self, chat_server, target_contact):
-        self.sent_requests.append(target_contact)  # data format?
-        # send contact request through the server
-        chat_server.user_contact_request(self.username, target_contact)
+        # Send contact request through the server.
+        req = chat_server.user_contact_request(str(self.username), target_contact)
+
+        # Append to sent_requests list after chat server returns true.
+        if req:
+            self.sent_requests.append(target_contact)
 
 
     def receive_contact_request(self, sender):
@@ -25,7 +28,7 @@ class User():
 
 
     def check_contact_requests(self, chat_server, sender):
-        # return True if invite is accepted
+        # go through each request and accept, deny, or skip
         return False
 
 
@@ -50,7 +53,6 @@ class User():
                 received_list += ', '
             received_list += str(contact)
 
-
         summary += 'Contacts list: '
         summary += '{0}\n'.format(contacts_list)
         summary += 'Sent list: '
@@ -59,7 +61,6 @@ class User():
         summary += '{0}\n'.format(received_list)
 
         return summary
-
 
 
 class Chat():
@@ -96,16 +97,26 @@ class Chat_Server():
         self.users[username] = user
 
 
+    def get_user(self, username):
+        # Example use: when client connects to the server.
+        if username in self.user_list:
+            return self.users[username]
+        else:
+            return None
+
+
     def user_contact_request(self, sender, recipient):
         if sender not in self.users:
-            return None
+            print('Sender not found in user list.')
+            return False
         if recipient not in self.users:
-            return None
+            print('Recipient not found in user list.')
+            return False
 
-        # get recipient's User object and send friend request
-        recipient_object = self.users[recipient]
-        recipient_object.receive_contact_request(sender)
-
+        # Get recipient's User object and send friend request.
+        recipient_user = self.users[recipient]
+        recipient_user.receive_contact_request(sender)
+        return True
 
 
 
