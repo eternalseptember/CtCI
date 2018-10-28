@@ -28,7 +28,18 @@ class User():
 
 
     def check_contact_requests(self, chat_server, sender):
-        # go through each request and accept, deny, or skip
+        for request in self.receive_requests:
+            print('{0} sent a contact request. \
+                Press 1 to accept, 2 to deny, and 3 to skip. '.format(request))
+
+            answer = input()
+            if answer == 1:
+                print('accepted')
+            elif answer == 2:
+                print('denied')
+            else:
+                print('skipped')
+
         return False
 
 
