@@ -29,18 +29,22 @@ class User():
 
     def check_contact_requests(self, chat_server, sender):
         for request in self.receive_requests:
-            print('{0} sent a contact request. \
-                Press 1 to accept, 2 to deny, and 3 to skip. '.format(request))
+            answer = ''
+            acceptable_choices = ['1', '2', '3']
 
-            answer = input()
-            if answer == 1:
+            while (answer not in acceptable_choices):
+                print('{0} sent a contact request. \
+                    Press 1 to accept, 2 to deny, and 3 to skip. '.format(request))
+
+                answer = input()
+
+            if answer == '1':
                 print('accepted')
-            elif answer == 2:
+            elif answer == '2':
                 print('denied')
-            else:
+            elif answer == '3':
                 print('skipped')
 
-        return False
 
 
     def __str__(self):
