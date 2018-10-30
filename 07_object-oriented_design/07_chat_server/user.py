@@ -5,8 +5,8 @@ class User():
     def __init__(self, username):
         self.username = username
         self.status_message = ''
-        self.contacts = []
-        self.sent_requests = []
+        self.confirmed_contacts = []
+        self.pending_requests = []
         self.received_requests = []  # Requests sent by others. Accept or deny.
 
 
@@ -18,16 +18,16 @@ class User():
         # Send contact request through the server.
         req = chat_server.send_contact_request(str(self.username), target_contact)
 
-        # Append to sent_requests list after chat server returns true.
+        # Append to pending_requests list after chat server returns true.
         if req:
-            self.sent_requests.append(target_contact)
+            self.pending_requests.append(target_contact)
 
 
     def receive_contact_request(self, sender):
         self.received_requests.append(sender)
 
 
-    def check_contact_requests(self, chat_server, sender):
+    def check_contact_requests(self, chat_server):
         for request in self.receive_requests:
             answer = ''
             acceptable_choices = ['1', '2', '3']
@@ -40,8 +40,10 @@ class User():
 
             if answer == '1':
                 print('accepted')
+                chat_server.accept_contact_request(self.username, request)
             elif answer == '2':
                 print('denied')
+                chat_server.deny_contact_request(self.username, request)
             elif answer == '3':
                 print('skipped')
 
@@ -51,13 +53,13 @@ class User():
         summary = '{0}\n'.format(self.username)
 
         contacts_list = ''
-        for contact in self.contacts:
+        for contact in self.confirmed_contacts:
             if len(contacts_list) > 0:
                 contacts_list += ', '
             contacts_list += str(contact)
 
         sent_list = ''
-        for contact in self.sent_requests:
+        for contact in self.pending_requests:
             if len(sent_list) > 0:
                 sent_list += ', '
             sent_list += str(contact)

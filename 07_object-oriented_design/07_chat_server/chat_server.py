@@ -30,6 +30,7 @@ class Chat_Server():
 
 
     def send_contact_request(self, sender, recipient):
+        # Sender sends the friend request to recipient.
         if sender not in self.users:
             print('Sender not found in user list.')
             return False
@@ -44,7 +45,7 @@ class Chat_Server():
 
 
     def accept_contact_request(self, sender, recipient):
-        # Sender is the person answering the friend request.
+        # Sender is the person ANSWERING the friend request.
         if sender not in self.users:
             print('Sender not found in user list.')
             return False
@@ -52,10 +53,28 @@ class Chat_Server():
             print('Recipient not found in user list.')
             return False
 
-        # Get recipient's User object and send friend request.
+        # Recipient is the person who SENT the friend request.
         recipient_user = self.users[recipient]
+        # update recipient_user's confirmed contact list
 
-        return None
+        return True
+
+
+    def deny_contact_request(self, sender, recipient):
+        # Sender is the person ANSWERING the friend request.
+        if sender not in self.users:
+            print('Sender not found in user list.')
+            return False
+        if recipient not in self.users:
+            print('Recipient not found in user list.')
+            return False
+
+        # Recipient is the person who SENT the friend request.
+        recipient_user = self.users[recipient]
+        # update recipient_user's pending request list.
+
+        return True
+
 
 
 
