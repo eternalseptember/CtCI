@@ -55,8 +55,9 @@ class Chat_Server():
 
         # Recipient is the person who SENT the friend request.
         recipient_user = self.users[recipient]
-        # update recipient_user's confirmed contact list
-
+        # May wrap these in another function.
+        recipient_user.pending_requests.remove(sender)
+        recipient_user.confirmed_contacts.append(sender)
         return True
 
 
@@ -71,8 +72,8 @@ class Chat_Server():
 
         # Recipient is the person who SENT the friend request.
         recipient_user = self.users[recipient]
-        # update recipient_user's pending request list.
-
+        # May wrap this in another function.
+        recipient_user.pending_requests.remove(sender)
         return True
 
 

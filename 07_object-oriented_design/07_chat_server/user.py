@@ -28,7 +28,7 @@ class User():
 
 
     def check_contact_requests(self, chat_server):
-        for request in self.receive_requests:
+        for request in self.received_requests:
             answer = ''
             acceptable_choices = ['1', '2', '3']
 
