@@ -27,6 +27,15 @@ class User():
         self.received_requests.append(sender)
 
 
+    def confirm_contact_request(self, sender):
+        if sender in self.pending_requests:
+            self.pending_requests.remove(sender)
+        if sender in self.received_requests:
+            self.received_requests.remove(sender)
+
+        self.confirmed_contacts.append(sender)
+
+
     def check_contact_requests(self, chat_server):
         for request in self.received_requests:
             answer = ''
@@ -39,13 +48,13 @@ class User():
                 answer = input()
 
             if answer == '1':
-                print('accepted')
+                print('accepted {0}'.format(request))
                 chat_server.accept_contact_request(self.username, request)
             elif answer == '2':
-                print('denied')
+                print('denied {0}'.format(request))
                 chat_server.deny_contact_request(self.username, request)
             elif answer == '3':
-                print('skipped')
+                print('skipped {0}'.format(request))
 
 
 
