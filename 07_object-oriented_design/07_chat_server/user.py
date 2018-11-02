@@ -36,6 +36,13 @@ class User():
         self.confirmed_contacts.append(sender)
 
 
+    def deny_contact_request(self, sender):
+        if sender in self.pending_requests:
+            self.pending_requests.remove(sender)
+        if sender in self.received_requests:
+            self.received_requests.remove(sender)
+
+
     def check_contact_requests(self, chat_server):
         for request in self.received_requests:
             answer = ''

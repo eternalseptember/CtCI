@@ -75,8 +75,12 @@ class Chat_Server():
 
         # Recipient is the person who SENT the friend request.
         recipient_user = self.users[recipient]
-        # May wrap this in another function.
-        recipient_user.pending_requests.remove(sender)
+        recipient_user.deny_contact_request(sender)
+
+        # Sender is the person who REPLIED to the request.
+        sender_user = self.users[sender]
+        sender_user.deny_contact_request(recipient)
+
         return True
 
 
