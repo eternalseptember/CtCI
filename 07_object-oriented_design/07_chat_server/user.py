@@ -44,6 +44,9 @@ class User():
 
 
     def check_contact_requests(self, chat_server):
+        accepted = []
+        denied = []
+
         for request in self.received_requests:
             answer = ''
             acceptable_choices = ['1', '2', '3']
@@ -56,12 +59,19 @@ class User():
 
             if answer == '1':
                 print('accepted {0}'.format(request))
-                chat_server.accept_contact_request(self.username, request)
+                accepted.append(request)
             elif answer == '2':
                 print('denied {0}'.format(request))
-                chat_server.deny_contact_request(self.username, request)
+                denied.append(request)
             elif answer == '3':
                 print('skipped {0}'.format(request))
+
+
+        for request in accepted:
+            chat_server.accept_contact_request(self.username, request)
+
+        for request in denied:
+            chat_server.deny_contact_request(self.username, request)
 
 
 
