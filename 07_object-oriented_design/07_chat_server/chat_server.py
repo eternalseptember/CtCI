@@ -84,5 +84,8 @@ class Chat_Server():
         return True
 
 
+    def begin_chat(self, participant_1, participant_2):
+        print('begin simple two-party chat')
+
 
 

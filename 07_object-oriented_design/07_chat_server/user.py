@@ -74,6 +74,10 @@ class User():
             chat_server.deny_contact_request(self.username, request)
 
 
+    def chat(self, chat_server, participant):
+        return None
+
+
 
     def __str__(self):
         summary = '{0}\n'.format(self.username)
