@@ -84,8 +84,10 @@ class Chat_Server():
         return True
 
 
-    def begin_chat(self, participant_1, participant_2):
+    def chat(self, participant_1, participant_2):
         print('begin simple two-party chat')
+        # look for an existing chat between these participants?
+        # if not available, start new chat log
 
 
 

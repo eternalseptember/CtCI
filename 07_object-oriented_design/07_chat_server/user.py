@@ -75,6 +75,8 @@ class User():
 
 
     def chat(self, chat_server, participant):
+        # two party chat for now
+        chat_server.chat(self.username, participant)
         return None
 
 
