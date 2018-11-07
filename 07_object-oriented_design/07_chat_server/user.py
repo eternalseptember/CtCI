@@ -8,15 +8,21 @@ class User():
         self.confirmed_contacts = []
         self.pending_requests = []
         self.received_requests = []  # Requests sent by others. Accept or deny.
+        self.server = None
+
+
+    def login(self, server):
+        # logging in
+        self.server = server
 
 
     def update_status(self, status_message):
         self.status_message = status_message
 
 
-    def send_contact_request(self, chat_server, target_contact):
+    def send_contact_request(self, target_contact):
         # Send contact request through the server.
-        req = chat_server.send_contact_request(str(self.username), target_contact)
+        req = self.server.send_contact_request(self.username, target_contact)
 
         # Append to pending_requests list after chat server returns true.
         if req:
@@ -43,7 +49,7 @@ class User():
             self.received_requests.remove(sender)
 
 
-    def check_contact_requests(self, chat_server):
+    def check_contact_requests(self):
         accepted = []
         denied = []
 
@@ -68,16 +74,17 @@ class User():
 
 
         for request in accepted:
-            chat_server.accept_contact_request(self.username, request)
+            self.server.accept_contact_request(self.username, request)
 
         for request in denied:
-            chat_server.deny_contact_request(self.username, request)
+            self.server.deny_contact_request(self.username, request)
 
 
-    def chat(self, chat_server, participant):
+    def chat(self, participant):
         # two party chat for now
-        chat_server.chat(self.username, participant)
-        return None
+        self.server.chat(self.username, participant)
+        # chat id?
+
 
 
 
