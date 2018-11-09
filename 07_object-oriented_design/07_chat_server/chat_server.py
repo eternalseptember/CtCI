@@ -13,6 +13,9 @@ class Chat_Server():
     def __init__(self):
         self.user_list = []
         self.users = {}  # users[username] = User()
+        self.chat_id = 0
+        self.chat_id_list = {}  # chat_id_list[ordered_list_of_users] = chat_id
+        self.chat_list = {}  # chat_list[chat_id] = Chat()
 
 
     def add_user(self, username):
@@ -60,7 +63,6 @@ class Chat_Server():
         # Sender is the person who REPLIED to the request.
         sender_user = self.users[sender]
         sender_user.confirm_contact_request(recipient)
-
         return True
 
 
@@ -80,14 +82,32 @@ class Chat_Server():
         # Sender is the person who REPLIED to the request.
         sender_user = self.users[sender]
         sender_user.deny_contact_request(recipient)
-
         return True
 
 
-    def chat(self, participant_1, participant_2):
+    def begin_chat(self, participant_1, participant_2):
         print('begin simple two-party chat')
         # look for an existing chat between these participants?
+        participants = [participant_1, participant_2]
+        participants.sort()
+
         # if not available, start new chat log
+        if participants not in self.chat_id_list:
+            new_chat_id = self.chat_id
+            self.chat_id += 1
+
+            self.chat_id_list[participants] = new_chat_id
+            new_chat = Chat(participants)
+            self.chat_list[new_chat_id] = new_chat
+            return new_chat_id
+
+
+        # if available, then resume the chat log
+
+
+
+    def chat(self, chat_id, sender, message):
+        print('format sender and message and write to the chat log of chat_id')
 
 
 

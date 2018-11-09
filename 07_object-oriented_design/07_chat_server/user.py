@@ -12,7 +12,7 @@ class User():
 
 
     def login(self, server):
-        # logging in
+        # Logging in.
         self.server = server
 
 
@@ -72,7 +72,6 @@ class User():
             elif answer == '3':
                 print('skipped {0}'.format(request))
 
-
         for request in accepted:
             self.server.accept_contact_request(self.username, request)
 
@@ -80,10 +79,15 @@ class User():
             self.server.deny_contact_request(self.username, request)
 
 
-    def chat(self, participant):
+    def chat(self, participant, message):
         # two party chat for now
-        self.server.chat(self.username, participant)
-        # chat id?
+        # check that the participant is in the contact list?
+
+        # begin chat by finding or starting a chat log with the participant
+        # return id of chat
+        # then send message with id of chat
+        self.server.begin_chat(self.username, participant)
+
 
 
 
