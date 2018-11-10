@@ -24,6 +24,8 @@ user_3 = chat_server.get_user('test_user_3')
 user_3.login(chat_server)
 
 # Activities from client interface.
+user_1.update_status('online')
+
 user_1.send_contact_request('test_user_2')
 user_2.check_contact_requests()
 user_1.send_contact_request('test_user_3')

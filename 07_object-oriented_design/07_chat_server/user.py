@@ -93,7 +93,7 @@ class User():
 
 
     def __str__(self):
-        summary = '{0}\n'.format(self.username)
+        summary = '{0} - {1}\n'.format(self.username, self.status_message)
 
         contacts_list = ''
         for contact in self.confirmed_contacts:
