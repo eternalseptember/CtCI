@@ -22,7 +22,8 @@ class Chat():
         print('write to chat_logs')
 
         # placeholder - should return file address
-        return self.chat_id
+        file_name = str(self.chat_id) + ".txt"
+        return file_name
 
 
 
