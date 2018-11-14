@@ -27,4 +27,15 @@ class Chat():
         return file_name
 
 
+    def __str__(self):
+        chat_summary = ''
+
+        for participant in self.participants:
+            if len(chat_summary) > 0:
+                chat_summary += ', '
+            chat_summary += str(participant)
+
+        return chat_summary
+
+
 
