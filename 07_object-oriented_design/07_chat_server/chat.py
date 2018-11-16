@@ -24,8 +24,13 @@ class Chat():
         file_name = 'chat_logs/' + str(self.chat_id) + '.txt'
         chat_log = open(file_name, 'w')
         chat_log.write('write to chat log: {0}'.format(file_name))
-
+        # close file stream?
         return file_name
+
+
+    def send_message(self, sender, message):
+        chat_log = open(str(self.chat_log), 'a')
+        chat_log.write('{0}: {1}'.format(sender, message))
 
 
     def __str__(self):
