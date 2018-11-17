@@ -1,6 +1,9 @@
 # Chat object for conversations.
 
 
+from datetime import datetime
+
+
 class Chat():
     def __init__(self, participants, chat_id):
         # Participants should be a list of users in the chat.
@@ -30,7 +33,8 @@ class Chat():
 
     def send_message(self, sender, message):
         chat_log = open(str(self.chat_log), 'a')
-        chat_log.write('{0}: {1}'.format(sender, message))
+        time_sent = datetime.now().strftime('%b %d, %Y %I:%M:%S')
+        chat_log.write('{0} {1}: {2}'.format(time_sent, sender, message))
 
 
     def __str__(self):
