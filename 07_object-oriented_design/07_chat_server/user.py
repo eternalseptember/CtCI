@@ -30,10 +30,12 @@ class User():
 
 
     def receive_contact_request(self, sender):
+        # Called by the server.
         self.received_requests.append(sender)
 
 
     def confirm_contact_request(self, sender):
+        # Called by the server.
         if sender in self.pending_requests:
             self.pending_requests.remove(sender)
         if sender in self.received_requests:
@@ -43,6 +45,7 @@ class User():
 
 
     def deny_contact_request(self, sender):
+        # Called by the server.
         if sender in self.pending_requests:
             self.pending_requests.remove(sender)
         if sender in self.received_requests:
@@ -89,10 +92,7 @@ class User():
         self.server.begin_chat(self.username, participant)
 
 
-
-
-
-    def __str__(self):
+    def print_user_summary(self):
         summary = '{0} - {1}\n'.format(self.username, self.status_message)
 
         contacts_list = ''
@@ -121,4 +121,10 @@ class User():
         summary += '{0}\n'.format(received_list)
 
         return summary
+
+
+    def __str__(self):
+        return str(self.username)
+
+
 
