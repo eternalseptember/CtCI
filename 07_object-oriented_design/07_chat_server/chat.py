@@ -10,13 +10,11 @@ class Chat():
         self.participants = participants
         self.chat_id = chat_id  # should be set by the server to find chat logs
         self.chat_log = self.start_chat_log()
-
-        # write chat log to a text file
         # location of chat logs?
 
 
     def invite_to_chat(self, participant):
-        # Not sure it should be here...?
+        # If the user accepts the chat invitation:
         self.participants.append(participant)
 
 
@@ -34,7 +32,8 @@ class Chat():
     def send_message(self, sender, message):
         chat_log = open(str(self.chat_log), 'a')
         time_sent = datetime.now().strftime('%b %d, %Y %I:%M:%S')
-        chat_log.write('{0} {1}: {2}'.format(time_sent, sender, message))
+        sent_by = str(sender)
+        chat_log.write('{0} {1}: {2}'.format(time_sent, sent_by, message))
 
 
     def __str__(self):

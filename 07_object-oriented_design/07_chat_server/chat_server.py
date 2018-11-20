@@ -44,6 +44,10 @@ class Chat_Server():
         # Get recipient's User object and send friend request.
         recipient_user = self.users[recipient]
         recipient_user.receive_contact_request(sender)
+
+        # Get sender's User object and update pending request.
+        sender_user = self.users[sender]
+        sender_user.update_pending_request(recipient)
         return True
 
 
@@ -87,26 +91,31 @@ class Chat_Server():
 
     def begin_chat(self, participant_1, participant_2):
         print('begin simple two-party chat')
-        # look for an existing chat between these participants?
+
+        # Look for an existing chat between these participants.
         participants = [participant_1, participant_2]
         participants.sort()
 
-        # if not available, start new chat log
+        # If previous chat log is not available, start new chat log.
         if participants not in self.chat_id_list:
-            new_chat_id = self.chat_id
+            chat_id = self.chat_id
             self.chat_id += 1
 
-            self.chat_id_list[participants] = new_chat_id
-            new_chat = Chat(participants)
-            self.chat_list[new_chat_id] = new_chat
-            return new_chat_id
+            self.chat_id_list[participants] = chat_id
+            new_chat = Chat(participants, chat_id)
+            self.chat_list[chat_id] = new_chat
 
+        # Otherwise, resume the chat log.
+        else:
+            chat_id = self.chat_id_list[participants]
 
-        # if available, then resume the chat log
+        return chat_id
+
 
 
 
     def chat(self, chat_id, sender, message):
+        active_chat = self.chat_list[chat_id]
         print('format sender and message and write to the chat log of chat_id')
 
 
