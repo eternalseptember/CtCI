@@ -6,34 +6,25 @@ from datetime import datetime
 
 class Chat():
     def __init__(self, participants, chat_id):
-        # Participants should be a list of users in the chat.
-        self.participants = participants
-        self.chat_id = chat_id  # should be set by the server to find chat logs
-        self.chat_log = self.start_chat_log()
-        # location of chat logs?
-
-
-    def invite_to_chat(self, participant):
-        # If the user accepts the chat invitation:
-        self.participants.append(participant)
+        self.participants = participants  # List of users in the chat.
+        self.chat_id = chat_id  # Set by the server to find chat logs.
+        self.chat_log = self.start_chat_log()  # File location of chat log.
 
 
     def start_chat_log(self):
         # Pretend that the chat log is like the chat window.
-
-        # placeholder - should return file address
         file_name = 'chat_logs/' + str(self.chat_id) + '.txt'
         chat_log = open(file_name, 'w')
-        chat_log.write('write to chat log: {0}'.format(file_name))
-        # close file stream?
+        chat_log.close()
         return file_name
 
 
     def send_message(self, sender, message):
-        chat_log = open(str(self.chat_log), 'a')
-        time_sent = datetime.now().strftime('%b %d, %Y %I:%M:%S')
+        chat_log = open(self.chat_log, 'a')
+        time_sent = datetime.now().strftime('%b %d, %Y %I:%M:%S %p')
         sent_by = str(sender)
-        chat_log.write('{0} {1}: {2}'.format(time_sent, sent_by, message))
+        chat_log.write('[{0}] {1}: {2}\n'.format(time_sent, sent_by, message))
+        chat_log.close()
 
 
     def __str__(self):

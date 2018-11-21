@@ -89,11 +89,8 @@ class Chat_Server():
         return True
 
 
-    def begin_chat(self, participant_1, participant_2):
-        print('begin simple two-party chat')
-
+    def begin_chat(self, participants):
         # Look for an existing chat between these participants.
-        participants = [participant_1, participant_2]
         participants.sort()
 
         # If previous chat log is not available, start new chat log.
@@ -112,11 +109,9 @@ class Chat_Server():
         return chat_id
 
 
-
-
     def chat(self, chat_id, sender, message):
         active_chat = self.chat_list[chat_id]
-        print('format sender and message and write to the chat log of chat_id')
+        active_chat.send_message(sender, message)
 
 
 

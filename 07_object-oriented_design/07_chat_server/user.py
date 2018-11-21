@@ -7,7 +7,7 @@ class User():
         self.status_message = ''
         self.confirmed_contacts = []
         self.pending_requests = []
-        self.received_requests = []  # Requests sent by others. Accept or deny.
+        self.received_requests = []  # Requests sent by others.
         self.server = None
 
 
@@ -131,12 +131,14 @@ class User():
 
     def chat(self, participant, message):
         # two party chat for now
-        # check that the participant is in the contact list?
+        # check that participants is in the contact list?
 
-        # begin chat by finding or starting a chat log with the participant
-        # return id of chat
-        # then send message with id of chat
-        self.server.begin_chat(self.username, participant)
+        chat_participants = [self.username, participant]
+
+        chat_id = self.server.begin_chat(chat_participants)
+
+        # send message with id of chat
+        
 
 
 
