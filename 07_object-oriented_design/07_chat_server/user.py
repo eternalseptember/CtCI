@@ -88,7 +88,7 @@ class User():
             elif answer == '3':
                 print('{0} skipped {1}.'.format(self.username, request))
 
-        # Update statuses of requests
+        # Update statuses of requests.
         for request in accepted:
             self.server.accept_contact_request(self.username, request)
         for request in denied:
@@ -134,10 +134,10 @@ class User():
         # check that participants is in the contact list?
 
         chat_participants = [self.username, participant]
-
         chat_id = self.server.begin_chat(chat_participants)
 
         # send message with id of chat
+        self.server.chat(chat_id, self.username, message)
         
 
 

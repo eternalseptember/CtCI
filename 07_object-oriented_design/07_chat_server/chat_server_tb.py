@@ -35,10 +35,10 @@ user_1.send_contact_request('user_2')
 user_2.check_contact_requests()
 user_1.send_contact_request('user_3')
 user_2.send_contact_request('user_3')
-
-print_users()
 user_3.check_contact_requests()
-print_users()
 
+
+# Test chat
+user_1.chat('user_2', 'hello user_2!')
 
 
