@@ -92,6 +92,7 @@ class Chat_Server():
     def begin_chat(self, participants):
         # Look for an existing chat between these participants.
         participants.sort()
+        participants = tuple(participants)
 
         # If previous chat log is not available, start new chat log.
         if participants not in self.chat_id_list:
