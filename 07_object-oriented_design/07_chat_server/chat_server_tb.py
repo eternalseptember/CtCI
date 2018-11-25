@@ -40,5 +40,6 @@ user_3.check_contact_requests()
 
 # Test chat
 user_1.chat('user_2', 'hello user_2!')
+user_2.chat('user_1', 'what\'s up?')
 
 
