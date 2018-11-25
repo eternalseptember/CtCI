@@ -42,4 +42,7 @@ user_3.check_contact_requests()
 user_1.chat('user_2', 'hello user_2!')
 user_2.chat('user_1', 'what\'s up?')
 
+# Multi-chat
+people_in_chat = ['user_1', 'user_2']
+user_3.chat(people_in_chat, 'just checking in')
 
