@@ -133,7 +133,7 @@ class User():
         # two party chat for now
         # check that participants is in the contact list?
 
-        chat_participants = [self.username, participant]
+        chat_participants = participant.append(self.username)
         chat_id = self.server.begin_chat(chat_participants)
 
         # send message with id of chat
