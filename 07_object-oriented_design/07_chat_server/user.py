@@ -129,12 +129,15 @@ class User():
         print(summary)
 
 
-    def chat(self, participant, message):
-        # two party chat for now
+    def chat(self, participants, message):
         # check that participants is in the contact list?
 
-        chat_participants = participant.append(self.username)
-        chat_id = self.server.begin_chat(chat_participants)
+
+        participants.append(str(self.username))
+        participants.sort()
+        participants = tuple(participants)
+
+        chat_id = self.server.begin_chat(participants)
 
         # send message with id of chat
         self.server.chat(chat_id, self.username, message)

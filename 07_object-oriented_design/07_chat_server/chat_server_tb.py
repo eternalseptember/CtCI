@@ -39,8 +39,9 @@ user_3.check_contact_requests()
 
 
 # Test chat
-user_1.chat(['user_2'], 'hello user_2!')
-user_2.chat(['user_1'], 'what\'s up?')
+user_1.chat(['user_2', 'user_3'], 'hello user_2!')
+user_2.chat(['user_1', 'user_3'], 'what\'s up?')
+user_3.chat(['user_1', 'user_2'], 'three way chat test')
 
 """
 # Multi-chat
