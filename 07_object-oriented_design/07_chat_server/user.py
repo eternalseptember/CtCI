@@ -141,6 +141,11 @@ class User():
 
         # send message with id of chat
         self.server.chat(chat_id, self.username, message)
+
+
+    def invite_to_chat(self, sender, recipient):
+        # if there's an ongoing chat, and a new person gets invited
+        return None
         
 
 
