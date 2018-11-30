@@ -89,7 +89,7 @@ class Chat_Server():
         return True
 
 
-    def begin_chat(self, participants):
+    def get_chat_id(self, participants):
         # Look for an existing chat between these participants.
         # If previous chat log is not available, start new chat log.
         if participants not in self.chat_id_list:
@@ -107,9 +107,14 @@ class Chat_Server():
         return chat_id
 
 
-    def chat(self, chat_id, sender, message):
+    def send_message(self, chat_id, sender, message):
         active_chat = self.chat_list[chat_id]
         active_chat.send_message(sender, message)
+
+
+    def get_list_of_people_in_chat(self, chat_id):
+        current_chat = self.chat_list[chat_id]
+        return current_chat.list_of_participants()
 
 
 

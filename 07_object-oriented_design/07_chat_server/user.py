@@ -137,13 +137,13 @@ class User():
         participants.sort()
         participants = tuple(participants)
 
-        chat_id = self.server.begin_chat(participants)
+        chat_id = self.server.get_chat_id(participants)
 
         # send message with id of chat
-        self.server.chat(chat_id, self.username, message)
+        self.server.send_message(chat_id, self.username, message)
 
 
-    def invite_to_chat(self, sender, recipient):
+    def invite_to_chat(self, current_chat_id, invited_user):
         # if there's an ongoing chat, and a new person gets invited
         return None
         

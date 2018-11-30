@@ -27,6 +27,11 @@ class Chat():
         chat_log.close()
 
 
+    def list_of_participants(self):
+        return list(self.participants)
+
+
+
     def __str__(self):
         chat_summary = ''
 
