@@ -9,7 +9,7 @@ class User():
         self.pending_requests = []
         self.received_requests = []  # Requests sent by others.
         self.server = None
-        self.chats_list = []  # List of chats the user is in.
+        self.chat_history = []  # List of chats the user is in.
 
 
     def __str__(self):
@@ -139,6 +139,9 @@ class User():
         participants = tuple(participants)
 
         chat_id = self.server.get_chat_id(participants)
+
+        if chat_id not in self.chat_history:
+            self.chat_history.append(chat_id)
 
         # send message with id of chat
         self.server.send_message(chat_id, self.username, message)
