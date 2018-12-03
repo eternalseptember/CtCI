@@ -97,7 +97,7 @@ class Chat_Server():
             self.chat_id += 1
 
             self.chat_id_list[participants] = chat_id
-            new_chat = Chat(participants, chat_id)
+            new_chat = Chat(self, participants, chat_id)  # ???
             self.chat_list[chat_id] = new_chat
 
         # Otherwise, resume the chat log.
