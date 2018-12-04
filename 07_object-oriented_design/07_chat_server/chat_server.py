@@ -112,7 +112,7 @@ class Chat_Server():
         active_chat.send_message(sender, message)
 
 
-    def get_list_of_people_in_chat(self, chat_id):
+    def list_people_in_chat(self, chat_id):
         current_chat = self.chat_list[chat_id]
         return current_chat.list_of_participants()
 

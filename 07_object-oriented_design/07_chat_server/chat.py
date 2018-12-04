@@ -32,7 +32,6 @@ class Chat():
         return list(self.participants)
 
 
-
     def __str__(self):
         chat_summary = ''
 
