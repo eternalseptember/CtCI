@@ -53,3 +53,8 @@ user_3.chat(['user_1', 'user_2'], 'hey')
 people_in_chat = ['user_1', 'user_2']
 user_3.chat(people_in_chat, 'just checking in')
 """
+
+
+# Testing inviting others to chat
+
+

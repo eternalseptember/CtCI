@@ -133,8 +133,8 @@ class User():
     def chat(self, participants, message):
         # check that participants is in the contact list?
 
-
-        participants.append(str(self.username))
+        if str(self.username) not in participants:
+            participants.append(str(self.username))
         participants.sort()
         participants = tuple(participants)
 
@@ -143,17 +143,19 @@ class User():
         if chat_id not in self.chat_history:
             self.chat_history.append(chat_id)
 
-        # send message with id of chat
         self.server.send_message(chat_id, self.username, message)
+
+        return chat_id
 
 
     def invite_to_chat(self, current_chat_id, invited_user):
         # if there's an ongoing chat, and a new person gets invited
-        participants = self.server.list_people_in_chat(current_chat_id)
+        participants = self.server.list_people_in_chat(current_chat_id)[:]
+        participants.append(str(invited_user))
+        participants.sort()
+        participants = tuple(participants)
 
         # send invitation?
-
-        return None
         
 
 
