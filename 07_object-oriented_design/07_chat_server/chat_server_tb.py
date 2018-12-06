@@ -40,12 +40,12 @@ user_3.check_contact_requests()
 
 # Test chat
 user_1.chat(['user_2'], 'hey what\'s up?')
-user_2.chat(['user_1'], 'going to invite someone else to this chat')
+chat_id = user_2.chat(['user_1'], 'going to invite someone else to this chat')
 user_1.chat(['user_2'], 'ok')
-# a function to invite someone to chat
 
-user_2.chat(['user_1', 'user_3'], 'hey')
-user_3.chat(['user_1', 'user_2'], 'hey')
+# Testing inviting others to chat
+user_2.invite_to_chat(chat_id, 'user_3')
+
 
 
 """
@@ -55,6 +55,5 @@ user_3.chat(people_in_chat, 'just checking in')
 """
 
 
-# Testing inviting others to chat
 
 

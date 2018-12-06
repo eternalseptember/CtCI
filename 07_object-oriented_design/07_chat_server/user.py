@@ -155,6 +155,9 @@ class User():
         participants.sort()
         participants = tuple(participants)
 
+        print('participants: ')
+        print(participants)
+
         # send invitation?
         
 
