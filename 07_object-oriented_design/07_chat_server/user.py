@@ -130,6 +130,15 @@ class User():
         print(summary)
 
 
+    def in_contacts_list(self, other_user):
+        # Check that other_user is in THIS user's confirmed contacts list.
+        if other_user in self.confirmed_contacts:
+            return True
+        else:
+            return False
+
+
+
     def chat(self, participants, message):
         # check that participants is in the contact list?
 
@@ -150,6 +159,11 @@ class User():
 
     def invite_to_chat(self, current_chat_id, invited_user):
         # if there's an ongoing chat, and a new person gets invited
+
+
+        # send invitation here
+
+        # assuming the invitation is accepted
         participants = self.server.list_people_in_chat(current_chat_id)[:]
         participants.append(str(invited_user))
         participants.sort()
@@ -157,8 +171,6 @@ class User():
 
         print('participants: ')
         print(participants)
-
-        # send invitation?
         
 
 
