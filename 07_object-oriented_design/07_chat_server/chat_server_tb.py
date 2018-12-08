@@ -38,21 +38,20 @@ user_2.send_contact_request('user_3')
 user_3.check_contact_requests()
 
 
-# Test chat
+# Chat, method 1
 user_1.chat(['user_2'], 'hey what\'s up?')
-chat_id = user_2.chat(['user_1'], 'going to invite someone else to this chat')
-user_1.chat(['user_2'], 'ok')
+user_2.chat(['user_1'], 'doing well, you?')
+
+# Chat, method 2
+people_in_chat = ['user_2', 'user_1']
+user_1.chat(people_in_chat, 'there\'s a meeting on tuesday')
+user_2.chat(people_in_chat, 'what is it about?')
+
+
 
 # Testing inviting others to chat
-user_2.invite_to_chat(chat_id, 'user_3')
-
-
-
-"""
-# Multi-chat
-people_in_chat = ['user_1', 'user_2']
-user_3.chat(people_in_chat, 'just checking in')
-"""
+# chat_id = user_2.chat(['user_1'], 'going to invite someone else to this chat')
+# user_2.invite_to_chat(chat_id, 'user_3')
 
 
 

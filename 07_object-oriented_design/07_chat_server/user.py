@@ -138,7 +138,6 @@ class User():
             return False
 
 
-
     def chat(self, participants, message):
         # check that participants is in the contact list?
 
