@@ -10,6 +10,7 @@ class User():
         self.received_requests = []  # Requests sent by others.
         self.server = None
         self.chat_history = []  # List of chats the user is in.
+        self.group_chat_requests = []  # Invitations by others.
 
 
     def __str__(self):
@@ -154,6 +155,14 @@ class User():
         self.server.send_message(chat_id, self.username, message)
 
         return chat_id
+
+
+    def check_group_chat_invites(self):
+        for chat_id in self.group_chat_requests:
+            print('chat request: {0}'.format(chat_id))
+        # accept or reject
+        # chat server send and update requests
+
 
 
     def invite_to_chat(self, current_chat_id, invited_user):
