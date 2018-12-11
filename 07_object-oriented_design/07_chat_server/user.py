@@ -157,6 +157,12 @@ class User():
         return chat_id
 
 
+    def accept_chat_invite(self, chat_id):
+        self.chat_history.append(chat_id)
+        # update server
+
+
+
     def check_group_chat_invites(self):
         for chat_id in self.group_chat_requests:
             print('chat request: {0}'.format(chat_id))
