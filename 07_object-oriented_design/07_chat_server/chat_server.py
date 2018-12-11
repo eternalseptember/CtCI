@@ -89,6 +89,11 @@ class Chat_Server():
         return True
 
 
+    def list_people_in_chat(self, chat_id):
+        current_chat = self.chat_list[chat_id]
+        return current_chat.list_of_participants()
+
+
     def get_chat_id(self, participants):
         # Look for an existing chat between these participants.
         # If previous chat log is not available, start new chat log.
@@ -112,9 +117,14 @@ class Chat_Server():
         active_chat.send_message(sender, message)
 
 
-    def list_people_in_chat(self, chat_id):
-        current_chat = self.chat_list[chat_id]
-        return current_chat.list_of_participants()
+    def invite_to_group_chat(self, chat_id, invited_user):
+        print('send invitation first')
+
+        # if user accepts, then new function return new chat id
+
+
+
+
 
 
 
