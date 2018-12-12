@@ -43,15 +43,22 @@ user_1.chat(['user_2'], 'hey what\'s up?')
 user_2.chat(['user_1'], 'doing well, you?')
 
 # Chat, method 2
-people_in_chat = ['user_2', 'user_1']
-user_1.chat(people_in_chat, 'there\'s a meeting on tuesday')
-user_2.chat(people_in_chat, 'what is it about?')
+chat_1 = ['user_2', 'user_1']
+user_1.chat(chat_1, 'there\'s a meeting on tuesday')
+user_2.chat(chat_1, 'there is?')
 
 
 
 # Testing inviting others to chat
 # chat_id = user_2.chat(['user_1'], 'going to invite someone else to this chat')
 # user_2.invite_to_chat(chat_id, 'user_3')
+
+# if invitation was accepted:
+chat_2 = chat_1[:]
+chat_2.append('user_3')
+
+# test group chat and private chat at the same time
+
 
 
 

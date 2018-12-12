@@ -21,6 +21,43 @@ class User():
         return str(self.username)
 
 
+    def print_user_summary(self):
+        if len(self.status_message) > 0:
+            summary = '{0} - {1}\n'.format(self.username, self.status_message)
+        else:
+            summary = '{0}\n'.format(self.username)
+
+        contacts_list = ''
+        for contact in self.confirmed_contacts:
+            if len(contacts_list) > 0:
+                contacts_list += ', '
+            contacts_list += str(contact)
+
+        pending_list = ''
+        for contact in self.pending_requests:
+            if len(pending_list) > 0:
+                pending_list += ', '
+            pending_list += str(contact)
+
+        received_list = ''
+        for contact in self.received_requests:
+            if len(received_list) > 0:
+                received_list += ', '
+            received_list += str(contact)
+
+        summary += 'Contacts list: '
+        summary += '{0}\n'.format(contacts_list)
+        summary += 'Pending list: '
+        summary += '{0}\n'.format(pending_list)
+        summary += 'Received list: '
+        summary += '{0}\n'.format(received_list)
+
+        print(summary)
+
+
+# *****************************************************************************
+
+
     def login(self, server):
         # Logging in.
         self.server = server
@@ -97,46 +134,15 @@ class User():
             self.server.deny_contact_request(self.username, request)
 
 
-    def print_user_summary(self):
-        if len(self.status_message) > 0:
-            summary = '{0} - {1}\n'.format(self.username, self.status_message)
-        else:
-            summary = '{0}\n'.format(self.username)
-
-        contacts_list = ''
-        for contact in self.confirmed_contacts:
-            if len(contacts_list) > 0:
-                contacts_list += ', '
-            contacts_list += str(contact)
-
-        pending_list = ''
-        for contact in self.pending_requests:
-            if len(pending_list) > 0:
-                pending_list += ', '
-            pending_list += str(contact)
-
-        received_list = ''
-        for contact in self.received_requests:
-            if len(received_list) > 0:
-                received_list += ', '
-            received_list += str(contact)
-
-        summary += 'Contacts list: '
-        summary += '{0}\n'.format(contacts_list)
-        summary += 'Pending list: '
-        summary += '{0}\n'.format(pending_list)
-        summary += 'Received list: '
-        summary += '{0}\n'.format(received_list)
-
-        print(summary)
-
-
     def in_contacts_list(self, other_user):
         # Check that other_user is in THIS user's confirmed contacts list.
         if other_user in self.confirmed_contacts:
             return True
         else:
             return False
+
+
+# *****************************************************************************
 
 
     def chat(self, participants, message):
