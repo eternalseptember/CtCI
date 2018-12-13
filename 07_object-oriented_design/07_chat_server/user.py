@@ -164,8 +164,9 @@ class User():
 
 
     def accept_chat_invite(self, chat_id):
-        self.chat_history.append(chat_id)
         # update server
+
+        print('append chat history with new chat id')
 
 
 

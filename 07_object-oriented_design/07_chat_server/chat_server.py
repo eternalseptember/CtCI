@@ -123,6 +123,17 @@ class Chat_Server():
         # if user accepts, then new function return new chat id
 
 
+    def accept_chat_invite(self, chat_id, accepted_user):
+        # this is the chat_id of the chat with the old list of participants
+        old_chat = self.chat_list[chat_id]
+        previous_group = old_chat.list_of_participants()
+        new_group = previous_group[:]
+        new_group.append(accepted_user)
+
+        new_chat_id = get_chat_id(new_group)
+        return new_chat_id
+
+
 
 
 
