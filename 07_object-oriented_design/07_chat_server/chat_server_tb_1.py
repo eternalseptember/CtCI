@@ -1,3 +1,5 @@
+# Testing the simple functions.
+
 from chat_server import *
 
 
@@ -49,15 +51,6 @@ user_2.chat(chat_1, 'there is?')
 
 
 
-# Testing inviting others to chat
-# chat_id = user_2.chat(['user_1'], 'going to invite someone else to this chat')
-# user_2.invite_to_chat(chat_id, 'user_3')
-
-# if invitation was accepted:
-chat_2 = chat_1[:]
-chat_2.append('user_3')
-
-# test group chat and private chat at the same time
 
 
 
