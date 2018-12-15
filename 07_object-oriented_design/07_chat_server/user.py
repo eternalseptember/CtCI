@@ -163,6 +163,12 @@ class User():
         return chat_id
 
 
+    def update_group_chat_request(chat_id):
+        # the chat_id is for the group already formed.
+        # if the user accepts, there will be a new chat_id.
+        self.group_chat_requests.append(chat_id)
+
+
     def accept_chat_invite(self, chat_id):
         # update server
 

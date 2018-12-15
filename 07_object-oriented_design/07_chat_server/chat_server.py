@@ -118,7 +118,9 @@ class Chat_Server():
 
 
     def invite_to_group_chat(self, chat_id, invited_user):
-        print('send invitation first')
+        invited = self.users[invited_user]
+        invited.update_group_chat_request(chat_id)
+        # INVITATION BY WHOM?
 
         # if user accepts, then new function return new chat id
 
