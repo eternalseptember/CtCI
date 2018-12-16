@@ -3,6 +3,15 @@
 from chat_server import *
 
 
+def wait_for_group_chat_acceptance(chat_1, chat_2):
+    # Simulates chatting normally while waiting for someone to join.
+    # chat_1 is the chat_id with the original chat participants.
+    # chat_2 is the chat_id after someone accepts group chat invite.
+    if chat_2 is None:
+        return chat_1
+
+
+
 # Begin test.
 chat_server = Chat_Server()
 
