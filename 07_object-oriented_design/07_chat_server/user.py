@@ -10,7 +10,7 @@ class User():
         self.received_requests = []  # Requests sent by others.
         self.server = None
         self.chat_history = []  # List of chats the user is in.
-        self.group_chat_requests = []  # Invitations by others.
+        self.group_chat_requests = []  # (sender, old_chat_id)
 
 
     def __str__(self):
@@ -147,7 +147,6 @@ class User():
 
     def chat(self, participants, message):
         # check that participants is in the contact list?
-
         if str(self.username) not in participants:
             participants.append(str(self.username))
         participants.sort()
@@ -163,45 +162,47 @@ class User():
         return chat_id
 
 
-    def update_group_chat_request(chat_id):
-        # the chat_id is for the group already formed.
-        # if the user accepts, there will be a new chat_id.
-        self.group_chat_requests.append(chat_id)
+    def invite_to_chat(self, current_chat_id, invited_user):
+        # check if user is in the contacts list?
+        self.server.invite_to_group_chat(
+            current_chat_id, self.username, invited_user
+            )
+
+    def check_invite_status(self, current_chat_id, invited_user):
+        # query the server to see if invited user accepted chat request
+        return None
+
+
+    def update_group_chat_request(self, request):
+        # Invoked by the server.
+        # request = (sender, old_chat_id)
+        # old_chat_id is for the group already formed.
+        # If the user accepts, there will be a new chat_id.
+        self.group_chat_requests.append(request)
 
 
     def accept_chat_invite(self, chat_id):
-        # update server
+        # update server,
+        # clean up group chat requests
 
         print('append chat history with new chat id')
-
 
 
     def check_group_chat_invites(self):
         for chat_id in self.group_chat_requests:
             print('chat request: {0}'.format(chat_id))
-        # accept or reject
-        # print info about the chat, like who sent the invite and who's in the chat room
-        # chat server send and update requests
+        # Accept or reject.
+
+        # Print info about the chat,
+        # like who sent the invite and who's in the chat room.
+
+        # Chat server send and update requests.
 
 
 
-    def invite_to_chat(self, current_chat_id, invited_user):
-        # if there's an ongoing chat, and a new person gets invited
 
-        # check if user is in the contacts list?
 
-        # send invitation here
-        self.server.invite_to_group_chat(current_chat_id, invited_user)
 
-        # assuming the invitation is accepted
-        participants = self.server.list_people_in_chat(current_chat_id)[:]
-        participants.append(str(invited_user))
-        participants.sort()
-        participants = tuple(participants)
-
-        print('participants: ')
-        print(participants)
-        
 
 
 

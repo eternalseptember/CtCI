@@ -47,8 +47,11 @@ user_2.chat(chat_1, 'there is?')
 
 # Inviting others to chat
 chat_2_id = None
-# chat_id = user_2.chat(['user_1'], 'going to invite someone else to this chat')
-# user_2.invite_to_chat(chat_id, 'user_3')
+user_2.invite_to_chat(chat_id, 'user_3')
+
+
+user_3.check_group_chat_invites()
+
 
 # once the invitation has been accepted, assign it to chat_2_id
 

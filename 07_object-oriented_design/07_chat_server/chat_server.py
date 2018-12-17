@@ -117,10 +117,9 @@ class Chat_Server():
         active_chat.send_message(sender, message)
 
 
-    def invite_to_group_chat(self, chat_id, invited_user):
+    def invite_to_group_chat(self, chat_id, sender, invited_user):
         invited = self.users[invited_user]
-        invited.update_group_chat_request(chat_id)
-        # INVITATION BY WHOM?
+        invited.update_group_chat_request((sender, chat_id))
 
         # if user accepts, then new function return new chat id
 
@@ -133,6 +132,8 @@ class Chat_Server():
         new_group.append(accepted_user)
 
         new_chat_id = get_chat_id(new_group)
+
+        # clean up user's group chat requests
         return new_chat_id
 
 
