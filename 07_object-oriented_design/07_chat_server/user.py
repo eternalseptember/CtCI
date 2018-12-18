@@ -67,6 +67,9 @@ class User():
         self.status_message = status_message
 
 
+# *****************************************************************************
+
+
     def send_contact_request(self, target_contact):
         # Invoked by the user.
         # Send contact request through the server.
@@ -160,6 +163,9 @@ class User():
         self.server.send_message(chat_id, self.username, message)
 
         return chat_id
+
+
+# *****************************************************************************
 
 
     def invite_to_chat(self, current_chat_id, invited_user):

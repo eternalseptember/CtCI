@@ -45,15 +45,17 @@ user_1.chat(chat_1, 'there\'s a meeting on tuesday')
 user_2.chat(chat_1, 'there is?')
 
 
-# Inviting others to chat
+# Inviting one other person to chat
 chat_2_id = None
 user_2.invite_to_chat(chat_id, 'user_3')
 
 
 user_3.check_group_chat_invites()
 
-
 # once the invitation has been accepted, assign it to chat_2_id
+
+
+# Invite multiple people to chat
 
 
 # test group chat and private chat at the same time

@@ -16,6 +16,7 @@ class Chat_Server():
         self.chat_id = 0
         self.chat_id_list = {}  # chat_id_list[ordered_list_of_users] = chat_id
         self.chat_list = {}  # chat_list[chat_id] = Chat()
+        self.chat_invite_status = {}  # chat_invite_status[] = ???
 
 
     def add_user(self, username):
@@ -30,6 +31,14 @@ class Chat_Server():
             return self.users[username]
         else:
             return None
+
+
+    def list_people_in_chat(self, chat_id):
+        current_chat = self.chat_list[chat_id]
+        return current_chat.list_of_participants()
+
+
+# *****************************************************************************
 
 
     def send_contact_request(self, sender, recipient):
@@ -89,9 +98,7 @@ class Chat_Server():
         return True
 
 
-    def list_people_in_chat(self, chat_id):
-        current_chat = self.chat_list[chat_id]
-        return current_chat.list_of_participants()
+# *****************************************************************************
 
 
     def get_chat_id(self, participants):
@@ -135,6 +142,10 @@ class Chat_Server():
 
         # clean up user's group chat requests
         return new_chat_id
+
+
+    def check_invite_status(self, chat_id, invited_user):
+        return None
 
 
 
