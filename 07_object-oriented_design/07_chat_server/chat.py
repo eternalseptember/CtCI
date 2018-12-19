@@ -10,6 +10,7 @@ class Chat():
         self.participants = participants  # List of users in the chat.
         self.chat_id = chat_id  # Set by the server to find chat logs.
         self.chat_log = self.start_chat_log()  # File location of chat log.
+        self.is_group_chat = False
 
 
     def start_chat_log(self):

@@ -16,6 +16,8 @@ class Chat_Server():
         self.chat_id = 0
         self.chat_id_list = {}  # chat_id_list[ordered_list_of_users] = chat_id
         self.chat_list = {}  # chat_list[chat_id] = Chat()
+
+        self.group_chat_id = 0
         self.chat_invite_status = {}  # chat_invite_status[] = ???
 
 

@@ -149,7 +149,6 @@ class User():
 
 
     def chat(self, participants, message):
-        # check that participants is in the contact list?
         if str(self.username) not in participants:
             participants.append(str(self.username))
         participants.sort()
@@ -169,7 +168,8 @@ class User():
 
 
     def invite_to_chat(self, current_chat_id, invited_user):
-        # check if user is in the contacts list?
+        # single chat and group chat use different numbering systems
+        # in case someone invites multiple people to the group chat at the same time.
         self.server.invite_to_group_chat(
             current_chat_id, self.username, invited_user
             )
