@@ -168,6 +168,7 @@ class User():
 
 
     def invite_to_chat(self, current_chat_id, invited_user):
+        current_chat = self.server
         # single chat and group chat use different numbering systems
         # in case someone invites multiple people to the group chat at the same time.
         self.server.invite_to_group_chat(
@@ -179,6 +180,7 @@ class User():
 
     def check_invite_status(self, current_chat_id, invited_user):
         # query the server to see if invited user accepted chat request
+        self.server.check_invite_status(current_chat_id, invited_user)
         return None
 
 
