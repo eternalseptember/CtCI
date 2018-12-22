@@ -168,11 +168,12 @@ class User():
 
 
     def invite_to_chat(self, current_chat_id, invited_user):
-        current_chat = self.server
         # single chat and group chat use different numbering systems
         # in case someone invites multiple people to the group chat at the same time.
+        group_chat_id = self.server.get_group_chat_id(current_chat_id)
+        
         self.server.invite_to_group_chat(
-            current_chat_id, self.username, invited_user
+            group_chat_id, self.username, invited_user
             )
 
         # if the chat_id is not for a group chat,

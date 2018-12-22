@@ -18,7 +18,10 @@ class Chat_Server():
         self.chat_list = {}  # chat_list[chat_id] = Chat()
 
         self.group_chat_id = 0
-        self.chat_invite_status = {}  # chat_invite_status[] = ???
+        self.chat_invite_num = 0
+        self.chat_invite_info = {}
+        # chat_invite_info[chat_invite_num] = (chat_id, sender, recipient)
+        self.chat_invite_status = {}  # chat_invite_status[chat_invite_num] = ???
 
 
     def add_user(self, username):
@@ -126,11 +129,20 @@ class Chat_Server():
         return chat_id
 
 
-    def get_group_chat_id(self):
-        group_chat_id = self.group_chat_id
-        self.group_chat_id += 1
-        return group_chat_id
+    def get_group_chat_id(self, chat_id=None):
+        is_group_chat = False
+        if chat_id is not None:
+            is_group_chat = self.chat_list[chat_id].is_group_chat
 
+        if not is_group_chat:
+            group_chat_id = self.group_chat_id
+            self.group_chat_id += 1
+            return group_chat_id
+        else:
+            return chat_id
+
+
+# *****************************************************************************
 
 
     def invite_to_group_chat(self, chat_id, sender, invited_user):
@@ -150,6 +162,8 @@ class Chat_Server():
         new_chat_id = get_chat_id(new_group)
 
         # clean up user's group chat requests
+
+        # add the new user to the group chat's participant list
         return new_chat_id
 
 

@@ -5,12 +5,12 @@ from datetime import datetime
 
 
 class Chat():
-    def __init__(self, server, participants, chat_id):
+    def __init__(self, server, participants, chat_id, is_group_chat=False):
         self.chat_server = server  # Chat server managing this chat.
         self.participants = participants  # List of users in the chat.
         self.chat_id = chat_id  # Set by the server to find chat logs.
+        self.is_group_chat = is_group_chat
         self.chat_log = self.start_chat_log()  # File location of chat log.
-        self.is_group_chat = False
 
 
     def start_chat_log(self):
