@@ -149,6 +149,10 @@ class User():
 
 
     def chat(self, participants, message):
+        # Used for two-party chat.
+        # Can be used for group_chat, but the problem is when additional people
+        # join the chat, new chat_ids will be generated.
+
         if str(self.username) not in participants:
             participants.append(str(self.username))
         participants.sort()
@@ -170,19 +174,21 @@ class User():
     def invite_to_chat(self, current_chat_id, invited_user):
         # single chat and group chat use different numbering systems
         # in case someone invites multiple people to the group chat at the same time.
+
+
+        # move this to be invoked server side by the invite_to_group_chat function?
         group_chat_id = self.server.get_group_chat_id(current_chat_id)
-        
-        self.server.invite_to_group_chat(
+
+        chat_invite_num = self.server.invite_to_group_chat(
             group_chat_id, self.username, invited_user
             )
 
-        # if the chat_id is not for a group chat,
-        # return group_chat_id
+        return chat_invite_num
 
-    def check_invite_status(self, current_chat_id, invited_user):
+
+    def check_invite_status(self, chat_invite_num):
         # query the server to see if invited user accepted chat request
-        self.server.check_invite_status(current_chat_id, invited_user)
-        return None
+        return self.server.check_invite_status(chat_invite_num)
 
 
     def update_group_chat_request(self, request):

@@ -18,9 +18,10 @@ class Chat_Server():
         self.chat_list = {}  # chat_list[chat_id] = Chat()
 
         self.group_chat_id = 0
+        self.group_chat_list = {}  # group_chat_list[group_chat_id] = Chat()
         self.chat_invite_num = 0
         self.chat_invite_info = {}
-        # chat_invite_info[chat_invite_num] = (chat_id, sender, recipient)
+        #    chat_invite_info[chat_invite_num] = (chat_id, sender, recipient)
         self.chat_invite_status = {}  # chat_invite_status[chat_invite_num] = ???
 
 
@@ -36,11 +37,6 @@ class Chat_Server():
             return self.users[username]
         else:
             return None
-
-
-    def list_people_in_chat(self, chat_id):
-        current_chat = self.chat_list[chat_id]
-        return current_chat.list_of_participants()
 
 
 # *****************************************************************************
@@ -111,7 +107,16 @@ class Chat_Server():
         active_chat.send_message(sender, message)
 
 
+    def list_people_in_chat(self, chat_id):
+        current_chat = self.chat_list[chat_id]
+        return current_chat.list_of_participants()
+
+
     def get_chat_id(self, participants):
+        # Used for two-party chat.
+        # Can be used for group_chat, but the problem is when additional people
+        # join the chat, new chat_ids will be generated.
+
         # Look for an existing chat between these participants.
         # If previous chat log is not available, start new chat log.
         if participants not in self.chat_id_list:
@@ -129,7 +134,10 @@ class Chat_Server():
         return chat_id
 
 
-    def get_group_chat_id(self, chat_id=None):
+    def get_group_chat_id(self, chat_id):
+        # ?????
+        # SINCE GROUP CHATS AND REGULAR CHATS USE TWO DIFFERENT NUMBERING SYSTEMS
+        # THERE WILL BE DUPLICATE CHAT IDS
         is_group_chat = False
         if chat_id is not None:
             is_group_chat = self.chat_list[chat_id].is_group_chat
@@ -137,6 +145,13 @@ class Chat_Server():
         if not is_group_chat:
             group_chat_id = self.group_chat_id
             self.group_chat_id += 1
+
+
+            # Get list of participants from the previous chat
+            # and use it to start a group chat.
+            initial_participants = self.list_people_in_chat(chat_id)
+
+
             return group_chat_id
         else:
             return chat_id
@@ -149,7 +164,9 @@ class Chat_Server():
         invited = self.users[invited_user]
         invited.update_group_chat_request((sender, chat_id))
 
-        # if user accepts, then new function return new chat id
+        chat_invite_num = self.chat_invite_num
+        self.chat_invite_num += 1
+        return chat_invite_num
 
 
     def accept_chat_invite(self, chat_id, accepted_user):
@@ -167,7 +184,8 @@ class Chat_Server():
         return new_chat_id
 
 
-    def check_invite_status(self, chat_id, invited_user):
+    def check_invite_status(self, chat_invite_num):
+        # return True or False
         return None
 
 

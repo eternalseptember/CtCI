@@ -9,7 +9,8 @@ def wait_for_group_chat_acceptance(chat_1, chat_2):
     # chat_2 is the chat_id after someone accepts group chat invite.
     if chat_2 is None:
         return chat_1
-
+    else:
+        return chat_2
 
 
 # Begin test.
@@ -29,6 +30,10 @@ user_2 = chat_server.get_user('user_2')
 user_2.login(chat_server)
 user_3 = chat_server.get_user('user_3')
 user_3.login(chat_server)
+user_4 = chat_server.get_user('user_4')
+user_4.login(chat_server)
+user_5 = chat_server.get_user('user_5')
+user_5.login(chat_server)
 
 
 # CHECKING THAT USERS ARE IN EACH OTHER'S CONTACT LISTS
@@ -46,13 +51,13 @@ user_2.chat(chat_1, 'there is?')
 
 
 # Inviting one other person to chat
-chat_2_id = None
-user_2.invite_to_chat(chat_id, 'user_3')
+chat_2_invite_num = user_2.invite_to_chat(chat_id, 'user_3')
 
 
 user_3.check_group_chat_invites()
 
 # once the invitation has been accepted, assign it to chat_2_id
+user_2.check_invite_status(chat_2_invite_num)
 
 
 # Invite multiple people to chat
