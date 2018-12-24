@@ -149,16 +149,18 @@ class User():
 
 
     def chat(self, participants, message):
-        # Used for two-party chat.
-        # Can be used for group_chat, but the problem is when additional people
-        # join the chat, new chat_ids will be generated.
+        if type(participants) is list:
+            # Two-party chat, but could be used for group-chat.
+            if str(self.username) not in participants:
+                participants.append(str(self.username))
+            participants.sort()
+            participants = tuple(participants)
 
-        if str(self.username) not in participants:
-            participants.append(str(self.username))
-        participants.sort()
-        participants = tuple(participants)
+            chat_id = self.server.get_chat_id(participants)
 
-        chat_id = self.server.get_chat_id(participants)
+        elif type(participants) is int:
+            # In this solution, group chats are passed by group_id.
+            chat_id = participants
 
         if chat_id not in self.chat_history:
             self.chat_history.append(chat_id)
