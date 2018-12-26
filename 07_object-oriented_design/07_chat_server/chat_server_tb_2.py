@@ -48,8 +48,11 @@ user_2.chat(['user_1'], 'doing well, you?')
 
 # Chat, method 2
 chat_1 = ['user_2', 'user_1']
-user_1.chat(chat_1, 'there\'s a meeting on tuesday')
+user_1.chat(chat_1, 'there\'s a meeting on friday')
 user_2.chat(chat_1, 'there is?')
+
+# Chat, passing chat id
+user_2.chat(0, 'we just had one!')
 
 
 # Inviting one other person to chat
