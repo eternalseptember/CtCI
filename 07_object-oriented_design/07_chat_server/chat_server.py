@@ -102,8 +102,11 @@ class Chat_Server():
 # *****************************************************************************
 
 
-    def send_message(self, chat_id, sender, message):
-        active_chat = self.chat_list[chat_id]
+    def send_message(self, chat_id, sender, message, group_chat=False):
+        if group_chat:
+            active_chat = self.group_chat_list[chat_id]
+        else:
+            active_chat = self.chat_list[chat_id]
         active_chat.send_message(sender, message)
 
 
