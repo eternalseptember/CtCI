@@ -160,6 +160,14 @@ class Chat_Server():
             return chat_id
 
 
+    def start_group_chat(self, participants):
+        # setting up as a new test function for now
+        # participants is a list
+
+        group_chat = Chat(self, participants, self.group_chat_id, True)
+
+
+
 # *****************************************************************************
 
 
