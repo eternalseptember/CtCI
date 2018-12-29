@@ -165,6 +165,8 @@ class Chat_Server():
         # participants is a list
 
         group_chat = Chat(self, participants, self.group_chat_id, True)
+        self.group_chat_list[self.group_chat_id] = group_chat
+        self.group_chat_id += 1
 
 
 
