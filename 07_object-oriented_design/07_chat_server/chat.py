@@ -15,7 +15,11 @@ class Chat():
 
     def start_chat_log(self):
         # Pretend that the chat log is like the chat window.
-        file_name = 'chat_logs/' + str(self.chat_id) + '.txt'
+        if self.is_group_chat:
+            file_name = 'group_chat_logs/' + str(self.chat_id) + '.txt'
+        else:
+            file_name = 'chat_logs/' + str(self.chat_id) + '.txt'
+        
         chat_log = open(file_name, 'w')
         chat_log.close()
         return file_name
