@@ -19,7 +19,7 @@ class Chat():
             file_name = 'group_chat_logs/' + str(self.chat_id) + '.txt'
         else:
             file_name = 'chat_logs/' + str(self.chat_id) + '.txt'
-        
+
         chat_log = open(file_name, 'w')
         chat_log.close()
         return file_name
