@@ -37,6 +37,10 @@ class Chat():
         return list(self.participants)
 
 
+    def add_participant(self, username):
+        self.participants.append(username)
+
+
     def __str__(self):
         chat_summary = ''
 

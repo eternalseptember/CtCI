@@ -162,39 +162,43 @@ class Chat_Server():
 
     def start_group_chat(self, participants):
         # setting up as a new test function for now
-        # participants is a list
-
-        group_chat = Chat(self, participants, self.group_chat_id, True)
-        self.group_chat_list[self.group_chat_id] = group_chat
+        # participants is a list of current people in chat
+        group_chat_id = self.group_chat_id
         self.group_chat_id += 1
+
+        group_chat = Chat(self, participants, group_chat_id, True)
+        self.group_chat_list[group_chat_id] = group_chat
+
+        # use this group_id to send group_chat invites
+        return group_chat_id
+
 
 
 
 # *****************************************************************************
 
 
-    def invite_to_group_chat(self, chat_id, sender, invited_user):
-        invited = self.users[invited_user]
-        invited.update_group_chat_request((sender, chat_id))
+    def invite_to_group_chat(self, group_chat_id, sender, invited_name):
+        invited_user = self.users[invited_name]
+        invited_user.update_group_chat_request((sender, group_chat_id))
 
         chat_invite_num = self.chat_invite_num
         self.chat_invite_num += 1
         return chat_invite_num
 
 
-    def accept_chat_invite(self, chat_id, accepted_user):
-        # this is the chat_id of the chat with the old list of participants
-        old_chat = self.chat_list[chat_id]
-        previous_group = old_chat.list_of_participants()
-        new_group = previous_group[:]
-        new_group.append(accepted_user)
-
-        new_chat_id = get_chat_id(new_group)
+    def accept_chat_invite(self, group_chat_id, accepted_name):
 
         # clean up user's group chat requests
+        accepted_user = self.users[accepted_name]
+
+        # add this info to user's group chat list
 
         # add the new user to the group chat's participant list
-        return new_chat_id
+        group_chat = self.group_chat_list[group_chat_id]
+        group_chat.add_participant(accepted_name)
+
+        return group_chat_id
 
 
     def check_invite_status(self, chat_invite_num):
