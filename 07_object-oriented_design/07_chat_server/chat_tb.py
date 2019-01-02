@@ -18,6 +18,7 @@ test_chat_2.send_message('test_user_3', 'test message')
 
 participants_3 = ['test_user_1', 'test_user_2', 'test_user_3']
 test_chat_3 = Chat(chat_server, participants_3, 1, True)
+print(test_chat_3)
 test_chat_3.send_message('test_user_1', 'group chat test')
 test_chat_3.send_message('test_user_3', 'yup')
 test_chat_3.send_message('test_user_2', 'test test test')

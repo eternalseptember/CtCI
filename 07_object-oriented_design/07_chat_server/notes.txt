@@ -1,0 +1,21 @@
+Answers to hints:
+
+
+Hint #213:
+Are "friendships" mutual? Yes
+Do status messages exist? Yes
+Do you support group chat? Yes
+
+Only one of the users need to be friends with someone in order to invite them
+to a group chat.
+
+
+Hint #271:
+How will you know if a user signs offline?
+The chat does not require both parties to be online at the same time.
+If a message is sent when a user is offline, they'll receive the messages the
+next time they sign on.
+
+But the client-side could update the server periodically to show that the users
+are still signed on, when they're signing off, or when they put themselves in
+"hidden" status.

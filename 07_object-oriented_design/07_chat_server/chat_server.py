@@ -115,6 +115,17 @@ class Chat_Server():
         return current_chat.list_of_participants()
 
 
+    def start_chat(self, participants):
+        chat_id = self.chat_id
+        self.chat_id += 1
+
+        self.chat_id_list[participants] = chat_id
+        new_chat = Chat(self, participants, chat_id)
+        self.chat_list[chat_id] = new_chat
+
+        return chat_id
+
+
     def get_chat_id(self, participants):
         # Used for two-party chat.
         # Can be used for group_chat, but the problem is when additional people
@@ -123,18 +134,25 @@ class Chat_Server():
         # Look for an existing chat between these participants.
         # If previous chat log is not available, start new chat log.
         if participants not in self.chat_id_list:
-            chat_id = self.chat_id
-            self.chat_id += 1
-
-            self.chat_id_list[participants] = chat_id
-            new_chat = Chat(self, participants, chat_id)  # ???
-            self.chat_list[chat_id] = new_chat
+            chat_id = self.start_chat(participants)
 
         # Otherwise, resume the chat log.
         else:
             chat_id = self.chat_id_list[participants]
 
         return chat_id
+
+
+    def start_group_chat(self, participants):
+        # Participants is a list of current people in chat.
+        group_chat_id = self.group_chat_id
+        self.group_chat_id += 1
+
+        group_chat = Chat(self, participants, group_chat_id, True)
+        self.group_chat_list[group_chat_id] = group_chat
+
+        # Use this group_id to send group_chat invites.
+        return group_chat_id
 
 
     def get_group_chat_id(self, chat_id):
@@ -159,18 +177,6 @@ class Chat_Server():
         else:
             return chat_id
 
-
-    def start_group_chat(self, participants):
-        # setting up as a new test function for now
-        # participants is a list of current people in chat
-        group_chat_id = self.group_chat_id
-        self.group_chat_id += 1
-
-        group_chat = Chat(self, participants, group_chat_id, True)
-        self.group_chat_list[group_chat_id] = group_chat
-
-        # use this group_id to send group_chat invites
-        return group_chat_id
 
 
 

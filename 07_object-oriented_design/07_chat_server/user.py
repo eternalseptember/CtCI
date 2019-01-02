@@ -9,7 +9,8 @@ class User():
         self.pending_requests = []
         self.received_requests = []  # Requests sent by others.
         self.server = None
-        self.chat_history = []  # List of chats the user is in.
+        self.chat_history = []  # List of simple chats the user is in.
+        self.group_chat_history = []
         self.group_chat_requests = []  # (sender, group_chat_id)
 
 
@@ -149,47 +150,59 @@ class User():
 
 
     def chat(self, participants, message):
+        # is_group_chat = False
+        # The data type of 'participants' argument determines the chat type.
+        # If 'participants' is a list, then it will be a normal chat.
+        # Group chats can only be passed by group_id.
+        #
+
+        # Two-party chat, but could be used for group-chat.
         if type(participants) is list:
-            # Two-party chat, but could be used for group-chat.
             if str(self.username) not in participants:
                 participants.append(str(self.username))
             participants.sort()
             participants = tuple(participants)
 
             chat_id = self.server.get_chat_id(participants)
+            is_group_chat = False
 
+            if chat_id not in self.chat_history:
+                self.chat_history.append(chat_id)
+
+        # In this solution, group chats can only be passed by group_id.
         elif type(participants) is int:
-            # In this solution, group chats are passed by group_id.
             chat_id = participants
+            is_group_chat = True
 
-        if chat_id not in self.chat_history:
-            self.chat_history.append(chat_id)
+            if chat_id not in self.group_chat_history:
+                self.group_chat_history.append(chat_id)
 
         self.server.send_message(chat_id, self.username, message)
 
-        return chat_id
+        return chat_id, is_group_chat
 
 
 # *****************************************************************************
 
 
     def invite_to_chat(self, current_chat_id, invited_user):
-        # single chat and group chat use different numbering systems
-        # in case someone invites multiple people to the group chat at the same time.
+        # Single chat and group chat use different numbering systems, in case
+        # someone invites multiple people to the group chat at the same time.
 
 
-        # move this to be invoked server side by the invite_to_group_chat function?
         group_chat_id = self.server.get_group_chat_id(current_chat_id)
 
         chat_invite_num = self.server.invite_to_group_chat(
             group_chat_id, self.username, invited_user
             )
 
-        return chat_invite_num
+        return group_chat_id, chat_invite_num
 
 
     def check_invite_status(self, chat_invite_num):
-        # query the server to see if invited user accepted chat request
+        # Query the server to see if invited user accepted chat request.
+        # Although the user interface could just query the chat's participants
+        # list, and if the user accepted, then their username will show up.
         return self.server.check_invite_status(chat_invite_num)
 
 
