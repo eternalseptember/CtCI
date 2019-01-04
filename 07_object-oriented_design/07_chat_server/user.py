@@ -236,12 +236,32 @@ class User():
 
     def check_group_chat_invites(self):
         for request in self.group_chat_requests:
+            acceptable_choices = ['Y', 'N', 'S']
+            answer = ''
+
             invite_num, sender, group_chat_id = (request)
             print('You\'ve been invited to a group chat by {0}.'.format(sender))
             # Print info about the chat,
             # like who sent the invite and who's in the chat room.
 
             # Accept or reject.
+            while (answer not in acceptable_choices):
+                print('Press Y to accept this group chat invitation, N to decline, or S to skip.')
+
+                answer = input()
+
+            # should probably check if the group chat is still happening
+            # when they accept the invitation
+
+            if upper(answer) == 'Y':
+                print('entering chat')
+
+            elif upper(answer) == 'N':
+                print('decline to join chat')
+
+            elif upper(answer) == 'S':
+                print('skipping this chat')
+
 
         # Chat server send and update requests.
 
