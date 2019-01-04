@@ -4,14 +4,15 @@
 class User():
     def __init__(self, username):
         self.username = username
+        self.online_status = ''
         self.status_message = ''
         self.confirmed_contacts = []
         self.pending_requests = []
         self.received_requests = []  # Requests sent by others.
         self.server = None
         self.chat_history = []  # List of simple chats the user is in.
-        self.group_chat_history = []
-        self.group_chat_requests = []  # (sender, group_chat_id)
+        self.group_chat_history = []  # Keep this to access group chat logs.
+        self.group_chat_requests = []  # (invite_num, sender, group_chat_id)
 
 
     def __str__(self):
@@ -60,9 +61,12 @@ class User():
 
 
     def login(self, server):
-        # Logging in.
         self.server = server
+        self.online_status = 'Online'
 
+    def logout(self):
+        self.server = None
+        self.online_status = 'Offline'
 
     def update_status(self, status_message):
         self.status_message = status_message
@@ -149,37 +153,36 @@ class User():
 # *****************************************************************************
 
 
-    def chat(self, participants, message):
-        # is_group_chat = False
-        # The data type of 'participants' argument determines the chat type.
-        # If 'participants' is a list, then it will be a normal chat.
-        # Group chats can only be passed by group_id.
-        #
-
-        # Two-party chat, but could be used for group-chat.
-        if type(participants) is list:
-            if str(self.username) not in participants:
-                participants.append(str(self.username))
-            participants.sort()
-            participants = tuple(participants)
-
-            chat_id = self.server.get_chat_id(participants)
-            is_group_chat = False
-
-            if chat_id not in self.chat_history:
-                self.chat_history.append(chat_id)
-
-        # In this solution, group chats can only be passed by group_id.
-        elif type(participants) is int:
+    def chat(self, participants, message, is_group_chat=False):
+        if is_group_chat:
+            # 'participants' argument will be the group chat id.
             chat_id = participants
-            is_group_chat = True
 
             if chat_id not in self.group_chat_history:
                 self.group_chat_history.append(chat_id)
 
-        self.server.send_message(chat_id, self.username, message)
+        else:
+            # 'participants' argument can either be a list of participants
+            # (if it's a new chat, then there will be no chat id)
+            # or the chat id of an existing chat.
+            if type(participants) is list:
+                if str(self.username) not in participants:
+                    participants.append(str(self.username))
+                participants.sort()
+                participants = tuple(participants)
 
-        return chat_id, is_group_chat
+                # If a new chat needs to be set up, it'll be done here.
+                chat_id = self.server.get_chat_id(participants)
+
+                if chat_id not in self.chat_history:
+                    self.chat_history.append(chat_id)
+
+            elif type(participants) is int:
+                chat_id = participants
+
+        self.server.send_message(chat_id, self.username, message, is_group_chat)
+
+        return chat_id
 
 
 # *****************************************************************************
@@ -189,7 +192,7 @@ class User():
         # Single chat and group chat use different numbering systems, in case
         # someone invites multiple people to the group chat at the same time.
 
-
+        # Figure out whether the current chat is a simple chat or a group chat.
         group_chat_id = self.server.get_group_chat_id(current_chat_id)
 
         chat_invite_num = self.server.invite_to_group_chat(
@@ -199,35 +202,46 @@ class User():
         return group_chat_id, chat_invite_num
 
 
-    def check_invite_status(self, chat_invite_num):
-        # Query the server to see if invited user accepted chat request.
-        # Although the user interface could just query the chat's participants
-        # list, and if the user accepted, then their username will show up.
-        return self.server.check_invite_status(chat_invite_num)
+    def start_group_chat(self, participants):
+        # If the group chat was formed outside an existing chat window.
+        # In this case, all of the participants should be in the user's
+        # contacts list.
+        print('starting group chat')
 
 
-    def update_group_chat_request(self, request):
+    def group_chat_request(self, request):
         # Invoked by the server.
-        # request = (sender, old_chat_id)
-        # old_chat_id is for the group already formed.
-        # If the user accepts, there will be a new chat_id.
+        # request = (invite_num, sender, group_chat_id)
         self.group_chat_requests.append(request)
 
 
-    def accept_chat_invite(self, chat_id):
-        # update server,
-        # clean up group chat requests
+    def reject_group_chat(self, request):
+        # request = (invite_num, sender, group_chat_id)
+        # Update the server's group chat request log.
+        # Clean up user's group chat invitations list.
+        print('not entering the group chat')
 
-        print('append chat history with new chat id')
+
+    def enter_group_chat(self, request):
+        # request = (invite_num, sender, group_chat_id)
+        # Update the server's group chat request log.
+        # Clean up user's group chat invitations list.
+        print('append group chat history with new chat id')
+
+
+    def leave_group_chat(self, group_chat_id):
+        # Update the server.
+        print('leaving a group chat')
 
 
     def check_group_chat_invites(self):
-        for chat_id in self.group_chat_requests:
-            print('chat request: {0}'.format(chat_id))
-        # Accept or reject.
+        for request in self.group_chat_requests:
+            invite_num, sender, group_chat_id = (request)
+            print('You\'ve been invited to a group chat by {0}.'.format(sender))
+            # Print info about the chat,
+            # like who sent the invite and who's in the chat room.
 
-        # Print info about the chat,
-        # like who sent the invite and who's in the chat room.
+            # Accept or reject.
 
         # Chat server send and update requests.
 

@@ -33,12 +33,22 @@ class Chat():
         chat_log.close()
 
 
-    def list_of_participants(self):
+    def list_participants(self):
         return list(self.participants)
 
 
     def add_participant(self, username):
+        # Invoked by the server after someone accepts a group chat invite.
         self.participants.append(username)
+
+
+    def remove_participant(self, username):
+        # When someone leaves the group chat, the UI updates the server, and
+        # the server updates the chat object.
+        if username in self.participants:
+            self.participants.remove(username)
+
+        # When the last user leaves the chat, update the server.
 
 
     def __str__(self):

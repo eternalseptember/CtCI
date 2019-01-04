@@ -3,16 +3,6 @@
 from chat_server import *
 
 
-def wait_for_group_chat_acceptance(chat_1, chat_2):
-    # Simulates chatting normally while waiting for someone to join.
-    # chat_1 is the chat_id with the original chat participants.
-    # chat_2 is the chat_id after someone accepts group chat invite.
-    if chat_2 is None:
-        return chat_1
-    else:
-        return chat_2
-
-
 # Begin test.
 chat_server = Chat_Server()
 
@@ -42,28 +32,41 @@ user_5.login(chat_server)
 # NOT YET IMPLEMENTED
 
 
-# Chat, method 1
+# Chat, method 1: only passing in the list the sender is talking to.
 chat_1_id = user_1.chat(['user_2'], 'hey what\'s up?')
 user_2.chat(['user_1'], 'doing well, you?')
 
-# Chat, method 2
+# Chat, method 2: passing in full list of chat participants.
 chat_1 = ['user_2', 'user_1']
 user_1.chat(chat_1, 'there\'s a meeting on friday')
 user_2.chat(chat_1, 'there is?')
 
-# Chat, passing chat id
+# Chat, method 3: passing chat id of an existing chat.
 user_2.chat(0, 'we just had one!')
 
 
 # Inviting one other person to chat
-# chat_2_invite_num = user_2.invite_to_chat(chat_id, 'user_3')
+# group_chat_id, invite_num_user_2 = user_2.invite_to_chat(chat_id, 'user_3')
 
+# The other person invites another person to chat.
+# group_chat_id, invite_num_user_4 = user_1.invite_to_chat(chat_id, 'user_4')
+
+"""
+Pretend that there is a chat window UI that will automatically fill in chat
+info based on user's selection, like chat number and chat type.
+
+After a group chat invitation is made, a new group chat window opens with the
+current chat participants.
+
+Users can chat in the new group chat window while waiting for responses to
+group chat invites, or they can continue their conversation in the private chat
+window.
+
+If an invited user accepted the chat request, they would know based on the
+updated participants list the chat window UI could query from the chat object.
+"""
 
 # user_3.check_group_chat_invites()
-
-# once the invitation has been accepted, assign it to chat_2_id
-# user_2.check_invite_status(chat_2_invite_num)
-
 
 # Invite multiple people to chat
 

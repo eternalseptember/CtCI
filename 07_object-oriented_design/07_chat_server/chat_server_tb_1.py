@@ -33,6 +33,7 @@ user_3.login(chat_server)
 user_1.update_status('online')
 
 
+# Checking and adding people to contacts list.
 user_1.send_contact_request('user_2')
 user_2.check_contact_requests()
 user_1.send_contact_request('user_3')
@@ -40,15 +41,17 @@ user_2.send_contact_request('user_3')
 user_3.check_contact_requests()
 
 
-# Chat, method 1
+# Chat, method 1: only passing in the list the sender is talking to.
 user_1.chat(['user_2'], 'hey what\'s up?')
 user_2.chat(['user_1'], 'doing well, you?')
 
-# Chat, method 2
+# Chat, method 2: passing in full list of chat participants.
 chat_1 = ['user_2', 'user_1']
 user_1.chat(chat_1, 'there\'s a meeting on tuesday')
 user_2.chat(chat_1, 'there is?')
 
+# Chat, method 3: passing chat id of an existing chat.
+user_2.chat(0, 'we just had one!')
 
 
 

@@ -19,3 +19,15 @@ next time they sign on.
 But the client-side could update the server periodically to show that the users
 are still signed on, when they're signing off, or when they put themselves in
 "hidden" status.
+
+
+Main difference between simple chat and group chat:
+More info about the simple chat will be maintained by the server.
+In the chat objects, the user participation list will not be updated.
+
+Group chat's participation list will be dynamically updated based on users
+entering and leaving.
+When the last member leaves the group chat, the server is updated to close the
+chat.
+
+
