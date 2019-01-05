@@ -246,20 +246,21 @@ class User():
 
             # Accept or reject.
             while (answer not in acceptable_choices):
-                print('Press Y to accept this group chat invitation, N to decline, or S to skip.')
+                print('Press Y to accept this group chat invitation, \
+                    N to decline, or S to skip.')
 
                 answer = input()
 
             # should probably check if the group chat is still happening
             # when they accept the invitation
 
-            if upper(answer) == 'Y':
+            if answer.upper() == 'Y':
                 print('entering chat')
 
-            elif upper(answer) == 'N':
+            elif answer.upper() == 'N':
                 print('decline to join chat')
 
-            elif upper(answer) == 'S':
+            elif answer.upper() == 'S':
                 print('skipping this chat')
 
 
