@@ -256,9 +256,11 @@ class User():
 
             if answer.upper() == 'Y':
                 print('entering chat')
+                self.enter_group_chat(request)
 
             elif answer.upper() == 'N':
                 print('decline to join chat')
+                self.reject_group_chat(request)
 
             elif answer.upper() == 'S':
                 print('skipping this chat')
