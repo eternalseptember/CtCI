@@ -33,6 +33,11 @@ user_3.login(chat_server)
 user_1.update_status('online')
 
 
+# Check that someone is in a user's contact list before starting chat.
+# There should be an error message.
+user_1.chat(['user_2'], 'we are not friends yet')
+
+
 # Checking and adding people to contacts list.
 user_1.send_contact_request('user_2')
 user_2.check_contact_requests()

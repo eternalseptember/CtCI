@@ -114,21 +114,10 @@ class Chat_Server():
         if is_group_chat:
             self.group_chat_list[chat_id].list_participants()
         else:
-            current_chat = self.chat_list[chat_id].list_participants()
+            self.chat_list[chat_id].list_participants()
 
 
     def start_chat(self, participants):
-        chat_id = self.chat_id
-        self.chat_id += 1
-
-        self.chat_id_list[participants] = chat_id
-        new_chat = Chat(self, participants, chat_id)
-        self.chat_list[chat_id] = new_chat
-
-        return chat_id
-
-
-    def get_chat_id(self, participants):
         # Used for two-party chat.
         # Can be used for group_chat, but the problem is when additional people
         # join the chat, new chat_ids will be generated.
@@ -136,7 +125,12 @@ class Chat_Server():
         # Look for an existing chat between these participants.
         # If previous chat log is not available, start new chat log.
         if participants not in self.chat_id_list:
-            chat_id = self.start_chat(participants)
+            chat_id = self.chat_id
+            self.chat_id += 1
+
+            self.chat_id_list[participants] = chat_id
+            new_chat = Chat(self, participants, chat_id)
+            self.chat_list[chat_id] = new_chat
 
         # Otherwise, resume the chat log.
         else:
@@ -146,9 +140,8 @@ class Chat_Server():
 
 
     def start_group_chat(self, participants):
-        # Participants is a list of current people in chat.
-        # Function invoked from outside an existing chat window.
-
+        # The person who created the group chat is the first participant.
+        # Other participants are added as they accept the group chat invitation.
         group_chat_id = self.group_chat_id
         self.group_chat_id += 1
 
@@ -159,39 +152,6 @@ class Chat_Server():
         return group_chat_id
 
 
-    def get_group_chat_id(self, chat_id):
-        """
-        Group chats and simple chats use different numbering systems.
-
-        If the chat_id passed in is a simple chat, then perhaps the user
-        started a group chat inside the two-party chat window.
-
-        If the chat_id of a simple chat was passed in multiple times, then
-        users invited multiple people inside the simple chat window;
-        or users started a new group chat after an old group chat has ended.
-
-        If the chat_id of a group chat was passed in, then the user invited
-        people inside the group chat window.
-        """
-        is_group_chat = False
-        if chat_id is not None:
-            is_group_chat = self.chat_list[chat_id].is_group_chat
-
-        if not is_group_chat:
-            group_chat_id = self.group_chat_id
-            self.group_chat_id += 1
-
-
-            # Get list of participants from the previous chat
-            # and use it to start a group chat.
-            initial_participants = self.list_people_in_chat(chat_id)
-
-
-            return group_chat_id
-        else:
-            return chat_id
-
-
 # *****************************************************************************
 
 
@@ -200,8 +160,8 @@ class Chat_Server():
         self.chat_invite_num += 1
 
         invited_user = self.users[invited_name]
-        invited_user.group_chat_request((invite_num, sender, group_chat_id))
-        
+        invited_user.invite_to_group_chat((invite_num, sender, group_chat_id))
+
         return chat_invite_num
 
 
@@ -217,6 +177,10 @@ class Chat_Server():
         group_chat.add_participant(accepted_name)
 
         return group_chat_id
+
+
+    # deny group chat
+    # close group chat
 
 
 

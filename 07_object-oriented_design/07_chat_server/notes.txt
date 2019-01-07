@@ -23,11 +23,24 @@ are still signed on, when they're signing off, or when they put themselves in
 
 Main difference between simple chat and group chat:
 More info about the simple chat will be maintained by the server.
-In the chat objects, the user participation list will not be updated.
+In the simple Chat objects, the user participation list will not be updated.
 
 Group chat's participation list will be dynamically updated based on users
 entering and leaving.
 When the last member leaves the group chat, the server is updated to close the
 chat.
+
+
+There are two ways to invite people to group chat:
+1.) Form a group chat outside any chat window.
+
+2.) Inviting people inside a group chat window.
+Any current participant can invite a contact to the group chat.
+
+Previously, tried to allow chat participants to invite anyone to an existing
+chat, but if the chat was a simple two-party chat, trying to figure out the new
+chat_id for the group chat became too complicated, especially if multiple
+people are inviting people to the group chat.
+
 
 

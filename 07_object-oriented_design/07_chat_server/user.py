@@ -64,9 +64,11 @@ class User():
         self.server = server
         self.online_status = 'Online'
 
+
     def logout(self):
         self.server = None
         self.online_status = 'Offline'
+
 
     def update_status(self, status_message):
         self.status_message = status_message
@@ -166,19 +168,39 @@ class User():
             # (if it's a new chat, then there will be no chat id)
             # or the chat id of an existing chat.
             if type(participants) is list:
+                # THIS IS THE ONLY WAY TO START A SIMPLE CHAT WITH ONE OTHER PERSON.
+                # Checking that the chat recipients are in the user's contacts list.
+                unconfirmed_contacts = []
+
+                for participant in participants:
+                    if not self.in_contacts_list(participant):
+                        unconfirmed_contacts.append(participant)
+
+                # Remove unconfirmed contacts from the chat participants list.
+                for contact in unconfirmed_contacts:
+                    participants.remove(contact)
+
+                # Add the user to the chat participants list for chat lookups.
                 if str(self.username) not in participants:
                     participants.append(str(self.username))
+
+                # If there are no valid chat participants.
+                if len(participants) == 1:
+                    print('No valid chat participants.')
+                    return None
+
                 participants.sort()
                 participants = tuple(participants)
 
                 # If a new chat needs to be set up, it'll be done here.
-                chat_id = self.server.get_chat_id(participants)
-
-                if chat_id not in self.chat_history:
-                    self.chat_history.append(chat_id)
+                chat_id = self.server.start_chat(participants)
 
             elif type(participants) is int:
                 chat_id = participants
+
+            if chat_id not in self.chat_history:
+                    self.chat_history.append(chat_id)
+
 
         self.server.send_message(chat_id, self.username, message, is_group_chat)
 
@@ -188,28 +210,18 @@ class User():
 # *****************************************************************************
 
 
-    def invite_to_chat(self, current_chat_id, invited_user):
-        # Single chat and group chat use different numbering systems, in case
-        # someone invites multiple people to the group chat at the same time.
-
-        # Figure out whether the current chat is a simple chat or a group chat.
-        group_chat_id = self.server.get_group_chat_id(current_chat_id)
-
-        chat_invite_num = self.server.invite_to_group_chat(
-            group_chat_id, self.username, invited_user
-            )
-
-        return group_chat_id, chat_invite_num
-
-
     def start_group_chat(self, participants):
-        # If the group chat was formed outside an existing chat window.
-        # In this case, all of the participants should be in the user's
-        # contacts list.
+        # THIS IS THE ONLY WAY TO START A GROUP CHAT!
+        # All of the participants should be in the user's contacts list.
+        # send an invitation to everybody
+        # assume that the person who started the chat will be the first participant.
         print('starting group chat')
 
 
-    def group_chat_request(self, request):
+# *****************************************************************************
+
+
+    def invite_to_group_chat(self, request):
         # Invoked by the server.
         # request = (invite_num, sender, group_chat_id)
         self.group_chat_requests.append(request)

@@ -29,7 +29,7 @@ user_5.login(chat_server)
 
 
 # CHECKING THAT USERS ARE IN EACH OTHER'S CONTACT LISTS
-# NOT YET IMPLEMENTED
+# ADD CONTACTS HERE
 
 
 # Chat, method 1: only passing in the list the sender is talking to.
@@ -45,18 +45,15 @@ user_2.chat(chat_1, 'there is?')
 user_2.chat(0, 'we just had one!')
 
 
-# Inviting one other person to chat
-# group_chat_id, invite_num_user_2 = user_2.invite_to_chat(chat_id, 'user_3')
+# START GROUP CHAT
 
-# The other person invites another person to chat.
-# group_chat_id, invite_num_user_4 = user_1.invite_to_chat(chat_id, 'user_4')
 
 """
 Pretend that there is a chat window UI that will automatically fill in chat
 info based on user's selection, like chat number and chat type.
 
 After a group chat invitation is made, a new group chat window opens with the
-current chat participants.
+active chat participants.
 
 Users can chat in the new group chat window while waiting for responses to
 group chat invites, or they can continue their conversation in the private chat
