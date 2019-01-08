@@ -20,9 +20,8 @@ class Chat_Server():
 
         self.group_chat_id = 0
         self.group_chat_list = {}  # group_chat_list[group_chat_id] = Chat()
-        self.chat_invite_num = 0
         self.chat_invite_info = {}
-        #    chat_invite_info[chat_invite_num] = (chat_id, sender, recipient)
+        #    chat_invite_info[group_chat_id] = [(sender, receiver)]
 
 
     def add_user(self, username):
@@ -139,13 +138,13 @@ class Chat_Server():
         return chat_id
 
 
-    def start_group_chat(self, participants):
+    def start_group_chat(self, started_by):
         # The person who created the group chat is the first participant.
         # Other participants are added as they accept the group chat invitation.
         group_chat_id = self.group_chat_id
         self.group_chat_id += 1
 
-        group_chat = Chat(self, participants, group_chat_id, True)
+        group_chat = Chat(self, started_by, group_chat_id, True)
         self.group_chat_list[group_chat_id] = group_chat
 
         # Use this group_id to send group_chat invites.
@@ -156,11 +155,11 @@ class Chat_Server():
 
 
     def invite_to_group_chat(self, group_chat_id, sender, invited_name):
-        invite_num = self.chat_invite_num
-        self.chat_invite_num += 1
 
         invited_user = self.users[invited_name]
-        invited_user.invite_to_group_chat((invite_num, sender, group_chat_id))
+        invited_user.invite_to_group_chat((sender, group_chat_id))
+
+        # Update self.chat_invite_info
 
         return chat_invite_num
 

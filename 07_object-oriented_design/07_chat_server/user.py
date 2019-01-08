@@ -12,7 +12,7 @@ class User():
         self.server = None
         self.chat_history = []  # List of simple chats the user is in.
         self.group_chat_history = []  # Keep this to access group chat logs.
-        self.group_chat_requests = []  # (invite_num, sender, group_chat_id)
+        self.group_chat_requests = []  # (sender, group_chat_id)
 
 
     def __str__(self):
@@ -212,30 +212,32 @@ class User():
 
     def start_group_chat(self, participants):
         # THIS IS THE ONLY WAY TO START A GROUP CHAT!
+        # The person who started the group chat will be the first participant.
+        group_chat_id = self.server.start_group_chat(self.username)
+
+        # Send an invitation to everybody.
         # All of the participants should be in the user's contacts list.
-        # send an invitation to everybody
-        # assume that the person who started the chat will be the first participant.
+        
+
         print('starting group chat')
 
-
-# *****************************************************************************
 
 
     def invite_to_group_chat(self, request):
         # Invoked by the server.
-        # request = (invite_num, sender, group_chat_id)
+        # request = (sender, group_chat_id)
         self.group_chat_requests.append(request)
 
 
     def reject_group_chat(self, request):
-        # request = (invite_num, sender, group_chat_id)
+        # request = (sender, group_chat_id)
         # Update the server's group chat request log.
         # Clean up user's group chat invitations list.
         print('not entering the group chat')
 
 
     def enter_group_chat(self, request):
-        # request = (invite_num, sender, group_chat_id)
+        # request = (sender, group_chat_id)
         # Update the server's group chat request log.
         # Clean up user's group chat invitations list.
         print('append group chat history with new chat id')
@@ -251,7 +253,7 @@ class User():
             acceptable_choices = ['Y', 'N', 'S']
             answer = ''
 
-            invite_num, sender, group_chat_id = (request)
+            sender, group_chat_id = (request)
             print('You\'ve been invited to a group chat by {0}.'.format(sender))
             # Print info about the chat,
             # like who sent the invite and who's in the chat room.
