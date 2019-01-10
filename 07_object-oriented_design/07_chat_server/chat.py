@@ -49,6 +49,8 @@ class Chat():
             self.participants.remove(username)
 
         # When the last user leaves the chat, update the server.
+        if len(self.participants) == 0:
+            self.server.close_group_chat(self.chat_id)
 
 
     def __str__(self):
