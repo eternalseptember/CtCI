@@ -43,4 +43,13 @@ chat_id for the group chat became too complicated, especially if multiple
 people are inviting people to the group chat.
 
 
+There are horizontal lines in chat_server.py and users.py.
+The sections are:
+object information
+users
+contacts
+basic chats and messaging
+group chats
+
+
 

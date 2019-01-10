@@ -59,7 +59,7 @@ Users can chat in the new group chat window while waiting for responses to
 group chat invites, or they can continue their conversation in the private chat
 window.
 
-If an invited user accepted the chat request, they would know based on the
+If an invited user accepted the chat request, pepole would know based on the
 updated participants list the chat window UI could query from the chat object.
 """
 

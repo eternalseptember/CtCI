@@ -24,6 +24,9 @@ class Chat_Server():
         #    chat_invite_info[group_chat_id] = [(sender, receiver)]
 
 
+# *****************************************************************************
+
+
     def add_user(self, username):
         user = User(username)
         self.user_list.append(username)
@@ -178,8 +181,12 @@ class Chat_Server():
         return group_chat_id
 
 
-    # deny group chat
-    # close group chat
+    def reject_group_chat(self, group_chat_id):
+        return None
+
+
+    def close_group_chat(self, group_chat_id):
+        return None
 
 
 

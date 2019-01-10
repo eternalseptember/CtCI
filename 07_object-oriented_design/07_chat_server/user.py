@@ -218,7 +218,6 @@ class User():
         # Send an invitation to everybody.
         # All of the participants should be in the user's contacts list.
         
-
         print('starting group chat')
 
 
