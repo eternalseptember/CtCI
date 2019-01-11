@@ -185,6 +185,10 @@ class Chat_Server():
         return None
 
 
+    def leave_group_chat(self, group_chat_id, user):
+        return None
+
+
     def close_group_chat(self, group_chat_id):
         return None
 

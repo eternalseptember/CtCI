@@ -244,7 +244,7 @@ class User():
 
     def leave_group_chat(self, group_chat_id):
         # Update the server.
-        print('leaving a group chat')
+        self.server.leave_group_chat(group_chat_id, self.username)
 
 
     def check_group_chat_invites(self):
