@@ -186,7 +186,8 @@ class Chat_Server():
 
 
     def leave_group_chat(self, group_chat_id, user):
-        return None
+        group_chat = self.group_chat_list[group_chat_id]
+        group_chat.remove_participant(user)
 
 
     def close_group_chat(self, group_chat_id):
