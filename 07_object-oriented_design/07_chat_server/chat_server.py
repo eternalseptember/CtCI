@@ -191,7 +191,7 @@ class Chat_Server():
 
 
     def close_group_chat(self, group_chat_id):
-        return None
+        self.group_chat_list.remove(group_chat_id)
 
 
 
