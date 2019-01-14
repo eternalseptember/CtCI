@@ -29,6 +29,8 @@ user_5.login(chat_server)
 
 
 # CHECKING THAT USERS ARE IN EACH OTHER'S CONTACT LISTS
+user_1.confirm_contact_request('user_2')
+user_2.confirm_contact_request('user_1')
 # ADD CONTACTS HERE
 
 
