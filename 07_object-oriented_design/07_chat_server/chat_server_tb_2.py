@@ -28,10 +28,14 @@ user_5 = chat_server.get_user('user_5')
 user_5.login(chat_server)
 
 
-# CHECKING THAT USERS ARE IN EACH OTHER'S CONTACT LISTS
+# Contact requests is tested in tb_1.py.
+# Manually adding contacts here.
 user_1.confirm_contact_request('user_2')
+user_1.confirm_contact_request('user_3')
 user_2.confirm_contact_request('user_1')
-# ADD CONTACTS HERE
+user_2.confirm_contact_request('user_4')
+user_3.confirm_contact_request('user_1')
+user_4.confirm_contact_request('user_2')
 
 
 # Chat, method 1: only passing in the list the sender is talking to.

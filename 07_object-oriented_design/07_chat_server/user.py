@@ -221,29 +221,34 @@ class User():
         print('starting group chat')
 
 
-
-    def invite_to_group_chat(self, request):
+    def invited_to_group_chat(self, request):
         # Invoked by the server.
-        # request = (sender, group_chat_id)
+        # sender, group_chat_id = (request)
         self.group_chat_requests.append(request)
 
 
-    def reject_group_chat(self, request):
-        # request = (sender, group_chat_id)
-        # Update the server's group chat request log.
-        # Clean up user's group chat invitations list.
-        print('not entering the group chat')
-
-
     def enter_group_chat(self, request):
-        # request = (sender, group_chat_id)
-        # Update the server's group chat request log.
+        sender, group_chat_id = (request)
+
+        # Update user's group chat history if request was legit and
+        # group chat is still ongoing.
+        if self.server.enter_group_chat(request, self.username):
+            self.group_chat_history.append(group_chat_id)
+
         # Clean up user's group chat invitations list.
-        print('append group chat history with new chat id')
+        if request in self.group_chat_requests:
+            self.group_chat_requests.remove(request)
+
+
+    def reject_group_chat(self, request):
+        self.server.reject_group_chat(request, self.username)
+
+        # Clean up user's group chat invitations list.
+        if request in self.group_chat_requests:
+            self.group_chat_requests.remove(request)
 
 
     def leave_group_chat(self, group_chat_id):
-        # Update the server.
         self.server.leave_group_chat(group_chat_id, self.username)
 
 

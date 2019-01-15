@@ -158,30 +158,30 @@ class Chat_Server():
 
 
     def invite_to_group_chat(self, group_chat_id, sender, invited_name):
-
+        request = (sender, group_chat_id)
         invited_user = self.users[invited_name]
-        invited_user.invite_to_group_chat((sender, group_chat_id))
+        invited_user.invited_to_group_chat(request)
 
-        # Update self.chat_invite_info
+        # Update self.chat_invite_info.
 
         return chat_invite_num
 
 
-    def accept_chat_invite(self, group_chat_id, accepted_name):
+    def enter_group_chat(self, request, accepted_name):
+        # Update group chat requests log.
+        # Check whether the chat invitation was legit so that
+        # uninvited users can't just barge in.
 
-        # clean up user's group chat requests
-        accepted_user = self.users[accepted_name]
 
-        # add this info to user's group chat list
-
-        # add the new user to the group chat's participant list
+        # Add the new user to the group chat's participant list.
         group_chat = self.group_chat_list[group_chat_id]
         group_chat.add_participant(accepted_name)
 
-        return group_chat_id
+        return True
 
 
-    def reject_group_chat(self, group_chat_id):
+    def reject_group_chat(self, request, rejected_name):
+        # Update group chat requests log.
         return None
 
 
@@ -191,6 +191,7 @@ class Chat_Server():
 
 
     def close_group_chat(self, group_chat_id):
+        # INSTEAD OF REMOVING, UDPATE WITH STATUS SAYING GROUP WAS CLOSED?
         self.group_chat_list.remove(group_chat_id)
 
 
