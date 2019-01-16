@@ -19,9 +19,13 @@ class Chat_Server():
         self.chat_list = {}  # chat_list[chat_id] = Chat()
 
         self.group_chat_id = 0
-        self.group_chat_list = {}  # group_chat_list[group_chat_id] = Chat()
-        self.chat_invite_info = {}
-        #    chat_invite_info[group_chat_id] = [(sender, receiver)]
+        self.group_chat_status = {}
+        #    group_chat_status[group_chat_id] = True (open) or False (closed)
+        self.group_chat_list = {}
+        #    group_chat_list[group_chat_id] = Chat()
+        #    No log if group chat was closed.
+        self.group_chat_invite = {}
+        #    group_chat_invite[group_chat_id] = [(sender, receiver)]
 
 
 # *****************************************************************************
@@ -143,12 +147,13 @@ class Chat_Server():
 
     def start_group_chat(self, started_by):
         # The person who created the group chat is the first participant.
-        # Other participants are added as they accept the group chat invitation.
+        # Other participants are added as they accept the group chat invitations.
         group_chat_id = self.group_chat_id
         self.group_chat_id += 1
 
         group_chat = Chat(self, started_by, group_chat_id, True)
         self.group_chat_list[group_chat_id] = group_chat
+        self.group_chat_status[group_chat_id] = True
 
         # Use this group_id to send group_chat invites.
         return group_chat_id
@@ -162,7 +167,7 @@ class Chat_Server():
         invited_user = self.users[invited_name]
         invited_user.invited_to_group_chat(request)
 
-        # Update self.chat_invite_info.
+        # Update self.group_chat_invite.
 
         return chat_invite_num
 
@@ -171,6 +176,9 @@ class Chat_Server():
         # Update group chat requests log.
         # Check whether the chat invitation was legit so that
         # uninvited users can't just barge in.
+
+
+        # Check that chat is still ongoing.
 
 
         # Add the new user to the group chat's participant list.
@@ -191,7 +199,7 @@ class Chat_Server():
 
 
     def close_group_chat(self, group_chat_id):
-        # INSTEAD OF REMOVING, UDPATE WITH STATUS SAYING GROUP WAS CLOSED?
+        self.group_chat_status[group_chat_id] = False
         self.group_chat_list.remove(group_chat_id)
 
 
