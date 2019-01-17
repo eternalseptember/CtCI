@@ -79,32 +79,34 @@ class User():
 
     def send_contact_request(self, target_contact):
         # Invoked by the user.
-        # Send contact request through the server.
+        # Server handles updating the appropriate lists.
         self.server.send_contact_request(self.username, target_contact)
 
 
     def update_pending_request(self, target_contact):
-        # Invoked by the chat server.
+        # Invoked by the chat server as a result of send_contact_request().
         self.pending_requests.append(target_contact)
 
 
     def receive_contact_request(self, sender):
-        # Invoked by the chat server.
+        # Invoked by the chat server as a result of send_contact_request().
         self.received_requests.append(sender)
 
 
     def confirm_contact_request(self, sender):
-        # Invoked by the chat server.
-        if sender in self.pending_requests:
-            self.pending_requests.remove(sender)
-        if sender in self.received_requests:
-            self.received_requests.remove(sender)
-
+        # Invoked by the chat server as a result of check_contact_requests().
+        self.clean_contact_request_lists(sender)
         self.confirmed_contacts.append(sender)
+        self.confirmed_contacts.sort()
 
 
     def deny_contact_request(self, sender):
-        # Invoked by the chat server.
+        # Invoked by the chat server as a result of check_contact_requests().
+        self.clean_contact_request_lists(sender)
+
+
+    def clean_contact_request_lists(self, sender):
+        # Helper function.
         if sender in self.pending_requests:
             self.pending_requests.remove(sender)
         if sender in self.received_requests:
@@ -160,6 +162,9 @@ class User():
             # 'participants' argument will be the group chat id.
             chat_id = participants
 
+            # !!!!!!!!
+            # CHECK WHETHER USER CAN PARTICIPATE IN THIS GROUP CHAT!
+            # !!!!!!!!
             if chat_id not in self.group_chat_history:
                 self.group_chat_history.append(chat_id)
 
@@ -168,7 +173,7 @@ class User():
             # (if it's a new chat, then there will be no chat id)
             # or the chat id of an existing chat.
             if type(participants) is list:
-                # THIS IS THE ONLY WAY TO START A SIMPLE CHAT WITH ONE OTHER PERSON.
+                # THIS IS THE ONLY WAY TO START A SIMPLE CHAT WITH ONE OTHER PERSON!
                 # Checking that the chat recipients are in the user's contacts list.
                 unconfirmed_contacts = []
 
@@ -203,7 +208,6 @@ class User():
 
 
         self.server.send_message(chat_id, self.username, message, is_group_chat)
-
         return chat_id
 
 
@@ -222,45 +226,47 @@ class User():
 
 
     def invited_to_group_chat(self, request):
-        # Invoked by the server.
-        # sender, group_chat_id = (request)
+        # Invoked by the server as a result of start_group_chat().
         self.group_chat_requests.append(request)
 
 
-    def enter_group_chat(self, request):
+    def enter_group_chat(self, request, chat_ongoing):
+        # Invoked by the server as a result of check_group_chat_invites().
         sender, group_chat_id = (request)
 
-        # Update user's group chat history if request was legit and
-        # group chat is still ongoing.
-        if self.server.enter_group_chat(request, self.username):
+        if chat_ongoing:
             self.group_chat_history.append(group_chat_id)
+        else:
+            print('This group chat has been closed.')
 
-        # Clean up user's group chat invitations list.
         if request in self.group_chat_requests:
             self.group_chat_requests.remove(request)
 
 
     def reject_group_chat(self, request):
-        self.server.reject_group_chat(request, self.username)
-
-        # Clean up user's group chat invitations list.
+        # Invoked by the server as a result of check_group_chat_invites().
         if request in self.group_chat_requests:
             self.group_chat_requests.remove(request)
 
 
     def leave_group_chat(self, group_chat_id):
+        # Invoked by the user.
         self.server.leave_group_chat(group_chat_id, self.username)
 
 
     def check_group_chat_invites(self):
+        # Invoked by the user.
+        accepted = []
+        denied = []
+
         for request in self.group_chat_requests:
             acceptable_choices = ['Y', 'N', 'S']
             answer = ''
 
             sender, group_chat_id = (request)
+            users_in_chat = self.server.list_users_in_chat(group_chat_id, True)
             print('You\'ve been invited to a group chat by {0}.'.format(sender))
-            # Print info about the chat,
-            # like who sent the invite and who's in the chat room.
+            print('People in this chat: {0}'.format(users_in_chat))
 
             # Accept or reject.
             while (answer not in acceptable_choices):
@@ -269,22 +275,22 @@ class User():
 
                 answer = input()
 
-            # should probably check if the group chat is still happening
-            # when they accept the invitation
-
             if answer.upper() == 'Y':
                 print('entering chat')
-                self.enter_group_chat(request)
+                accepted.append(request)
 
             elif answer.upper() == 'N':
-                print('decline to join chat')
-                self.reject_group_chat(request)
+                print('decline to chat')
+                denied.append(request)
 
             elif answer.upper() == 'S':
                 print('skipping this chat')
 
-
         # Chat server send and update requests.
+        for request in accepted:
+            self.server.enter_group_chat(self.username, request)
+        for request in denied:
+            self.server.reject_group_chat(self.username, request)
 
 
 

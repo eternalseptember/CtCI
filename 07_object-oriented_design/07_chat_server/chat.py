@@ -34,7 +34,13 @@ class Chat():
 
 
     def list_participants(self):
-        return list(self.participants)
+        participants_list = ''
+        for user in self.participants:
+            if len(participants_list) > 0:
+                participants_list += ', '
+                participants_list += str(user)
+
+        return participants_list
 
 
     def add_participant(self, username):

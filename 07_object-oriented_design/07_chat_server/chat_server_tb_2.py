@@ -31,10 +31,12 @@ user_5.login(chat_server)
 # Contact requests is tested in tb_1.py.
 # Manually adding contacts here.
 user_1.confirm_contact_request('user_2')
-user_1.confirm_contact_request('user_3')
 user_2.confirm_contact_request('user_1')
-user_2.confirm_contact_request('user_4')
+
+user_1.confirm_contact_request('user_3')
 user_3.confirm_contact_request('user_1')
+
+user_2.confirm_contact_request('user_4')
 user_4.confirm_contact_request('user_2')
 
 

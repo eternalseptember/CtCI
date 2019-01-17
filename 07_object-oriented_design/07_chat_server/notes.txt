@@ -12,6 +12,11 @@ to a group chat.
 
 Hint #271:
 How will you know if a user signs offline?
+
+Theoretically, bcause I won't be implementing the client/server connectivity
+aspects here, since I feel like those go beyond the scope of
+"object-oriented design"...
+
 The chat does not require both parties to be online at the same time.
 If a message is sent when a user is offline, they'll receive the messages the
 next time they sign on.
@@ -22,8 +27,8 @@ are still signed on, when they're signing off, or when they put themselves in
 
 
 Main difference between simple chat and group chat:
-More info about the simple chat will be maintained by the server.
-In the simple Chat objects, the user participation list will not be updated.
+In the simple Chat objects, the user participation list will not be updated,
+but the chat history will always be maintained by the server.
 
 Group chat's participation list will be dynamically updated based on users
 entering and leaving.
@@ -45,11 +50,11 @@ people are inviting people to the group chat.
 
 There are horizontal lines in chat_server.py and users.py.
 The sections are:
-object information
-users
-contacts
-basic chats and messaging
-group chats
+- object information
+- users
+- contacts
+- basic chats and messaging
+- group chats
 
 
 

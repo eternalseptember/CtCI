@@ -41,16 +41,20 @@ user_2.chat(['user_1'], 'no, we\'re not')
 
 # Checking and adding people to contacts list.
 user_1.send_contact_request('user_2')
-user_2.check_contact_requests()
-user_1.send_contact_request('user_3')
 user_2.send_contact_request('user_3')
+user_1.send_contact_request('user_3')
+user_2.check_contact_requests()
 user_3.check_contact_requests()
+
 
 """
 # Manually adding contacts here.
 user_1.confirm_contact_request('user_2')
 user_2.confirm_contact_request('user_1')
 """
+
+print_users()
+
 
 # Chat, method 1: only passing in the list the sender is talking to.
 user_1.chat(['user_2'], 'good morning')

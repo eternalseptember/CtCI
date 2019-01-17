@@ -46,7 +46,7 @@ class Chat_Server():
 
 
 # *****************************************************************************
-
+    # function to check that sender and recipient are valid users
 
     def send_contact_request(self, sender, recipient):
         # Sender sends the friend request to recipient.
@@ -116,11 +116,11 @@ class Chat_Server():
         active_chat.send_message(sender, message)
 
 
-    def list_people_in_chat(self, chat_id, is_group_chat):
+    def list_users_in_chat(self, chat_id, is_group_chat):
         if is_group_chat:
-            self.group_chat_list[chat_id].list_participants()
+            return self.group_chat_list[chat_id].list_participants()
         else:
-            self.chat_list[chat_id].list_participants()
+            return self.chat_list[chat_id].list_participants()
 
 
     def start_chat(self, participants):
@@ -151,7 +151,7 @@ class Chat_Server():
         group_chat_id = self.group_chat_id
         self.group_chat_id += 1
 
-        group_chat = Chat(self, started_by, group_chat_id, True)
+        group_chat = Chat(self, [started_by], group_chat_id, True)
         self.group_chat_list[group_chat_id] = group_chat
         self.group_chat_status[group_chat_id] = True
 
@@ -168,37 +168,47 @@ class Chat_Server():
         invited_user.invited_to_group_chat(request)
 
         # Update self.group_chat_invite.
+        # group_chat_invite[group_chat_id] = [(sender, receiver)]
 
-        return chat_invite_num
 
 
-    def enter_group_chat(self, request, accepted_name):
+    def enter_group_chat(self, accepting_name, request):
         # Update group chat requests log.
         # Check whether the chat invitation was legit so that
         # uninvited users can't just barge in.
+        sender, group_chat_id = (request)
 
 
         # Check that chat is still ongoing.
+        chat_ongoing = self.group_chat_status[group_chat_id]
+
+        if chat_ongoing:
+            group_chat = self.group_chat_list[group_chat_id]
+            group_chat.add_participant(accepting_name)
+
+        # Update the user's group chat requests and group chat history.
+        accepting_user = self.users[accepting_name]
+        accepting_user.enter_group_chat(request, chat_ongoing)
 
 
-        # Add the new user to the group chat's participant list.
-        group_chat = self.group_chat_list[group_chat_id]
-        group_chat.add_participant(accepted_name)
-
-        return True
-
-
-    def reject_group_chat(self, request, rejected_name):
+    def reject_group_chat(self, denying_name, request):
         # Update group chat requests log.
-        return None
+        # group_chat_invite[group_chat_id] = [(sender, receiver)]
+
+
+        # Update the user's group chat requests.
+        denying_user = self.users[denying_name]
+        denying_user.reject_group_chat(request)
 
 
     def leave_group_chat(self, group_chat_id, user):
+        # Invoked by the user.
         group_chat = self.group_chat_list[group_chat_id]
         group_chat.remove_participant(user)
 
 
     def close_group_chat(self, group_chat_id):
+        # Invoked by the chat object when the last user leaves the chat.
         self.group_chat_status[group_chat_id] = False
         self.group_chat_list.remove(group_chat_id)
 
