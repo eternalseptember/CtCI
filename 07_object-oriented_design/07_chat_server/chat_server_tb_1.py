@@ -40,6 +40,7 @@ user_2.chat(['user_1'], 'no, we\'re not')
 
 
 # Checking and adding people to contacts list.
+user_1.send_contact_request('user_4')  # Not a valid user.
 user_1.send_contact_request('user_2')
 user_2.send_contact_request('user_3')
 user_1.send_contact_request('user_3')

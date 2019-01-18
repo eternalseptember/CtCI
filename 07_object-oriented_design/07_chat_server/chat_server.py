@@ -46,63 +46,51 @@ class Chat_Server():
 
 
 # *****************************************************************************
-    # function to check that sender and recipient are valid users
+    def verify_users(self, sender, recipient):
+        # Helper function to check that both people are valid users.
+        if sender not in self.users:
+            print(sender + ' is not a valid user.')
+            return False
+        if recipient not in self.users:
+            print(recipient + ' is not a valid user.')
+            return False
+        return True
+
 
     def send_contact_request(self, sender, recipient):
         # Sender sends the friend request to recipient.
-        if sender not in self.users:
-            print('Sender not found in user list.')
-            return False
-        if recipient not in self.users:
-            print('Recipient not found in user list.')
-            return False
+        if self.verify_users(sender, recipient):
+            # Get recipient's User object and send friend request.
+            recipient_user = self.users[recipient]
+            recipient_user.receive_contact_request(sender)
 
-        # Get recipient's User object and send friend request.
-        recipient_user = self.users[recipient]
-        recipient_user.receive_contact_request(sender)
-
-        # Get sender's User object and update pending request.
-        sender_user = self.users[sender]
-        sender_user.update_pending_request(recipient)
-        return True
+            # Get sender's User object and update pending request.
+            sender_user = self.users[sender]
+            sender_user.update_pending_request(recipient)
 
 
     def accept_contact_request(self, sender, recipient):
         # Sender is the person ANSWERING the friend request.
-        if sender not in self.users:
-            print('Sender not found in user list.')
-            return False
-        if recipient not in self.users:
-            print('Recipient not found in user list.')
-            return False
+        if self.verify_users(sender, recipient):
+            # Recipient is the person who SENT the friend request.
+            recipient_user = self.users[recipient]
+            recipient_user.confirm_contact_request(sender)
 
-        # Recipient is the person who SENT the friend request.
-        recipient_user = self.users[recipient]
-        recipient_user.confirm_contact_request(sender)
-
-        # Sender is the person who REPLIED to the request.
-        sender_user = self.users[sender]
-        sender_user.confirm_contact_request(recipient)
-        return True
+            # Sender is the person who REPLIED to the request.
+            sender_user = self.users[sender]
+            sender_user.confirm_contact_request(recipient)
 
 
     def deny_contact_request(self, sender, recipient):
         # Sender is the person ANSWERING the friend request.
-        if sender not in self.users:
-            print('Sender not found in user list.')
-            return False
-        if recipient not in self.users:
-            print('Recipient not found in user list.')
-            return False
+        if self.verify_users(sender, recipient):
+            # Recipient is the person who SENT the friend request.
+            recipient_user = self.users[recipient]
+            recipient_user.deny_contact_request(sender)
 
-        # Recipient is the person who SENT the friend request.
-        recipient_user = self.users[recipient]
-        recipient_user.deny_contact_request(sender)
-
-        # Sender is the person who REPLIED to the request.
-        sender_user = self.users[sender]
-        sender_user.deny_contact_request(recipient)
-        return True
+            # Sender is the person who REPLIED to the request.
+            sender_user = self.users[sender]
+            sender_user.deny_contact_request(recipient)
 
 
 # *****************************************************************************

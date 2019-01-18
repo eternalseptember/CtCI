@@ -162,11 +162,10 @@ class User():
             # 'participants' argument will be the group chat id.
             chat_id = participants
 
-            # !!!!!!!!
-            # CHECK WHETHER USER CAN PARTICIPATE IN THIS GROUP CHAT!
-            # !!!!!!!!
+            # Checks whether this user can participate in this group chat.
             if chat_id not in self.group_chat_history:
-                self.group_chat_history.append(chat_id)
+                print('Cannot participate in this chat.')
+                return None
 
         else:
             # 'participants' argument can either be a list of participants
@@ -221,7 +220,7 @@ class User():
 
         # Send an invitation to everybody.
         # All of the participants should be in the user's contacts list.
-        
+
         print('starting group chat')
 
 
