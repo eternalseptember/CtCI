@@ -24,8 +24,8 @@ class Chat_Server():
         self.group_chat_list = {}
         #    group_chat_list[group_chat_id] = Chat()
         #    No log if group chat was closed.
-        self.group_chat_invite = {}
-        #    group_chat_invite[group_chat_id] = [(sender, receiver)]
+        self.group_chat_invites = {}
+        #    group_chat_invites[group_chat_id] = [(sender, receiver)]
 
 
 # *****************************************************************************
@@ -151,21 +151,40 @@ class Chat_Server():
 
 
     def invite_to_group_chat(self, group_chat_id, sender, invited_name):
+        # Send the invitation.
         request = (sender, group_chat_id)
         invited_user = self.users[invited_name]
         invited_user.invited_to_group_chat(request)
 
-        # Update self.group_chat_invite.
-        # group_chat_invite[group_chat_id] = [(sender, receiver)]
+        # Update chat request log.
+        invitation = (sender, invited_name)
+        if group_chat_id not in self.group_chat_invites:
+            self.group_chat_invites[group_chat_id] = [invitation]
+        else:
+            self.group_chat_invites.append(invitation)
 
+
+    def clean_invites_list(self, recipient, request):
+        # Recipient is the person replying to the request.
+        sender, group_chat_id = (request)
+        invitation = (sender, recipient)
+
+        if group_chat_id not in self.group_chat_invites:
+            # The group chat does not exist.
+            return False
+        else:
+            # Clean the invitations list.
+            group_invite_list = self.group_chat_invites[group_chat_id]
+            group_invite_list.remove(invitation)
+            return True
 
 
     def enter_group_chat(self, accepting_name, request):
         # Update group chat requests log.
         # Check whether the chat invitation was legit so that
         # uninvited users can't just barge in.
-        sender, group_chat_id = (request)
-
+        # clean_invites_list returns True if the invitation is valid.
+        self.clean_invites_list(accepting_name, request)
 
         # Check that chat is still ongoing.
         chat_ongoing = self.group_chat_status[group_chat_id]
@@ -181,12 +200,13 @@ class Chat_Server():
 
     def reject_group_chat(self, denying_name, request):
         # Update group chat requests log.
-        # group_chat_invite[group_chat_id] = [(sender, receiver)]
-
+        self.clean_invites_list(denying_name, request)
 
         # Update the user's group chat requests.
         denying_user = self.users[denying_name]
         denying_user.reject_group_chat(request)
+
+        return True
 
 
     def leave_group_chat(self, group_chat_id, user):
