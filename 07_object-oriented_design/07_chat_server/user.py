@@ -241,6 +241,8 @@ class User():
         if request in self.group_chat_requests:
             self.group_chat_requests.remove(request)
 
+            # Check for multiple invites to the same group chat.
+
 
     def reject_group_chat(self, request):
         # Invoked by the server as a result of check_group_chat_invites().

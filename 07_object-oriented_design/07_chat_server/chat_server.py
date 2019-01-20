@@ -173,7 +173,11 @@ class Chat_Server():
             # The group chat does not exist.
             return False
         else:
-            # Clean the invitations list.
+            # Clean the server's invitations list.
+
+            # Check that the invite is legit.
+            # If someone received multiple invitations to the same group chat,
+            # remove all invitations.
             group_invite_list = self.group_chat_invites[group_chat_id]
             group_invite_list.remove(invitation)
             return True
@@ -184,12 +188,12 @@ class Chat_Server():
         # Check whether the chat invitation was legit so that
         # uninvited users can't just barge in.
         # clean_invites_list returns True if the invitation is valid.
-        self.clean_invites_list(accepting_name, request)
+        invited = self.clean_invites_list(accepting_name, request)
 
         # Check that chat is still ongoing.
         chat_ongoing = self.group_chat_status[group_chat_id]
 
-        if chat_ongoing:
+        if invited and chat_ongoing:
             group_chat = self.group_chat_list[group_chat_id]
             group_chat.add_participant(accepting_name)
 
