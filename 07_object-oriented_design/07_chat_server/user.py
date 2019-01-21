@@ -12,7 +12,8 @@ class User():
         self.server = None
         self.chat_history = []  # List of simple chats the user is in.
         self.group_chat_history = []  # Keep this to access group chat logs.
-        self.group_chat_requests = []  # (sender, group_chat_id)
+        self.group_chat_requests = {}
+        #    self.group_chat_requests[group_chat_id] = [senders]
 
 
     def __str__(self):
@@ -185,8 +186,8 @@ class User():
                     participants.remove(contact)
 
                 # Add the user to the chat participants list for chat lookups.
-                if str(self.username) not in participants:
-                    participants.append(str(self.username))
+                if self.username not in participants:
+                    participants.append(self.username)
 
                 # If there are no valid chat participants.
                 if len(participants) == 1:
@@ -224,9 +225,19 @@ class User():
         print('starting group chat')
 
 
-    def invited_to_group_chat(self, request):
+    # function to invite people to group chat
+
+
+    def invited_to_group_chat(self, group_chat_id, sender):
         # Invoked by the server as a result of start_group_chat().
-        self.group_chat_requests.append(request)
+        if group_chat_id not in self.group_chat_requests:
+            self.group_chat_requests[group_chat_id] = [sender]
+        else:
+            people_who_invited = self.group_chat_requests[group_chat_id]
+
+            # In case someone sends the same invitation multiple times
+            if sender not in people_who_invited:
+                people_who_invited.append(sender)
 
 
     def enter_group_chat(self, request, chat_ongoing):
@@ -239,13 +250,14 @@ class User():
             print('This group chat has been closed.')
 
         if request in self.group_chat_requests:
-            self.group_chat_requests.remove(request)
+            del self.group_chat_requests[group_chat_id]
 
-            # Check for multiple invites to the same group chat.
 
 
     def reject_group_chat(self, request):
         # Invoked by the server as a result of check_group_chat_invites().
+
+        # UPDATE THIS FOR MULTILPE INVITATIONS TO THE SAME CHAT!!!
         if request in self.group_chat_requests:
             self.group_chat_requests.remove(request)
 
@@ -260,6 +272,7 @@ class User():
         accepted = []
         denied = []
 
+        # UPDATE THIS FOR MULTILPE INVITATIONS TO THE SAME CHAT!!!
         for request in self.group_chat_requests:
             acceptable_choices = ['Y', 'N', 'S']
             answer = ''

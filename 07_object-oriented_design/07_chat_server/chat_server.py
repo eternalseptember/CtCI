@@ -152,9 +152,10 @@ class Chat_Server():
 
     def invite_to_group_chat(self, group_chat_id, sender, invited_name):
         # Send the invitation.
-        request = (sender, group_chat_id)
+
+        # UPDATE THIS FOR MULTILPE INVITATIONS TO THE SAME CHAT!!!
         invited_user = self.users[invited_name]
-        invited_user.invited_to_group_chat(request)
+        invited_user.invited_to_group_chat(group_chat_id, sender)
 
         # Update chat request log.
         invitation = (sender, invited_name)
