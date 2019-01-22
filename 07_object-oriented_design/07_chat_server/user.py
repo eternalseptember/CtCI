@@ -229,7 +229,7 @@ class User():
 
 
     def invited_to_group_chat(self, group_chat_id, sender):
-        # Invoked by the server as a result of start_group_chat().
+        # Invoked by the server as a result of __start_group_chat()__.
         if group_chat_id not in self.group_chat_requests:
             self.group_chat_requests[group_chat_id] = [sender]
         else:
@@ -256,8 +256,6 @@ class User():
 
     def reject_group_chat(self, request):
         # Invoked by the server as a result of check_group_chat_invites().
-
-        # UPDATE THIS FOR MULTILPE INVITATIONS TO THE SAME CHAT!!!
         if request in self.group_chat_requests:
             self.group_chat_requests.remove(request)
 
@@ -273,13 +271,23 @@ class User():
         denied = []
 
         # UPDATE THIS FOR MULTILPE INVITATIONS TO THE SAME CHAT!!!
-        for request in self.group_chat_requests:
+        group_chats = self.group_chat_history.keys()
+        for group_chat_id in group_chats:
             acceptable_choices = ['Y', 'N', 'S']
             answer = ''
 
-            sender, group_chat_id = (request)
+            # Formatting the list of group chat inviters.
+            senders = self.group_chat_history[group_chat_id]
+            senders_list = ''
+            for sender in senders:
+                if len(senders_list) > 0:
+                    senders_list += ', '
+                senders_list += str(sender)
+
+            # Format the list of people in the chat.
             users_in_chat = self.server.list_users_in_chat(group_chat_id, True)
-            print('You\'ve been invited to a group chat by {0}.'.format(sender))
+
+            print('You are invited to a group chat by {0}.'.format(senders_list))
             print('People in this chat: {0}'.format(users_in_chat))
 
             # Accept or reject.
@@ -291,20 +299,20 @@ class User():
 
             if answer.upper() == 'Y':
                 print('entering chat')
-                accepted.append(request)
+                accepted.append(group_chat_id)
 
             elif answer.upper() == 'N':
                 print('decline to chat')
-                denied.append(request)
+                denied.append(group_chat_id)
 
             elif answer.upper() == 'S':
                 print('skipping this chat')
 
         # Chat server send and update requests.
-        for request in accepted:
-            self.server.enter_group_chat(self.username, request)
-        for request in denied:
-            self.server.reject_group_chat(self.username, request)
+        for group_chat_id in accepted:
+            self.server.enter_group_chat(self.username, group_chat_id)
+        for group_chat_id in denied:
+            self.server.reject_group_chat(self.username, group_chat_id)
 
 
 
