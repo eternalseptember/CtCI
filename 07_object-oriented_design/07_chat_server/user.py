@@ -286,6 +286,11 @@ class User():
 
             # Format the list of people in the chat.
             users_in_chat = self.server.list_users_in_chat(group_chat_id, True)
+            users_list = ''
+            for user in users_in_chat:
+                if len(users_list) > 0:
+                    users_list += ', '
+                users_list += str(user)
 
             print('You are invited to a group chat by {0}.'.format(senders_list))
             print('People in this chat: {0}'.format(users_in_chat))
