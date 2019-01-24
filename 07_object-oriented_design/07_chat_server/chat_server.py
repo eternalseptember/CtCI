@@ -25,7 +25,8 @@ class Chat_Server():
         #    group_chat_list[group_chat_id] = Chat()
         #    No log if group chat was closed.
         self.group_chat_invites = {}
-        #    group_chat_invites[group_chat_id] = [(sender, receiver)]
+        #    group_chat_invites[group_chat_id] =
+        #        invites[recipient] = [senders]
 
 
 # *****************************************************************************
@@ -152,44 +153,49 @@ class Chat_Server():
 
     def invite_to_group_chat(self, group_chat_id, sender, invited_name):
         # Send the invitation.
-
-        # UPDATE THIS FOR MULTILPE INVITATIONS TO THE SAME CHAT!!!
         invited_user = self.users[invited_name]
         invited_user.invited_to_group_chat(group_chat_id, sender)
 
         # Update chat request log.
-        invitation = (sender, invited_name)
         if group_chat_id not in self.group_chat_invites:
-            self.group_chat_invites[group_chat_id] = [invitation]
+            invites_list = {}
+            invites_list[invited_name] = [sender]
+            self.group_chat_invites[group_chat_id] = invites_list
         else:
-            self.group_chat_invites.append(invitation)
+            invites_list = self.group_chat_invites[group_chat_id]
+
+            if invited_name in invites_list:
+                # Someone has already sent an invitation.
+                other_senders = invites_list[invited_name]
+                other_senders.append(sender)
+            else:
+                # New person being invited.
+                invites_list[invited_name] = [sender]
 
 
-    def clean_invites_list(self, recipient, request):
-        # Recipient is the person replying to the request.
-        sender, group_chat_id = (request)
-        invitation = (sender, recipient)
-
+    def clean_invites_list(self, recipient, group_chat_id):
+        # Recipient is the person replying to the group_chat_invite.
         if group_chat_id not in self.group_chat_invites:
             # The group chat does not exist.
             return False
         else:
-            # Clean the server's invitations list.
-
             # Check that the invite is legit.
             # If someone received multiple invitations to the same group chat,
             # remove all invitations.
             group_invite_list = self.group_chat_invites[group_chat_id]
-            group_invite_list.remove(invitation)
+            
+            # Look to see if recipient was invited.
+
+            # Clean the server's invitations list.
             return True
 
 
-    def enter_group_chat(self, accepting_name, request):
+    def enter_group_chat(self, accepting_name, group_chat_id):
         # Update group chat requests log.
         # Check whether the chat invitation was legit so that
         # uninvited users can't just barge in.
         # clean_invites_list returns True if the invitation is valid.
-        invited = self.clean_invites_list(accepting_name, request)
+        invited = self.clean_invites_list(accepting_name, group_chat_id)
 
         # Check that chat is still ongoing.
         chat_ongoing = self.group_chat_status[group_chat_id]
