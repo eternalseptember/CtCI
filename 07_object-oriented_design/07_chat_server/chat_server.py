@@ -175,6 +175,8 @@ class Chat_Server():
 
     def clean_invites_list(self, recipient, group_chat_id):
         # Recipient is the person replying to the group_chat_invite.
+
+        # for enter_group_chat so far. also adjust for reject_group_chat.
         if group_chat_id not in self.group_chat_invites:
             # The group chat does not exist.
             return False
@@ -183,11 +185,14 @@ class Chat_Server():
             # If someone received multiple invitations to the same group chat,
             # remove all invitations.
             group_invite_list = self.group_chat_invites[group_chat_id]
-            
-            # Look to see if recipient was invited.
 
-            # Clean the server's invitations list.
-            return True
+            # Look to see if recipient was invited.
+            if recipient in group_invite_list:
+                # Clean the server's invitations list.
+                del group_invite_list[recipient]
+                return True
+            else:
+                return False
 
 
     def enter_group_chat(self, accepting_name, group_chat_id):
