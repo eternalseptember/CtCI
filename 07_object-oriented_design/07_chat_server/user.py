@@ -240,24 +240,22 @@ class User():
                 people_who_invited.append(sender)
 
 
-    def enter_group_chat(self, request, chat_ongoing):
+    def enter_group_chat(self, group_chat_id, chat_ongoing):
         # Invoked by the server as a result of check_group_chat_invites().
-        sender, group_chat_id = (request)
-
         if chat_ongoing:
             self.group_chat_history.append(group_chat_id)
         else:
             print('This group chat has been closed.')
 
-        if request in self.group_chat_requests:
+        if group_chat_id in self.group_chat_requests:
             del self.group_chat_requests[group_chat_id]
 
 
 
-    def reject_group_chat(self, request):
+    def reject_group_chat(self, group_chat_id):
         # Invoked by the server as a result of check_group_chat_invites().
-        if request in self.group_chat_requests:
-            self.group_chat_requests.remove(request)
+        if group_chat_id in self.group_chat_requests:
+            del self.group_chat_requests[group_chat_id]
 
 
     def leave_group_chat(self, group_chat_id):

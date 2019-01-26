@@ -211,18 +211,16 @@ class Chat_Server():
 
         # Update the user's group chat requests and group chat history.
         accepting_user = self.users[accepting_name]
-        accepting_user.enter_group_chat(request, chat_ongoing)
+        accepting_user.enter_group_chat(group_chat_id, chat_ongoing)
 
 
-    def reject_group_chat(self, denying_name, request):
+    def reject_group_chat(self, denying_name, group_chat_id):
         # Update group chat requests log.
-        self.clean_invites_list(denying_name, request)
+        self.clean_invites_list(denying_name, group_chat_id)
 
         # Update the user's group chat requests.
         denying_user = self.users[denying_name]
-        denying_user.reject_group_chat(request)
-
-        return True
+        denying_user.reject_group_chat(group_chat_id)
 
 
     def leave_group_chat(self, group_chat_id, user):
