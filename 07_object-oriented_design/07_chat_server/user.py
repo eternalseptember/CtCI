@@ -225,7 +225,10 @@ class User():
         print('starting group chat')
 
 
-    # function to invite people to group chat
+    def invite_to_group_chat(self, group_chat_id, participant):
+        # The sender should send this from a group chat window.
+        # All of the participants should be in the user's contacts list.
+        return None
 
 
     def invited_to_group_chat(self, group_chat_id, sender):
@@ -244,12 +247,12 @@ class User():
         # Invoked by the server as a result of check_group_chat_invites().
         if chat_ongoing:
             self.group_chat_history.append(group_chat_id)
+            print('Entering group chat.')
         else:
             print('This group chat has been closed.')
 
         if group_chat_id in self.group_chat_requests:
             del self.group_chat_requests[group_chat_id]
-
 
 
     def reject_group_chat(self, group_chat_id):
