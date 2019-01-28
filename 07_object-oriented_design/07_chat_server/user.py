@@ -228,7 +228,13 @@ class User():
     def invite_to_group_chat(self, group_chat_id, participant):
         # The sender should send this from a group chat window.
         # All of the participants should be in the user's contacts list.
-        return None
+        if not self.in_contacts_list(participant):
+            print('{0} is not in your confirmed contacts list.'.format(participant))
+            return False
+
+        # Check if the group chat is valid?
+        self.server.invite_to_group_chat(group_chat_id, self.username, participant)
+
 
 
     def invited_to_group_chat(self, group_chat_id, sender):
