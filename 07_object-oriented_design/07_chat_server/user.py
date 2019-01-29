@@ -218,11 +218,14 @@ class User():
         # THIS IS THE ONLY WAY TO START A GROUP CHAT!
         # The person who started the group chat will be the first participant.
         group_chat_id = self.server.start_group_chat(self.username)
+        print('Starting group chat.')
+        self.group_chat_history.append(group_chat_id)
 
         # Send an invitation to everybody.
-        # All of the participants should be in the user's contacts list.
+        for participant in participants:
+            self.invite_to_group_chat(group_chat_id, participant)
 
-        print('starting group chat')
+        return group_chat_id
 
 
     def invite_to_group_chat(self, group_chat_id, participant):
