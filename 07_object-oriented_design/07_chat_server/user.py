@@ -223,7 +223,8 @@ class User():
 
         # Send an invitation to everybody.
         for participant in participants:
-            self.invite_to_group_chat(group_chat_id, participant)
+            if str(participant) != self.username:
+                self.invite_to_group_chat(group_chat_id, participant)
 
         return group_chat_id
 
