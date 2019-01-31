@@ -115,6 +115,10 @@ class User():
 
 
     def check_contact_requests(self):
+        if len(self.received_requests) == 0:
+            print('No new contact requests.')
+            return
+
         # Invoked by the user.
         accepted = []
         denied = []
