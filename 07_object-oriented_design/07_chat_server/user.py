@@ -281,12 +281,18 @@ class User():
 
 
     def check_group_chat_invites(self):
+
         # Invoked by the user.
         accepted = []
         denied = []
 
         # UPDATE THIS FOR MULTILPE INVITATIONS TO THE SAME CHAT!!!
         group_chats = self.group_chat_history.keys()
+
+        if len(group_chats) == 0:
+            print('No new group chat invitations.')
+            return
+
         for group_chat_id in group_chats:
             acceptable_choices = ['Y', 'N', 'S']
             answer = ''
