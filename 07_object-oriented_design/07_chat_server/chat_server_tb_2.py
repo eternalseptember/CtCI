@@ -75,10 +75,11 @@ If an invited user accepted the chat request, pepole would know based on the
 updated participants list the chat window UI could query from the chat object.
 """
 
-# user_3.check_group_chat_invites()
 
 # Invite multiple people to chat
-
+user_1.check_group_chat_invites()  # There should be no invites.
+user_2.check_group_chat_invites()
+user_3.check_group_chat_invites()
 
 # test group chat and private chat at the same time
 # pretend that chat_ids are selected based on the active window

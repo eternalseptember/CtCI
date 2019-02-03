@@ -287,7 +287,7 @@ class User():
         denied = []
 
         # UPDATE THIS FOR MULTILPE INVITATIONS TO THE SAME CHAT!!!
-        group_chats = self.group_chat_history.keys()
+        group_chats = self.group_chat_requests.keys()
 
         if len(group_chats) == 0:
             print('No new group chat invitations.')
