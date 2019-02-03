@@ -53,6 +53,9 @@ user_2.chat(chat_1, 'there is?')
 user_2.chat(0, 'we just had one!')
 
 
+# No group chat yet
+user_1.check_group_chat_invites()
+
 # START GROUP CHAT
 group_chat = ['user_1', 'user_2', 'user_3']
 group_chat_id = user_1.start_group_chat(group_chat)
