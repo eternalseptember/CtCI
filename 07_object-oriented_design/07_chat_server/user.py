@@ -273,6 +273,7 @@ class User():
         # Invoked by the server as a result of check_group_chat_invites().
         if group_chat_id in self.group_chat_requests:
             del self.group_chat_requests[group_chat_id]
+            print('Rejecting chat.')
 
 
     def leave_group_chat(self, group_chat_id):
@@ -289,11 +290,11 @@ class User():
         group_chats = self.group_chat_requests.keys()
 
         if len(group_chats) == 0:
-            print('No new group chat invitations.')
+            print('{0}: No new group chat invitations.'.format(self.username))
             return
 
         for group_chat_id in group_chats:
-            acceptable_choices = ['Y', 'N', 'S']
+            acceptable_choices = ['y', 'Y', 'n', 'N', 's', 'S']
             answer = ''
 
             # Formatting the list of group chat inviters.
@@ -306,28 +307,24 @@ class User():
 
             # Format the list of people in the chat.
             users_in_chat = self.server.list_users_in_chat(group_chat_id, True)
-            users_list = ''
-            for user in users_in_chat:
-                if len(users_list) > 0:
-                    users_list += ', '
-                users_list += str(user)
 
-            print('You are invited to a group chat by {0}.'.format(senders_list))
+            print('{0}: You are invited to a group chat by {1}.'
+                .format(self.username, senders_list))
             print('People in this chat: {0}'.format(users_in_chat))
 
             # Accept or reject.
             while (answer not in acceptable_choices):
-                print('Press Y to accept this group chat invitation, \
-                    N to decline, or S to skip.')
+                print('Press Y to accept this group chat invitation, '
+                    'N to decline, or S to skip.')
 
                 answer = input()
 
             if answer.upper() == 'Y':
-                print('entering chat')
+                # print('entering chat')
                 accepted.append(group_chat_id)
 
             elif answer.upper() == 'N':
-                print('decline to chat')
+                # print('decline to chat')
                 denied.append(group_chat_id)
 
             elif answer.upper() == 'S':

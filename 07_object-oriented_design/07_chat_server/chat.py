@@ -38,7 +38,7 @@ class Chat():
         for user in self.participants:
             if len(participants_list) > 0:
                 participants_list += ', '
-                participants_list += str(user)
+            participants_list += str(user)
 
         return participants_list
 
