@@ -281,7 +281,6 @@ class User():
 
 
     def check_group_chat_invites(self):
-
         # Invoked by the user.
         accepted = []
         denied = []
@@ -298,7 +297,7 @@ class User():
             answer = ''
 
             # Formatting the list of group chat inviters.
-            senders = self.group_chat_history[group_chat_id]
+            senders = self.group_chat_requests[group_chat_id]
             senders_list = ''
             for sender in senders:
                 if len(senders_list) > 0:
