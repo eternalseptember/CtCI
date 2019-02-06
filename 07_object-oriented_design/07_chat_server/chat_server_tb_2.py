@@ -57,8 +57,8 @@ user_2.chat(0, 'we just had one!')
 user_1.check_group_chat_invites()
 
 # START GROUP CHAT
-group_chat = ['user_1', 'user_2', 'user_3']
-group_chat_id = user_1.start_group_chat(group_chat)
+group_chat_1 = ['user_1', 'user_2', 'user_3']
+group_chat_id = user_1.start_group_chat(group_chat_1)
 
 """
 Pretend that there is a chat window UI that will automatically fill in chat
@@ -83,6 +83,7 @@ user_3.check_group_chat_invites()
 
 # test group chat and private chat at the same time
 # pretend that chat_ids are selected based on the active window
-
+user_3.chat(group_chat_1, 'what\'s up everyone?')
+user_1.chat(chat_1, 'group chat started')
 
 
