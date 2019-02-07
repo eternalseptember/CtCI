@@ -57,8 +57,8 @@ user_2.chat(0, 'we just had one!')
 user_1.check_group_chat_invites()
 
 # START GROUP CHAT
-group_chat_1 = ['user_1', 'user_2', 'user_3']
-group_chat_id = user_1.start_group_chat(group_chat_1)
+group_chat_users_1 = ['user_1', 'user_2', 'user_3']
+group_chat_1 = user_1.start_group_chat(group_chat_users_1)
 
 """
 Pretend that there is a chat window UI that will automatically fill in chat
