@@ -26,6 +26,8 @@ user_4 = chat_server.get_user('user_4')
 user_4.login(chat_server)
 user_5 = chat_server.get_user('user_5')
 user_5.login(chat_server)
+user_6 = chat_server.get_user('user_6')
+user_6.login(chat_server)
 
 
 # Contact requests is tested in tb_1.py.
@@ -36,8 +38,14 @@ user_2.confirm_contact_request('user_1')
 user_1.confirm_contact_request('user_3')
 user_3.confirm_contact_request('user_1')
 
+user_1.confirm_contact_request('user_5')
+user_5.confirm_contact_request('user_1')
+
 user_2.confirm_contact_request('user_4')
 user_4.confirm_contact_request('user_2')
+
+user_2.confirm_contact_request('user_3')
+user_3.confirm_contact_request('user_2')
 
 
 # Chat, method 1: only passing in the list the sender is talking to.
@@ -89,5 +97,9 @@ user_2.chat(group_chat_1_id, 'hi', True)
 user_1.chat(chat_1_id, 'where\'s the food truck you went to yesterday?')
 user_2.chat(chat_1_id, 'two blocks downtown')
 
+
+# make more chats
+
+# test closing a group chat
 
 
