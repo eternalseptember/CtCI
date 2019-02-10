@@ -60,13 +60,9 @@ user_2.chat(chat_1, 'there is?')
 # Chat, method 3: passing chat id of an existing chat.
 user_2.chat(0, 'we just had one!')
 
-
-# No group chat yet
+# No group chat started yet.
 user_1.check_group_chat_invites()
 
-# START GROUP CHAT
-group_chat_1 = ['user_1', 'user_2', 'user_3']
-group_chat_1_id = user_1.start_group_chat(group_chat_1)
 
 """
 Pretend that there is a chat window UI that will automatically fill in chat
@@ -83,13 +79,15 @@ If an invited user accepted the chat request, pepole would know based on the
 updated participants list the chat window UI could query from the chat object.
 """
 
+# GROUP CHAT 1
+group_chat_1 = ['user_1', 'user_2', 'user_3']
+group_chat_1_id = user_1.start_group_chat(group_chat_1)
 
-# Invite multiple people to chat
 user_1.check_group_chat_invites()  # There should be no invites.
 user_2.check_group_chat_invites()
 user_3.check_group_chat_invites()
 
-# test group chat and private chat at the same time
+# group chat and private chat at the same time
 # pretend that chat_ids are selected based on the active window
 user_3.chat(group_chat_1_id, 'what\'s up everyone?', True)
 user_1.chat(group_chat_1_id, 'hey', True)
@@ -98,7 +96,12 @@ user_1.chat(chat_1_id, 'where\'s the food truck you went to yesterday?')
 user_2.chat(chat_1_id, 'two blocks downtown')
 
 
-# make more chats
+# GROUP CHAT 2
+group_chat_2 = ['user_1', 'user_2', 'user_3', 'user_5']
+group_chat_2_id = user_1.start_group_chat(group_chat_2)
+
+# inviting people to an ongoing chat
+# user_2 inviting user_4 to chat
 
 # test closing a group chat
 
