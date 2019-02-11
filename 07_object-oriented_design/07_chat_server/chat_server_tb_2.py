@@ -79,6 +79,7 @@ If an invited user accepted the chat request, pepole would know based on the
 updated participants list the chat window UI could query from the chat object.
 """
 
+
 # GROUP CHAT 1
 group_chat_1 = ['user_1', 'user_2', 'user_3']
 group_chat_1_id = user_1.start_group_chat(group_chat_1)
@@ -100,8 +101,13 @@ user_2.chat(chat_1_id, 'two blocks downtown')
 group_chat_2 = ['user_1', 'user_2', 'user_3', 'user_5']
 group_chat_2_id = user_1.start_group_chat(group_chat_2)
 
+user_2.check_group_chat_invites()
+user_3.check_group_chat_invites()
+user_5.check_group_chat_invites()
+
 # inviting people to an ongoing chat
 # user_2 inviting user_4 to chat
+user_1.chat(group_chat_2_id, 'hey what\'s up everyone?', True)
 
 # test closing a group chat
 
