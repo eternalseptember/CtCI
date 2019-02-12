@@ -108,6 +108,7 @@ user_5.check_group_chat_invites()
 # inviting people to an ongoing chat
 # user_2 inviting user_4 to chat
 user_1.chat(group_chat_2_id, 'hey what\'s up everyone?', True)
+user_2.invite_to_group_chat(group_chat_2_id, 'user_4')
 
 # test closing a group chat
 

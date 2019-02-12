@@ -46,6 +46,13 @@ class Chat_Server():
             return None
 
 
+    def login(self, username):
+        if user not in self.user_list:
+            return False
+        else:
+            return True
+
+
 # *****************************************************************************
     def verify_users(self, sender, recipient):
         # Helper function to check that both people are valid users.
