@@ -62,8 +62,11 @@ class User():
 
 
     def login(self, server):
-        self.server = server
-        self.online_status = 'Online'
+        if server.login(self.username):
+            self.server = server
+            self.online_status = 'Online'
+        else:
+            print('Cannot log in.')
 
 
     def logout(self):

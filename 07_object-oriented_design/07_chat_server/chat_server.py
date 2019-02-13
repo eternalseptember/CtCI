@@ -43,11 +43,12 @@ class Chat_Server():
         if username in self.user_list:
             return self.users[username]
         else:
+            print('Invalid username.')
             return None
 
 
     def login(self, username):
-        if user not in self.user_list:
+        if username not in self.user_list:
             return False
         else:
             return True

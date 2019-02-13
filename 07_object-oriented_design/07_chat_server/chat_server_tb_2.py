@@ -13,6 +13,7 @@ chat_server.add_user('user_2')
 chat_server.add_user('user_3')
 chat_server.add_user('user_4')
 chat_server.add_user('user_5')
+chat_server.add_user('user_6')
 
 
 # Logging in from client interface.
