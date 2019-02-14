@@ -82,6 +82,7 @@ updated participants list the chat window UI could query from the chat object.
 
 
 # GROUP CHAT 1
+print()
 group_chat_1 = ['user_1', 'user_2', 'user_3']
 group_chat_1_id = user_1.start_group_chat(group_chat_1)
 
@@ -99,6 +100,7 @@ user_2.chat(chat_1_id, 'two blocks downtown')
 
 
 # GROUP CHAT 2
+print()
 group_chat_2 = ['user_1', 'user_2', 'user_3', 'user_5']
 group_chat_2_id = user_1.start_group_chat(group_chat_2)
 
@@ -109,7 +111,13 @@ user_5.check_group_chat_invites()
 # inviting people to an ongoing chat
 # user_2 inviting user_4 to chat
 user_1.chat(group_chat_2_id, 'hey what\'s up everyone?', True)
+user_2.chat(group_chat_2_id, 'I\'m inviting user_4.', True)
+user_3.chat(group_chat_2_id, 'ok', True)
 user_2.invite_to_group_chat(group_chat_2_id, 'user_4')
+
+user_4.check_group_chat_invites()
+user_4.chat(group_chat_2_id, 'hi', True)
+
 
 # test closing a group chat
 
