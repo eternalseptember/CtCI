@@ -117,8 +117,12 @@ user_2.invite_to_group_chat(group_chat_2_id, 'user_4')
 
 user_4.check_group_chat_invites()
 user_4.chat(group_chat_2_id, 'hi', True)
+user_5.chat(group_chat_2_id, 'I need to go.', True)
 
 
 # test closing a group chat
+user_5.leave_group_chat(group_chat_2_id)
+
+
 
 
