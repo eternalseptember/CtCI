@@ -234,13 +234,16 @@ class Chat_Server():
     def leave_group_chat(self, group_chat_id, user):
         # Invoked by the user.
         group_chat = self.group_chat_list[group_chat_id]
-        group_chat.remove_participant(user)
+        empty = group_chat.remove_participant(user)
+        if empty:
+            self.close_group_chat(group_chat_id)
 
 
     def close_group_chat(self, group_chat_id):
         # Invoked by the chat object when the last user leaves the chat.
         self.group_chat_status[group_chat_id] = False
         self.group_chat_list.remove(group_chat_id)
+        print('Group chat ended.')
 
 
 

@@ -264,7 +264,7 @@ class User():
         # Invoked by the server as a result of check_group_chat_invites().
         if chat_ongoing:
             self.group_chat_history.append(group_chat_id)
-            print('{0} enterred the group chat.'.format(self.username))
+            print('{0} entered the group chat.'.format(self.username))
         else:
             print('This group chat has been closed.')
 

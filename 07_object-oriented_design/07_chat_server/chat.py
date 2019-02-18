@@ -56,7 +56,9 @@ class Chat():
 
         # When the last user leaves the chat, update the server.
         if len(self.participants) == 0:
-            self.server.close_group_chat(self.chat_id)
+            return True
+        else:
+            return False
 
 
     def __str__(self):
