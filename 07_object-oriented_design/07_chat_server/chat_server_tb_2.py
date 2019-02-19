@@ -122,11 +122,15 @@ user_5.chat(group_chat_2_id, 'I need to go.', True)
 
 # test closing a group chat
 user_5.leave_group_chat(group_chat_2_id)
+print(chat_server.list_users_in_chat(group_chat_2_id, True))
 user_4.leave_group_chat(group_chat_2_id)
+print(chat_server.list_users_in_chat(group_chat_2_id, True))
 user_3.leave_group_chat(group_chat_2_id)
-user_4.leave_group_chat(group_chat_2_id)
+print(chat_server.list_users_in_chat(group_chat_2_id, True))
+user_2.leave_group_chat(group_chat_2_id)
+print(chat_server.list_users_in_chat(group_chat_2_id, True))
 user_1.leave_group_chat(group_chat_2_id)  # last person
-
+print(chat_server.list_users_in_chat(group_chat_2_id, True))
 
 
 
