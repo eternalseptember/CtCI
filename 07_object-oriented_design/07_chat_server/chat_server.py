@@ -115,6 +115,7 @@ class Chat_Server():
 
     def list_users_in_chat(self, chat_id, is_group_chat):
         if is_group_chat:
+            # is the group still open?
             return self.group_chat_list[chat_id].list_participants()
         else:
             return self.chat_list[chat_id].list_participants()
@@ -242,7 +243,7 @@ class Chat_Server():
     def close_group_chat(self, group_chat_id):
         # Invoked by the chat object when the last user leaves the chat.
         self.group_chat_status[group_chat_id] = False
-        self.group_chat_list.remove(group_chat_id)
+        del self.group_chat_list[group_chat_id]
         print('Group chat ended.')
 
 
