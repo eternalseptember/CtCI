@@ -115,8 +115,11 @@ class Chat_Server():
 
     def list_users_in_chat(self, chat_id, is_group_chat):
         if is_group_chat:
-            # is the group still open?
-            return self.group_chat_list[chat_id].list_participants()
+            # Is the group still open?
+            if chat_id in self.group_chat_list:
+                return self.group_chat_list[chat_id].list_participants()
+            else:
+                return 'Invalid chat.'
         else:
             return self.chat_list[chat_id].list_participants()
 
