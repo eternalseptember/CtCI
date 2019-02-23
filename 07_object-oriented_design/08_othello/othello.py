@@ -14,5 +14,10 @@ class Othello:
         self.board = []
 
 
+    def init_game_board(self):
+        # 8x8 grid, with white and black in center
+        board = []
+
+
 
 
