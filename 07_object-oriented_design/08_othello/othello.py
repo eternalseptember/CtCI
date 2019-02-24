@@ -19,5 +19,10 @@ class Othello:
         board = []
 
 
+    def print_board(self):
+        # show black as "X" and white as "O" for readibility?
+        return None
+
+
 
 
