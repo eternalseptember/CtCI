@@ -11,12 +11,18 @@ oriented design for Othello.
 
 class Othello:
     def __init__(self):
-        self.board = []
+        self.board = self.init_game_board()
 
 
     def init_game_board(self):
-        # 8x8 grid, with white and black in center
-        board = []
+        # 8x8 grid
+        init_board = [
+            [None for col in range(8)] for row in range(8)
+            ]
+
+        # with white and black in center
+        # len(mat) is row; len(mat[0]) is col
+        return init_board
 
 
     def print_board(self):
