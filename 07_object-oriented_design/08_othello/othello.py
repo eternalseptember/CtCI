@@ -16,18 +16,26 @@ class Othello:
 
     def init_game_board(self):
         # 8x8 grid
+        # len(board) is row; len(board[0]) is col
         init_board = [
             [None for col in range(8)] for row in range(8)
             ]
 
-        # with white and black in center
-        # len(mat) is row; len(mat[0]) is col
+        # White and black starting positions
+        init_board[3][3] = 'W'
+        init_board[3][4] = 'B'
+        init_board[4][3] = 'B'
+        init_board[4][4] = 'W'
+
         return init_board
 
 
     def print_board(self):
         # show black as "X" and white as "O" for readibility?
-        return None
+        for row in self.board:
+            for piece in row:
+                print('{0}  '.format(piece))
+            print()
 
 
 
