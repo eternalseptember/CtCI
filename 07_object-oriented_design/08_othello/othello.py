@@ -34,7 +34,10 @@ class Othello:
         # show black as "X" and white as "O" for readibility?
         for row in self.board:
             for piece in row:
-                print('{0}  '.format(piece))
+                if piece is None:
+                    print('_  ', end=' ')
+                else:
+                    print('{0}  '.format(piece), end=' ')
             print()
 
 
