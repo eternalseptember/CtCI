@@ -12,6 +12,8 @@ oriented design for Othello.
 class Othello:
     def __init__(self):
         self.board = self.init_game_board()
+        self.black_count = 0
+        self.white_count = 0
 
 
     def init_game_board(self):
@@ -39,6 +41,14 @@ class Othello:
                 else:
                     print('{0}  '.format(piece), end=' ')
             print()
+
+
+    def begin_game(self):
+        # black goes first
+
+        return None
+
+
 
 
 
