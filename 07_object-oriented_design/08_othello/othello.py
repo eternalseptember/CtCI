@@ -49,6 +49,18 @@ class Othello:
         return None
 
 
+    def check_row(self, color):
+        # pieces to be flipped
+        count = 0
+        return count
+
+
+    def check_col(self, color):
+        # pieces to be flipped
+        count = 0
+        return count
+
+
 
 
 
