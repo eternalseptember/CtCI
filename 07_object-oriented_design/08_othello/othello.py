@@ -49,6 +49,11 @@ class Othello:
         return None
 
 
+    def is_corner(self, position):
+        # true or false
+        return None
+
+
     def check_row(self, color):
         # pieces to be flipped
         count = 0
