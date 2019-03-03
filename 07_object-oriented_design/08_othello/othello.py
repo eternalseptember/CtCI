@@ -49,7 +49,13 @@ class Othello:
         return None
 
 
-    def is_corner(self, position):
+    def place_piece(self, row, col):
+        # check if piece is corner pice?
+        # count the number pieces flipped
+        return None
+
+
+    def is_corner(self, row, col):
         # true or false
         return None
 
