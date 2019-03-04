@@ -45,14 +45,20 @@ class Othello:
 
     def begin_game(self):
         # black goes first
-
-        return None
-
-
-    def place_piece(self, row, col):
         # check if piece is corner pice?
         # count the number pieces flipped
+
         return None
+
+
+    def place_piece(self, row, col, color):
+        # check if location is valid
+        if self.board[row][col] is not None:
+            # cannot place piece there, but don't change player turns
+            return False
+        else:
+            self.board[row][col] = color
+            return True
 
 
     def is_corner(self, row, col):
