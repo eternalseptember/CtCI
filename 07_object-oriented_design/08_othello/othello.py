@@ -51,13 +51,13 @@ class Othello:
         return None
 
 
-    def place_piece(self, row, col, color):
+    def place_piece(self, row, col, color_placed):
         # check if location is valid
         if self.board[row][col] is not None:
             # cannot place piece there, but don't change player turns
             return False
         else:
-            self.board[row][col] = color
+            self.board[row][col] = color_placed
             return True
 
 
@@ -66,15 +66,21 @@ class Othello:
         return None
 
 
-    def check_row(self, color):
+    def check_row(self, color_placed):
         # pieces to be flipped
         count = 0
         return count
 
 
-    def check_col(self, color):
+    def check_col(self, color_placed):
         # pieces to be flipped
         count = 0
+        return count
+
+
+    def flip_pieces(self, color_placed):
+        count = 0
+        # flip pieces
         return count
 
 
