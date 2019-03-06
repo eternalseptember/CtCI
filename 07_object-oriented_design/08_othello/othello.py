@@ -8,6 +8,13 @@ win is assigned to the person with the most pieces. Implement the object-
 oriented design for Othello.
 """
 
+# Diagonal flipping not implemented based on problem description.
+
+
+class Othello_Piece:
+    def __init__(self, color):
+        self.color = color
+
 
 class Othello:
     def __init__(self):
@@ -63,6 +70,7 @@ class Othello:
 
     def is_corner(self, row, col):
         # true or false
+        # how important is this???
         return None
 
 
