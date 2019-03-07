@@ -16,6 +16,10 @@ class Othello_Piece:
         self.color = color
 
 
+    def __str__(self):
+        return str(self.color)
+
+
 class Othello:
     def __init__(self):
         self.board = self.init_game_board()
