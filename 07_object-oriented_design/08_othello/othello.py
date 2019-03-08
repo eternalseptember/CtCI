@@ -13,11 +13,19 @@ oriented design for Othello.
 
 class Othello_Piece:
     def __init__(self, color):
+        # color is 'B' or 'W'
         self.color = color
 
 
     def __str__(self):
         return str(self.color)
+
+
+    def flip(self):
+        if self.color == 'W':
+            self.color = 'B'
+        elif self.color == 'B':
+            self.color = 'W'
 
 
 class Othello:
@@ -27,24 +35,7 @@ class Othello:
         self.white_count = 0
 
 
-    def init_game_board(self):
-        # 8x8 grid
-        # len(board) is row; len(board[0]) is col
-        init_board = [
-            [None for col in range(8)] for row in range(8)
-            ]
-
-        # White and black starting positions
-        init_board[3][3] = 'W'
-        init_board[3][4] = 'B'
-        init_board[4][3] = 'B'
-        init_board[4][4] = 'W'
-
-        return init_board
-
-
     def print_board(self):
-        # show black as "X" and white as "O" for readibility?
         for row in self.board:
             for piece in row:
                 if piece is None:
@@ -54,12 +45,21 @@ class Othello:
             print()
 
 
-    def begin_game(self):
-        # black goes first
-        # check if piece is corner pice?
-        # count the number pieces flipped
+    def init_game_board(self):
+        # 8x8 grid
+        # len(board) is row; len(board[0]) is col
+        init_board = [
+            [None for col in range(8)] for row in range(8)
+            ]
+        return init_board
 
-        return None
+
+    def init_pieces(self):
+        # White and black starting positions
+        self.place_piece(3, 3, 'W')
+        self.place_piece(3, 4, 'B')
+        self.place_piece(4, 3, 'B')
+        self.place_piece(4, 4, 'W')
 
 
     def place_piece(self, row, col, color_placed):
@@ -68,23 +68,29 @@ class Othello:
             # cannot place piece there, but don't change player turns
             return False
         else:
-            self.board[row][col] = color_placed
+            self.board[row][col] = Othello_Piece(color_placed)
+            # update black/white counts
             return True
 
 
-    def is_corner(self, row, col):
-        # true or false
-        # how important is this???
+    def begin_game(self):
+        self.init_pieces()
+
+        # black goes first
+        # keep track of active player in case of invalid move
+        # count the number pieces flipped
+        # subtract from colors flipped
+
         return None
 
 
-    def check_row(self, color_placed):
+    def check_row(self, row, color_placed):
         # pieces to be flipped
         count = 0
         return count
 
 
-    def check_col(self, color_placed):
+    def check_col(self, color, color_placed):
         # pieces to be flipped
         count = 0
         return count
