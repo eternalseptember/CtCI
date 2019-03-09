@@ -84,6 +84,14 @@ class Othello:
         return None
 
 
+    def update_board(self, row, col, color_placed):
+        # check row
+        # check col
+        # flip pieces if necessary
+        # update black and white scores
+        return None
+
+
     def check_row(self, row, color_placed):
         # pieces to be flipped
         count = 0
