@@ -11,6 +11,17 @@ oriented design for Othello.
 # Diagonal flipping not implemented based on problem description.
 
 
+class Player:
+    def __init__(self, color, othello_game):
+        # color is 'B' or 'W'
+        self.color = color
+        self.othello = othello_game
+
+    def place_piece(self, row, col):
+        self.othello.place_piece(row, col, self.color)
+
+
+
 class Othello_Piece:
     def __init__(self, color):
         # color is 'B' or 'W'
