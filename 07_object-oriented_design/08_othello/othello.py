@@ -42,6 +42,8 @@ class Othello_Piece:
 class Othello:
     def __init__(self):
         self.board = self.init_game_board()
+        # something to keep track of player's turn
+        self.pieces_played = 0
         self.black_count = 0
         self.white_count = 0
 
@@ -80,7 +82,7 @@ class Othello:
             return False
         else:
             self.board[row][col] = Othello_Piece(color_placed)
-            # update black/white counts
+            self.pieces_played += 1
             return True
 
 
@@ -89,36 +91,41 @@ class Othello:
 
         # black goes first
         # keep track of active player in case of invalid move
-        # count the number pieces flipped
-        # subtract from colors flipped
+        # function to check if the current player has a valid move to make
 
-        return None
+        # Count the score only after the game has ended
+        self.count_score()
+        # print it?
 
 
     def update_board(self, row, col, color_placed):
-        # check row
-        # check col
-        # flip pieces if necessary
-        # update black and white scores
+        # flip pieces *because a move is valid if pieces can be flipped*
         return None
 
 
-    def check_row(self, row, color_placed):
-        # pieces to be flipped
-        count = 0
-        return count
+    def check_row(self, row, col, color_placed):
+        # used to check if placement is valid
+        # check left and right
+        # return True if a piece can be flipped
+        return None
 
 
-    def check_col(self, color, color_placed):
-        # pieces to be flipped
-        count = 0
-        return count
+    def check_col(self, row, col, color_placed):
+        # used to check if placement is valid
+        # check up and down
+        # return True if a piece can be flipped
+        return None
 
 
-    def flip_pieces(self, color_placed):
-        count = 0
-        # flip pieces
-        return count
+    def flip_piece(self, row, col):
+        piece = self.board[row][col]
+        piece.flip()
+
+
+    def count_score(self):
+        # run this only after there are no more moves left
+        # like when the board is empty
+        return None
 
 
 
