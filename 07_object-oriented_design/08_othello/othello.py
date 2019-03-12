@@ -42,7 +42,7 @@ class Othello_Piece:
 class Othello:
     def __init__(self):
         self.board = self.init_game_board()
-        # something to keep track of player's turn
+        self.init_players = self.init_players()
         self.pieces_played = 0
         self.black_count = 0
         self.white_count = 0
@@ -67,12 +67,31 @@ class Othello:
         return init_board
 
 
+    def init_players(self):
+        black = Player('B', self)
+        white = Player('W', self)
+        return [black, white]
+
+
     def init_pieces(self):
         # White and black starting positions
         self.place_piece(3, 3, 'W')
         self.place_piece(3, 4, 'B')
         self.place_piece(4, 3, 'B')
         self.place_piece(4, 4, 'W')
+
+
+    def begin_game(self):
+        self.init_pieces()
+
+        # black goes first
+        # keep track of active player in case of invalid move
+        # function to check if the current player has a valid move to make
+        # switch player turn
+
+        # Count the score only after the game has ended
+        self.count_score()
+        # print it?
 
 
     def place_piece(self, row, col, color_placed):
@@ -86,23 +105,6 @@ class Othello:
             return True
 
 
-    def begin_game(self):
-        self.init_pieces()
-
-        # black goes first
-        # keep track of active player in case of invalid move
-        # function to check if the current player has a valid move to make
-
-        # Count the score only after the game has ended
-        self.count_score()
-        # print it?
-
-
-    def update_board(self, row, col, color_placed):
-        # flip pieces *because a move is valid if pieces can be flipped*
-        return None
-
-
     def check_row(self, row, col, color_placed):
         # used to check if placement is valid
         # check left and right
@@ -114,6 +116,11 @@ class Othello:
         # used to check if placement is valid
         # check up and down
         # return True if a piece can be flipped
+        return None
+
+
+    def update_board(self, row, col, color_placed):
+        # flip pieces *because a move is valid if pieces can be flipped*
         return None
 
 
