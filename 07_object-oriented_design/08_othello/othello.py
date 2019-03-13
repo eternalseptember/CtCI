@@ -21,7 +21,6 @@ class Player:
         self.othello.place_piece(row, col, self.color)
 
 
-
 class Othello_Piece:
     def __init__(self, color):
         # color is 'B' or 'W'
@@ -75,10 +74,10 @@ class Othello:
 
     def init_pieces(self):
         # White and black starting positions
-        self.place_piece(3, 3, 'W')
-        self.place_piece(3, 4, 'B')
-        self.place_piece(4, 3, 'B')
-        self.place_piece(4, 4, 'W')
+        self.place_piece(3, 3, 'W', True)
+        self.place_piece(3, 4, 'B', True)
+        self.place_piece(4, 3, 'B', True)
+        self.place_piece(4, 4, 'W', True)
 
 
     def begin_game(self):
@@ -89,20 +88,36 @@ class Othello:
         # function to check if the current player has a valid move to make
         # switch player turn
 
-        # Count the score only after the game has ended
+        # Count the score only after the game has ended.
         self.count_score()
-        # print it?
+        self.print_score()
 
 
-    def place_piece(self, row, col, color_placed):
-        # check if location is valid
+    def place_piece(self, row, col, color_placed, init_board=False):
+        #  Skip the rules checking if setting up the board.	
+        if init_board:
+            self.board[row][col] = Othello_Piece(color_placed)
+            self.pieces_played += 1
+            return True
+
+        # Check if location is valid.
+        # Do not change player turns if it returns False.
         if self.board[row][col] is not None:
-            # cannot place piece there, but don't change player turns
+            # A piece is already in this position.
+            return False
+        elif not self.is_valid(row, col, color_placed):
+            # Not a valid position for whatever reasons.
             return False
         else:
             self.board[row][col] = Othello_Piece(color_placed)
             self.pieces_played += 1
             return True
+
+
+    def is_valid(self, row, col, color_placed):
+        # piece placement is valid if a piece can be flipped
+        # and must be adjacent to existing pieces?
+        return None
 
 
     def check_row(self, row, col, color_placed):
@@ -132,7 +147,19 @@ class Othello:
     def count_score(self):
         # run this only after there are no more moves left
         # like when the board is empty
-        return None
+        for row in self.board:
+            for piece in row:
+                if piece is not None:
+                    if str(piece) == 'B':
+                        self.black_count += 1
+                    elif str(piece) == 'W':
+                        self.white_count += 1
+
+
+    def print_score(self):
+        print("Final Score")
+        print("Black: {0}".format(self.black_count))
+        print("White: {0}".format(self.white_count))
 
 
 
