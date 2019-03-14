@@ -121,16 +121,30 @@ class Othello:
 
 
     def check_row(self, row, col, color_placed):
-        # used to check if placement is valid
-        # check left and right
-        # return True if a piece can be flipped
+        # Used to check if placement is valid.
+        # Return True if a piece can be flipped.
+
+        if row == 0:
+            # Only check to the right.
+            for col in range(1, 8):
+                piece = self.board[row][col]
+                # what color is the piece?
+
+        elif row == 7:
+            # Only check to the left.
+            print('only check left')
+        else:
+            # Check in both directions
+            print('check both')
         return None
 
 
     def check_col(self, row, col, color_placed):
         # used to check if placement is valid
-        # check up and down
         # return True if a piece can be flipped
+        # check up and down
+        # don't check further up if row == 0
+        # don't check further down if row == 7
         return None
 
 
