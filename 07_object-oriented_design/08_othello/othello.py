@@ -129,7 +129,11 @@ class Othello:
         # used by the check_row function
         for col in range(1, 8):
             piece = self.board[row][col]
-            # what color is the piece?
+            if piece is None:
+                return False
+            else:
+                # what color is the piece?
+                print('stuff')
 
         # return True if there is a piece that can be flipped.
         return None
