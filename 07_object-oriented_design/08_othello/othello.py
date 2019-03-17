@@ -126,17 +126,24 @@ class Othello:
 
 
     def check_right(self, row, col, color_placed):
-        # used by the check_row function
-        for col in range(1, 8):
-            piece = self.board[row][col]
+        # Used by the check_row function.
+        # If the piece was placed on the right edge...
+        if col == 7:
+            return False
+
+        # If the piece was placed anywhere else...
+        for position in range(col+1, 8):
+            piece = self.board[row][position]
             if piece is None:
                 return False
             else:
-                # what color is the piece?
-                print('stuff')
+                if str(piece) == color_placed:
+                    continue
+                else:
+                    # Something can be flipped
+                    return True
 
-        # return True if there is a piece that can be flipped.
-        return None
+        return False
 
 
     def check_row(self, row, col, color_placed):
