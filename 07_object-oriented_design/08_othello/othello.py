@@ -122,7 +122,14 @@ class Othello:
 
     def check_left(self, row, col, color_placed):
         # used by the check_row function
-        return None
+        # If the piece was placed on the left edge...
+        if col == 0:
+            return False
+
+        # If the pice was placed anywhere else...
+        
+
+        return False
 
 
     def check_right(self, row, col, color_placed):
