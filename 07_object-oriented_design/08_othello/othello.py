@@ -127,7 +127,9 @@ class Othello:
             return False
 
         # If the pice was placed anywhere else...
-        
+        for position in range(col-1, -1, -1):
+            piece = self.board[row][position]
+            # is this right?
 
         return False
 
