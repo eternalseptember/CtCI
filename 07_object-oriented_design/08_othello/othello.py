@@ -126,10 +126,18 @@ class Othello:
         if col == 0:
             return False
 
-        # If the pice was placed anywhere else...
+        # If the piece was placed anywhere else...
         for position in range(col-1, -1, -1):
             piece = self.board[row][position]
             # is this right?
+            if piece is None:
+                return False
+            else:
+                if str(piece) == color_placed:
+                    continue
+                else:
+                    # something can be flipped
+                    return True
 
         return False
 
