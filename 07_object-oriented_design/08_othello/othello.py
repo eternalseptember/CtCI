@@ -169,15 +169,14 @@ class Othello:
         # Return True if a piece can be flipped.
 
         if row == 0:
-            flip = self.check_right(row, col, color_placed)
-
+            flip_right = self.check_right(row, col, color_placed)
         elif row == 7:
-            # Only check to the left.
-            print('only check left')
+            flip_left = self.check_left(row, col, color_placed)
         else:
-            # Check in both directions
-            print('check both')
-        return None
+            flip_right = self.check_right(row, col, color_placed)
+            flip_left = self.check_left(row, col, color_placed)
+
+        return flip_right or flip_left
 
 
     def check_col(self, row, col, color_placed):
