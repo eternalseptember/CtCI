@@ -102,6 +102,7 @@ class Othello:
 
         # Check if location is valid.
         # Do not change player turns if it returns False.
+        # Check if the next player has any valid moves.
         if self.board[row][col] is not None:
             # A piece is already in this position.
             return False
@@ -118,6 +119,33 @@ class Othello:
         # piece placement is valid if a piece can be flipped
         # and must be adjacent to existing pieces?
         return None
+
+
+    def is_adjacent_to_a_piece(self, row, col):
+        check_left = True
+        check_right = True
+        check_top = True
+        check_below = True
+
+        # check when piece is placed on edge or corners
+        if row == 0:
+            check_top = False
+        elif row == 7:
+            check_below = False
+
+        if col == 0:
+            check_left = False
+        elif col == 7:
+            check_right = False
+
+        # check everywhere else
+        if check_top:
+            piece = self.board[row-1][col]
+            if piece is None:
+                top_adj = False
+            else:
+                top_adj = True
+        # the rest here
 
 
     def check_left(self, row, col, color_placed):
