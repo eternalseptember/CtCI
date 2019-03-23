@@ -139,12 +139,15 @@ class Othello:
             check_right = False
 
         # check everywhere else
+        adj_left = True
+        adj_right = True
+        adj_top = True
+        adj_below = True
+
         if check_top:
             piece = self.board[row-1][col]
             if piece is None:
-                top_adj = False
-            else:
-                top_adj = True
+                adj_top = False
         # the rest here
 
 
