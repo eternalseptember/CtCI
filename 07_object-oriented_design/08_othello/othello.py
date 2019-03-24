@@ -144,11 +144,25 @@ class Othello:
         adj_top = True
         adj_below = True
 
+        if check_left:
+            piece = self.board[row][col-1]
+            if piece is None:
+                adj_left = False
+        if check_right:
+            piece = self.board[row][col+1]
+            if piece is None:
+                adj_right = False
         if check_top:
             piece = self.board[row-1][col]
             if piece is None:
                 adj_top = False
-        # the rest here
+        if check_below:
+            piece = self.board[row+1][col]
+            if piece is None:
+                adj_below = False
+
+        # return adj results
+        # not all directions are being checked
 
 
     def check_left(self, row, col, color_placed):
