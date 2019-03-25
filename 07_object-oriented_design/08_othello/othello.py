@@ -163,6 +163,12 @@ class Othello:
 
         # return adj results
         # not all directions are being checked
+        res_left = check_left and adj_left
+        res_right = check_right and adj_right
+        res_top = check_top and adj_top
+        res_below = check_below and adj_below
+
+        return res_left or res_right or res_top or res_below
 
 
     def check_left(self, row, col, color_placed):
