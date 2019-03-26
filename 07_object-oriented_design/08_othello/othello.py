@@ -230,6 +230,14 @@ class Othello:
         return flip_right or flip_left
 
 
+    def check_top(self, row, col, color_placed):
+        return None
+
+
+    def check_below(self, row, col, color_placed):
+        return None
+
+
     def check_col(self, row, col, color_placed):
         # used to check if placement is valid
         # return True if a piece can be flipped
