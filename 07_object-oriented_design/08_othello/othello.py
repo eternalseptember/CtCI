@@ -231,10 +231,18 @@ class Othello:
 
 
     def check_top(self, row, col, color_placed):
+        # used by the check_col function
+        # if a piece was placed on the top edge...
+        if col == 0:
+            return False
         return None
 
 
     def check_below(self, row, col, color_placed):
+        # used by the check_col function
+        # if a piece was placed on the bottom edge...
+        if col == 7:
+            return False
         return None
 
 
