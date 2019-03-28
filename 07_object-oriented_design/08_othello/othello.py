@@ -94,7 +94,7 @@ class Othello:
 
 
     def place_piece(self, row, col, color_placed, init_board=False):
-        #  Skip the rules checking if setting up the board.	
+        #  Skip the rules checking if setting up the board.
         if init_board:
             self.board[row][col] = Othello_Piece(color_placed)
             self.pieces_played += 1
@@ -218,7 +218,6 @@ class Othello:
         # Used to check if placement is valid.
         # row and col refer to the placement of the new piece.
         # Return True if a piece can be flipped.
-
         if row == 0:
             flip_right = self.check_right(row, col, color_placed)
         elif row == 7:
@@ -247,12 +246,19 @@ class Othello:
 
 
     def check_col(self, row, col, color_placed):
-        # used to check if placement is valid
-        # return True if a piece can be flipped
-        # check up and down
-        # don't check further up if row == 0
-        # don't check further down if row == 7
-        return None
+        # Used to check if placement is valid.
+        # row and col refer to the placement of the new piece.
+        # Return True if a piece can be flipped.
+
+        if col == 0:
+            flip_below = self.check_below(row, col, color_placed)
+        elif col == 7:
+            flip_top = self.check_top(row, col, color_placed)
+        else:
+            flip_below = self.check_below(row, col, color_placed)
+            flip_top = self.check_top(row, col, color_placed)
+
+        return flip_top or flip_below
 
 
     def update_board(self, row, col, color_placed):
