@@ -230,19 +230,46 @@ class Othello:
 
 
     def check_top(self, row, col, color_placed):
-        # used by the check_col function
-        # if a piece was placed on the top edge...
+        # Used by the check_col function.
+        # If a piece was placed on the top edge...
         if col == 0:
             return False
-        return None
+
+        # If the piece was placed anywhere else...
+        for position in range(row-1, -1, -1):
+            piece = self.board[position][col]
+            # check the decrement...
+            if piece is None:
+                return False
+            else:
+                if str(piece) == color_placed:
+                    continue
+                else:
+                    # something can be flipped
+                    return True
+
+        return False
 
 
     def check_below(self, row, col, color_placed):
-        # used by the check_col function
-        # if a piece was placed on the bottom edge...
+        # Used by the check_col function.
+        # If a piece was placed on the bottom edge...
         if col == 7:
             return False
-        return None
+
+        # If the piece was placed anywhere else...
+        for position in range(row+1, 8):
+            piece = self.board[position][col]
+            if piece is None:
+                return False
+            else:
+                if str(piece) == color_placed:
+                    continue
+                else:
+                    # Something can be flipped
+                    return True
+
+        return False
 
 
     def check_col(self, row, col, color_placed):
