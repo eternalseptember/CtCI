@@ -41,6 +41,7 @@ class Othello_Piece:
 class Othello:
     def __init__(self):
         self.board = self.init_game_board()
+        self.valid_spots = []  # [(row, col)]
         self.init_players = self.init_players()
         self.pieces_played = 0
         self.black_count = 0
@@ -144,9 +145,7 @@ class Othello:
 
 
     def is_valid(self, row, col, color_placed):
-        is_adjacent = self.is_adjacent_to_a_piece(row, col)
-
-        if not is_adjacent:
+        if (row, col) not in self.valid_spots:
             return False
         else:
             # Check if a piece can be flipped.
@@ -156,7 +155,10 @@ class Othello:
             return flip_row or flip_col
 
 
-    def is_adjacent_to_a_piece(self, row, col):
+    def check_adjacent_spots(self, row, col):
+        #
+        # USE THIS TO UPDATE self.valid_spots
+        #
         check_left = True
         check_right = True
         check_above = True
