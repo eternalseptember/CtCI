@@ -119,6 +119,10 @@ class Othello:
         else:
             self.board[row][col] = Othello_Piece(color_placed)
             self.pieces_played += 1
+            #
+            # REMOVE THIS LOCATION FROM LIST OF VALID SPOTS
+            # ADD NEW ONES
+            #
             return True
 
 
@@ -175,16 +179,20 @@ class Othello:
         elif col == 7:
             check_right = False
 
+        """
         # check everywhere else
         adj_left = True
         adj_right = True
         adj_top = True
         adj_below = True
+        """
 
         if check_left:
             piece = self.board[row][col-1]
             if piece is None:
                 adj_left = False
+                if (row, col) not in self.valid_spots:
+                    self.valid_spots.append((row, col))
         if check_right:
             piece = self.board[row][col+1]
             if piece is None:
@@ -198,6 +206,7 @@ class Othello:
             if piece is None:
                 adj_below = False
 
+        """
         # return adj results
         # not all directions are being checked
         res_left = check_left and adj_left
@@ -206,6 +215,7 @@ class Othello:
         res_below = check_below and adj_below
 
         return res_left or res_right or res_top or res_below
+        """
 
 
     def check_row(self, row, col, color_placed):
