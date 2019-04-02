@@ -179,43 +179,27 @@ class Othello:
         elif col == 7:
             check_right = False
 
-        """
-        # check everywhere else
-        adj_left = True
-        adj_right = True
-        adj_top = True
-        adj_below = True
-        """
 
         if check_left:
             piece = self.board[row][col-1]
             if piece is None:
-                adj_left = False
                 if (row, col) not in self.valid_spots:
                     self.valid_spots.append((row, col))
         if check_right:
             piece = self.board[row][col+1]
             if piece is None:
-                adj_right = False
+                if (row, col) not in self.valid_spots:
+                    self.valid_spots.append((row, col))
         if check_above:
             piece = self.board[row-1][col]
             if piece is None:
-                adj_top = False
+                if (row, col) not in self.valid_spots:
+                    self.valid_spots.append((row, col))
         if check_below:
             piece = self.board[row+1][col]
             if piece is None:
-                adj_below = False
-
-        """
-        # return adj results
-        # not all directions are being checked
-        res_left = check_left and adj_left
-        res_right = check_right and adj_right
-        res_top = check_above and adj_top
-        res_below = check_below and adj_below
-
-        return res_left or res_right or res_top or res_below
-        """
+                if (row, col) not in self.valid_spots:
+                    self.valid_spots.append((row, col))
 
 
     def check_row(self, row, col, color_placed):
