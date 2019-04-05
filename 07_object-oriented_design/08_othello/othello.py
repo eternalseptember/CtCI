@@ -106,9 +106,10 @@ class Othello:
             self.board[row][col] = Othello_Piece(color_placed)
             self.pieces_played += 1
 
-            #
-            # ADD LIST OF PLAYABLE SPOTS
-            #
+            # Different order when beginning the game?
+            self.check_adjacent_spots(row, col)
+            self.playable_spots.remove((row, col))
+
             return True
 
         # Check to see if location is valid.
@@ -122,7 +123,7 @@ class Othello:
                 # REMOVE THIS LOCATION FROM LIST OF VALID SPOTS
                 self.playable_spots.remove((row, col))
                 # ADD NEW ONES
-                self.check_left(row, col)
+                self.check_adjacent_spots(row, col)
 
                 return True
             else:
