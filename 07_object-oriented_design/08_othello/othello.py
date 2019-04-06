@@ -49,13 +49,25 @@ class Othello:
 
 
     def print_board(self):
-        for row in self.board:
-            for piece in row:
+        for row in range(8):
+            for col in range(8):
+                piece = self.board[row][col]
                 if piece is None:
-                    print('_  ', end=' ')
+                    if (row, col) in self.playable_spots:
+                        print('_  ', end=' ')
+                    else:
+                        print('   ', end=' ')
                 else:
                     print('{0}  '.format(piece), end=' ')
             print()
+
+
+    def print_playable_spots(self):
+        print('Pieces played: {0}'.format(self.pieces_played))
+        print('Playable spots:', end=' ')
+        for spot in self.playable_spots:
+            print(spot, end=' ')
+        print()
 
 
     def print_score(self):
@@ -103,13 +115,12 @@ class Othello:
     def place_piece(self, row, col, color_placed, init_board=False):
         #  Skip the rules checking if setting up the board.
         if init_board:
+            if (row, col) in self.playable_spots:
+                self.playable_spots.remove((row, col))
+
             self.board[row][col] = Othello_Piece(color_placed)
             self.pieces_played += 1
-
-            # Different order when beginning the game?
             self.check_adjacent_spots(row, col)
-            self.playable_spots.remove((row, col))
-
             return True
 
         # Check to see if location is valid.
