@@ -54,11 +54,11 @@ class Othello:
                 piece = self.board[row][col]
                 if piece is None:
                     if (row, col) in self.playable_spots:
-                        print('_  ', end=' ')
+                        print(' - ', end='')
                     else:
-                        print('   ', end=' ')
+                        print('   ', end='')
                 else:
-                    print('{0}  '.format(piece), end=' ')
+                    print(' {0} '.format(piece), end='')
             print()
 
 
@@ -128,14 +128,10 @@ class Othello:
         # Do not change player turns if it returns False.
         if (row, col) in self.playable_spots:
             if self.is_valid(row, col, color_placed):
+                self.playable_spots.remove((row, col))
                 self.board[row][col] = Othello_Piece(color_placed)
                 self.pieces_played += 1
-
-                # REMOVE THIS LOCATION FROM LIST OF VALID SPOTS
-                self.playable_spots.remove((row, col))
-                # ADD NEW ONES
                 self.check_adjacent_spots(row, col)
-
                 return True
             else:
                 return False
@@ -166,14 +162,11 @@ class Othello:
 
 
     def is_valid(self, row, col, color_placed):
-        if (row, col) not in self.playable_spots:
-            return False
-        else:
-            # Check if a piece can be flipped.
-            flip_row = self.check_row(row, col, color_placed)
-            flip_col = self.check_col(row, col, color_placed)
+        # Check if a piece can be flipped.
+        flip_row = self.check_row(row, col, color_placed)
+        flip_col = self.check_col(row, col, color_placed)
 
-            return flip_row or flip_col
+        return flip_row or flip_col
 
 
     def check_adjacent_spots(self, row, col):
@@ -196,25 +189,29 @@ class Othello:
 
 
         if check_left:
-            piece = self.board[row][col-1]
+            col_left = col - 1
+            piece = self.board[row][col_left]
             if piece is None:
-                if (row, col) not in self.playable_spots:
-                    self.playable_spots.append((row, col))
+                if (row, col_left) not in self.playable_spots:
+                    self.playable_spots.append((row, col_left))
         if check_right:
-            piece = self.board[row][col+1]
+            col_right = col + 1
+            piece = self.board[row][col_right]
             if piece is None:
-                if (row, col) not in self.playable_spots:
-                    self.playable_spots.append((row, col))
+                if (row, col_right) not in self.playable_spots:
+                    self.playable_spots.append((row, col_right))
         if check_above:
-            piece = self.board[row-1][col]
+            row_above = row - 1
+            piece = self.board[row_above][col]
             if piece is None:
-                if (row, col) not in self.playable_spots:
-                    self.playable_spots.append((row, col))
+                if (row_above, col) not in self.playable_spots:
+                    self.playable_spots.append((row_above, col))
         if check_below:
-            piece = self.board[row+1][col]
+            row_below = row + 1
+            piece = self.board[row_below][col]
             if piece is None:
-                if (row, col) not in self.playable_spots:
-                    self.playable_spots.append((row, col))
+                if (row_below, col) not in self.playable_spots:
+                    self.playable_spots.append((row_below, col))
 
 
     def check_row(self, row, col, color_placed):
