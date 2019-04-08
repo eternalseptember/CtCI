@@ -21,6 +21,10 @@ class Player:
         self.othello.place_piece(row, col, self.color)
 
 
+    def __str__(self):
+        return str(self.color)
+
+
 class Othello_Piece:
     def __init__(self, color):
         # color is 'B' or 'W'
@@ -42,7 +46,7 @@ class Othello:
     def __init__(self):
         self.board = self.init_game_board()
         self.playable_spots = []  # [(row, col)]
-        self.init_players = self.init_players()
+        self.players = self.init_players()
         self.pieces_played = 0
         self.black_count = 0
         self.white_count = 0
@@ -101,8 +105,11 @@ class Othello:
 
     def begin_game(self):
         self.init_pieces()
+        self.print_board()  # Print updated board after each turn.
 
         # black goes first
+        active_player = self.players[0]
+        print(active_player)
         # keep track of active player in case of invalid move
         # function to check if the current player has a valid move to make
         # switch player turn
@@ -149,6 +156,13 @@ class Othello:
         piece.flip()
 
 
+    def check_game_ends(self, color_placed):
+        if self.pieces_played == 64:
+            return True
+        # when neither player can make a move
+        return None
+
+
     def count_score(self):
         # run this only after there are no more moves left
         # like when the board is empty
@@ -187,7 +201,7 @@ class Othello:
         elif col == 7:
             check_right = False
 
-
+        # Check and add to list of playable spots.
         if check_left:
             col_left = col - 1
             piece = self.board[row][col_left]
