@@ -60,7 +60,7 @@ class Othello:
                     if (row, col) in self.playable_spots:
                         print(' - ', end='')
                     else:
-                        print('   ', end='')
+                        print(' . ', end='')
                 else:
                     print(' {0} '.format(piece), end='')
             print()
@@ -114,6 +114,10 @@ class Othello:
         # function to check if the current player has a valid move to make
         # switch player turn
 
+        self.print_playable_spots()
+        can_put_a_piece_here = self.is_valid(2, 3, 'B')
+        print(can_put_a_piece_here)
+
         # Count the score only after the game has ended.
         self.count_score()
         self.print_score()
@@ -133,15 +137,12 @@ class Othello:
         # Check to see if location is valid.
         # Check if the next player has any valid moves.
         # Do not change player turns if it returns False.
-        if (row, col) in self.playable_spots:
-            if self.is_valid(row, col, color_placed):
-                self.playable_spots.remove((row, col))
-                self.board[row][col] = Othello_Piece(color_placed)
-                self.pieces_played += 1
-                self.check_adjacent_spots(row, col)
-                return True
-            else:
-                return False
+        if self.is_valid(row, col, color_placed):
+            self.playable_spots.remove((row, col))
+            self.board[row][col] = Othello_Piece(color_placed)
+            self.pieces_played += 1
+            self.check_adjacent_spots(row, col)
+            return True
         else:
             return False
 
@@ -176,11 +177,15 @@ class Othello:
 
 
     def is_valid(self, row, col, color_placed):
-        # Check if a piece can be flipped.
-        flip_row = self.check_row(row, col, color_placed)
-        flip_col = self.check_col(row, col, color_placed)
+        # Check if the piece is placed in a playable spot.
+        if (row, col) not in self.playable_spots:
+            return False
+        else:
+            # Check if a piece can be flipped.
+            flip_row = self.check_row(row, col, color_placed)
+            flip_col = self.check_col(row, col, color_placed)
 
-        return flip_row or flip_col
+            return flip_row or flip_col
 
 
     def check_adjacent_spots(self, row, col):
