@@ -152,7 +152,30 @@ class Othello:
         return None
 
 
-    def flip_piece(self, row, col):
+    def flip_pieces(self, row, col):
+        flipped = False
+        check_left = True
+        check_right = True
+        check_above = True
+        check_below = True
+
+        # Check when piece is placed on edge or corners.
+        if row == 0:
+            check_above = False
+        elif row == 7:
+            check_below = False
+
+        if col == 0:
+            check_left = False
+        elif col == 7:
+            check_right = False
+
+        # For each check, store a list of potentially pieces that could be flipped
+        # only flipped if the row or col terminates in an opposite color
+        # 
+
+
+
         piece = self.board[row][col]
         piece.flip()
 
