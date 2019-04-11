@@ -147,13 +147,7 @@ class Othello:
             return False
 
 
-    def update_board(self, row, col, color_placed):
-        # flip pieces *because a move is valid if pieces can be flipped*
-        return None
-
-
     def flip_pieces(self, row, col):
-        flipped = False
         check_left = True
         check_right = True
         check_above = True
@@ -172,12 +166,32 @@ class Othello:
 
         # For each check, store a list of potentially pieces that could be flipped
         # only flipped if the row or col terminates in an opposite color
-        # 
+        if check_left:
+            end_left = False
+            potential_flips = []  # (row, col)
+            # dir_left = col - 1
 
+            if end_left:
+                # flip every piece in between
+                for flip in potential_flips:
+                    flip_row, flip_col = flip
+                    piece = self.board[flip_row][flip_col]
+                    piece.flip()
+        if check_right:
+            end_right = False
+            potential_flips = []  # (row, col)
+            # dir_right = col + 1
+        if check_above:
+            end_above = False
+            potential_flips = []  # (row, col)
+            # dir_above = row - 1
+        if check_below:
+            end_below = False
+            potential_flips = []  # (row, col)
+            # dir_below = row + 1
 
-
-        piece = self.board[row][col]
-        piece.flip()
+        flipped = end_left or end_right or end_above or end_below
+        return flipped
 
 
     def check_game_ends(self, color_placed):
@@ -205,6 +219,9 @@ class Othello:
             return False
         else:
             # Check if a piece can be flipped.
+            #
+            # Checking in every direction isn't really necessary.
+            #
             flip_row = self.check_row(row, col, color_placed)
             flip_col = self.check_col(row, col, color_placed)
 
