@@ -43,6 +43,10 @@ class Othello_Piece:
 
 
 class Othello:
+    from o_print import print_board, print_playable_spots, print_score
+    from o_check import is_valid, check_row, check_col, check_left, check_right, check_above, check_below
+
+
     def __init__(self):
         self.board = self.init_game_board()
         self.playable_spots = []  # [(row, col)]
@@ -50,34 +54,6 @@ class Othello:
         self.pieces_played = 0
         self.black_count = 0
         self.white_count = 0
-
-
-    def print_board(self):
-        for row in range(8):
-            for col in range(8):
-                piece = self.board[row][col]
-                if piece is None:
-                    if (row, col) in self.playable_spots:
-                        print(' - ', end='')
-                    else:
-                        print(' . ', end='')
-                else:
-                    print(' {0} '.format(piece), end='')
-            print()
-
-
-    def print_playable_spots(self):
-        print('Pieces played: {0}'.format(self.pieces_played))
-        print('Playable spots:', end=' ')
-        for spot in self.playable_spots:
-            print(spot, end=' ')
-        print()
-
-
-    def print_score(self):
-        print("Final Score")
-        print("Black: {0}".format(self.black_count))
-        print("White: {0}".format(self.white_count))
 
 
     def init_game_board(self):
@@ -142,90 +118,10 @@ class Othello:
             self.board[row][col] = Othello_Piece(color_placed)
             self.pieces_played += 1
             self.check_adjacent_spots(row, col)
+            # FLIP PIECES
             return True
         else:
             return False
-
-
-    def flip_pieces(self, row, col):
-        check_left = True
-        check_right = True
-        check_above = True
-        check_below = True
-
-        # Check when piece is placed on edge or corners.
-        if row == 0:
-            check_above = False
-        elif row == 7:
-            check_below = False
-
-        if col == 0:
-            check_left = False
-        elif col == 7:
-            check_right = False
-
-        # For each check, store a list of potentially pieces that could be flipped
-        # only flipped if the row or col terminates in an opposite color
-        if check_left:
-            end_left = False
-            potential_flips = []  # (row, col)
-            # dir_left = col - 1
-
-            if end_left:
-                # flip every piece in between
-                for flip in potential_flips:
-                    flip_row, flip_col = flip
-                    piece = self.board[flip_row][flip_col]
-                    piece.flip()
-        if check_right:
-            end_right = False
-            potential_flips = []  # (row, col)
-            # dir_right = col + 1
-        if check_above:
-            end_above = False
-            potential_flips = []  # (row, col)
-            # dir_above = row - 1
-        if check_below:
-            end_below = False
-            potential_flips = []  # (row, col)
-            # dir_below = row + 1
-
-        flipped = end_left or end_right or end_above or end_below
-        return flipped
-
-
-    def check_game_ends(self, color_placed):
-        if self.pieces_played == 64:
-            return True
-        # when neither player can make a move
-        return None
-
-
-    def count_score(self):
-        # run this only after there are no more moves left
-        # like when the board is empty
-        for row in self.board:
-            for piece in row:
-                if piece is not None:
-                    if str(piece) == 'B':
-                        self.black_count += 1
-                    elif str(piece) == 'W':
-                        self.white_count += 1
-
-
-    def is_valid(self, row, col, color_placed):
-        # Check if the piece is placed in a playable spot.
-        if (row, col) not in self.playable_spots:
-            return False
-        else:
-            # Check if a piece can be flipped.
-            #
-            # Checking in every direction isn't really necessary.
-            #
-            flip_row = self.check_row(row, col, color_placed)
-            flip_col = self.check_col(row, col, color_placed)
-
-            return flip_row or flip_col
 
 
     def check_adjacent_spots(self, row, col):
@@ -273,126 +169,76 @@ class Othello:
                     self.playable_spots.append((row_below, col))
 
 
-    def check_row(self, row, col, color_placed):
-        # Used to check if placement is valid.
-        # row and col refer to the placement of the new piece.
-        # Return True if a piece can be flipped.
+    def flip_pieces(self, row, col, color_placed):
+        check_left = True
+        check_right = True
+        check_above = True
+        check_below = True
+
+        # Check when piece is placed on edge or corners.
         if row == 0:
-            flip_left = False
-            flip_right = self.check_right(row, col, color_placed)
+            check_above = False
         elif row == 7:
-            flip_left = self.check_left(row, col, color_placed)
-            flip_right = False
-        else:
-            flip_right = self.check_right(row, col, color_placed)
-            flip_left = self.check_left(row, col, color_placed)
-
-        return flip_right or flip_left
-
-
-    def check_col(self, row, col, color_placed):
-        # Used to check if placement is valid.
-        # row and col refer to the placement of the new piece.
-        # Return True if a piece can be flipped.
+            check_below = False
 
         if col == 0:
-            flip_above = False
-            flip_below = self.check_below(row, col, color_placed)
+            check_left = False
         elif col == 7:
-            flip_above = self.check_above(row, col, color_placed)
-            flip_below = False
-        else:
-            flip_below = self.check_below(row, col, color_placed)
-            flip_above = self.check_above(row, col, color_placed)
+            check_right = False
 
-        return flip_above or flip_below
+        # For each direction, list potential pieces that could be flipped.
+        # Only flip if the direction terminates with a piece that matches the color
+        # of the piece that wa
+        if check_left:
+            end_left = False
+            potential_flips = []  # (row, col)
 
+            #
+            # NEED TO RETHINK CHECK FUNCTIONS
+            # CHECK FOR TERMINAL PIECES
+            #
+            # dir_left = col - 1
 
-    def check_left(self, row, col, color_placed):
-        # used by the check_row function
-        # If the piece was placed on the left edge...
-        if col == 0:
-            return False
+            if end_left:
+                # flip every piece in between
+                for flip in potential_flips:
+                    flip_row, flip_col = flip
+                    piece = self.board[flip_row][flip_col]
+                    piece.flip()
+        if check_right:
+            end_right = False
+            potential_flips = []  # (row, col)
+            # dir_right = col + 1
+        if check_above:
+            end_above = False
+            potential_flips = []  # (row, col)
+            # dir_above = row - 1
+        if check_below:
+            end_below = False
+            potential_flips = []  # (row, col)
+            # dir_below = row + 1
 
-        # If the piece was placed anywhere else...
-        for position in range(col-1, -1, -1):
-            piece = self.board[row][position]
-            # is this right?
-            if piece is None:
-                return False
-            else:
-                if str(piece) == color_placed:
-                    continue
-                else:
-                    # something can be flipped
-                    return True
-
-        return False
-
-
-    def check_right(self, row, col, color_placed):
-        # Used by the check_row function.
-        # If the piece was placed on the right edge...
-        if col == 7:
-            return False
-
-        # If the piece was placed anywhere else...
-        for position in range(col+1, 8):
-            piece = self.board[row][position]
-            if piece is None:
-                return False
-            else:
-                if str(piece) == color_placed:
-                    continue
-                else:
-                    # Something can be flipped
-                    return True
-
-        return False
+        flipped = end_left or end_right or end_above or end_below
+        return flipped
 
 
-    def check_above(self, row, col, color_placed):
-        # Used by the check_col function.
-        # If a piece was placed on the top edge...
-        if col == 0:
-            return False
-
-        # If the piece was placed anywhere else...
-        for position in range(row-1, -1, -1):
-            piece = self.board[position][col]
-            # check the decrement...
-            if piece is None:
-                return False
-            else:
-                if str(piece) == color_placed:
-                    continue
-                else:
-                    # something can be flipped
-                    return True
-
-        return False
+    def check_game_ends(self, color_placed):
+        if self.pieces_played == 64:
+            return True
+        # when neither player can make a move
+        return None
 
 
-    def check_below(self, row, col, color_placed):
-        # Used by the check_col function.
-        # If a piece was placed on the bottom edge...
-        if col == 7:
-            return False
-
-        # If the piece was placed anywhere else...
-        for position in range(row+1, 8):
-            piece = self.board[position][col]
-            if piece is None:
-                return False
-            else:
-                if str(piece) == color_placed:
-                    continue
-                else:
-                    # Something can be flipped
-                    return True
-
-        return False
-
+    def count_score(self):
+        # run this only after there are no more moves left
+        # like when the board is empty
+        for row in self.board:
+            for piece in row:
+                if piece is not None:
+                    if str(piece) == 'B':
+                        self.black_count += 1
+                    elif str(piece) == 'W':
+                        self.white_count += 1
 
 
 
