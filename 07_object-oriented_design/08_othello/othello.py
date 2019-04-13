@@ -44,7 +44,7 @@ class Othello_Piece:
 
 class Othello:
     from o_print import print_board, print_playable_spots, print_score
-    from o_check import is_valid, check_row, check_col, check_left, check_right, check_above, check_below
+    from o_check import is_valid, check_left, check_right, check_above, check_below
 
 
     def __init__(self):
