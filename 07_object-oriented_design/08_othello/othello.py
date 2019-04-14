@@ -9,6 +9,8 @@ oriented design for Othello.
 """
 
 # Diagonal flipping not implemented based on problem description.
+# Assuming game rules are flipping are rows that are not broken by empty spaces
+# or pieces of the same color.
 
 
 class Player:

@@ -37,7 +37,7 @@ def check_left(self, row, col, color_placed):
                 if opp_color:
                     return True
                 else:
-                    continue
+                    return False
             else:
                 if opp_color is False:
                     opp_color = True
@@ -51,8 +51,11 @@ def check_right(self, row, col, color_placed):
         return False
 
     # If the piece was placed anywhere else...
+    opp_color = False
+
     for position in range(col+1, 8):
         piece = self.board[row][position]
+
         if piece is None:
             return False
         else:
