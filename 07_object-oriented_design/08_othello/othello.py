@@ -46,7 +46,7 @@ class Othello_Piece:
 
 class Othello:
     from o_print import print_board, print_playable_spots, print_score
-    from o_check import is_valid, check_row, check_above, check_below
+    from o_check import is_valid, check_NS_EW
 
 
     def __init__(self):
@@ -128,42 +128,42 @@ class Othello:
 
     def check_adjacent_spots(self, row, col):
         # Update the list of valid spots to play.
-        check_left = True
-        check_right = True
-        check_above = True
-        check_below = True
+        check_W = True
+        check_E = True
+        check_N = True
+        check_S = True
 
         # Check when piece is placed on edge or corners.
         if row == 0:
-            check_above = False
+            check_N = False
         elif row == 7:
-            check_below = False
+            check_S = False
 
         if col == 0:
-            check_left = False
+            check_W = False
         elif col == 7:
-            check_right = False
+            check_E = False
 
         # Check and add to list of playable spots.
-        if check_left:
+        if check_W:
             col_left = col - 1
             piece = self.board[row][col_left]
             if piece is None:
                 if (row, col_left) not in self.playable_spots:
                     self.playable_spots.append((row, col_left))
-        if check_right:
+        if check_E:
             col_right = col + 1
             piece = self.board[row][col_right]
             if piece is None:
                 if (row, col_right) not in self.playable_spots:
                     self.playable_spots.append((row, col_right))
-        if check_above:
+        if check_N:
             row_above = row - 1
             piece = self.board[row_above][col]
             if piece is None:
                 if (row_above, col) not in self.playable_spots:
                     self.playable_spots.append((row_above, col))
-        if check_below:
+        if check_S:
             row_below = row + 1
             piece = self.board[row_below][col]
             if piece is None:
@@ -172,26 +172,26 @@ class Othello:
 
 
     def flip_pieces(self, row, col, color_placed):
-        check_left = True
-        check_right = True
-        check_above = True
-        check_below = True
+        check_W = True
+        check_E = True
+        check_N = True
+        check_S = True
 
         # Check when piece is placed on edge or corners.
         if row == 0:
-            check_above = False
+            check_N = False
         elif row == 7:
-            check_below = False
+            check_S = False
 
         if col == 0:
-            check_left = False
+            check_W = False
         elif col == 7:
-            check_right = False
+            check_E = False
 
         # For each direction, list potential pieces that could be flipped.
-        # Only flip if the direction terminates with a piece that matches the color
-        # of the piece that wa
-        if check_left:
+        # Stop checking if adj spot is color_placed or line has an empty spot.
+        # Only flip if opp_color is surrounded by color_placed in unbroken line.
+        if check_W:
             end_left = False
             potential_flips = []  # (row, col)
 
@@ -207,15 +207,15 @@ class Othello:
                     flip_row, flip_col = flip
                     piece = self.board[flip_row][flip_col]
                     piece.flip()
-        if check_right:
+        if check_E:
             end_right = False
             potential_flips = []  # (row, col)
             # dir_right = col + 1
-        if check_above:
+        if check_N:
             end_above = False
             potential_flips = []  # (row, col)
             # dir_above = row - 1
-        if check_below:
+        if check_S:
             end_below = False
             potential_flips = []  # (row, col)
             # dir_below = row + 1

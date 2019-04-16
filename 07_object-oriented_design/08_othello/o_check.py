@@ -11,17 +11,17 @@ def is_valid(self, row, col, color_placed):
         #
         # Checking in every direction isn't really necessary.
         #
-        flip_left = self.check_row(row, col, color_placed, "W")
-        flip_right = self.check_row(row, col, color_placed, "E")
-        flip_below = self.check_below(row, col, color_placed)
-        flip_above = self.check_above(row, col, color_placed)
+        flip_W = self.check_NS_EW(row, col, color_placed, 'W')
+        flip_E = self.check_NS_EW(row, col, color_placed, 'E')
+        flip_N = self.check_NS_EW(row, col, color_placed, 'N')
+        flip_S = self.check_NS_EW(row, col, color_placed, 'S')
 
-        return flip_left or flip_right or flip_above or flip_below
+        return flip_W or flip_E or flip_N or flip_S
 
 
-def check_row(self, row, col, color_placed, direction):
-    # Direction: "W" (left) or "E" (right)
-    if direction == "W":  # Left
+def check_NS_EW(self, row, col, color_placed, direction):
+    # Direction: 'W' (left), 'E' (right), 'N' (up), 'S' (down)
+    if direction == 'W':  # Left
         if col <= 0:  # Piece was placed on left edge.
             return False
 
@@ -29,7 +29,7 @@ def check_row(self, row, col, color_placed, direction):
         stop = -1
         step = -1
 
-    elif direction == "E":  # Right
+    elif direction == 'E':  # Right
         if col >= 7:  # Piece was placed on right edge.
             return False
 
@@ -37,10 +37,33 @@ def check_row(self, row, col, color_placed, direction):
         stop = 8
         step = 1
 
+    elif direction == 'N':  # Up
+        if row <= 0:  # Piece was placed on the top edge.
+            return False
+
+        start = row-1
+        stop = -1
+        step = -1
+
+    elif direction == 'S':  # Down
+        if row >= 7:  # Piece was placed on the bottom edge.
+            return False
+
+        start = row+1
+        stop = 8
+        step = 1
+
+
+    # Check to see if a piece will flip.
     opp_color = False
+    check_row = ['W', 'E']
+    check_col = ['N', 'S']
 
     for position in range(start, stop, step):
-        piece = self.board[row][position]
+        if direction in check_row:
+            piece = self.board[row][position]
+        elif direction in check_col:
+            piece = self.board[position][col]
 
         if piece is None:
             return False
@@ -57,54 +80,5 @@ def check_row(self, row, col, color_placed, direction):
     return False
 
 
-def check_above(self, row, col, color_placed):
-    # If a piece was placed on the top edge...
-    if col <= 0:
-        return False
 
-    # If the piece was placed anywhere else...
-    opp_color = False
-
-    for position in range(row-1, -1, -1):
-        piece = self.board[position][col]
-
-        if piece is None:
-            return False
-        else:
-            if str(piece) == color_placed:
-                if opp_color:
-                    return True
-                else:
-                    return False
-            else:
-                if opp_color is False:
-                    opp_color = True
-
-    return False
-
-
-def check_below(self, row, col, color_placed):
-    # If a piece was placed on the bottom edge...
-    if col >= 7:
-        return False
-
-    # If the piece was placed anywhere else...
-    opp_color = False
-
-    for position in range(row+1, 8):
-        piece = self.board[position][col]
-
-        if piece is None:
-            return False
-        else:
-            if str(piece) == color_placed:
-                if opp_color:
-                    return True
-                else:
-                    return False
-            else:
-                if opp_color is False:
-                    opp_color = True
-
-    return False
 
