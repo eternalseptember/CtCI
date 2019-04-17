@@ -192,31 +192,32 @@ class Othello:
         # Stop checking if adj spot is color_placed or line has an empty spot.
         # Only flip if opp_color is surrounded by color_placed in unbroken line.
         if check_W:
-            end_left = False
+            opp_color = False
             potential_flips = []  # (row, col)
 
-            #
-            # NEED TO RETHINK CHECK FUNCTIONS
-            # CHECK FOR TERMINAL PIECES
-            #
-            # dir_left = col - 1
+            for position in range(col-1, -1, -1):
+                piece = self.board[row][position]
 
-            if end_left:
+                if piece is None:
+                    break
+
+
+            if opp_color:
                 # flip every piece in between
                 for flip in potential_flips:
                     flip_row, flip_col = flip
                     piece = self.board[flip_row][flip_col]
                     piece.flip()
         if check_E:
-            end_right = False
+            opp_color = False
             potential_flips = []  # (row, col)
             # dir_right = col + 1
         if check_N:
-            end_above = False
+            opp_color = False
             potential_flips = []  # (row, col)
             # dir_above = row - 1
         if check_S:
-            end_below = False
+            opp_color = False
             potential_flips = []  # (row, col)
             # dir_below = row + 1
 
