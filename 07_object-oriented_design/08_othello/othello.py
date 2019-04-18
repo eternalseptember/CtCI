@@ -193,6 +193,7 @@ class Othello:
         # Only flip if opp_color is surrounded by color_placed in unbroken line.
         if check_W:
             opp_color = False
+            end_piece = False
             potential_flips = []  # (row, col)
 
             for position in range(col-1, -1, -1):
@@ -200,14 +201,23 @@ class Othello:
 
                 if piece is None:
                     break
+                else:
+                    if str(piece) == color_placed:
+                        if opp_color:
+                            end_piece = True
+                        break
+                    else:
+                        if opp_color is False:
+                            opp_color = True
+                        potential_flips.append((row, position))
 
-
-            if opp_color:
-                # flip every piece in between
+            # Flip pieces
+            if opp_color and end_piece:
                 for flip in potential_flips:
                     flip_row, flip_col = flip
                     piece = self.board[flip_row][flip_col]
                     piece.flip()
+
         if check_E:
             opp_color = False
             potential_flips = []  # (row, col)
@@ -221,8 +231,7 @@ class Othello:
             potential_flips = []  # (row, col)
             # dir_below = row + 1
 
-        flipped = end_left or end_right or end_above or end_below
-        return flipped
+
 
 
     def check_game_ends(self, color_placed):
