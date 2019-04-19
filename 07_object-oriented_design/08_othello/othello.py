@@ -47,6 +47,7 @@ class Othello_Piece:
 class Othello:
     from o_print import print_board, print_playable_spots, print_score
     from o_check import is_valid, check_NS_EW
+    from o_flip import flip_pieces
 
 
     def __init__(self):
@@ -169,69 +170,6 @@ class Othello:
             if piece is None:
                 if (row_below, col) not in self.playable_spots:
                     self.playable_spots.append((row_below, col))
-
-
-    def flip_pieces(self, row, col, color_placed):
-        check_W = True
-        check_E = True
-        check_N = True
-        check_S = True
-
-        # Check when piece is placed on edge or corners.
-        if row == 0:
-            check_N = False
-        elif row == 7:
-            check_S = False
-
-        if col == 0:
-            check_W = False
-        elif col == 7:
-            check_E = False
-
-        # For each direction, list potential pieces that could be flipped.
-        # Stop checking if adj spot is color_placed or line has an empty spot.
-        # Only flip if opp_color is surrounded by color_placed in unbroken line.
-        if check_W:
-            opp_color = False
-            end_piece = False
-            potential_flips = []  # (row, col)
-
-            for position in range(col-1, -1, -1):
-                piece = self.board[row][position]
-
-                if piece is None:
-                    break
-                else:
-                    if str(piece) == color_placed:
-                        if opp_color:
-                            end_piece = True
-                        break
-                    else:
-                        if opp_color is False:
-                            opp_color = True
-                        potential_flips.append((row, position))
-
-            # Flip pieces
-            if opp_color and end_piece:
-                for flip in potential_flips:
-                    flip_row, flip_col = flip
-                    piece = self.board[flip_row][flip_col]
-                    piece.flip()
-
-        if check_E:
-            opp_color = False
-            potential_flips = []  # (row, col)
-            # dir_right = col + 1
-        if check_N:
-            opp_color = False
-            potential_flips = []  # (row, col)
-            # dir_above = row - 1
-        if check_S:
-            opp_color = False
-            potential_flips = []  # (row, col)
-            # dir_below = row + 1
-
-
 
 
     def check_game_ends(self, color_placed):
