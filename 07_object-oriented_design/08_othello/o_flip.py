@@ -68,7 +68,37 @@ def flip_pieces(self, row, col, color_placed):
         # dir_below = row + 1
 
 
-def flip(self, row, col, color_placed, start, end, step):
+def flip_NS_EW(self, row, col, color_placed, direction, start, stop, step):
+    # direction is "row" or "col"
+    opp_color = False
+    end_piece = False
+    potential_flips = []  # (row, col)
+
+    # Check
+    for position in range(start, stop, step):
+        if direction == "row":
+            piece = self.board[row][position]
+        elif direction == "col":
+            piece = self.board[position][col]
+
+        if piece is None:
+            break
+        else:
+            if str(piece) == color_placed:
+                if opp_color:
+                    end_piece = True
+                break
+            else:
+                if opp_color is False:
+                    opp_color = True
+                potential_flips.append((row, position))
+
+    # Flip pieces
+    if opp_color and end_piece:
+        for flip in potential_flips:
+            flip_row, flip_col = flip
+            piece = self.board[flip_row][flip_col]
+            piece.flip()
     return None
 
 
