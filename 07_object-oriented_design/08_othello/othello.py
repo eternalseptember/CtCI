@@ -47,7 +47,7 @@ class Othello_Piece:
 class Othello:
     from o_print import print_board, print_playable_spots, print_score
     from o_check import is_valid, check_NS_EW
-    from o_flip import flip_pieces
+    from o_flip import flip_pieces, flip_NS_EW
 
 
     def __init__(self):
