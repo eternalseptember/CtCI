@@ -15,24 +15,26 @@ def flip_pieces(self, row, col, color_placed):
         check_S = False
 
     if col <= 0:
-        check_W = Falsse
+        check_W = False
     elif col >= 7:
         check_E = False
 
-    # For each direction, list potential pieces that could be flipped.
-    # Stop checking if adj spot is color_placed or line has an empty spot.
-    # Only flip if opp_color is surrounded by color_placed in unbroken line.
+
     if check_W:
+        print('Check left for pieces to flip.')
         self.flip_NS_EW(row, col, color_placed, "row", col-1, -1, -1)
 
     if check_E:
-        self.flip_NS_EW(row, col, color_placed, "row", col+1, 1, 1)
+        print('Check right for pieces to flip.')
+        self.flip_NS_EW(row, col, color_placed, "row", col+1, 8, 1)
 
     if check_N:
+        print('Check above for pieces to flip.')
         self.flip_NS_EW(row, col, color_placed, "col", row-1, -1, -1)
 
     if check_S:
-        self.flip_NS_EW(row, col, color_placed, "col", row+1, 1, 1)
+        print('Check below for pieces to flip.')
+        self.flip_NS_EW(row, col, color_placed, "col", row+1, 8, 1)
 
 
 def flip_NS_EW(self, row, col, color_placed, check_dir, start, stop, step):
@@ -41,11 +43,26 @@ def flip_NS_EW(self, row, col, color_placed, check_dir, start, stop, step):
     end_piece = False
     potential_flips = []  # (row, col)
 
-    # Check
+    # WHAT IF POTENTIAL FLIPS DON'T ACTUALLY FLIP???
+
+    # For each direction, list potential pieces that could be flipped.
+    # Stop checking if adj spot is color_placed or line has an empty spot.
+    # Only flip if opp_color is surrounded by color_placed in unbroken line.
     for position in range(start, stop, step):
-        if check_dir == "row":
+        if check_dir == 'row':
+            if step == -1:
+                print('\tCheck left: ({0}, {1})'.format(row, position))
+            elif step == 1:
+                print('\tCheck right: ({0}, {1})'.format(row, position))
+
             piece = self.board[row][position]
-        elif check_dir == "col":
+
+        elif check_dir == 'col':
+            if step == -1:
+                print('\tCheck above: ({0}, {1})'.format(position, col))
+            elif step == 1:
+                print('\tCheck below: ({0}, {1})'.format(position, col))
+
             piece = self.board[position][col]
 
         if piece is None:
@@ -58,7 +75,14 @@ def flip_NS_EW(self, row, col, color_placed, check_dir, start, stop, step):
             else:
                 if opp_color is False:
                     opp_color = True
-                potential_flips.append((row, position))
+
+                if check_dir == 'row':
+                    potential_flips.append((row, position))
+                elif check_dir == 'col':
+                    potential_flips.append((position, col))
+
+    if len(potential_flips) > 0:
+        print('\tPotential flips: {0}'.format(potential_flips))
 
     # Flip pieces
     if opp_color and end_piece:

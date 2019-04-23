@@ -54,7 +54,7 @@ def check_NS_EW(self, row, col, color_placed, direction):
         step = 1
 
 
-    # Check to see if a piece will flip.
+    # Check to see if a piece can flip.
     opp_color = False
     check_row = ['W', 'E']
     check_col = ['N', 'S']

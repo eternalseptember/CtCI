@@ -15,6 +15,8 @@ def print_board(self):
                 print(' {0} '.format(piece), end='')
         print()
 
+    print("*****************************************")
+
 
 def print_playable_spots(self):
     print('Pieces played: {0}'.format(self.pieces_played))

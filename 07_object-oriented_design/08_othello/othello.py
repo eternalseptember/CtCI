@@ -84,18 +84,27 @@ class Othello:
 
     def begin_game(self):
         self.init_pieces()
-        self.print_board()  # Print updated board after each turn.
+        self.print_board()
 
-        # black goes first
+        # Black goes first.
         active_player = self.players[0]
-        print(active_player)
-        # keep track of active player in case of invalid move
-        # function to check if the current player has a valid move to make
-        # switch player turn
+        # print(active_player)
+        # self.print_playable_spots()
 
-        self.print_playable_spots()
-        can_put_a_piece_here = self.is_valid(2, 3, 'B')
-        print(can_put_a_piece_here)
+
+        # Testing spots.
+        can_put_a_piece_here = self.is_valid(2, 3, 'B')  # True
+        print('2, 3: ' + str(can_put_a_piece_here))
+        can_put_a_piece_here = self.is_valid(0, 0, 'B')  # False
+        print('0, 0: ' + str(can_put_a_piece_here))
+
+        # Place a piece.
+        active_player.place_piece(2, 3)
+
+        # Switch turns and keep playing, until a player has no more moves left.
+        # That player passes their turn.
+        # When both players have no more moves, the game ends.
+
 
         # Count the score only after the game has ended.
         self.count_score()
@@ -117,13 +126,24 @@ class Othello:
         # Check if the next player has any valid moves.
         # Do not change player turns if it returns False.
         if self.is_valid(row, col, color_placed):
+            # Steps to place a piece.
             self.playable_spots.remove((row, col))
             self.board[row][col] = Othello_Piece(color_placed)
             self.pieces_played += 1
             self.check_adjacent_spots(row, col)
-            # FLIP PIECES
+
+            # Print board before piece is placed.
+            print('{0} on ({1}, {2}).'.format(color_placed, row, col))
+            self.print_board()
+
+            # Flip pieces.
+            self.flip_pieces(row, col, color_placed)
+
+            # Print the board after the piece is placed.
+            self.print_board()
             return True
         else:
+            print('Invalid spot.')
             return False
 
 
