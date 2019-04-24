@@ -19,12 +19,17 @@ class Player:
         self.color = color
         self.othello = othello_game
 
-    def place_piece(self, row, col):
-        self.othello.place_piece(row, col, self.color)
-
 
     def __str__(self):
         return str(self.color)
+
+
+    def __repr__(self):
+        return str(self.color)
+
+
+    def place_piece(self, row, col):
+        self.othello.place_piece(row, col, self.color)
 
 
 class Othello_Piece:
@@ -34,6 +39,10 @@ class Othello_Piece:
 
 
     def __str__(self):
+        return str(self.color)
+
+
+    def __repr__(self):
         return str(self.color)
 
 
@@ -86,29 +95,45 @@ class Othello:
         self.init_pieces()
         self.print_board()
 
+
+
         # Black goes first.
         active_player = self.players[0]
-        # print(active_player)
         # self.print_playable_spots()
 
-
         # Testing spots.
-        can_put_a_piece_here = self.is_valid(2, 3, 'B')  # True
-        print('2, 3: ' + str(can_put_a_piece_here))
-        can_put_a_piece_here = self.is_valid(0, 0, 'B')  # False
-        print('0, 0: ' + str(can_put_a_piece_here))
+        self.test_spot(0, 0, active_player)  # False
+        self.test_spot(2, 4, active_player)  # True
 
         # Place a piece.
         active_player.place_piece(2, 3)
 
-        # Switch turns and keep playing, until a player has no more moves left.
-        # That player passes their turn.
+
+
+        # Switch turns and keep playing.
+        # White's turn.
+        active_player = self.players[1]
+
+        # Testing spots.
+        self.test_spot(0, 3, active_player)  # False
+        self.test_spot(4, 4, active_player)  # False
+        self.test_spot(4, 2, active_player)  # True
+
+
+        # When a player has no valid moves, that player passes their turn.
         # When both players have no more moves, the game ends.
 
 
         # Count the score only after the game has ended.
         self.count_score()
         self.print_score()
+
+
+    def test_spot(self, row, col, color_placed):
+        valid_spot = self.is_valid(row, col, color_placed)
+        print('{0} ({1}, {2}): {3}'
+            .format(color_placed, row, col, valid_spot))
+        return valid_spot
 
 
     def place_piece(self, row, col, color_placed, init_board=False):
