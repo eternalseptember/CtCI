@@ -126,6 +126,13 @@ class Othello:
         active_player.place_piece(4, 2)
 
 
+        # Switch turns and keep playing.
+        # Black's turn
+        active_player = self.players[0]
+        self.test_spot(4, 1, str(active_player))  # False
+        self.test_spot(3, 2, str(active_player))  # False
+
+
         # When a player has no valid moves, that player passes their turn.
         # When both players have no more moves, the game ends.
 
