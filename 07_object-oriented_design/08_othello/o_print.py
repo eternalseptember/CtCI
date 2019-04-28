@@ -26,6 +26,15 @@ def print_playable_spots(self):
     print()
 
 
+def print_move_checks(self):
+    # color placed?
+    for spot in self.move_checks:
+        is_valid = self.move_checks[spot]
+        print('{0}: {1}'.format(spot, is_valid))
+    print()
+
+
+
 def print_score(self):
     print("************** Final Score **************")
     print("Black: {0}".format(self.black_count))

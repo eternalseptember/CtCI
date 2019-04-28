@@ -54,7 +54,7 @@ class Othello_Piece:
 
 
 class Othello:
-    from o_print import print_board, print_playable_spots, print_score
+    from o_print import print_board, print_playable_spots, print_move_checks, print_score
     from o_check import is_valid, check_NS_EW
     from o_flip import flip_pieces, flip_NS_EW
 
@@ -147,6 +147,7 @@ class Othello:
 
     def test_spot(self, row, col, color_placed):
         valid_spot = self.is_valid(row, col, color_placed)
+        self.move_checks[(row, col)] = valid_spot
         print('{0} ({1}, {2}): {3}'
             .format(color_placed, row, col, valid_spot))
         return valid_spot
