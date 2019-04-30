@@ -100,16 +100,15 @@ class Othello:
         self.print_board()
 
 
-
         # Black goes first.
         active_player = self.players[0]
 
         # Testing spots.
         self.test_spot(0, 0, str(active_player))  # False
         self.test_spot(2, 3, str(active_player))  # True
-        self.print_move_checks()
 
         # Place a piece.
+        self.print_move_checks()
         active_player.place_piece(2, 3)
         self.move_checks.clear()
 
@@ -123,9 +122,9 @@ class Othello:
         self.test_spot(0, 3, str(active_player))  # False
         self.test_spot(4, 4, str(active_player))  # False
         self.test_spot(4, 2, str(active_player))  # True
-        self.print_move_checks()
 
         # Place a piece.
+        self.print_move_checks()
         active_player.place_piece(4, 2)
         self.move_checks.clear()
 
@@ -136,6 +135,8 @@ class Othello:
         self.test_spot(4, 1, str(active_player))  # False
         self.test_spot(3, 2, str(active_player))  # False
         self.test_spot(2, 4, str(active_player))  # False
+
+        # Place a piece.
         self.print_move_checks()
 
         # When a player has no valid moves, that player passes their turn.
@@ -148,10 +149,12 @@ class Othello:
 
 
     def test_spot(self, row, col, color_placed):
-        valid_spot = self.is_valid(row, col, color_placed)
-        self.move_checks[(row, col)] = valid_spot
-        # print('{0} ({1}, {2}): {3}'
-        # 	.format(color_placed, row, col, valid_spot))
+        if (row, col) not in self.move_checks:
+            valid_spot = self.is_valid(row, col, color_placed)
+            self.move_checks[(row, col)] = valid_spot
+        else:
+            valid_spot = self.move_checks[(row, col)]
+
         return valid_spot
 
 
