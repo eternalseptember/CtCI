@@ -67,9 +67,6 @@ class Othello:
         self.black_count = 0
         self.white_count = 0
         self.move_checks = {}
-        # A DICT TO STORE PLAYER'S MOVES AND SPOT CHECKS
-        # TO REDUCE CALLS TO is_valid().
-        # CLEAR AFTER EVERY PIECE IS PLACED.
 
 
     def init_game_board(self):
@@ -135,6 +132,7 @@ class Othello:
         self.test_spot(4, 1, str(active_player))  # False
         self.test_spot(3, 2, str(active_player))  # False
         self.test_spot(2, 4, str(active_player))  # False
+        self.test_spot(4, 1, str(active_player))  # False; repeat
 
         # Place a piece.
         self.print_move_checks()
@@ -156,6 +154,16 @@ class Othello:
             valid_spot = self.move_checks[(row, col)]
 
         return valid_spot
+
+
+
+    def player_turn(self, player=0):
+        active_player = self.players[player]
+        self.move_checks.clear()
+        placed_a_piece = False
+
+        # test spots while placed a piece is false
+        # and check for conditions where player has to pass turn
 
 
     def place_piece(self, row, col, color_placed, init_board=False):
