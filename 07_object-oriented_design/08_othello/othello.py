@@ -247,6 +247,18 @@ class Othello:
                     self.playable_spots.append((row_below, col))
 
 
+    def check_pass_turn(self, color_placed):
+        for spot in self.playable_spots:
+            if spot in self.move_checks:
+                valid = self.move_checks[spot]
+            else:
+                row, col = (spot)
+                valid = self.is_valid(row, col, color_placed)
+                self.move_checks[(row, col)] = valid
+
+        # MORE STUFF HERE
+
+
     def check_game_ends(self, color_placed):
         if self.pieces_played == 64:
             return True
