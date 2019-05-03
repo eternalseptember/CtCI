@@ -54,7 +54,8 @@ class Othello_Piece:
 
 
 class Othello:
-    from o_print import print_board, print_playable_spots, print_move_checks, print_score
+    from o_print import \
+        print_board, print_playable_spots, print_move_checks, print_score
     from o_check import is_valid, check_NS_EW
     from o_flip import flip_pieces, flip_NS_EW
 
@@ -64,6 +65,7 @@ class Othello:
         self.playable_spots = []  # [(row, col)]
         self.players = self.init_players()
         self.pieces_played = 0
+        self.turns_passed = 0
         self.black_count = 0
         self.white_count = 0
         self.move_checks = {}
@@ -158,12 +160,18 @@ class Othello:
 
 
     def player_turn(self, player=0):
-        active_player = self.players[player]
+        # One player turn at at time.
+        # Main game loop manages checks for passing turns or ending the game.
         self.move_checks.clear()
+        active_player = self.players[player]
         placed_a_piece = False
 
         # test spots while placed a piece is false
-        # and check for conditions where player has to pass turn
+
+        # place a piece
+        # check for place_piece's return value
+        # active_player.place_piece(row, col)
+
 
 
     def place_piece(self, row, col, color_placed, init_board=False):
@@ -256,7 +264,17 @@ class Othello:
                 valid = self.is_valid(row, col, color_placed)
                 self.move_checks[(row, col)] = valid
 
-        # MORE STUFF HERE
+            # If there's something playable at all, stop checking.
+            if valid:
+                break
+
+        # If there's a valid move, return False
+        if valid:
+            self.turns_passed = 0
+            return False
+        else:
+            self.turns_passed += 1
+            return True
 
 
     def check_game_ends(self, color_placed):
