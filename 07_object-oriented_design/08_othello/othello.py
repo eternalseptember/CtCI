@@ -32,6 +32,10 @@ class Player:
         self.othello.place_piece(row, col, self.color)
 
 
+    def pass_turn(self):
+        self.othello_game.check_pass_turn(self.color)
+
+
 class Othello_Piece:
     def __init__(self, color):
         # color is 'B' or 'W'
@@ -280,8 +284,10 @@ class Othello:
     def check_game_ends(self, color_placed):
         if self.pieces_played == 64:
             return True
-        # when neither player can make a move
-        return None
+        if self.turns_passed == 2:
+            return True
+
+        return False
 
 
     def count_score(self):
