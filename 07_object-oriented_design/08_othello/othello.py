@@ -29,11 +29,11 @@ class Player:
 
 
     def place_piece(self, row, col):
-        self.othello.place_piece(row, col, self.color)
+        return self.othello.place_piece(row, col, self.color)
 
 
     def pass_turn(self):
-        self.othello_game.check_pass_turn(self.color)
+        return self.othello_game.check_pass_turn(self.color)
 
 
 class Othello_Piece:
@@ -197,6 +197,7 @@ class Othello:
             self.playable_spots.remove((row, col))
             self.board[row][col] = Othello_Piece(color_placed)
             self.pieces_played += 1
+            self.turns_passed = 0  # reset the counter for determining end game
             self.check_adjacent_spots(row, col)
 
             # Print board before piece is placed.
