@@ -28,12 +28,16 @@ class Player:
         return str(self.color)
 
 
+    def test_piece(self, row, col):
+        return self.othello.test_spot(row, col, self.color)
+
+
     def place_piece(self, row, col):
         return self.othello.place_piece(row, col, self.color)
 
 
     def pass_turn(self):
-        return self.othello_game.check_pass_turn(self.color)
+        return self.othello.check_pass_turn(self.color)
 
 
 class Othello_Piece:
