@@ -173,12 +173,11 @@ class Othello:
         self.move_checks.clear()
         active_player = self.players[player]
         placed_a_piece = False
+        passed_turn = False
 
-        # test spots while placed a piece is false
-
-        # place a piece
-        # check for place_piece's return value
-        # active_player.place_piece(row, col)
+        while (not placed_a_piece) and (not passed_turn):
+            # choose from testing a spot, playing a piece, or passing a turn
+            choices = ['test', 'play', 'pass']
 
 
 
