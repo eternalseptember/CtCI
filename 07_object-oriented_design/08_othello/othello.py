@@ -174,11 +174,14 @@ class Othello:
         active_player = self.players[player]
         placed_a_piece = False
         passed_turn = False
+        acceptable_choices = ['test', 'play', 'pass']
 
         while (not placed_a_piece) and (not passed_turn):
             # choose from testing a spot, playing a piece, or passing a turn
-            choices = ['test', 'play', 'pass']
+            player_choice = ''
 
+            while player_choice not in acceptable_choices:
+                player_choice = input()  # fill in the blanks here
 
 
     def place_piece(self, row, col, color_placed, init_board=False):
