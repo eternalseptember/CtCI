@@ -186,6 +186,15 @@ class Othello:
                     '1' to play a piece, and '2' to pass the turn.")
                 player_choice = input()  # fill in the blanks here
 
+                player_choice = int(player_choice)  # convert str to int
+
+                if player_choice == 0:
+                    print('test a piece')
+                elif player_choice == 1:
+                    print('play a piece')
+                elif player_choice == 2:
+                    print('pass the turn')
+
 
     def place_piece(self, row, col, color_placed, init_board=False):
         #  Skip the rules checking if setting up the board.
