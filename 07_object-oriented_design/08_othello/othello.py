@@ -180,20 +180,35 @@ class Othello:
             # choose from testing a spot, playing a piece, or passing a turn
             player_choice = ''
 
-            while player_choice not in acceptable_choices:
-                print('{0}: '.format(str(active_player)))
+            print('{0}: '.format(str(active_player)))
+
+            # Prompt varies depending on whether turn can be passed.
+            if 2 in acceptable_choices:
                 print("Type... '0' to test a piece, \
-                    '1' to play a piece, and '2' to pass the turn.")
-                player_choice = input()  # fill in the blanks here
+                '1' to play a piece, or '2' to pass the turn.")
+            else:
+                print("Type... '0' to test a piece or \
+                '1' to play a piece.")
 
-                player_choice = int(player_choice)  # convert str to int
 
-                if player_choice == 0:
-                    print('test a piece')
-                elif player_choice == 1:
-                    print('play a piece')
-                elif player_choice == 2:
-                    print('pass the turn')
+            player_choice = input()
+            player_choice = int(player_choice)  # Converts str to int.
+
+
+            if player_choice == 0:
+                print('test a piece')
+
+            elif player_choice == 1:
+                print('play a piece')
+
+            elif player_choice == 2:
+                if 2 in acceptable_choices:
+                    passed_turn = active_player.pass_turn()
+
+                # If player cannot pass the turn, then remove this option.
+                if not passed_turn:
+                    print('Cannot pass turn.')
+                    acceptable_choices.remove(2)
 
 
     def place_piece(self, row, col, color_placed, init_board=False):
