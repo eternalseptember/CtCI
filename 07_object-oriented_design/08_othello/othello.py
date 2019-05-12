@@ -199,7 +199,9 @@ class Othello:
                 print('test a piece')
 
             elif player_choice == 1:
-                print('play a piece')
+                row = input('Row: ')
+                col = input('Col: ')
+                placed_a_piece = active_player.place_piece(row, col)
 
             elif player_choice == 2:
                 if 2 in acceptable_choices:
