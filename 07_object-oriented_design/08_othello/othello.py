@@ -196,12 +196,23 @@ class Othello:
 
 
             if player_choice == 0:
-                print('test a piece')
+                row = input('Row: ')
+                col = input('Col: ')
+
+                test_result = active_player.test_piece(row, col)
+
+                # print stuff here
 
             elif player_choice == 1:
                 row = input('Row: ')
                 col = input('Col: ')
                 placed_a_piece = active_player.place_piece(row, col)
+
+                if placed_a_piece:
+                    print('{0} placed on {1}, {2}.'
+                        .format(str(active_player, row, col)))
+                else:
+                    print('{0}, {1} is an invalid spot.')
 
             elif player_choice == 2:
                 if 2 in acceptable_choices:
