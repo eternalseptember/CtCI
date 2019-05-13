@@ -201,7 +201,11 @@ class Othello:
 
                 test_result = active_player.test_piece(row, col)
 
-                # print stuff here
+                if test_result:
+                    print('{0}, {1} is a valid spot.'
+                        .format(str(row, col)))
+                else:
+                    print('{0}, {1} is an invalid spot.')
 
             elif player_choice == 1:
                 row = input('Row: ')
