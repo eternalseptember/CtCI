@@ -108,8 +108,8 @@ class Othello:
 
 
         # PLAYER TURNS HERE.
-
-        exec(open("./test_game_1.py").read())
+        # exec(open("./test_game_1.py").read())
+        self.player_turn()
 
         # When a player has no valid moves, that player passes their turn.
         # When both players have no more moves, the game ends.
