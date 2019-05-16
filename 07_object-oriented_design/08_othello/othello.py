@@ -191,6 +191,12 @@ class Othello:
                     print('Cannot pass turn.')
                     acceptable_choices.remove(2)
 
+        # Values to keep track of player turns gand game state.
+        if passed_turn:
+            return "Pass"
+        else:
+            return "Play"
+
 
     def place_piece(self, row, col, color_placed, init_board=False):
         #  Skip the rules checking if setting up the board.
