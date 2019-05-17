@@ -105,11 +105,21 @@ class Othello:
     def begin_game(self):
         self.init_pieces()
         self.print_board()
+        player_turn = 0
 
 
         # PLAYER TURNS HERE.
         # exec(open("./test_game_1.py").read())
-        self.player_turn()
+        while not self.check_game_ends():
+            player_choice = self.player_turn()
+
+            # change player turns
+            if player_turn == 0:
+                player_turn = 1
+            elif player_turn == 1:
+                player_turn = 0
+
+
 
         # When a player has no valid moves, that player passes their turn.
         # When both players have no more moves, the game ends.
