@@ -105,19 +105,19 @@ class Othello:
     def begin_game(self):
         self.init_pieces()
         self.print_board()
-        player_turn = 0
+        active_player = 0
 
 
         # PLAYER TURNS HERE.
         # exec(open("./test_game_1.py").read())
         while not self.check_game_ends():
-            player_choice = self.player_turn()
+            player_choice = self.player_turn(active_player)
 
-            # change player turns
-            if player_turn == 0:
-                player_turn = 1
-            elif player_turn == 1:
-                player_turn = 0
+            # Change player turns.
+            if active_player == 0:
+                active_player = 1
+            elif active_player == 1:
+                active_player = 0
 
 
 
