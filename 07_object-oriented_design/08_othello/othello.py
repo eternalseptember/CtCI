@@ -110,7 +110,7 @@ class Othello:
 
         # PLAYER TURNS HERE.
         # exec(open("./test_game_1.py").read())
-        while not self.check_game_ends():
+        while not self.check_game_ends(str(self.players[active_player])):
             player_choice = self.player_turn(active_player)
 
             # Change player turns.
@@ -158,11 +158,9 @@ class Othello:
 
             # Prompt varies depending on whether turn can be passed.
             if 2 in acceptable_choices:
-                print("Type... '0' to test a piece, \
-                '1' to play a piece, or '2' to pass the turn.")
+                print("Type... '0' to test a piece, '1' to play a piece, or '2' to pass the turn.")
             else:
-                print("Type... '0' to test a piece or \
-                '1' to play a piece.")
+                print("Type... '0' to test a piece or '1' to play a piece.")
 
 
             player_choice = input()
