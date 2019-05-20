@@ -168,25 +168,24 @@ class Othello:
 
 
             if player_choice == 0:
-                row = input('Row: ')
-                col = input('Col: ')
+                row = int(input('Row: '))
+                col = int(input('Col: '))
 
                 test_result = active_player.test_piece(row, col)
 
                 if test_result:
-                    print('{0}, {1} is a valid spot.'
-                        .format(str(row, col)))
+                    print('{0}, {1} is a valid spot.'.format(row, col))
                 else:
-                    print('{0}, {1} is an invalid spot.')
+                    print('{0}, {1} is an invalid spot.'.format(row, col))
 
             elif player_choice == 1:
-                row = input('Row: ')
-                col = input('Col: ')
+                row = int(input('Row: '))
+                col = int(input('Col: '))
                 placed_a_piece = active_player.place_piece(row, col)
 
                 if placed_a_piece:
                     print('{0} placed on {1}, {2}.'
-                        .format(str(active_player, row, col)))
+                        .format(str(active_player), row, col))
                 else:
                     print('{0}, {1} is an invalid spot.')
 
