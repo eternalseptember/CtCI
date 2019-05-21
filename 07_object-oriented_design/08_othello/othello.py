@@ -110,6 +110,10 @@ class Othello:
 
         # PLAYER TURNS HERE.
         # exec(open("./test_game_1.py").read())
+        exec(open("./test_game_2.py").read())
+
+
+        """
         while not self.check_game_ends(str(self.players[active_player])):
             player_choice = self.player_turn(active_player)
 
@@ -118,6 +122,7 @@ class Othello:
                 active_player = 1
             elif active_player == 1:
                 active_player = 0
+        """
 
 
 
