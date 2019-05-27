@@ -80,6 +80,15 @@ place_piece(self, active_player, 7, 4)
 active_player = self.players[1]
 place_piece(self, active_player, 6, 3)
 
+# Black's turn
+active_player = self.players[0]
+place_piece(self, active_player, 7, 3)
+
+# White's turn.
+active_player = self.players[1]
+can_pass = active_player.pass_turn()
+print('white can pass turn?')
+print(can_pass)
 
 
 
