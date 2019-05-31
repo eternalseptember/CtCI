@@ -102,8 +102,11 @@ place_piece(self, active_player, 7, 5)
 
 # White's turn.
 active_player = self.players[1]
-place_piece(self, active_player, 6, 6)
+place_piece(self, active_player, 0, 3)
 
+# Black's turn
+active_player = self.players[0]
+place_piece(self, active_player, 3, 2)
 
 
 
