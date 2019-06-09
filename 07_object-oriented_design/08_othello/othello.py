@@ -63,7 +63,8 @@ class Othello_Piece:
 
 class Othello:
     from o_print import \
-        print_board, print_playable_spots, print_move_checks, print_score
+        print_board, print_playable_spots, print_move_checks, print_score, \
+        print_game_state
     from o_check import is_valid, check_NS_EW
     from o_flip import flip_pieces, flip_NS_EW
 

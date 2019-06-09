@@ -41,4 +41,20 @@ def print_score(self):
     print("White: {0}".format(self.white_count))
 
 
+def print_game_state(self):
+    # For setting up the game state so that the later stages of the game is
+    # easier to test.
+    print('GAME STATE')
+
+    # self.board
+    # need to remember whose turn it is
+    # self.playable_spots
+    # self.move_checks
+    # self.pieces_played
+    # self.turns_passed
+    # self.black_count
+    # self.white_count
+
+
+
 
