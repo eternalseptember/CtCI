@@ -73,6 +73,7 @@ class Othello:
         self.board = self.init_game_board()
         self.playable_spots = []  # [(row, col)]
         self.players = self.init_players()
+        self.active_player = 0  # 0 for black, 1 for white
         self.pieces_played = 0
         self.turns_passed = 0
         self.black_count = 0
@@ -152,6 +153,7 @@ class Othello:
         # Main game loop manages checks for passing turns or ending the game.
         self.move_checks.clear()
         active_player = self.players[player]
+        self.active_player = player
         placed_a_piece = False
         passed_turn = False
         acceptable_choices = [0, 1, 2]
