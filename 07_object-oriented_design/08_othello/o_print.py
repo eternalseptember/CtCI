@@ -47,10 +47,18 @@ def print_game_state(self):
     print('GAME STATE')
 
     # self.board
+    print('BOARD')
+    self.print_board()
+
     # need to remember whose turn it is
-    # self.playable_spots
-    # self.move_checks
+
     # self.pieces_played
+    # self.playable_spots
+    self.print_playable_spots()
+
+    # self.move_checks
+    self.print_move_checks()
+
     # self.turns_passed
     # self.black_count
     # self.white_count
