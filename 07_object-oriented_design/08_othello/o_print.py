@@ -62,6 +62,7 @@ def print_game_state(self):
     self.print_move_checks()
 
     # self.turns_passed
+    print('NUMBER OF PASSED TURNS: {0}'.format(self.turns_passed))
 
 
     # self.black_count
