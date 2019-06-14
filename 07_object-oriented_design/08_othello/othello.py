@@ -133,8 +133,13 @@ class Othello:
 
 
         # Count the score only after the game has ended.
-        self.count_score()
-        self.print_score()
+        # self.count_score()
+        # self.print_score()
+
+        # Printing game info to set up test
+        print()
+        print()
+        self.print_game_state()
 
 
     def test_spot(self, row, col, color_placed):

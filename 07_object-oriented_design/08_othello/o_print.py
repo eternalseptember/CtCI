@@ -55,6 +55,7 @@ def print_game_state(self):
 
     # self.pieces_played
     # self.playable_spots
+    print('PLAYABLE SPOTS')
     self.print_playable_spots()
 
     # self.move_checks
