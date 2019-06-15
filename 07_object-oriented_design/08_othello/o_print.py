@@ -68,6 +68,7 @@ def print_game_state(self):
 
     # self.black_count
     # self.white_count
+    self.count_score()
     print('CURRENT SCORE:')
     print("Black: {0}".format(self.black_count))
     print("White: {0}".format(self.white_count))
