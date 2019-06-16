@@ -104,8 +104,10 @@ class Othello:
         self.place_piece(4, 4, 'W', True)
 
 
-    def begin_game(self):
-        self.init_pieces()
+    def begin_game(self, test=False):
+        if not test:
+            self.init_pieces()
+
         self.print_board()
         active_player = 0
 
