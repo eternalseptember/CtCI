@@ -8,6 +8,12 @@ from othello import *
 
 othello_game = Othello()
 
+# game setup here
+
+othello_game.begin_game(True)
+
+
+
 
 
 
