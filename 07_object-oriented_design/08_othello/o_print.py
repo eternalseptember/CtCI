@@ -19,8 +19,8 @@ def print_board(self):
 
 
 def print_playable_spots(self):
-    print('Pieces played: {0}'.format(self.pieces_played))
-    print('Playable spots:', end=' ')
+    print('PIECES PLAYED: {0}'.format(self.pieces_played))
+    print('PLAYABLE SPOTS:', end=' ')
     for spot in self.playable_spots:
         print(spot, end=' ')
     print()
@@ -30,13 +30,13 @@ def print_move_checks(self):
     # color placed?
     for spot in self.move_checks:
         is_valid = self.move_checks[spot]
-        print('{0}: {1}'.format(spot, is_valid))
-    print()
+        print('    {0}: {1}'.format(spot, is_valid))
+    # print()
 
 
 
 def print_score(self):
-    print("************** Final Score **************")
+    print("************** FINAL SCORE **************")
     print("Black: {0}".format(self.black_count))
     print("White: {0}".format(self.white_count))
 
@@ -47,7 +47,7 @@ def print_game_state(self):
     print('GAME STATE')
 
     # self.board
-    print('BOARD')
+    print("*****************************************")
     self.print_board()
 
     # need to remember whose turn it is
@@ -55,23 +55,20 @@ def print_game_state(self):
 
     # self.pieces_played
     # self.playable_spots
-    print('PLAYABLE SPOTS')
     self.print_playable_spots()
 
     # self.move_checks
-    print('MOVE CHECKS')
+    print('MOVE CHECKS:')
     self.print_move_checks()
 
     # self.turns_passed
-    print('NUMBER OF PASSED TURNS: {0}'.format(self.turns_passed))
+    print('TURNS PASSED: {0}'.format(self.turns_passed))
 
 
     # self.black_count
     # self.white_count
     self.count_score()
-    print('CURRENT SCORE:')
-    print("Black: {0}".format(self.black_count))
-    print("White: {0}".format(self.white_count))
+    self.print_score()
 
 
 
