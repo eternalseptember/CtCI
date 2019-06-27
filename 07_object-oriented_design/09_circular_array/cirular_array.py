@@ -10,7 +10,10 @@ for (Obj o : circularArray) notation.
 
 class CircularArray:
     def __init__(self, size):
+        self.size = size
         self.queue = [None for item in range(size)]
+        self.head = 0
+        self.tail = 0
 
 
     def add(self, item):
