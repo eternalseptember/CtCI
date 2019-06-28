@@ -16,8 +16,13 @@ class CircularArray:
         self.tail = 0
 
 
-    def add(self, item):
+    def push(self, item):
         # figure out where heads and tails are
+        return None
+
+
+    def pop(self):
+        # return the item that was popped
         return None
 
 
