@@ -16,14 +16,19 @@ class CircularArray:
         self.tail = 0
 
 
-    def push(self, item):
+    def enqueue(self, item):
         # figure out where heads and tails are
         return None
 
 
-    def pop(self):
+    def dequeue(self):
+        # Remove item at the beginning of the queue.
         # return the item that was popped
-        return None
+        item = self.queue[self.head]
+
+        # might have to loop back
+        self.head += 1
+        return item
 
 
     def rotate(self):
