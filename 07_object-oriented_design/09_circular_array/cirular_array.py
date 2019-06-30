@@ -28,6 +28,8 @@ class CircularArray:
 
         # might have to loop back
         self.head += 1
+        if self.head >= self.size:
+            self.head = 0
         return item
 
 
