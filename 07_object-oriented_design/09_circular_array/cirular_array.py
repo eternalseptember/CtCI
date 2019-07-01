@@ -18,6 +18,11 @@ class CircularArray:
 
     def enqueue(self, item):
         # figure out where heads and tails are
+
+        self.tail += 1
+        if self.tail >= self.tail:
+            self.tail = 0
+
         return None
 
 
@@ -30,6 +35,7 @@ class CircularArray:
         self.head += 1
         if self.head >= self.size:
             self.head = 0
+
         return item
 
 
