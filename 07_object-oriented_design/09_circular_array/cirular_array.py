@@ -16,6 +16,15 @@ class CircularArray:
         self.tail = 0
 
 
+    def __str__(self):
+        item_list = ''
+        for item in self.queue:
+            # when to insert ocmma
+            item_list += str(item)
+
+        return item_list
+
+
     def enqueue(self, item):
         # figure out where heads and tails are
 
