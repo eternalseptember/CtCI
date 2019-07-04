@@ -19,7 +19,8 @@ class CircularArray:
     def __str__(self):
         item_list = ''
         for item in self.queue:
-            # when to insert ocmma
+            if len(item_list) > 0:
+                item_list += ', '
             item_list += str(item)
 
         return item_list
