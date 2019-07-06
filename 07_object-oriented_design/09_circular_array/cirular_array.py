@@ -11,6 +11,7 @@ for (Obj o : circularArray) notation.
 class CircularArray:
     def __init__(self, size):
         self.size = size
+        self.num_of_items = 0
         self.queue = [None for item in range(size)]
         self.head = 0
         self.tail = 0
@@ -27,8 +28,11 @@ class CircularArray:
 
 
     def enqueue(self, item):
-        # figure out where heads and tails are
+        # put item at tail
+        # check to see whether array is full first
 
+        # if it's possible to put an item in the array
+        self.num_of_items += 1
         self.tail += 1
         if self.tail >= self.tail:
             self.tail = 0
