@@ -32,10 +32,14 @@ class CircularArray:
         # check to see whether array is full first
 
         # if it's possible to put an item in the array
-        self.num_of_items += 1
-        self.tail += 1
-        if self.tail >= self.tail:
-            self.tail = 0
+        if self.queue[self.tail] is None:
+            self.queue[self.tail] = item
+            self.num_of_items += 1
+
+            # ???
+            self.tail += 1
+            if self.tail >= self.tail:
+                self.tail = 0
 
         return None
 
