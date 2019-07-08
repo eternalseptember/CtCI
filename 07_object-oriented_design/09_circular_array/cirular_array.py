@@ -37,6 +37,9 @@ class CircularArray:
             self.num_of_items += 1
 
             # ???
+            # rotate method?
+
+            # self.tail = (self.tail + 1) % self.size
             self.tail += 1
             if self.tail >= self.tail:
                 self.tail = 0
@@ -55,6 +58,17 @@ class CircularArray:
             self.head = 0
 
         return item
+
+
+    def is_empty(self):
+        if self.num_of_items == 0:
+            return True
+        else:
+            return False
+
+
+    def is_full(self):
+        return None
 
 
     def rotate(self):
