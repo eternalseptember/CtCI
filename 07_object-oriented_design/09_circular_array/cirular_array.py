@@ -68,7 +68,10 @@ class CircularArray:
 
 
     def is_full(self):
-        return None
+        if self.num_of_items == self.size:
+            return True
+        else:
+            return False
 
 
     def rotate(self):
