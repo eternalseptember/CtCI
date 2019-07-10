@@ -28,23 +28,19 @@ class CircularArray:
 
 
     def enqueue(self, item):
-        # put item at tail
-        # check to see whether array is full first
-
-        # if it's possible to put an item in the array
-        if self.queue[self.tail] is None:
+        # Put item at the tail end.
+        if self.is_full():
+            return None
+        else:
             self.queue[self.tail] = item
             self.num_of_items += 1
 
             # ???
             # rotate method?
-
             # self.tail = (self.tail + 1) % self.size
             self.tail += 1
             if self.tail >= self.tail:
                 self.tail = 0
-
-        return None
 
 
     def dequeue(self):
