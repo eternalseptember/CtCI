@@ -46,14 +46,18 @@ class CircularArray:
     def dequeue(self):
         # Remove item at the beginning of the queue.
         # return the item that was popped
-        item = self.queue[self.head]
 
-        # might have to loop back
-        self.head += 1
-        if self.head >= self.size:
-            self.head = 0
+        if self.is_empty():
+            return None
+        else:
+            item = self.queue[self.head]
 
-        return item
+            # might have to loop back
+            self.head += 1
+            if self.head >= self.size:
+                self.head = 0
+
+            return item
 
 
     def is_empty(self):
