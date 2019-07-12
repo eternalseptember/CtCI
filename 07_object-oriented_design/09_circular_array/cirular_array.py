@@ -27,6 +27,16 @@ class CircularArray:
         return item_list
 
 
+    def __repr__(self):
+        item_list = ''
+        for item in self.queue:
+            if len(item_list) > 0:
+                item_list += ', '
+            item_list += str(item)
+
+        return item_list
+
+
     def enqueue(self, item):
         # Put item at the tail end.
         if self.is_full():
