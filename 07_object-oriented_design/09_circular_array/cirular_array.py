@@ -80,6 +80,8 @@ class CircularArray:
     def is_full(self):
         if self.num_of_items == self.size:
             return True
+        elif self.head == (self.tail % self.size + 1):
+            return True
         else:
             return False
 
