@@ -11,7 +11,6 @@ for (Obj o : circularArray) notation.
 class CircularArray:
     def __init__(self, size):
         self.size = size
-        self.num_of_items = 0
         self.queue = [None for item in range(size)]
         self.head = 0
         self.tail = 0
@@ -43,7 +42,6 @@ class CircularArray:
             return None
         else:
             self.queue[self.tail] = item
-            self.num_of_items += 1
 
             # ???
             # rotate method?
@@ -71,18 +69,17 @@ class CircularArray:
 
 
     def is_empty(self):
-        if self.num_of_items == 0:
-            return True
-        elif self.head == self.tail:
+        # ???
+        if self.head == self.tail:
             return True
         else:
             return False
 
 
     def is_full(self):
-        if self.num_of_items == self.size:
+        if self.head == (self.tail % self.size + 1):
             return True
-        elif self.head == (self.tail % self.size + 1):
+        elif self.head == self.tail:
             return True
         else:
             return False
