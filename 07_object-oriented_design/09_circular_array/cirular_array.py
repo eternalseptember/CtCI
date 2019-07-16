@@ -85,6 +85,11 @@ class CircularArray:
             return False
 
 
+    def clear(self):
+        # clear the queue
+        return None
+
+
     def rotate(self):
         return None
 
