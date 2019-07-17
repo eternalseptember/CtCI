@@ -86,8 +86,7 @@ class CircularArray:
 
 
     def clear(self):
-        # clear the queue
-        return None
+        self.queue = [None for item in range(self.size)]
 
 
     def rotate(self):
