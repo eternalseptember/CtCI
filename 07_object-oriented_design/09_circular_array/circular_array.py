@@ -45,10 +45,9 @@ class CircularArray:
 
             # ???
             # rotate method?
-            # self.tail = (self.tail + 1) % self.size
-            self.tail += 1
-            if self.tail >= self.tail:
-                self.tail = 0
+            self.tail = (self.tail + 1) % self.size
+
+
 
 
     def dequeue(self):
@@ -79,8 +78,8 @@ class CircularArray:
     def is_full(self):
         if self.head == (self.tail % self.size + 1):
             return True
-        elif self.head == self.tail:
-            return True
+        # elif self.head == self.tail:
+            # return True
         else:
             return False
 
