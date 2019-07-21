@@ -17,4 +17,6 @@ queue_1.enqueue(2)
 queue_1.enqueue(6)
 queue_1.enqueue(5)
 queue_1.enqueue(3)
+queue_1.enqueue(5)
+queue_1.enqueue(8)
 # one left
