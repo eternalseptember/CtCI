@@ -20,3 +20,9 @@ queue_1.enqueue(3)
 queue_1.enqueue(5)
 queue_1.enqueue(8)
 # one left
+
+
+
+print(queue_1)
+queue_1.clear()
+print(queue_1)

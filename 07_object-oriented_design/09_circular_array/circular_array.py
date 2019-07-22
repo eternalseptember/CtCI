@@ -68,7 +68,6 @@ class CircularArray:
 
 
     def is_empty(self):
-        # ???
         if self.head == self.tail:
             return True
         else:
@@ -86,6 +85,8 @@ class CircularArray:
 
     def clear(self):
         self.queue = [None for item in range(self.size)]
+        self.head = 0
+        self.tail = 0
 
 
     def rotate(self):
