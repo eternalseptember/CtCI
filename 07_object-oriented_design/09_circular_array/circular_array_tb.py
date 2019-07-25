@@ -14,9 +14,14 @@ queue_1.enqueue(1)
 queue_1.enqueue(4)
 print(queue_1)
 
-queue_1.clear()
-print(queue_1)
 
+item = queue_1.dequeue()
+print('item pulled: {0}'.format(item))
+print(queue_1)
+# array not properly updating?
+
+
+"""
 queue_1.enqueue(1)
 queue_1.enqueue(5)
 queue_1.enqueue(9)
@@ -39,5 +44,5 @@ print_queue_status(queue_1)
 # should be empty
 queue_1.clear()
 print(queue_1)
-
+"""
 
