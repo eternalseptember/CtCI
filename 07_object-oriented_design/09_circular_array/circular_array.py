@@ -58,12 +58,8 @@ class CircularArray:
             return None
         else:
             item = self.queue[self.head]
-
-            # might have to loop back
-            self.head += 1
-            if self.head >= self.size:
-                self.head = 0
-
+            self.queue[self.head] = None
+            self.head = (self.head + 1) % self.size
             return item
 
 
