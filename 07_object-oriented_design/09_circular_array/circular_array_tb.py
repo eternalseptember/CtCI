@@ -15,12 +15,6 @@ queue_1.enqueue(4)
 print(queue_1)
 
 
-item = queue_1.dequeue()
-print('item pulled: {0}'.format(item))
-print(queue_1)
-# array not properly updating?
-
-
 """
 queue_1.enqueue(1)
 queue_1.enqueue(5)
@@ -45,4 +39,21 @@ print_queue_status(queue_1)
 queue_1.clear()
 print(queue_1)
 """
+
+# START NEW QUEUES FOR EACH TEST CASE
+
+item = queue_1.dequeue()
+print('item pulled: {0}'.format(item))
+print(queue_1)
+
+# pull remaining two items and then add. where is the new item?
+queue_1.dequeue()
+queue_1.dequeue()
+queue_1.enqueue('A')
+print(queue_1)
+
+
+
+
+
 
