@@ -53,7 +53,15 @@ queue_1.enqueue('A')
 print(queue_1)
 
 
-
+# should wrap around
+queue_1.enqueue('B')
+queue_1.enqueue('C')
+queue_1.enqueue('D')
+queue_1.enqueue('E')
+queue_1.enqueue('F')
+queue_1.enqueue('G')
+queue_1.enqueue('H')
+print(queue_1)
 
 
 
