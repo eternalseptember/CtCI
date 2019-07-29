@@ -63,5 +63,13 @@ queue_1.enqueue('G')
 queue_1.enqueue('H')
 print(queue_1)
 
+# what happens when full?
+queue_1.enqueue('I')
+queue_1.enqueue('J') # not adding?
+print(queue_1)
+
+#
+queue_1.enqueue('K')
+print(queue_1)
 
 
