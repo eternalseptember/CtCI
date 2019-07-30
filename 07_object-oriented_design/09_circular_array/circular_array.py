@@ -39,6 +39,7 @@ class CircularArray:
     def enqueue(self, item):
         # Put item at the tail end.
         if self.is_full():
+            print('queue is full')
             return None
         else:
             self.queue[self.tail] = item

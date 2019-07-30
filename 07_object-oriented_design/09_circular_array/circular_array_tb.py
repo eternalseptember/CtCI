@@ -61,9 +61,11 @@ queue_1.enqueue('E')
 queue_1.enqueue('F')
 queue_1.enqueue('G')
 queue_1.enqueue('H')
+print('queue should wrap around')
 print(queue_1)
 
 # what happens when full?
+print('what happens when queue is full?')
 queue_1.enqueue('I')
 queue_1.enqueue('J') # not adding?
 print(queue_1)
