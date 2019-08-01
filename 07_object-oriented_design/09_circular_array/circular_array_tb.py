@@ -9,7 +9,12 @@ def print_queue_status(queue):
     print('\tQueue empty? {0}'.format(q_empty))
 
 
+# test initialized array
+queue_0 = CircularArray(4)
+print_queue_status(queue_0)
 
+
+# test case 1
 queue_1 = CircularArray(10)
 queue_1.enqueue(0)
 queue_1.enqueue(1)
