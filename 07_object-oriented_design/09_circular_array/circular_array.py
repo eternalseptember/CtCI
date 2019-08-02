@@ -85,6 +85,8 @@ class CircularArray:
         self.tail = 0
 
 
-    def rotate(self):
+    def rotate(self, pointer, index):
+        # wrap around
+
         return None
 
