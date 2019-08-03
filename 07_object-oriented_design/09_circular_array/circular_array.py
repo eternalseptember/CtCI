@@ -43,12 +43,7 @@ class CircularArray:
             return None
         else:
             self.queue[self.tail] = item
-
-            # ???
-            # rotate method?
             self.tail = (self.tail + 1) % self.size
-
-
 
 
     def dequeue(self):
@@ -85,8 +80,11 @@ class CircularArray:
         self.tail = 0
 
 
-    def rotate(self, pointer, index):
-        # wrap around
+    def rotate(self, pointer):
+        # going to the next index
+        # pointer should be self.head or self.tail
+        pointer = (pointer + 1) % self.size
 
-        return None
+
+
 
