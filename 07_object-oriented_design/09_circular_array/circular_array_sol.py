@@ -7,5 +7,11 @@ class CircularArray():
         self.items = [None for item in range(size)]
         self.head = 0
 
+    def convert(self, index):
+        if (index < 0):
+            index += self.size
+
+        #
+
 
 
