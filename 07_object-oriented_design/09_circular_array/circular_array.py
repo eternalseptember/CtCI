@@ -12,6 +12,7 @@ class CircularArray:
     def __init__(self, size):
         self.size = size
         self.queue = [None for item in range(size)]
+        self.num_of_items = 0
         self.head = 0
         self.tail = 0
 
@@ -44,6 +45,7 @@ class CircularArray:
         else:
             self.queue[self.tail] = item
             self.tail = (self.tail + 1) % self.size
+            self.num_of_items += 1
 
 
     def dequeue(self):
@@ -55,6 +57,7 @@ class CircularArray:
             item = self.queue[self.head]
             self.queue[self.head] = None
             self.head = (self.head + 1) % self.size
+            self.num_of_items -= 1
             return item
 
 
