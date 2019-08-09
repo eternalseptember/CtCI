@@ -7,33 +7,30 @@ def print_queue_status(queue):
     q_empty = queue.is_empty()
     print('\tQueue full? {0}'.format(q_full))
     print('\tQueue empty? {0}'.format(q_empty))
-
-
-# test initialized array
-queue_0 = CircularArray(4)
-print_queue_status(queue_0)
+    print()
 
 
 # test case 1
-queue_1 = CircularArray(10)
+print('=== Test initialized array. ===')
+queue_1 = CircularArray(6)
+print_queue_status(queue_1)
+
+# adding items
 queue_1.enqueue(0)
 queue_1.enqueue(1)
 queue_1.enqueue(2)
 queue_1.enqueue(3)
 queue_1.enqueue(4)
-queue_1.enqueue(5)
-queue_1.enqueue(6)
-queue_1.enqueue(7)
-queue_1.enqueue(8)
 
-# should be neither full nor empty
+
+print('=== Queue should be neither full nor empty. ===')
 print_queue_status(queue_1)
 
-# should be full
-queue_1.enqueue(9)
+print('=== Queue should be full. ===')
+queue_1.enqueue(5)
 print_queue_status(queue_1)  # not returning the correct answer
 
-# should be empty
+print('=== Queue should be empty. ===')
 queue_1.clear()
 print_queue_status(queue_1)
 
