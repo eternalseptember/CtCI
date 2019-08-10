@@ -44,8 +44,8 @@ class CircularArray:
             return None
         else:
             self.queue[self.tail] = item
-            self.rotate(self.tail)
-            # self.tail = (self.tail + 1) % self.size
+            # self.rotate(self.tail)
+            self.tail = (self.tail + 1) % self.size
             self.num_of_items += 1
 
 

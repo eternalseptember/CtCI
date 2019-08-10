@@ -12,6 +12,7 @@ def print_queue_status(queue):
 
 # test case 1
 print('=== Test initialized array. ===')
+print('=== Queue should be empty. ===')
 queue_1 = CircularArray(6)
 print_queue_status(queue_1)
 
