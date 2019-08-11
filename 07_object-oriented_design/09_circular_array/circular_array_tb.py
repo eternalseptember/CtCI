@@ -10,7 +10,7 @@ def print_queue_status(queue):
     print()
 
 
-# test case 1
+# Test case 1
 print('=== Test initialized array. ===')
 print('=== Queue should be empty. ===')
 queue_1 = CircularArray(6)
@@ -25,6 +25,11 @@ queue_1.enqueue(4)
 
 
 print('=== Queue should be neither full nor empty. ===')
+print_queue_status(queue_1)
+
+print('=== Queue should have one less item. ===')
+item = queue_1.dequeue()
+print('Item dequeued: {0}'.format(item))
 print_queue_status(queue_1)
 
 print('=== Queue should be full. ===')
