@@ -11,8 +11,8 @@ def print_queue_status(queue):
 
 
 # Test case 1
-print('=== Test initialized array. ===')
-print('=== Queue should be empty. ===')
+print('=== Test Case 1 ===')
+print('=== Initialized queue should be empty. ===')
 queue_1 = CircularArray(6)
 print_queue_status(queue_1)
 
@@ -23,13 +23,7 @@ queue_1.enqueue(2)
 queue_1.enqueue(3)
 queue_1.enqueue(4)
 
-
 print('=== Queue should be neither full nor empty. ===')
-print_queue_status(queue_1)
-
-print('=== Queue should have one less item. ===')
-item = queue_1.dequeue()
-print('Item dequeued: {0}'.format(item))
 print_queue_status(queue_1)
 
 print('=== Queue should be full. ===')
@@ -41,6 +35,28 @@ queue_1.clear()
 print_queue_status(queue_1)
 
 
+print()
+print('=== Test Case 2 ===')
+queue_2 = CircularArray(8)
+queue_2.enqueue(1)
+queue_2.enqueue(2)
+queue_2.enqueue(3)
+queue_2.enqueue(4)
+
+print('=== Four items. ===')
+print_queue_status(queue_2)
+
+print('=== Queue should have one less item. ===')
+item = queue_2.dequeue()
+print('Item dequeued: {0}'.format(item))
+print_queue_status(queue_2)
+
+print('=== Add an item. ===')
+queue_2.enqueue(5)
+print_queue_status(queue_2)
+
+
+# Full first, then dequeue...
 
 """
 item = queue_2.dequeue()
