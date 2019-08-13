@@ -51,8 +51,11 @@ item = queue_2.dequeue()
 print('Item dequeued: {0}'.format(item))
 print_queue_status(queue_2)
 
-print('=== Add an item. ===')
+print('=== Add until it wraps around. ===')
 queue_2.enqueue(5)
+queue_2.enqueue(6)
+queue_2.enqueue(7)
+queue_2.enqueue(8)
 print_queue_status(queue_2)
 
 
