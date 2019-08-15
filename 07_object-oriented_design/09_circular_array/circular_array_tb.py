@@ -62,9 +62,13 @@ print('=== Wraps around. ===')
 queue_2.enqueue(9)
 print_queue_status(queue_2)
 
+print('=== What happens when queue is full? ===')
+queue_2.enqueue(10)
+print_queue_status(queue_2)
 
-# Full first, then dequeue...
-# what happens when queue is full?
+
+print('=== Dequeing from a full queue. ===')
+
 
 
 
