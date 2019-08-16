@@ -68,7 +68,10 @@ print_queue_status(queue_2)
 
 
 print('=== Dequeing from a full queue. ===')
-
+item = queue_2.dequeue()
+print('Item dequeued: {0}'.format(item))
+print_queue_status(queue_2)
+# don't think that's quite right?
 
 
 
