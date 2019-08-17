@@ -10,6 +10,12 @@ def print_queue_status(queue):
     print()
 
 
+def dequeue_status(queue):
+    item = queue.dequeue()
+    print('Item dequeued: {0}'.format(item))
+    print_queue_status(queue)
+
+
 # Test case 1
 print('=== Test Case 1 ===')
 print('=== Initialized queue should be empty. ===')
@@ -61,6 +67,9 @@ print_queue_status(queue_2)
 print('=== Wraps around. ===')
 queue_2.enqueue(9)
 print_queue_status(queue_2)
+
+print('===  ===')
+
 
 print('=== What happens when queue is full? ===')
 queue_2.enqueue(10)
