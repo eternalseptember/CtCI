@@ -10,7 +10,7 @@ def print_queue_status(queue):
     print()
 
 
-def dequeue_status(queue):
+def dequeue(queue):
     item = queue.dequeue()
     print('Item dequeued: {0}'.format(item))
     print_queue_status(queue)
@@ -64,11 +64,19 @@ queue_2.enqueue(7)
 queue_2.enqueue(8)
 print_queue_status(queue_2)
 
-print('=== Wraps around. ===')
-queue_2.enqueue(9)
+print('=== Dequeue some more. ===')
+# problem dequeueing
+queue_2.dequeue()
+queue_2.dequeue()
+#dequeue(queue_2)
+#dequeue(queue_2)
 print_queue_status(queue_2)
 
-print('===  ===')
+
+"""
+print('=== Wraps around. ===')
+queue_2.enqueue()
+print_queue_status(queue_2)
 
 
 print('=== What happens when queue is full? ===')
@@ -81,7 +89,7 @@ item = queue_2.dequeue()
 print('Item dequeued: {0}'.format(item))
 print_queue_status(queue_2)
 # don't think that's quite right?
-
+"""
 
 
 
