@@ -53,9 +53,11 @@ print('=== Four items. ===')
 print_queue_status(queue_2)
 
 print('=== Queue should have one less item. ===')
-item = queue_2.dequeue()
-print('Item dequeued: {0}'.format(item))
-print_queue_status(queue_2)
+dequeue(queue_2)
+
+print('=== Dequeue some more. ===')
+dequeue(queue_2)
+dequeue(queue_2)
 
 print('=== Add until it wraps around. ===')
 queue_2.enqueue(5)
@@ -64,26 +66,19 @@ queue_2.enqueue(7)
 queue_2.enqueue(8)
 print_queue_status(queue_2)
 
-print('=== Dequeue some more. ===')
-# problem dequeueing
-queue_2.dequeue()
-queue_2.dequeue()
-#dequeue(queue_2)
-#dequeue(queue_2)
+# reset head and tail when empty?
+
+print('=== Wraps around. ===')
+queue_2.enqueue(9)
+print_queue_status(queue_2)
+
+print('=== What happens when queue is full? ===')
+queue_2.enqueue(10)
+queue_2.enqueue(11)
 print_queue_status(queue_2)
 
 
 """
-print('=== Wraps around. ===')
-queue_2.enqueue()
-print_queue_status(queue_2)
-
-
-print('=== What happens when queue is full? ===')
-queue_2.enqueue(10)
-print_queue_status(queue_2)
-
-
 print('=== Dequeing from a full queue. ===')
 item = queue_2.dequeue()
 print('Item dequeued: {0}'.format(item))
