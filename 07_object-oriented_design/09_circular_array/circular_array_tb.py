@@ -77,14 +77,10 @@ queue_2.enqueue(10)
 queue_2.enqueue(11)
 print_queue_status(queue_2)
 
-
-"""
 print('=== Dequeing from a full queue. ===')
-item = queue_2.dequeue()
-print('Item dequeued: {0}'.format(item))
-print_queue_status(queue_2)
-# don't think that's quite right?
-"""
+dequeue(queue_2)
+
+
 
 
 
