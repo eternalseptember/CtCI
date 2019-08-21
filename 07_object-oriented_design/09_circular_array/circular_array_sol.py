@@ -11,7 +11,7 @@ class CircularArray():
         if (index < 0):
             index += self.size
 
-        #
+        return (self.head + index) % self.size
 
 
 
