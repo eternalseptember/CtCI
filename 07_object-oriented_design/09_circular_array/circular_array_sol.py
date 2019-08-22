@@ -13,5 +13,8 @@ class CircularArray():
 
         return (self.head + index) % self.size
 
+    def rotate(self, index):
+        self.head = self.convert(index)
+
 
 
