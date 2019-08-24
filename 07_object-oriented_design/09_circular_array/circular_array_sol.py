@@ -23,8 +23,8 @@ class CircularArray():
         return None
 
 
-    def set(self, item):
-        return None
+    def set(self, index, item):
+        self.items[self.convert(index)] = item
 
 
 
