@@ -19,8 +19,10 @@ class CircularArray():
         self.head = self.convert(index)
 
 
-    def get(self):
-        return None
+    def get(self, index):
+        if (index < 0) or (index >= self.size):
+            # return an exception
+            return None
 
 
     def set(self, index, item):
