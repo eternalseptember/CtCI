@@ -23,6 +23,8 @@ class CircularArray():
         if (index < 0) or (index >= self.size):
             # return an exception
             return None
+        else:
+            return self.items(self.convert(index))
 
 
     def set(self, index, item):
