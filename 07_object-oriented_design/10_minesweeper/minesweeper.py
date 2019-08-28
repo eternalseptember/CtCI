@@ -17,6 +17,15 @@ class Minesweeper():
     def __init__(self, size, num_of_mines):
         self.size = size
         self.num_of_mines = num_of_mines
+        self.board = self.init_game_board(size)
+
+
+    def init_game_board(self, size):
+        # len(board) is row; len(board[0]) is col
+        init_board = [
+            [None for col in range(size)] for row in range(size)
+            ]
+        return init_board
 
 
 
