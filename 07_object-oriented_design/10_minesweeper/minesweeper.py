@@ -13,6 +13,12 @@ to have a bomb.
 """
 
 
+class Cell():
+    def __init__(self):
+        self.bomb = False
+        self.marked = False
+
+
 class Minesweeper():
     def __init__(self, size, num_of_mines):
         self.size = size
