@@ -14,9 +14,13 @@ to have a bomb.
 
 
 class Cell():
-    def __init__(self):
-        self.bomb = False
+    def __init__(self, is_bomb):
+        self.bomb = is_bomb
         self.marked = False
+
+
+    def is_bomb(self):
+        return self.bomb
 
 
 class Minesweeper():
