@@ -38,6 +38,11 @@ class Minesweeper():
         return init_board
 
 
+    def choose_cell(self, row, col):
+        # should reveal whether the cell is a bomb or not
+        return None
+
+
 
 
 
