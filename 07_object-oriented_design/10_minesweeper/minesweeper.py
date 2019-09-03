@@ -14,8 +14,9 @@ to have a bomb.
 
 
 class Cell():
-    def __init__(self, is_bomb):
+    def __init__(self, is_bomb, num_of_neighbor_bombs):
         self.bomb = is_bomb
+        self.num_of_neighbor_bombs = num_of_neighbor_bombs
         self.marked = False
 
 
