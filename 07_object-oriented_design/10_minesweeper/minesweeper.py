@@ -18,6 +18,7 @@ class Cell():
         self.bomb = is_bomb
         self.num_of_neighbor_bombs = num_of_neighbor_bombs
         self.marked = False
+        self.revealed = False
 
 
     def is_bomb(self):
@@ -37,6 +38,18 @@ class Minesweeper():
             [None for col in range(size)] for row in range(size)
             ]
         return init_board
+
+
+    def print_board(self):
+        for row in range(self.size):
+            for col in range(self.size):
+                piece = self.board[row][col]
+
+                if piece is None:
+                    print('   ')
+                else:
+                    print(' {0} '.format(piece))
+            print()
 
 
     def choose_cell(self, row, col):
