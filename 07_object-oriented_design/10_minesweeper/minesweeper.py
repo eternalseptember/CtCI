@@ -13,25 +13,47 @@ to have a mine.
 """
 
 
-
-
-
 class Cell():
-    def __init__(self, is_mine, num_of_neighbor_mines):
-        self.mine = is_mine
-        self.num_of_neighbor_mines = num_of_neighbor_mines
+    def __init__(self):
+        self.is_mine = False
+        self.num_of_adj_mines = 0
         self.flagged = False
         self.revealed = False
 
 
+    def __str__(self):
+        if self.flagged:
+            return ' ! '
+        if not self.revealed:
+            return ' - '
+
+        return str(self.num_of_adj_mines)
+
+
+    def set_mine(self):
+        self.is_mine = True
+
+    def count_adj_mines(self):
+        self.num_of_adj_mines += 1
+
     def is_mine(self):
-        return self.mine
+        return self.is_mine
 
     def flag(self):
         self.flagged = True
 
     def unflag(self):
         self.flagged = False
+
+    def reveal(self):
+        if self.is_mine:
+            print('bomb')
+        elif self.num_of_adj_mines == 0:
+            print('reveal connected blank cells and numeric cells')
+        else:
+            print('reveal the number of adj mines')
+
+
 
 
 class Minesweeper():
@@ -64,9 +86,9 @@ class Minesweeper():
 
 
     def choose_cell(self, row, col):
-        # should reveal whether the cell is a mine or not
+        # Reveal what's in the cell.
         cell = self.board[row][col]
-        if cell.mine:
+        if cell.is_mine:
             print('mine')
         return None
 
