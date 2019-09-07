@@ -85,8 +85,20 @@ class Minesweeper():
             print()
 
 
-    def choose_cell(self, row, col):
-        # Reveal what's in the cell.
+    def begin_game(self):
+        # First click is always a blank cell.
+        print('begin game')
+        row = int(input('Row: '))
+        col = int(input('Col: '))
+        self.choose_cell(row, col, True)
+
+
+    def choose_cell(self, row, col, init_game=False):
+        # The first chosen cell is always blank.
+
+
+        # If the cell is not flagged and hasn't already been revealed,
+        # reveal what's in the cell.
         cell = self.board[row][col]
         if cell.is_mine:
             print('mine')
