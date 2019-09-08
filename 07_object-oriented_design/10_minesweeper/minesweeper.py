@@ -23,11 +23,34 @@ class Cell():
 
     def __str__(self):
         if self.flagged:
-            return ' ! '
-        if not self.revealed:
-            return ' - '
+            return '!'
 
-        return str(self.num_of_adj_mines)
+        if self.revealed:
+            if self.is_mine:
+                return 'X'
+            else:
+                if self.num_of_adj_mines == 0:
+                    return str(' ')
+                else:
+                    return str(self.num_of_adj_mines)
+        else:
+            return '-'
+
+
+    def __repr__(self):
+        if self.flagged:
+            return '!'
+
+        if self.revealed:
+            if self.is_mine:
+                return 'X'
+            else:
+                if self.num_of_adj_mines == 0:
+                    return str(' ')
+                else:
+                    return str(self.num_of_adj_mines)
+        else:
+            return '-'
 
 
     def set_mine(self):
@@ -36,9 +59,6 @@ class Cell():
     def count_adj_mines(self):
         self.num_of_adj_mines += 1
 
-    def is_mine(self):
-        return self.is_mine
-
     def flag(self):
         self.flagged = True
 
@@ -46,14 +66,12 @@ class Cell():
         self.flagged = False
 
     def reveal(self):
+        self.revealed = True
+
         if self.is_mine:
-            print('bomb')
-        elif self.num_of_adj_mines == 0:
-            print('reveal connected blank cells and numeric cells')
+            return self.is_mine
         else:
-            print('reveal the number of adj mines')
-
-
+            return str(self.num_of_adj_mines)
 
 
 class Minesweeper():
@@ -68,20 +86,41 @@ class Minesweeper():
         # len(board) is row; len(board[0]) is col
         # Creates a blank board.
         init_board = [
-            [None for col in range(size)] for row in range(size)
+            [Cell() for col in range(size)] for row in range(size)
             ]
         return init_board
 
 
     def print_board(self):
-        for row in range(self.size):
-            for col in range(self.size):
-                piece = self.board[row][col]
+        # for formatting purposes, assume that size is < 100.
+        for printed_row_num in range(self.size + 1):
 
-                if piece is None:
-                    print('   ')
-                else:
-                    print(' {0} '.format(piece))
+            # Print column numbers.
+            if printed_row_num == 0:
+                # Top left corner.
+                print('  ', end=' ')
+
+                # Column numbers.
+                for col_num in range(self.size):
+                    print('{0:>2d}'.format(col_num), end=' ')
+
+                print()
+                continue
+
+            # Print game board.
+            row = printed_row_num - 1
+
+            for printed_col_num in range(self.size + 1):
+                # Print row numbers.
+                if printed_col_num == 0:
+                    print('{0:>2d}'.format(row), end=' ')
+                    continue
+
+                # Print game board.
+                col = printed_col_num - 1
+                piece = self.board[row][col]
+                print('{0:>2}'.format(str(piece)), end=' ')
+
             print()
 
 
@@ -100,9 +139,7 @@ class Minesweeper():
         # If the cell is not flagged and hasn't already been revealed,
         # reveal what's in the cell.
         cell = self.board[row][col]
-        if cell.is_mine:
-            print('mine')
-        return None
+        self.print_board()
 
 
 
