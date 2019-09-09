@@ -56,7 +56,7 @@ class Cell():
     def set_mine(self):
         self.is_mine = True
 
-    def count_adj_mines(self):
+    def add_adj_mine(self):
         self.num_of_adj_mines += 1
 
     def flag(self):
@@ -125,7 +125,7 @@ class Minesweeper():
 
 
     def begin_game(self):
-        # First click is always a blank cell.
+        # The first chosen cell is always blank.
         print('begin game')
         row = int(input('Row: '))
         col = int(input('Col: '))
@@ -134,12 +134,36 @@ class Minesweeper():
 
     def choose_cell(self, row, col, init_game=False):
         # The first chosen cell is always blank.
+        if init_game:
+            self.set_board(row, col)
+            self.print_board()
+            return True
 
 
-        # If the cell is not flagged and hasn't already been revealed,
-        # reveal what's in the cell.
+        # Return True if the cell can be chosen.
+        # Return False if the cell can't be chosen (flagged or was revealed).
+
         cell = self.board[row][col]
         self.print_board()
+
+
+    def set_board(self, row, col):
+        # The first chosen cell is always blank.
+        cell = self.board[row][col]
+        cell.reveal()
+
+        # Which means neighboring cells have no mines.
+        # Remove them from the possible locations to place bombs.
+    
+
+    def place_mines(self, row, col):
+        cell = self.board[row][col]
+        cell.set_mine()
+
+        # Move around and update the adj_mine count.
+
+        
+
 
 
 
