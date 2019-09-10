@@ -161,7 +161,27 @@ class Minesweeper():
         cell.set_mine()
 
         # Move around and update the adj_mine count.
+        check_N = True  # above
+        check_S = True  # below
+        check_W = True  # left
+        check_E = True  # right
 
+        N = row - 1
+        S = row + 1
+        W = col - 1
+        E = col + 1
+
+        if N < 0:
+            check_N = False
+        if S >= self.size:
+            check_S = False
+        if W < 0:
+            check_W = False
+        if E >= self.size:
+            check_E = False
+
+        # Check diagonal.
+        
         
 
 
