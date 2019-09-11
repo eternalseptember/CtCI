@@ -147,6 +147,21 @@ class Minesweeper():
         self.print_board()
 
 
+    def is_valid(self, row, col):
+        # Check that cell picked is within bounds.
+        if (row < 0) or (row >= self.size):
+            return False
+        if (col < 0) or (col >= self.size):
+            return False
+
+        # Check the cell.
+        cell = self.board[row][col]
+        if cell.flagged or cell.revealed:
+            return False
+
+        return True
+
+
     def set_board(self, row, col):
         # The first chosen cell is always blank.
         cell = self.board[row][col]
