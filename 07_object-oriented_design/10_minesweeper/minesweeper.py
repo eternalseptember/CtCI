@@ -79,6 +79,7 @@ class Minesweeper():
         self.size = size
         self.num_of_mines = num_of_mines
         self.board = self.init_game_board(size)
+        self.mines_placed = False
         self.cells_revealed = 0
 
 
@@ -129,22 +130,27 @@ class Minesweeper():
         print('begin game')
         row = int(input('Row: '))
         col = int(input('Col: '))
-        self.choose_cell(row, col, True)
+        self.choose_cell(row, col)
 
 
-    def choose_cell(self, row, col, init_game=False):
-        # The first chosen cell is always blank.
-        if init_game:
-            self.set_board(row, col)
-            self.print_board()
-            return True
-
-
+    def choose_cell(self, row, col):
         # Return True if the cell can be chosen.
         # Return False if the cell can't be chosen (flagged or was revealed).
 
-        cell = self.board[row][col]
-        self.print_board()
+        # The first chosen cell is always blank.
+        if self.mines_placed is False:
+            if self.is_valid(row, col):
+                self.set_board(row, col)
+                self.print_board()
+                return True
+            else:
+                return False
+
+        # The rest of the game.
+        if self.is_valid(row, col):
+            cell = self.board[row][col]
+            # Flag? Click?
+            self.print_board()
 
 
     def is_valid(self, row, col):
@@ -169,6 +175,7 @@ class Minesweeper():
 
         # Which means neighboring cells have no mines.
         # Remove them from the possible locations to place bombs.
+        self.mines_placed = True
     
 
     def place_mines(self, row, col):
