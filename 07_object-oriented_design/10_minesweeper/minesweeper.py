@@ -123,11 +123,13 @@ class Minesweeper():
                 print('{0:>2}'.format(str(piece)), end=' ')
 
             print()
+        print()
 
 
     def begin_game(self):
         # The first chosen cell is always blank.
-        print('begin game')
+        self.print_board()
+        print('Begin Game')
         row = int(input('Row: '))
         col = int(input('Col: '))
         self.choose_cell(row, col)
@@ -175,6 +177,17 @@ class Minesweeper():
 
         # Which means neighboring cells have no mines.
         # Remove them from the possible locations to place bombs.
+
+        # Create a list of all board spaces coordinates.
+        all_cells = []
+        for row_num in range(self.size):
+            for col_num in range(self.size):
+                all_cells.append(row_num, col_num)
+
+        # Remove selected cell and neighboring cells.
+        # Shuffle list of remaining board spaces.
+        # Pick num_of_mines from the top of the list.
+        # Plug the tuple into the place_mines function.
         self.mines_placed = True
     
 
