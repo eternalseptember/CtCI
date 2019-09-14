@@ -185,37 +185,41 @@ class Minesweeper():
                 all_cells.append(row_num, col_num)
 
         # Remove selected cell and neighboring cells.
+        all_cells.remove((row, col))
+        neighboring_cells = self.list_neighboring_cells(row, col)
+        for neighboring_cell in neighboring_cells:
+            all_cells.remove(neighboring_cell)
+
         # Shuffle list of remaining board spaces.
         # Pick num_of_mines from the top of the list.
         # Plug the tuple into the place_mines function.
         self.mines_placed = True
-    
 
-    def place_mines(self, row, col):
-        cell = self.board[row][col]
-        cell.set_mine()
 
-        # Move around and update the adj_mine count.
-        check_N = True  # above
-        check_S = True  # below
-        check_W = True  # left
-        check_E = True  # right
+    def list_neighboring_cells(self, row, col):
+        # Return a list of valid neighboring cells.
+        neighboring_cells = []
 
         N = row - 1
         S = row + 1
         W = col - 1
         E = col + 1
 
-        if N < 0:
-            check_N = False
-        if S >= self.size:
-            check_S = False
-        if W < 0:
-            check_W = False
-        if E >= self.size:
-            check_E = False
+        check_N = False if (N < 0) else True			
+        check_S = False if (S >= self.size) else True
+        check_W = False if (W < 0) else True
+        check_E = False if (E >= self.size) else True
 
         # Check diagonal.
+
+        return neighboring_cells
+
+
+    def place_mines(self, row, col):
+        cell = self.board[row][col]
+        cell.set_mine()
+
+        # Then update surrounding cell's adj_mine count.
         
         
 
