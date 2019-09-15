@@ -205,12 +205,21 @@ class Minesweeper():
         W = col - 1
         E = col + 1
 
-        check_N = False if (N < 0) else True			
+        check_N = False if (N < 0) else True
         check_S = False if (S >= self.size) else True
         check_W = False if (W < 0) else True
         check_E = False if (E >= self.size) else True
 
-        # Check diagonal.
+        # Check diagonals.
+        if check_N and check_W:
+            print()
+        if check_N and check_E:
+            print()
+        if check_S and check_W:
+            print()
+        if check_S and check_E:
+            print()
+
 
         return neighboring_cells
 
