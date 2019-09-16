@@ -212,14 +212,28 @@ class Minesweeper():
 
         # Check diagonals.
         if check_N and check_W:
-            print()
-        if check_N and check_E:
-            print()
-        if check_S and check_W:
-            print()
-        if check_S and check_E:
-            print()
+            coords = [(N, col), (row, W), (N, W)]
+            for coord in coords:
+                if coord not in neighboring_cells:
+                    neighboring_cells.append(coord)
 
+        if check_N and check_E:
+            coords = [(N, col), (row, E), (N, E)]
+            for coord in coords:
+                if coord not in neighboring_cells:
+                    neighboring_cells.append(coord)
+
+        if check_S and check_W:
+            coords = [(S, col), (row, W), (S, W)]
+            for coord in coords:
+                if coord not in neighboring_cells:
+                    neighboring_cells.append(coord)
+
+        if check_S and check_E:
+            coords = [(S, col), (row, E), (S, E)]
+            for coord in coords:
+                if coord not in neighboring_cells:
+                    neighboring_cells.append(coord)
 
         return neighboring_cells
 
