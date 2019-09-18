@@ -182,7 +182,7 @@ class Minesweeper():
         all_cells = []
         for row_num in range(self.size):
             for col_num in range(self.size):
-                all_cells.append(row_num, col_num)
+                all_cells.append((row_num, col_num))
 
         # Remove selected cell and neighboring cells.
         all_cells.remove((row, col))
