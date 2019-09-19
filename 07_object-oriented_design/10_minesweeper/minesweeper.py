@@ -191,6 +191,13 @@ class Minesweeper():
             all_cells.remove(neighboring_cell)
 
         # Shuffle list of remaining board spaces.
+        from random import randrange
+        num_of_cells = len(all_cells)
+        shuffled_list = []
+
+        # shuffle list here
+
+
         # Pick num_of_mines from the top of the list.
         # Plug the tuple into the place_mines function.
         self.mines_placed = True
