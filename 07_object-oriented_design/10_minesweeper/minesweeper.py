@@ -196,6 +196,10 @@ class Minesweeper():
         shuffled_list = []
 
         # shuffle list here
+        while num_of_cells > 0:
+            rand_num = randrange(num_of_cells)
+            shuffled_list.append(all_cells.pop(rand_num))
+            num_of_cells -= 1
 
 
         # Pick num_of_mines from the top of the list.
