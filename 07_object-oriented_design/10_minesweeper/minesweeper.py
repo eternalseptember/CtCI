@@ -92,7 +92,7 @@ class Minesweeper():
         return init_board
 
 
-    def print_board(self):
+    def print_board(self, reveal=False):
         # for formatting purposes, assume that size is < 100.
         for printed_row_num in range(self.size + 1):
 
@@ -120,6 +120,10 @@ class Minesweeper():
                 # Print game board.
                 col = printed_col_num - 1
                 piece = self.board[row][col]
+
+                if reveal:
+                    piece.reveal()
+
                 print('{0:>2}'.format(str(piece)), end=' ')
 
             print()
