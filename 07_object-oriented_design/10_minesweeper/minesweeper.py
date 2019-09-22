@@ -199,15 +199,17 @@ class Minesweeper():
         num_of_cells = len(all_cells)
         shuffled_list = []
 
-        # shuffle list here
         while num_of_cells > 0:
             rand_num = randrange(num_of_cells)
             shuffled_list.append(all_cells.pop(rand_num))
             num_of_cells -= 1
 
-
         # Pick num_of_mines from the top of the list.
         # Plug the tuple into the place_mines function.
+        for i in range(self.num_of_mines):
+            mine = shuffled_list.pop()
+            self.place_mines(mine)
+
         self.mines_placed = True
 
 
@@ -253,7 +255,8 @@ class Minesweeper():
         return neighboring_cells
 
 
-    def place_mines(self, row, col):
+    def place_mines(self, mine_location):
+        row, col = mine_location
         cell = self.board[row][col]
         cell.set_mine()
 
