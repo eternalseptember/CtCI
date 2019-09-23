@@ -205,10 +205,11 @@ class Minesweeper():
             num_of_cells -= 1
 
         # Pick num_of_mines from the top of the list.
-        # Plug the tuple into the place_mines function.
+        # Plug the unpacked tuple into the place_mines function.
         for i in range(self.num_of_mines):
             mine = shuffled_list.pop()
-            self.place_mines(mine)
+            row, col = mine
+            self.place_mines(row, col)
 
         self.mines_placed = True
 
@@ -255,15 +256,17 @@ class Minesweeper():
         return neighboring_cells
 
 
-    def place_mines(self, mine_location):
-        row, col = mine_location
+    def place_mines(self, row, col):
         cell = self.board[row][col]
         cell.set_mine()
 
         # Then update surrounding cell's adj_mine count.
-        
-        
+        neighboring_cells = self.list_neighboring_cells(row, col)
 
+        for neighboring_cell in neighboring_cells:
+            neigh_row, neigh_col = neighboring_cell
+            neigh_cell = self.board[neigh_row][neigh_col]
+            neigh_cell.add_adj_mine()
 
 
 
