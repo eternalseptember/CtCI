@@ -174,46 +174,6 @@ class Minesweeper():
         return True
 
 
-    def set_board(self, row, col):
-        # The first chosen cell is always blank.
-        cell = self.board[row][col]
-        cell.reveal()
-
-        # Which means neighboring cells have no mines.
-        # Remove them from the possible locations to place bombs.
-
-        # Create a list of all board spaces coordinates.
-        all_cells = []
-        for row_num in range(self.size):
-            for col_num in range(self.size):
-                all_cells.append((row_num, col_num))
-
-        # Remove selected cell and neighboring cells.
-        all_cells.remove((row, col))
-        neighboring_cells = self.list_neighboring_cells(row, col)
-        for neighboring_cell in neighboring_cells:
-            all_cells.remove(neighboring_cell)
-
-        # Shuffle list of remaining board spaces.
-        from random import randrange
-        num_of_cells = len(all_cells)
-        shuffled_list = []
-
-        while num_of_cells > 0:
-            rand_num = randrange(num_of_cells)
-            shuffled_list.append(all_cells.pop(rand_num))
-            num_of_cells -= 1
-
-        # Pick num_of_mines from the top of the list.
-        # Plug the unpacked tuple into the place_mines function.
-        for i in range(self.num_of_mines):
-            mine = shuffled_list.pop()
-            row, col = mine
-            self.place_mines(row, col)
-
-        self.mines_placed = True
-
-
     def list_neighboring_cells(self, row, col):
         # Return a list of valid neighboring cells.
         neighboring_cells = []
@@ -256,6 +216,46 @@ class Minesweeper():
         return neighboring_cells
 
 
+    def set_board(self, row, col):
+        # The first chosen cell is always blank.
+        cell = self.board[row][col]
+        cell.reveal()
+
+        # Which means neighboring cells have no mines.
+        # Remove them from the possible locations to place bombs.
+
+        # Create a list of all board spaces coordinates.
+        all_cells = []
+        for row_num in range(self.size):
+            for col_num in range(self.size):
+                all_cells.append((row_num, col_num))
+
+        # Remove selected cell and neighboring cells.
+        all_cells.remove((row, col))
+        neighboring_cells = self.list_neighboring_cells(row, col)
+        for neighboring_cell in neighboring_cells:
+            all_cells.remove(neighboring_cell)
+
+        # Shuffle list of remaining board spaces.
+        from random import randrange
+        num_of_cells = len(all_cells)
+        shuffled_list = []
+
+        while num_of_cells > 0:
+            rand_num = randrange(num_of_cells)
+            shuffled_list.append(all_cells.pop(rand_num))
+            num_of_cells -= 1
+
+        # Pick num_of_mines from the top of the list.
+        # Plug the unpacked tuple into the place_mines function.
+        for i in range(self.num_of_mines):
+            mine = shuffled_list.pop()
+            row, col = mine
+            self.place_mines(row, col)
+
+        self.mines_placed = True
+
+
     def place_mines(self, row, col):
         cell = self.board[row][col]
         cell.set_mine()
@@ -267,6 +267,17 @@ class Minesweeper():
             neigh_row, neigh_col = neighboring_cell
             neigh_cell = self.board[neigh_row][neigh_col]
             neigh_cell.add_adj_mine()
+
+
+    def reveal_neighboring_cells(self, row, col):
+        # When the player chooses a blank cells, reveal adjacent blank cells
+        # and surrounding number cells.
+        print()
+
+
+
+
+
 
 
 
