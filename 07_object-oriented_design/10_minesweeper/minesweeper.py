@@ -272,6 +272,7 @@ class Minesweeper():
     def reveal_neighboring_cells(self, row, col):
         # When the player chooses a blank cells, reveal adjacent blank cells
         # and surrounding number cells.
+        
         print()
 
 
