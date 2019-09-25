@@ -59,6 +59,9 @@ class Cell():
     def add_adj_mine(self):
         self.num_of_adj_mines += 1
 
+    def is_blank(self):
+        return (not self.is_mine) and (self.num_of_adj_mines == 0)
+
     def flag(self):
         self.flagged = True
 
@@ -272,7 +275,7 @@ class Minesweeper():
     def reveal_neighboring_cells(self, row, col):
         # When the player chooses a blank cells, reveal adjacent blank cells
         # and surrounding number cells.
-        
+        neighboring_cells = self.list_neighboring_cells(row, col)
         print()
 
 
