@@ -13,68 +13,7 @@ to have a mine.
 """
 
 
-class Cell():
-    def __init__(self):
-        self.is_mine = False
-        self.num_of_adj_mines = 0
-        self.flagged = False
-        self.revealed = False
-
-
-    def __str__(self):
-        if self.flagged:
-            return '!'
-
-        if self.revealed:
-            if self.is_mine:
-                return 'X'
-            else:
-                if self.num_of_adj_mines == 0:
-                    return str(' ')
-                else:
-                    return str(self.num_of_adj_mines)
-        else:
-            return '-'
-
-
-    def __repr__(self):
-        if self.flagged:
-            return '!'
-
-        if self.revealed:
-            if self.is_mine:
-                return 'X'
-            else:
-                if self.num_of_adj_mines == 0:
-                    return str(' ')
-                else:
-                    return str(self.num_of_adj_mines)
-        else:
-            return '-'
-
-
-    def set_mine(self):
-        self.is_mine = True
-
-    def add_adj_mine(self):
-        self.num_of_adj_mines += 1
-
-    def is_blank(self):
-        return (not self.is_mine) and (self.num_of_adj_mines == 0)
-
-    def flag(self):
-        self.flagged = True
-
-    def unflag(self):
-        self.flagged = False
-
-    def reveal(self):
-        self.revealed = True
-
-        if self.is_mine:
-            return self.is_mine
-        else:
-            return str(self.num_of_adj_mines)
+from minesweeper_cell import *
 
 
 class Minesweeper():
