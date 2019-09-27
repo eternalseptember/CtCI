@@ -89,6 +89,7 @@ class Minesweeper():
         if self.mines_placed is False:
             if self.is_valid(row, col):
                 self.set_board(row, col)
+                self.reveal_neighboring_cells(row, col)
                 self.print_board()
                 return True
             else:
@@ -214,8 +215,23 @@ class Minesweeper():
     def reveal_neighboring_cells(self, row, col):
         # When the player chooses a blank cells, reveal adjacent blank cells
         # and surrounding number cells.
-        neighboring_cells = self.list_neighboring_cells(row, col)
-        print()
+        neigh_cells_list = self.list_neighboring_cells(row, col)
+
+        for cell in neigh_cells_list:
+            neigh_row, neigh_col = cell
+            neigh_cell = self.board[neigh_row][neigh_col]
+            
+            if not neigh_cell.is_revealed():
+                has_something = neigh_cell.reveal()
+
+                if not has_something:
+                    new_cells = self.list_neighboring_cells(neigh_row, neigh_col)
+
+                    for new_cell in new_cells:
+                        if new_cell not in neigh_cells_list:
+                            neigh_cells_list.append(new_cell)
+
+
 
 
 
