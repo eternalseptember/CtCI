@@ -22,7 +22,8 @@ class Minesweeper():
         self.num_of_mines = num_of_mines
         self.board = self.init_game_board(size)
         self.mines_placed = False
-        self.cells_revealed = 0
+        self.max_cells_revealed = size * size - num_of_mines
+        self.num_cells_revealed = 0
 
 
     def init_game_board(self, size):
@@ -163,6 +164,7 @@ class Minesweeper():
         # The first chosen cell is always blank.
         cell = self.board[row][col]
         cell.reveal()
+        self.num_cells_revealed += 1
 
         # Which means neighboring cells have no mines.
         # Remove them from the possible locations to place bombs.
@@ -220,9 +222,10 @@ class Minesweeper():
         for cell in neigh_cells_list:
             neigh_row, neigh_col = cell
             neigh_cell = self.board[neigh_row][neigh_col]
-            
+
             if not neigh_cell.is_revealed():
                 has_something = neigh_cell.reveal()
+                self.num_cells_revealed += 1
 
                 if not has_something:
                     new_cells = self.list_neighboring_cells(neigh_row, neigh_col)
