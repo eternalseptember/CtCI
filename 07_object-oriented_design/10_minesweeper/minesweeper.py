@@ -82,9 +82,10 @@ class Minesweeper():
         self.choose_cell(row, col)
 
 
-    def choose_cell(self, row, col):
+    def choose_cell(self, row, col, option='R'):
         # Return True if the cell can be chosen.
         # Return False if the cell can't be chosen (flagged or was revealed).
+        # Options: 'R' for reveal (default), 'F' for flag, and 'U' for unflag.
 
         # The first chosen cell is always blank.
         if self.mines_placed is False:
