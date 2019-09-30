@@ -87,21 +87,22 @@ class Minesweeper():
         # Return False if the cell can't be chosen (flagged or was revealed).
         # Options: 'R' for reveal (default), 'F' for flag, and 'U' for unflag.
 
-        # The first chosen cell is always blank.
-        if self.mines_placed is False:
-            if self.is_valid(row, col):
+        if self.is_valid(row, col):
+
+            # The first chosen cell is always blank.
+            if self.mines_placed is False:
                 self.set_board(row, col)
                 self.reveal_neighboring_cells(row, col)
-                self.print_board()
-                return True
-            else:
-                return False
 
-        # The rest of the game.
-        if self.is_valid(row, col):
-            cell = self.board[row][col]
-            # Flag? Click?
+            # The rest of the game.
+            else:
+                cell = self.board[row][col]
+                # Flag? Click?
+
             self.print_board()
+            return True
+        else:
+            return False
 
 
     def is_valid(self, row, col):
