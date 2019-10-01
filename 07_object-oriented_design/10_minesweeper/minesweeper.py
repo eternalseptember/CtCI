@@ -88,16 +88,21 @@ class Minesweeper():
         # Options: 'R' for reveal (default), 'F' for flag, and 'U' for unflag.
 
         if self.is_valid(row, col):
+            if option == 'R':
+                # The first chosen cell is always blank.
+                if self.mines_placed is False:
+                    self.set_board(row, col)
+                    self.reveal_neighboring_cells(row, col)
 
-            # The first chosen cell is always blank.
-            if self.mines_placed is False:
-                self.set_board(row, col)
-                self.reveal_neighboring_cells(row, col)
+                # The rest of the game.
+                else:
+                    cell = self.board[row][col]
+                    # Flag? Click?
 
-            # The rest of the game.
-            else:
-                cell = self.board[row][col]
-                # Flag? Click?
+            elif option == 'F':
+                print('flag')
+            elif option == 'U':
+                print('unflag')
 
             self.print_board()
             return True
@@ -105,7 +110,9 @@ class Minesweeper():
             return False
 
 
-    def is_valid(self, row, col):
+    def is_valid(self, row, col, option='R'):
+        # Options: 'R' for reveal (default), 'F' for flag, and 'U' for unflag.
+
         # Check that cell picked is within bounds.
         if (row < 0) or (row >= self.size):
             return False
