@@ -113,7 +113,7 @@ class Minesweeper():
     def is_valid(self, row, col, option='R'):
         # Options: 'R' for reveal (default), 'F' for flag, and 'U' for unflag.
 
-        # Check that cell picked is within bounds.
+        # Check whether cell is within bounds.
         if (row < 0) or (row >= self.size):
             return False
         if (col < 0) or (col >= self.size):
@@ -121,7 +121,18 @@ class Minesweeper():
 
         # Check the cell.
         cell = self.board[row][col]
-        if cell.flagged or cell.revealed:
+
+        if cell.revealed:
+            return False
+
+        if (option == 'R') or (option == 'F'):
+            if cell.flagged:
+                return False
+        elif option == 'U':
+            if not cell.flagged:
+                return False
+        else:
+            # Did not choose a valid option.
             return False
 
         return True
