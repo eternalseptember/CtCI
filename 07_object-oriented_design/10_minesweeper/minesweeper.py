@@ -73,6 +73,16 @@ class Minesweeper():
         print()
 
 
+    def export_board(self):
+        # For testing, export the board to a text file.
+        print()
+
+
+    def import_board(self):
+        # For testing, import the board from a text file.
+        print()
+
+
     def begin_game(self):
         # The first chosen cell is always blank.
         self.print_board()
