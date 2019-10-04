@@ -75,7 +75,9 @@ class Minesweeper():
 
     def export_board(self):
         # For testing, export the board to a text file.
-        print()
+        file_name = 'minesweeper_board.txt'
+        board_file = open(file_name, 'w')
+        board_file.close()
 
 
     def import_board(self):
