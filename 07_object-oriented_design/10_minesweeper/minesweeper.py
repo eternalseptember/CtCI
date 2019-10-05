@@ -77,6 +77,12 @@ class Minesweeper():
         # For testing, export the board to a text file.
         file_name = 'minesweeper_board.txt'
         board_file = open(file_name, 'w')
+
+        for row in range(self.size):
+            for col in range(self.size):
+                cell = self.board[row][col]
+                board_file.write()  # format cell?
+
         board_file.close()
 
 
