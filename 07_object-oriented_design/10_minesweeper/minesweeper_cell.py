@@ -40,6 +40,12 @@ class Cell():
         else:
             return '-'
 
+    def export_format(self):
+        if self.is_mine:
+            return 'X'
+        else:
+            return str(self.num_of_adj_mines)
+
 
     def set_mine(self):
         self.is_mine = True
