@@ -89,7 +89,12 @@ class Minesweeper():
 
     def import_board(self):
         # For testing, import the board from a text file.
-        print()
+        file_name = 'minesweeper_board.txt'
+        board_file = open(file_name, 'r')
+
+        row = board_file.readlines()
+
+        board_file.close()
 
 
     def begin_game(self):
