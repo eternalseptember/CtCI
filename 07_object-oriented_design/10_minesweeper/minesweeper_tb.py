@@ -7,7 +7,9 @@ game = Minesweeper(10, 10)
 game.print_board()
 game.choose_cell(4, 4)
 game.export_board()
-game.print_board(True)
+print('importing board')
+game.import_board()
+# game.print_board(True)
 
 
 

@@ -92,7 +92,9 @@ class Minesweeper():
         file_name = 'minesweeper_board.txt'
         board_file = open(file_name, 'r')
 
-        row = board_file.readlines()
+        board = board_file.readlines()
+        for row in board:
+            print(row)
 
         board_file.close()
 
