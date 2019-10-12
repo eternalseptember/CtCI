@@ -95,7 +95,7 @@ class Minesweeper():
         board = board_file.readlines()
 
         for line in board:
-            row = line.rstrip()
+            row = list(line.rstrip())
             print(row)
 
         board_file.close()
