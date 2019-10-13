@@ -96,7 +96,9 @@ class Minesweeper():
 
         for line in board:
             row = list(line.rstrip())
-            print(row)
+            
+            if len(row) != self.size:
+                print('import failure. board dimensions do not match.')
 
         board_file.close()
 
