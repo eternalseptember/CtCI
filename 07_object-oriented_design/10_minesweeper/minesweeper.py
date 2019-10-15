@@ -93,17 +93,20 @@ class Minesweeper():
         board_file = open(file_name, 'r')
 
         board = board_file.readlines()
+        board_file.close()
 
         if len(board) != self.size:
             print('import failure. row dimensions do not match.')
+            return
 
+        # use line numbers
         for line in board:
             row = list(line.rstrip())  # each cell is a column within the row
 
             if len(row) != self.size:
                 print('import failure. col dimensions do not match.')
+                return
 
-        board_file.close()
 
 
     def begin_game(self):
