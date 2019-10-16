@@ -81,7 +81,7 @@ class Minesweeper():
         for row in range(self.size):
             for col in range(self.size):
                 cell = self.board[row][col]
-                board_file.write(cell.export_format())  # format cell?
+                board_file.write(cell.export_format())
             board_file.write('\n')
 
         board_file.close()
@@ -96,16 +96,19 @@ class Minesweeper():
         board_file.close()
 
         if len(board) != self.size:
-            print('import failure. row dimensions do not match.')
+            print('Import failure. Row dimensions do not match.')
             return
 
-        # use line numbers
-        for line in board:
-            row = list(line.rstrip())  # each cell is a column within the row
+
+        for line_num in range(self.size):
+            line = board[line_num]
+            row = list(line.rstrip())  # Each cell is a column within the row.
 
             if len(row) != self.size:
-                print('import failure. col dimensions do not match.')
+                print('Import failure. Col dimensions do not match.')
                 return
+
+            print(row)
 
 
 
