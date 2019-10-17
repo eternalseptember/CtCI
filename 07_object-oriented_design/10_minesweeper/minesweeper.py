@@ -100,15 +100,22 @@ class Minesweeper():
             return
 
 
-        for line_num in range(self.size):
-            line = board[line_num]
+        for row_num in range(self.size):
+            line = board[row_num]
             row = list(line.rstrip())  # Each cell is a column within the row.
 
             if len(row) != self.size:
                 print('Import failure. Col dimensions do not match.')
                 return
 
-            print(row)
+            # print(row)
+            for col_num in range(self.size):
+                cell_value = row[col_num]
+                # self.board[row_num][col_num]
+                # set up the cell
+                # if X = bomb
+                # else number of adj cells
+                # export whether cell was revealed?
 
 
 
