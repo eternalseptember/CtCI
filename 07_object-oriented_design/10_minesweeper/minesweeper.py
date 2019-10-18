@@ -113,8 +113,12 @@ class Minesweeper():
                 cell_value = row[col_num]
                 # self.board[row_num][col_num]
                 # set up the cell
-                # if X = bomb
-                # else number of adj cells
+                if cell_value == 'X':
+                    print('is bomb')
+                else:
+                    # else number of adj cells
+                    cell_value = int(cell_value)
+
                 # export whether cell was revealed?
 
 
