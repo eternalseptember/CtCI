@@ -81,7 +81,10 @@ class Minesweeper():
         for row in range(self.size):
             for col in range(self.size):
                 cell = self.board[row][col]
-                board_file.write(cell.export_format())
+                cell_value = cell.export_format()
+                cell_revealed = cell.is_revealed()
+                line = '({0}, {1}) '.format(cell_value, cell_revealed)
+                board_file.write(line)
             board_file.write('\n')
 
         board_file.close()

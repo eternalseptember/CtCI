@@ -1,10 +1,10 @@
-0000000011
-110000001X
-X200000011
-X200000000
-1100001110
-0000001X21
-011100112X
-12X1000011
-1X32212110
-112X2X2X10
+(X, False) (1, True) (0, True) (1, True) (X, False) (2, False) (X, False) (1, False) (1, False) (X, False) 
+(1, True) (1, True) (0, True) (1, True) (1, True) (2, True) (1, True) (2, True) (2, False) (2, False) 
+(0, True) (0, True) (0, True) (0, True) (0, True) (0, True) (0, True) (1, True) (X, False) (1, False) 
+(0, True) (0, True) (0, True) (0, True) (0, True) (0, True) (0, True) (1, True) (1, True) (1, True) 
+(0, True) (0, True) (0, True) (0, True) (0, True) (0, True) (0, True) (0, True) (0, True) (0, True) 
+(0, True) (0, True) (0, True) (1, True) (1, True) (1, True) (0, True) (0, True) (1, True) (1, True) 
+(0, True) (0, True) (0, True) (1, True) (X, False) (1, True) (0, True) (0, True) (1, True) (X, False) 
+(0, True) (0, True) (0, True) (1, True) (1, True) (1, True) (0, True) (0, True) (1, True) (1, False) 
+(1, True) (1, True) (1, True) (0, True) (0, True) (0, True) (0, True) (1, True) (2, True) (2, False) 
+(1, False) (X, False) (1, True) (0, True) (0, True) (0, True) (0, True) (1, True) (X, False) (X, False) 
