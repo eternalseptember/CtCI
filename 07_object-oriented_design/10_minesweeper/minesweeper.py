@@ -83,7 +83,7 @@ class Minesweeper():
                 cell = self.board[row][col]
                 cell_value = cell.export_format()
                 cell_revealed = cell.is_revealed()
-                line = '({0}, {1})'.format(cell_value, cell_revealed)
+                line = '({0},{1})'.format(cell_value, cell_revealed)
 
                 if col < (self.size - 1):
                     line += ', '
@@ -106,27 +106,24 @@ class Minesweeper():
             print('Import failure. Row dimensions do not match.')
             return
 
-
         for row_num in range(self.size):
             line = board[row_num]
-            row = list(line.rstrip())  # Each cell is a column within the row.
+
+
+            row = line.rstrip().split(', ')  # Each cell is a column within the row.
+            print(row)
 
             if len(row) != self.size:
                 print('Import failure. Col dimensions do not match.')
                 return
 
-            # print(row)
-            for col_num in range(self.size):
-                cell_value = row[col_num]
-                # self.board[row_num][col_num]
-                # set up the cell
-                if cell_value == 'X':
-                    print('is bomb')
-                else:
-                    # else number of adj cells
-                    cell_value = int(cell_value)
 
-                # export whether cell was revealed?
+            """
+            for col_num in range(self.size):
+                entry = row[col_num]
+                self.board[row_num][col_num]
+            """
+
 
 
 
