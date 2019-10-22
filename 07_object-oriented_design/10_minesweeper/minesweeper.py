@@ -95,6 +95,8 @@ class Minesweeper():
 
 
     def import_board(self):
+        import ast
+
         # For testing, import the board from a text file.
         file_name = 'minesweeper_board.txt'
         board_file = open(file_name, 'r')
@@ -108,21 +110,31 @@ class Minesweeper():
 
         for row_num in range(self.size):
             line = board[row_num]
-
-
             row = line.rstrip().split(', ')  # Each cell is a column within the row.
-            print(row)
+            # print(row)
 
             if len(row) != self.size:
                 print('Import failure. Col dimensions do not match.')
                 return
 
-
-            """
             for col_num in range(self.size):
-                entry = row[col_num]
-                self.board[row_num][col_num]
-            """
+                # Extracting the cell info.
+                entry = row[col_num][1:-1].split(',')
+                is_mine = False
+                is_revealed = ast.literal_eval(entry[1])
+
+                cell_value = entry[0]
+                if cell_value == 'X':
+                    is_mine = True
+                else:
+                    num_of_adj_mines = ast.literal_eval(cell_value)
+
+                # Updating the board.
+                cell = self.board[row_num][col_num]
+
+
+            print()  # testing
+        print()  # testing
 
 
 
