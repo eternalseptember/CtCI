@@ -2,11 +2,11 @@
 
 
 class Cell():
-    def __init__(self):
-        self.is_mine = False
-        self.num_of_adj_mines = 0
+    def __init__(self, is_mine=False, num_of_adj_mines=0, revealed=False):
+        self.is_mine = is_mine
+        self.num_of_adj_mines = num_of_adj_mines
+        self.revealed = revealed
         self.flagged = False
-        self.revealed = False
 
 
     def __str__(self):

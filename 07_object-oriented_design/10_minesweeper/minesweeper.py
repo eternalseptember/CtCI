@@ -122,6 +122,9 @@ class Minesweeper():
                 entry = row[col_num][1:-1].split(',')
                 is_mine = False
                 is_revealed = ast.literal_eval(entry[1])
+                # update self.num_cells_revealed
+
+                # might be easier to export is_mine and num_of_adj_mines for all cells
 
                 cell_value = entry[0]
                 if cell_value == 'X':
