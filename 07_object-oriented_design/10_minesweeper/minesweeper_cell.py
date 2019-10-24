@@ -41,10 +41,8 @@ class Cell():
             return '-'
 
     def export_format(self):
-        if self.is_mine:
-            return 'X'
-        else:
-            return str(self.num_of_adj_mines)
+        return '({0},{1},{2})'\
+            .format(self.is_mine, self.num_of_adj_mines, self.revealed)
 
 
     def set_mine(self):
