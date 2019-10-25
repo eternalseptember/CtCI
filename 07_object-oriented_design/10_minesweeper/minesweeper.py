@@ -109,9 +109,9 @@ class Minesweeper():
             return
 
         for row_num in range(self.size):
-            line = board[row_num]
-            row = line.rstrip().split(', ')  # Each cell is a column within the row.
-            # print(row)
+            # Each cell is a column within the row.
+            row = board[row_num].rstrip().split(', ')
+            print(row)
 
             if len(row) != self.size:
                 print('Import failure. Col dimensions do not match.')
@@ -120,23 +120,21 @@ class Minesweeper():
             for col_num in range(self.size):
                 # Extracting the cell info.
                 entry = row[col_num][1:-1].split(',')
-                is_mine = False
-                is_revealed = ast.literal_eval(entry[1])
-                # update self.num_cells_revealed
+                is_mine = ast.literal_eval(entry[0])
+                num_of_adj_mines = ast.literal_eval(entry[1])
+                is_revealed = ast.literal_eval(entry[2])
 
-                # might be easier to export is_mine and num_of_adj_mines for all cells
-
-                cell_value = entry[0]
-                if cell_value == 'X':
-                    is_mine = True
-                else:
-                    num_of_adj_mines = ast.literal_eval(cell_value)
+                # Update the count of revealed cells.
+                if is_revealed:
+                    self.num_cells_revealed += 1
 
                 # Updating the board.
-                cell = self.board[row_num][col_num]
+                imported_cell = Cell(is_mine, num_of_adj_mines, is_revealed)
+                self.board[row_num][col_num] = imported_cell
 
 
-            print()  # testing
+            # print()  # testing
+
         print()  # testing
 
 
@@ -316,6 +314,7 @@ class Minesweeper():
                 has_something = neigh_cell.reveal()
                 self.num_cells_revealed += 1
 
+                # This blank cell and all adjacent blank cells are exposed.
                 if not has_something:
                     new_cells = self.list_neighboring_cells(neigh_row, neigh_col)
 
