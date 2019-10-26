@@ -138,6 +138,9 @@ class Minesweeper():
         print()  # testing
 
 
+    def print_score(self):
+        print('Cells revealed: {0}'.format(self.num_cells_revealed))
+
 
 
     def begin_game(self):
