@@ -13,7 +13,7 @@ game.import_board()
 print('imported board')
 game.print_board()
 # game.print_board(True)
-
+game.print_score()
 
 
 """
