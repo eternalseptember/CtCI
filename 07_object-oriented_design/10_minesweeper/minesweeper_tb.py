@@ -5,14 +5,17 @@ from minesweeper import *
 
 game = Minesweeper(10, 10)
 game.print_board()
-# game.choose_cell(4, 4)
-# print('exporting board')
-# game.export_board()
+game.choose_cell(4, 4)
+print('score of initial board')
+game.print_score()
+print('exporting board')
+game.export_board()
 print('importing board')
 game.import_board()
 print('imported board')
 game.print_board()
 # game.print_board(True)
+print('score of imported board')
 game.print_score()
 
 

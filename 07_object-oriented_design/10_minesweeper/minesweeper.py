@@ -98,6 +98,7 @@ class Minesweeper():
         import ast
 
         # For testing, import the board from a text file.
+        self.num_cells_revealed = 0
         file_name = 'minesweeper_board.txt'
         board_file = open(file_name, 'r')
 
