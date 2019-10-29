@@ -24,6 +24,7 @@ class Minesweeper():
         self.mines_placed = False
         self.max_cells_revealed = size * size - num_of_mines
         self.num_cells_revealed = 0
+        self.mine_locations = []  # update place_mines function and when imported
 
 
     def init_game_board(self, size):
@@ -326,6 +327,10 @@ class Minesweeper():
                             neigh_cells_list.append(new_cell)
 
 
+    def check_endgame(self):
+        # cells revealed = max_cells - number of bombs
+        # check that unrevealed cells match the mine location
+        print()
 
 
 
