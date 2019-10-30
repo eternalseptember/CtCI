@@ -110,6 +110,8 @@ class Minesweeper():
             print('Import failure. Row dimensions do not match.')
             return
 
+        self.mine_locations = []
+
         for row_num in range(self.size):
             # Each cell is a column within the row.
             row = board[row_num].rstrip().split(', ')
@@ -133,6 +135,9 @@ class Minesweeper():
                 # Updating the board.
                 imported_cell = Cell(is_mine, num_of_adj_mines, is_revealed)
                 self.board[row_num][col_num] = imported_cell
+
+                if is_mine:
+                    self.mine_locations.append((row, col))
 
 
             # print()  # testing
@@ -295,6 +300,7 @@ class Minesweeper():
     def place_mines(self, row, col):
         cell = self.board[row][col]
         cell.set_mine()
+        self.mine_locations.append((row, col))
 
         # Then update surrounding cell's adj_mine count.
         neighboring_cells = self.list_neighboring_cells(row, col)
