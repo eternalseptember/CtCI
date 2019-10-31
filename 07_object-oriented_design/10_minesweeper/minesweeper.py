@@ -74,6 +74,10 @@ class Minesweeper():
         print()
 
 
+    def print_mine_loc(self):
+        print(self.mine_locations)
+
+
     def export_board(self):
         # For testing, export the board to a text file.
         file_name = 'minesweeper_board.txt'
