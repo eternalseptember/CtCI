@@ -10,18 +10,20 @@ game.print_board(True)
 
 
 
-"""
-print('score of initial board')
-game.print_score()
+# print('score of initial board')
+# game.print_score()
+game.print_mine_loc()
 print('exporting board')
 game.export_board()
 print('importing board')
 game.import_board()
 print('imported board')
 game.print_board()
-print('score of imported board')
-game.print_score()
-"""
+# print('score of imported board')
+# game.print_score()
+game.print_mine_loc()
+
+
 
 """
 def print_neigh_cells(game, row, col):
