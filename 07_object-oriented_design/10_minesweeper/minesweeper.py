@@ -141,7 +141,7 @@ class Minesweeper():
                 self.board[row_num][col_num] = imported_cell
 
                 if is_mine:
-                    self.mine_locations.append((row, col))
+                    self.mine_locations.append((row_num, col_num))
 
 
             # print()  # testing
