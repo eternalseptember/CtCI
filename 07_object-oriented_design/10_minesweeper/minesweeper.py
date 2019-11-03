@@ -119,7 +119,7 @@ class Minesweeper():
         for row_num in range(self.size):
             # Each cell is a column within the row.
             row = board[row_num].rstrip().split(', ')
-            print(row)
+            # print(row)
 
             if len(row) != self.size:
                 print('Import failure. Col dimensions do not match.')
@@ -143,10 +143,7 @@ class Minesweeper():
                 if is_mine:
                     self.mine_locations.append((row_num, col_num))
 
-
-            # print()  # testing
-
-        print()  # testing
+        # print()  # testing
 
 
     def print_score(self):
