@@ -335,11 +335,11 @@ class Minesweeper():
 
 
     def check_endgame(self):
+        # any checks to make?
         if self.num_cells_revealed != self.max_cells_revealed:
             return False
-
-        # check that unrevealed cells match the mine locations
-        print()
+        else:
+            return True
 
 
 
