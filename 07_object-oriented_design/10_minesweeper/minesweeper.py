@@ -178,6 +178,8 @@ class Minesweeper():
 
             elif option == 'F':
                 print('flag')
+                chosen_cell = self.board[row][col]
+                chosen_cell.flag()
             elif option == 'U':
                 print('unflag')
 
