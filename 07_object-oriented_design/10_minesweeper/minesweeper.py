@@ -173,15 +173,15 @@ class Minesweeper():
 
                 # The rest of the game.
                 else:
-                    cell = self.board[row][col]
+                    chosen_cell = self.board[row][col]
                     # Flag? Click?
 
             elif option == 'F':
-                print('flag')
                 chosen_cell = self.board[row][col]
                 chosen_cell.flag()
             elif option == 'U':
-                print('unflag')
+                chosen_cell = self.board[row][col]
+                chosen_cell.unflag()
 
             self.print_board()
             return True
