@@ -4,12 +4,20 @@ from minesweeper import *
 
 
 game = Minesweeper(10, 10)
-game.print_board()
-game.choose_cell(4, 4)
+# game.print_board()
+# game.choose_cell(4, 4)
 # game.print_board(True)
 
 
+game.import_board()
+print('imported board')
+game.print_board()
+game.choose_cell(5, 2, 'F')
 
+
+
+"""
+# For testing functions
 # print('score of initial board')
 # game.print_score()
 print('mine locations of generated board:')
@@ -24,7 +32,7 @@ game.print_board()
 # game.print_score()
 print('mine locations of imported board:')
 game.print_mine_loc()
-
+"""
 
 
 """
