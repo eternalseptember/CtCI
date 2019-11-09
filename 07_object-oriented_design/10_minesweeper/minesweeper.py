@@ -144,6 +144,7 @@ class Minesweeper():
                     self.mine_locations.append((row_num, col_num))
 
         # print()  # testing
+        self.mines_placed = True
 
 
     def print_score(self):
@@ -174,7 +175,10 @@ class Minesweeper():
                 # The rest of the game.
                 else:
                     chosen_cell = self.board[row][col]
-                    # Flag? Click?
+                    if chosen_cell.is_mine():
+                        print('mine! game over')
+                    else:
+                        print('reveal cell')
 
             elif option == 'F':
                 chosen_cell = self.board[row][col]

@@ -12,7 +12,9 @@ game = Minesweeper(10, 10)
 game.import_board()
 print('imported board')
 game.print_board()
+game.choose_cell(2, 6, 'F')
 game.choose_cell(5, 2, 'F')
+game.choose_cell(6, 4)  # mine
 
 
 
