@@ -22,6 +22,7 @@ class Minesweeper():
         self.num_of_mines = num_of_mines
         self.board = self.init_game_board(size)
         self.mines_placed = False
+        self.mine_found = False
         self.max_cells_revealed = size * size - num_of_mines
         self.num_cells_revealed = 0
         self.mine_locations = []  # update place_mines function and when imported
@@ -178,6 +179,7 @@ class Minesweeper():
                     chosen_cell = self.board[row][col]
                     if chosen_cell.is_mine:
                         print('mine! game over')
+                        self.mine_found = True
                     else:
                         print('reveal cell')
 
@@ -343,7 +345,9 @@ class Minesweeper():
 
     def check_endgame(self):
         # any checks to make?
-        if self.num_cells_revealed != self.max_cells_revealed:
+        if self.mine_found:
+            return True
+        elif self.num_cells_revealed != self.max_cells_revealed:
             return False
         else:
             return True
