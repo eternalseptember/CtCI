@@ -177,7 +177,8 @@ class Minesweeper():
                 # The rest of the game.
                 else:
                     chosen_cell = self.board[row][col]
-                    if chosen_cell.is_mine:
+                    mine_revealed = chosen_cell.is_mine
+                    if mine_revealed:
                         print('mine! game over')
                         self.mine_found = True
                     else:
