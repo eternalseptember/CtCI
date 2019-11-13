@@ -10,9 +10,6 @@ class Cell():
 
 
     def __str__(self):
-        if self.flagged:
-            return '!'
-
         if self.revealed:
             if self.is_mine:
                 return 'X'
@@ -21,14 +18,13 @@ class Cell():
                     return str(' ')
                 else:
                     return str(self.num_of_adj_mines)
+        elif self.flagged:
+            return '!'
         else:
             return '-'
 
 
     def __repr__(self):
-        if self.flagged:
-            return '!'
-
         if self.revealed:
             if self.is_mine:
                 return 'X'
@@ -37,8 +33,11 @@ class Cell():
                     return str(' ')
                 else:
                     return str(self.num_of_adj_mines)
+        elif self.flagged:
+            return '!'
         else:
             return '-'
+
 
     def export_format(self):
         return '({0},{1},{2})'\
@@ -74,4 +73,7 @@ class Cell():
         else:
             # Returns the opposite of is_blank().
             return False
+
+    def num_in_cell(self):
+        return self.num_of_adj_mines
 
