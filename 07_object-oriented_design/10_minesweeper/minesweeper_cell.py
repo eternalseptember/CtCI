@@ -50,9 +50,21 @@ class Cell():
     def add_adj_mine(self):
         self.num_of_adj_mines += 1
 
+    def num_in_cell(self):
+        return self.num_of_adj_mines
+
     def is_blank(self):
         # Returns the opposite of reveal().
         return (not self.is_mine) and (self.num_of_adj_mines == 0)
+
+    def reveal(self):
+        self.revealed = True
+
+        # Returns the opposite of is_blank().
+        if self.is_mine:
+            return True
+        else:
+            return False
 
     def is_revealed(self):
         return self.revealed
@@ -63,17 +75,4 @@ class Cell():
     def unflag(self):
         self.flagged = False
 
-    def reveal(self):
-        self.revealed = True
-
-        if self.is_mine:
-            return True
-        elif self.num_of_adj_mines > 0:
-            return str(self.num_of_adj_mines)
-        else:
-            # Returns the opposite of is_blank().
-            return False
-
-    def num_in_cell(self):
-        return self.num_of_adj_mines
 

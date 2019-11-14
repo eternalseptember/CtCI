@@ -167,7 +167,6 @@ class Minesweeper():
         # Options: 'R' for reveal (default), 'F' for flag, and 'U' for unflag.
 
         if self.is_valid(row, col):
-            mine_revealed = False
             if option == 'R':
                 # The first chosen cell is always blank.
                 if self.mines_placed is False:
@@ -177,12 +176,10 @@ class Minesweeper():
                 # The rest of the game.
                 else:
                     chosen_cell = self.board[row][col]
-                    
-                    # not quite right...
-                    mine_revealed = chosen_cell.is_mine
-                    if mine_revealed:
+                    self.mine_found = chosen_cell.reveal()
+
+                    if self.mine_found:
                         print('mine! game over')
-                        self.mine_found = True
                     else:
                         print('reveal cell')
 
@@ -193,7 +190,7 @@ class Minesweeper():
                 chosen_cell = self.board[row][col]
                 chosen_cell.unflag()
 
-            self.print_board(mine_revealed)
+            self.print_board(self.mine_found)
             return True
         else:
             return False
