@@ -24,6 +24,7 @@ class Cell():
             return '-'
 
 
+
     def __repr__(self):
         if self.revealed:
             if self.is_mine:
@@ -65,9 +66,6 @@ class Cell():
             return True
         else:
             return False
-
-    def is_revealed(self):
-        return self.revealed
 
     def flag(self):
         self.flagged = True

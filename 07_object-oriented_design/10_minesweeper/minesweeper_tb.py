@@ -4,18 +4,22 @@ from minesweeper import *
 
 
 game = Minesweeper(10, 10)
-# game.print_board()
-# game.choose_cell(4, 4)
-# game.print_board(True)
+game.print_board()
+game.choose_cell(4, 4)
+print('board revealed')
+game.print_board(True)
 
 
+
+"""
 game.import_board()
 print('imported board')
 game.print_board()
 game.choose_cell(2, 6, 'F')
 game.choose_cell(5, 2, 'F')
+game.choose_cell(5, 1)  # not a mine
 game.choose_cell(6, 4)  # mine
-
+"""
 
 
 """

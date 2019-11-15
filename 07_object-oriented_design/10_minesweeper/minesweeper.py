@@ -190,6 +190,7 @@ class Minesweeper():
                 chosen_cell = self.board[row][col]
                 chosen_cell.unflag()
 
+            print('mine found? {0}'.format(self.mine_found))
             self.print_board(self.mine_found)
             return True
         else:
@@ -330,7 +331,7 @@ class Minesweeper():
             neigh_row, neigh_col = cell
             neigh_cell = self.board[neigh_row][neigh_col]
 
-            if not neigh_cell.is_revealed():
+            if not neigh_cell.revealed:
                 has_something = neigh_cell.reveal()
                 self.num_cells_revealed += 1
 
