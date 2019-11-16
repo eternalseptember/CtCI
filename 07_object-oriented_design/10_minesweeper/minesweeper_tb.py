@@ -4,39 +4,30 @@ from minesweeper import *
 
 
 game = Minesweeper(10, 10)
-game.print_board()
-game.choose_cell(4, 4)
-print('board revealed')
-game.print_board(True)
-
-
-
-"""
+# game.choose_cell(4, 4)
 game.import_board()
-print('imported board')
+game.choose_cell(7, 5, 'F')
+game.choose_cell(3, 7, 'F')
+game.choose_cell(2, 6)  # not a mine
+game.choose_cell(8, 9)  # mine
+
+
+
+"""
+# Testing functions
 game.print_board()
-game.choose_cell(2, 6, 'F')
-game.choose_cell(5, 2, 'F')
-game.choose_cell(5, 1)  # not a mine
-game.choose_cell(6, 4)  # mine
-"""
-
-
-"""
-# For testing functions
-# print('score of initial board')
-# game.print_score()
-print('mine locations of generated board:')
+game.choose_cell(4, 4)  # first cell to set the game
+print('initial', end=' ')
+game.print_score()
+print('mine locations of generated board:\n\t', end='')
 game.print_mine_loc()
-print('exporting board')
+print('... exporting board ...')
 game.export_board()
-print('importing board')
+print('... importing board ...')
 game.import_board()
-print('imported board')
-game.print_board()
-# print('score of imported board')
-# game.print_score()
-print('mine locations of imported board:')
+print('imported', end=' ')
+game.print_score()
+print('mine locations of imported board:\n\t', end='')
 game.print_mine_loc()
 """
 

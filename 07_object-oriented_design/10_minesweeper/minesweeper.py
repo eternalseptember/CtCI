@@ -25,7 +25,7 @@ class Minesweeper():
         self.mine_found = False
         self.max_cells_revealed = size * size - num_of_mines
         self.num_cells_revealed = 0
-        self.mine_locations = []  # update place_mines function and when imported
+        self.mine_locations = []  # update place_mine function and when imported
 
 
     def init_game_board(self, size):
@@ -120,7 +120,6 @@ class Minesweeper():
         for row_num in range(self.size):
             # Each cell is a column within the row.
             row = board[row_num].rstrip().split(', ')
-            # print(row)
 
             if len(row) != self.size:
                 print('Import failure. Col dimensions do not match.')
@@ -144,12 +143,15 @@ class Minesweeper():
                 if is_mine:
                     self.mine_locations.append((row_num, col_num))
 
-        # print()  # testing
         self.mines_placed = True
+
+        # Printing the board
+        print('Imported board...')
+        self.print_board()
 
 
     def print_score(self):
-        print('Cells revealed: {0}'.format(self.num_cells_revealed))
+        print('cells revealed: {0}'.format(self.num_cells_revealed))
 
 
     def begin_game(self):
@@ -176,21 +178,30 @@ class Minesweeper():
                 # The rest of the game.
                 else:
                     chosen_cell = self.board[row][col]
-                    self.mine_found = chosen_cell.reveal()
+                    has_something = chosen_cell.reveal()
+                    self.num_cells_revealed += 1
 
-                    if self.mine_found:
-                        print('mine! game over')
+                    if has_something:
+                        self.mine_found = chosen_cell.is_mine
+                        if self.mine_found:
+                            print('Mine found at ({0}, {1})!'.format(row, col))
+                        else:
+                            print('Revealing ({0}, {1}).'.format(row, col))
+
                     else:
-                        print('reveal cell')
+                        print('reveal neighboring blank spaces')
+
+
 
             elif option == 'F':
+                print('Flagging ({0}, {1}).'.format(row, col))
                 chosen_cell = self.board[row][col]
                 chosen_cell.flag()
             elif option == 'U':
+                print('Unflagging ({0}, {1}).'.format(row, col))
                 chosen_cell = self.board[row][col]
                 chosen_cell.unflag()
 
-            print('mine found? {0}'.format(self.mine_found))
             self.print_board(self.mine_found)
             return True
         else:
@@ -209,7 +220,7 @@ class Minesweeper():
         # Check the cell.
         cell = self.board[row][col]
 
-        if cell.revealed:
+        if cell.is_revealed:
             return False
 
         if (option == 'R') or (option == 'F'):
@@ -299,16 +310,16 @@ class Minesweeper():
             num_of_cells -= 1
 
         # Pick num_of_mines from the top of the list.
-        # Plug the unpacked tuple into the place_mines function.
+        # Plug the unpacked tuple into the place_mine function.
         for i in range(self.num_of_mines):
             mine = shuffled_list.pop()
             row, col = mine
-            self.place_mines(row, col)
+            self.place_mine(row, col)
 
         self.mines_placed = True
 
 
-    def place_mines(self, row, col):
+    def place_mine(self, row, col):
         cell = self.board[row][col]
         cell.set_mine()
         self.mine_locations.append((row, col))
@@ -325,13 +336,14 @@ class Minesweeper():
     def reveal_neighboring_cells(self, row, col):
         # When the player chooses a blank cells, reveal adjacent blank cells
         # and surrounding number cells.
+        # Do not increment num_cells_revealed for above row and col.
         neigh_cells_list = self.list_neighboring_cells(row, col)
 
         for cell in neigh_cells_list:
             neigh_row, neigh_col = cell
             neigh_cell = self.board[neigh_row][neigh_col]
 
-            if not neigh_cell.revealed:
+            if not neigh_cell.is_revealed:
                 has_something = neigh_cell.reveal()
                 self.num_cells_revealed += 1
 

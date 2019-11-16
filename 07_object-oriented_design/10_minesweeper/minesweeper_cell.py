@@ -2,15 +2,15 @@
 
 
 class Cell():
-    def __init__(self, is_mine=False, num_of_adj_mines=0, revealed=False):
+    def __init__(self, is_mine=False, num_of_adj_mines=0, is_revealed=False):
         self.is_mine = is_mine
         self.num_of_adj_mines = num_of_adj_mines
-        self.revealed = revealed
+        self.is_revealed = is_revealed
         self.flagged = False
 
 
     def __str__(self):
-        if self.revealed:
+        if self.is_revealed:
             if self.is_mine:
                 return 'X'
             else:
@@ -26,7 +26,7 @@ class Cell():
 
 
     def __repr__(self):
-        if self.revealed:
+        if self.is_revealed:
             if self.is_mine:
                 return 'X'
             else:
@@ -42,7 +42,7 @@ class Cell():
 
     def export_format(self):
         return '({0},{1},{2})'\
-            .format(self.is_mine, self.num_of_adj_mines, self.revealed)
+            .format(self.is_mine, self.num_of_adj_mines, self.is_revealed)
 
 
     def set_mine(self):
@@ -56,13 +56,14 @@ class Cell():
 
     def is_blank(self):
         # Returns the opposite of reveal().
+        # Use this function to NOT mess with the is_revealed count.
         return (not self.is_mine) and (self.num_of_adj_mines == 0)
 
     def reveal(self):
-        self.revealed = True
+        self.is_revealed = True
 
         # Returns the opposite of is_blank().
-        if self.is_mine:
+        if self.is_mine or (self.num_of_adj_mines > 0):
             return True
         else:
             return False
