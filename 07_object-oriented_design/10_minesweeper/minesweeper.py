@@ -190,6 +190,7 @@ class Minesweeper():
 
                     else:
                         print('reveal neighboring blank spaces')
+                        self.reveal_neighboring_cells(row, col)
 
 
 
