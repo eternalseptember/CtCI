@@ -189,7 +189,7 @@ class Minesweeper():
                             print('Revealing ({0}, {1}).'.format(row, col))
 
                     else:
-                        print('reveal neighboring blank spaces')
+                        print('Blank space at ({0}, {1}).'.format(row, col))
                         self.reveal_neighboring_cells(row, col)
 
 
@@ -199,6 +199,7 @@ class Minesweeper():
                 chosen_cell = self.board[row][col]
                 chosen_cell.flag()
             elif option == 'U':
+                # BUG HERE
                 print('Unflagging ({0}, {1}).'.format(row, col))
                 chosen_cell = self.board[row][col]
                 chosen_cell.unflag()

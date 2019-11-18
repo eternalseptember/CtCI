@@ -5,14 +5,14 @@ from minesweeper import *
 
 game = Minesweeper(10, 10)
 game.import_board()
-"""
-game.choose_cell(7, 5, 'F')
-game.choose_cell(3, 7, 'F')
-game.choose_cell(2, 6)  # not a mine
-game.choose_cell(8, 9)  # mine
-"""
-game.choose_cell(0, 9)  # should be blanks
 # game.print_board(True)
+game.choose_cell(7, 5, 'F')  # invalid cell
+game.choose_cell(5, 6, 'F')
+game.choose_cell(5, 6, 'U')
+game.choose_cell(4, 6)  # not a mine
+game.choose_cell(3, 7)  # should be blanks
+game.choose_cell(5, 2)  # mine
+
 
 
 """
