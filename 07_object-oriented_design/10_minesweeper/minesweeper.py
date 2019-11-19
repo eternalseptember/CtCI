@@ -168,7 +168,7 @@ class Minesweeper():
         # Return False if the cell can't be chosen (flagged or was revealed).
         # Options: 'R' for reveal (default), 'F' for flag, and 'U' for unflag.
 
-        if self.is_valid(row, col):
+        if self.is_valid(row, col, option):
             if option == 'R':
                 # The first chosen cell is always blank.
                 if self.mines_placed is False:
@@ -184,7 +184,7 @@ class Minesweeper():
                     if has_something:
                         self.mine_found = chosen_cell.is_mine
                         if self.mine_found:
-                            print('Mine found at ({0}, {1})!'.format(row, col))
+                            print('Mine at ({0}, {1})!'.format(row, col))
                         else:
                             print('Revealing ({0}, {1}).'.format(row, col))
 
@@ -207,6 +207,7 @@ class Minesweeper():
             self.print_board(self.mine_found)
             return True
         else:
+            print('Invalid choice at ({0}, {1}).'.format(row, col))
             return False
 
 
