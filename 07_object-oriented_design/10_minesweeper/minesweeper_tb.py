@@ -6,18 +6,21 @@ from minesweeper import *
 game = Minesweeper(10, 10)
 game.import_board()
 # game.print_board(True)
-game.print_score()
 game.choose_cell(7, 5, 'F')  # invalid cell
 game.choose_cell(5, 6, 'F')  # flagging
 game.choose_cell(5, 6, 'U')  # un-flagging
 game.choose_cell(5, 6, 'F')  # re-flagging
 game.choose_cell(4, 6)  # not a mine
 game.choose_cell(3, 7)  # should be blanks
-game.print_score()
-game.choose_cell(5, 2)  # mine
+# game.choose_cell(5, 2)  # mine
 
-# check the counts!
-
+# continuing with the game to check endgame conditions
+game.choose_cell(6, 7)
+game.choose_cell(6, 8)
+game.choose_cell(7, 7, 'F')
+game.choose_cell(7, 8)
+game.choose_cell(6, 9, 'F')
+game.choose_cell(7, 9, 'F')
 
 
 """
