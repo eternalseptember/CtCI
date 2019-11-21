@@ -21,6 +21,12 @@ game.choose_cell(7, 7, 'F')
 game.choose_cell(7, 8)
 game.choose_cell(6, 9, 'F')
 game.choose_cell(7, 9, 'F')
+game.choose_cell(2, 5, 'F')
+game.choose_cell(2, 4)
+game.choose_cell(2, 3)
+
+
+
 
 
 """
