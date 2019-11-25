@@ -205,6 +205,9 @@ class Minesweeper():
                 chosen_cell.unflag()
 
             self.print_board(self.mine_found)
+
+            # if the game ends
+
             return True
         else:
             print('Invalid choice at ({0}, {1}).'.format(row, col))

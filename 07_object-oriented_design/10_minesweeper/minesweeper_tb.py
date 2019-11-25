@@ -35,6 +35,14 @@ game.choose_cell(1, 3)
 game.choose_cell(1, 4)
 game.choose_cell(0, 4, 'F')
 game.choose_cell(0, 3)
+game.choose_cell(2, 2)
+game.choose_cell(1, 2)
+game.choose_cell(1, 1, 'F')
+game.choose_cell(0, 2)
+game.choose_cell(0, 1)
+game.choose_cell(0, 0)
+game.choose_cell(1, 0)
+
 
 
 
