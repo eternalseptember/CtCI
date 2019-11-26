@@ -204,9 +204,13 @@ class Minesweeper():
                 chosen_cell = self.board[row][col]
                 chosen_cell.unflag()
 
-            self.print_board(self.mine_found)
 
             # if the game ends
+            game_ends = self.check_endgame()
+            print('game ends? {0}'.format(game_ends))
+            self.print_board(self.mine_found)
+
+
 
             return True
         else:
@@ -366,10 +370,10 @@ class Minesweeper():
         # any checks to make?
         if self.mine_found:
             return True
-        elif self.num_cells_revealed != self.max_cells_revealed:
-            return False
-        else:
+        elif self.num_cells_revealed == self.max_cells_revealed:
             return True
+        else:
+            return False
 
 
 
