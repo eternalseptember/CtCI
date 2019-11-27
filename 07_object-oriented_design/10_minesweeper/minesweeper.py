@@ -157,10 +157,13 @@ class Minesweeper():
     def begin_game(self):
         # The first chosen cell is always blank.
         self.print_board()
-        print('Begin Game')
-        row = int(input('Row: '))
-        col = int(input('Col: '))
-        self.choose_cell(row, col)
+
+        while not self.check_endgame():
+            print('Begin Game')
+            row = int(input('Row: '))
+            col = int(input('Col: '))
+            self.choose_cell(row, col)
+
 
 
     def choose_cell(self, row, col, option='R'):
