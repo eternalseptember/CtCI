@@ -48,7 +48,6 @@ game.choose_cell(1, 0)
 
 
 
-
 """
 # Testing functions
 game.print_board()

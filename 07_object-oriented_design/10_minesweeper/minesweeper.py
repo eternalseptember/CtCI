@@ -23,6 +23,7 @@ class Minesweeper():
         self.board = self.init_game_board(size)
         self.mines_placed = False
         self.mine_found = False
+        self.game_ends = False
         self.max_cells_revealed = size * size - num_of_mines
         self.num_cells_revealed = 0
         self.mine_locations = []  # update place_mine function and when imported
@@ -158,12 +159,16 @@ class Minesweeper():
         # The first chosen cell is always blank.
         self.print_board()
 
-        while not self.check_endgame():
+        while not self.game_ends:
             print('Begin Game')
             row = int(input('Row: '))
             col = int(input('Col: '))
             self.choose_cell(row, col)
 
+        if self.mine_found:
+            print('Sorry!')
+        else:
+            print('Congrats!')
 
 
     def choose_cell(self, row, col, option='R'):
@@ -195,30 +200,21 @@ class Minesweeper():
                         print('Blank space at ({0}, {1}).'.format(row, col))
                         self.reveal_neighboring_cells(row, col)
 
-
-
             elif option == 'F':
                 print('Flagging ({0}, {1}).'.format(row, col))
                 chosen_cell = self.board[row][col]
                 chosen_cell.flag()
             elif option == 'U':
-                # BUG HERE
                 print('Unflagging ({0}, {1}).'.format(row, col))
                 chosen_cell = self.board[row][col]
                 chosen_cell.unflag()
 
-
-            # if the game ends
-            game_ends = self.check_endgame()
-            print('game ends? {0}'.format(game_ends))
+            # Check if the game ends.
+            self.game_ends = self.check_endgame()
             self.print_board(self.mine_found)
 
-
-
-            return True
         else:
             print('Invalid choice at ({0}, {1}).'.format(row, col))
-            return False
 
 
     def is_valid(self, row, col, option='R'):
