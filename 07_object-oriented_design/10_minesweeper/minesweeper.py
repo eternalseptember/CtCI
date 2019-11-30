@@ -375,6 +375,11 @@ class Minesweeper():
             return False
 
 
+    def reset_game(self):
+        # restart the game
+        print()
+
+
 
 
 
