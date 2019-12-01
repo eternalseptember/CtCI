@@ -377,7 +377,12 @@ class Minesweeper():
 
     def reset_game(self):
         # restart the game
-        print()
+        self.board = self.init_game_board(size)
+        self.mines_placed = False
+        self.mine_found = False
+        self.game_ends = False
+        self.num_cells_revealed = 0
+        self.mine_locations = []  # update place_mine function and when imported
 
 
 
