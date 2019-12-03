@@ -377,7 +377,7 @@ class Minesweeper():
 
     def reset_game(self):
         # restart the game
-        self.board = self.init_game_board(size)
+        self.board = self.init_game_board(self.size)
         self.mines_placed = False
         self.mine_found = False
         self.game_ends = False
