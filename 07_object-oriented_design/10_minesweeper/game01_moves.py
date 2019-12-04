@@ -41,3 +41,8 @@ game.choose_cell(0, 1)
 game.choose_cell(0, 0)
 game.choose_cell(1, 0)
 
+
+# Testing reset
+game.reset_game()
+game.choose_cell(6, 6)
+
