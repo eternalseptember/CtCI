@@ -5,7 +5,8 @@ collisions.
 
 
 class Hash_Table():
-    def __init__(self):
+    def __init__(self, size):
+        self.size = size
         self.linked_list = []
 
     def get_hash_code(self):
