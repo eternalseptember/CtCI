@@ -9,6 +9,11 @@ class Hash_Table():
         self.size = size
         self.linked_list = []
 
+
+    def hash(self, item):
+        # hashing the item and figure out where it goes
+        print()
+
     def get_hash_code(self):
         # computation
         print()
