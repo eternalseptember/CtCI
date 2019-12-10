@@ -14,8 +14,12 @@ class Hash_Table():
         # hashing the item and figure out where it goes
         print()
 
-    def get_hash_code(self):
-        # computation
+    def get_hash(self):
+        # given a key, return the value
+        print()
+
+    def insert(self, key, value):
+        # get the key by hashing the value
         print()
 
 
