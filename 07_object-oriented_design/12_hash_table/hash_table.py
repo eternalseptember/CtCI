@@ -11,16 +11,21 @@ class Hash_Table():
 
 
     def hash(self, item):
-        # hashing the item and figure out where it goes
-        print()
+        # hash the key and figure out its address
+        # testing with numeric keys
+        array_loc = item % self.size
+        return array_loc
+
 
     def get_hash(self):
         # given a key, return the value
         print()
 
     def insert(self, key, value):
-        # get the key by hashing the value
-        print()
+        # get the location by hashing the key
+        array_loc = self.hash(key)
+        # how to store?
+
 
 
 class Node():
