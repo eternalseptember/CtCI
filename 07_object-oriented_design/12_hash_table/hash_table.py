@@ -11,10 +11,15 @@ class Hash_Table():
 
 
     def hash(self, item):
-        # hash the key and figure out its address
-        # testing with numeric keys
-        array_loc = item % self.size
-        return array_loc
+        # Hash the key and figure out its address.
+        # Given a name, add up the ascii value of the letters,
+        # then get the remainder.
+
+        ascii_total = 0
+        for letter in list(item):
+            ascii_total += ord(letter)
+
+        return ascii_total % self.size
 
 
     def get_hash(self):
