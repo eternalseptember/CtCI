@@ -1,3 +1,4 @@
+from hash_table import *
 
 # The first name is key, and the value is the last name.
 test_set = [
@@ -13,4 +14,9 @@ test_set = [
     ('Max', 'Grant'),
     ('Zoe', 'Rice')
     ]
+
+
+for item in test_set:
+    key, value = (item)
+    hash_table.insert(key, value)
 
