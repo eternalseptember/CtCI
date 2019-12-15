@@ -7,7 +7,7 @@ collisions.
 class Hash_Table():
     def __init__(self, size):
         self.size = size
-        self.linked_list = []
+        self.linked_list = [None for i in range(self.size)]
 
 
     def hash(self, item):
@@ -30,6 +30,8 @@ class Hash_Table():
         # get the location by hashing the key
         array_loc = self.hash(key)
         # how to store?
+        # collision!
+        self.linked_list[array_loc] = value
 
 
 
