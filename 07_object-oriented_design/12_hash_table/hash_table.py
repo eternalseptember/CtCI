@@ -10,6 +10,13 @@ class Hash_Table():
         self.linked_list = [None for i in range(self.size)]
 
 
+    def __str__(self):
+        table = ''
+
+        for item in self.linked_list:
+            table += str(item)
+
+
     def hash(self, item):
         # Hash the key and figure out its address.
         # Given a name, add up the ascii value of the letters,
