@@ -15,8 +15,12 @@ test_set = [
     ('Zoe', 'Rice')
     ]
 
+test_hash = Hash_Table(11)
 
 for item in test_set:
     key, value = (item)
-    hash_table.insert(key, value)
+    test_hash.insert(key, value)
+
+
+print(test_hash)
 

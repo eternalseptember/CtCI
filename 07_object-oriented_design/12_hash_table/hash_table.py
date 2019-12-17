@@ -16,6 +16,8 @@ class Hash_Table():
         for item in self.linked_list:
             table += str(item)
 
+        return table
+
 
     def hash(self, item):
         # Hash the key and figure out its address.
