@@ -14,7 +14,9 @@ class Hash_Table():
         table = ''
 
         for item in self.linked_list:
-            table += str(item)
+            if len(table) > 0:
+                table += ', '
+            table += '{0}'.format(item)
 
         return table
 
