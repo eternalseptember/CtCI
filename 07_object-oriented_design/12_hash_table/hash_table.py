@@ -7,7 +7,7 @@ collisions.
 class Hash_Table():
     def __init__(self, size):
         self.size = size
-        self.linked_list = [None for i in range(self.size)]
+        self.linked_list = [None] * size
 
 
     def __str__(self):
@@ -47,8 +47,9 @@ class Hash_Table():
 
 
 class Node():
-    def __init__(self, data):
+    def __init__(self, data, next_node=None):
         self.data = data
+        self.next = next_node
 
 
 
