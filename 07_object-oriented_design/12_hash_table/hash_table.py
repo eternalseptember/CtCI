@@ -52,5 +52,9 @@ class Node():
         self.next = next_node
 
 
+    def __str__(self):
+        return str(self.data)
+
+
 
 
