@@ -13,10 +13,18 @@ class Hash_Table():
     def __str__(self):
         table = ''
 
+        """
         for item in self.linked_list:
             if len(table) > 0:
                 table += ', '
             table += '{0}'.format(item)
+        """
+
+        for location in self.linked_list:
+            if len(table) > 0:
+                table += '\n'
+
+            # print through the linked list on one line
 
         return table
 
@@ -46,7 +54,12 @@ class Hash_Table():
 
         if self.linked_list[array_loc] is None:
             self.linked_list[array_loc] = new_node
-        # else add new node at the end of the chained list
+        else:
+            # else add new node at the end of the chained list
+            current_node = self.linked_list[array_loc]
+            while current_node.next is not None:
+                current_node = current_node.next
+            current_node.next = new_node
 
 
 
