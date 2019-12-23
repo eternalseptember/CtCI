@@ -42,7 +42,11 @@ class Hash_Table():
         array_loc = self.hash(key)
         # how to store?
         # collision!
-        self.linked_list[array_loc] = value
+        new_node = Node(value)
+
+        if self.linked_list[array_loc] is None:
+            self.linked_list[array_loc] = new_node
+        # else add new node at the end of the chained list
 
 
 
