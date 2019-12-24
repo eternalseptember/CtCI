@@ -20,11 +20,25 @@ class Hash_Table():
             table += '{0}'.format(item)
         """
 
-        for location in self.linked_list:
+        for index in range(self.size):
+            item = self.linked_list[index]
+
             if len(table) > 0:
                 table += '\n'
 
-            # print through the linked list on one line
+            if item is None:
+                table += 'None'
+            else:
+                # print through the linked list on one line
+                line = str(item)
+
+                current_node = item
+                while current_node.next is not None:
+                    line += ', '
+                    current_node = current_node.next
+                    line += str(current_node)
+
+                table += line
 
         return table
 

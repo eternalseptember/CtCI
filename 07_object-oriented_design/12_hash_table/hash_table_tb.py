@@ -26,9 +26,12 @@ test_set_2 = [
 
 test_hash = Hash_Table(11)
 
-for item in test_set_1:
+
+# for item in test_set_1:
+for item in test_set_2:
     key, value = (item)
     test_hash.insert(key, value)
+
 
 
 print(test_hash)
