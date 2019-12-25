@@ -55,10 +55,6 @@ class Hash_Table():
         return ascii_total % self.size
 
 
-    def get_hash(self):
-        # given a key, return the value
-        print()
-
     def insert(self, key, value):
         # get the location by hashing the key
         array_loc = self.hash(key)
@@ -75,6 +71,15 @@ class Hash_Table():
                 current_node = current_node.next
             current_node.next = new_node
 
+
+    def get(self):
+        # given a key, return the value
+        print()
+
+
+    def delete(self, key):
+        # given key, delete value?
+        print()
 
 
 class Node():
