@@ -13,14 +13,8 @@ class Hash_Table():
     def __str__(self):
         table = ''
 
-        """
-        for item in self.linked_list:
-            if len(table) > 0:
-                table += ', '
-            table += '{0}'.format(item)
-        """
-
         for index in range(self.size):
+            # Each item in the array gets its own line.
             item = self.linked_list[index]
 
             if len(table) > 0:
@@ -29,7 +23,7 @@ class Hash_Table():
             if item is None:
                 table += 'None'
             else:
-                # print through the linked list on one line
+                # Print through the linked list on one line.
                 line = str(item)
 
                 current_node = item
@@ -59,12 +53,14 @@ class Hash_Table():
         array_loc = self.hash(key)
         # how to store?
         # collision!
-        new_node = Node(value)
+        new_node = Node(key, value)
+
 
         if self.linked_list[array_loc] is None:
+            # If this is the first item at this array location.
             self.linked_list[array_loc] = new_node
         else:
-            # else add new node at the end of the chained list
+            # Else, add new node at the end of the chained list.
             current_node = self.linked_list[array_loc]
             while current_node.next is not None:
                 current_node = current_node.next
@@ -91,13 +87,14 @@ class Hash_Table():
 
 
 class Node():
-    def __init__(self, data, next_node=None):
-        self.data = data
+    def __init__(self, key, value, next_node=None):
+        self.key = key
+        self.value = value
         self.next = next_node
 
 
     def __str__(self):
-        return str(self.data)
+        return '({0}: {1})'.format(self.key, self.value)
 
 
 
