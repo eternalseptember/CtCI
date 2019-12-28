@@ -49,22 +49,33 @@ class Hash_Table():
 
 
     def insert(self, key, value):
-        # get the location by hashing the key
+        # Get the location by hashing the key.
         array_loc = self.hash(key)
-        # how to store?
-        # collision!
         new_node = Node(key, value)
 
-
+        # Handle collisions with chaining.
         if self.linked_list[array_loc] is None:
             # If this is the first item at this array location.
             self.linked_list[array_loc] = new_node
         else:
-            # Else, add new node at the end of the chained list.
+            # Check to see if the node needs to be updated.
+            # Otherwise, add new node at the end of the chained list.
             current_node = self.linked_list[array_loc]
-            while current_node.next is not None:
-                current_node = current_node.next
-            current_node.next = new_node
+
+            if current_node.key == key:
+                current_node.value = value
+            else:
+                add_node = True
+                while current_node.next is not None:
+                    current_node = current_node.next
+
+                    if current_node.key == key:
+                        current_node.value = value
+                        add_node = False
+                        break
+
+                if add_node:
+                    current_node.next = new_node
 
 
     def get(self):
