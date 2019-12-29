@@ -80,6 +80,8 @@ class Hash_Table():
 
     def get(self):
         # given a key, return the value
+        # hash the key
+        # check the location to see whether there's an entry for the key
         print()
 
 

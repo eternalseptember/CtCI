@@ -24,6 +24,11 @@ test_set_2 = [
     ('Len', 'Bell')  # conflicts with Tim
     ]
 
+test_set_3 = [
+    ('Tim', 'Sand')  # update Tim (head of the chain)
+    ]
+
+
 test_hash = Hash_Table(11)
 
 
@@ -32,7 +37,16 @@ for item in test_set_2:
     key, value = (item)
     test_hash.insert(key, value)
 
-
-
+print('Original test hash')
 print(test_hash)
+print()
+
+for item in test_set_3:
+    key, value = (item)
+    test_hash.insert(key, value)
+
+print('Updating values')
+print(test_hash)
+
+
 
