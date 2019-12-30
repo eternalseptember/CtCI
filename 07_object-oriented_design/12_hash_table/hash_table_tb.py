@@ -25,7 +25,9 @@ test_set_2 = [
     ]
 
 test_set_3 = [
-    ('Tim', 'Sand')  # update Tim (head of the chain)
+    ('Tim', 'Sand'),  # update Tim (head of the chain)
+    ('Bea', 'Snow'),  # update Bea (no chain)
+    ('Len', 'Fly')  # update Len (within the chain)
     ]
 
 
