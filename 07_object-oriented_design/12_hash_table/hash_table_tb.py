@@ -21,13 +21,15 @@ test_set_2 = [
     ('Bea', 'Stone'),
     ('Zoe', 'Rice'),
     ('Sue', 'Steele'),  # conflicts with Mia
-    ('Len', 'Bell')  # conflicts with Tim
+    ('Len', 'Bell'),  # conflicts with Tim
+    ('Mit', 'Watt')  # conflicts with Tim again
     ]
 
 test_set_3 = [
     ('Tim', 'Sand'),  # update Tim (head of the chain)
     ('Bea', 'Snow'),  # update Bea (no chain)
-    ('Len', 'Fly')  # update Len (within the chain)
+    ('Len', 'Fly'),  # update Len (within the chain)
+    ('Mit', 'Pym')  # update Mit (end of chain)
     ]
 
 

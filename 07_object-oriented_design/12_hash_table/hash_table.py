@@ -78,8 +78,9 @@ class Hash_Table():
                     current_node.next = new_node
 
 
-    def get(self):
+    def get(self, key):
         # given a key, return the value
+        array_loc = self.hash(key)
         # hash the key
         # check the location to see whether there's an entry for the key
         print()
