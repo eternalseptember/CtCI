@@ -79,17 +79,22 @@ class Hash_Table():
 
 
     def get(self, key):
-        # given a key, return the value
-        # hash the key
+        # given a key, check the location for an entry for that key
         array_loc = self.hash(key)
-        # check the location to see whether there's an entry for the key
         stored_item = self.linked_list[array_loc]
 
         if stored_item is None:
             return None
         else:
             found = False
-            # more stuff here
+            
+            # loop through the chain
+            
+
+            if found:
+                return array_loc
+            else:
+                return None
 
 
     def delete(self, key):
