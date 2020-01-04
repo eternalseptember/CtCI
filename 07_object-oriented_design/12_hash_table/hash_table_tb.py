@@ -53,4 +53,15 @@ print('Updating values')
 print(test_hash)
 
 
+print('Getting values')
+
+test_get = [
+    'Ada',  # not found
+    'Zoe',  # single node at the root
+    'Mia',  # root node
+    'Len',  # middle of the chain
+    'Mit'  # end of the chain
+    ]
+
+
 
