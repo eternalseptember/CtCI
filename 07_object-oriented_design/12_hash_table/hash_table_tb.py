@@ -51,9 +51,8 @@ for item in test_set_3:
 
 print('Updating values')
 print(test_hash)
+print()
 
-
-print('Getting values')
 
 test_get = [
     'Ada',  # not found
@@ -62,6 +61,14 @@ test_get = [
     'Len',  # middle of the chain
     'Mit'  # end of the chain
     ]
+
+
+print('Getting values')
+for item in test_get:
+    value = test_hash.get(item)
+    print(value)
+
+
 
 
 
