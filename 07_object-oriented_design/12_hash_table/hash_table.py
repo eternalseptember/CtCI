@@ -99,17 +99,15 @@ class Hash_Table():
 
 
     def delete(self, key):
-        # given key, delete value?
-
-        # get the hash
         array_loc = self.hash(key)
-        item = self.linked_list[array_loc]
+        current_node = self.linked_list[array_loc]
 
-        # if the hash location already has nothing in it
+        if current_node is None:
+            return None
+        else:
+            # if root node is the only node, reset to none
+            print()
 
-        # if there's only one item left in the location, reset to None
-        
-        print()
 
 
 class Node():
