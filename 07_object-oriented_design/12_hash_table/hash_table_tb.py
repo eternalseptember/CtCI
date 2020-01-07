@@ -22,7 +22,8 @@ test_set_2 = [
     ('Zoe', 'Rice'),
     ('Sue', 'Steele'),  # conflicts with Mia
     ('Len', 'Bell'),  # conflicts with Tim
-    ('Mit', 'Watt')  # conflicts with Tim again
+    ('Mit', 'Watt'),  # conflicts with Tim
+    ('Nel', 'Ice')  # conflicts with Tim
     ]
 
 test_set_3 = [

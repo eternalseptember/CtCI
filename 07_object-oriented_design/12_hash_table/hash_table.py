@@ -106,7 +106,11 @@ class Hash_Table():
             return None
         else:
             # if root node is the only node, reset to none
-            print()
+            if current_node.key == key:
+                current_node = current_node.next
+                return
+            # break from the search once the item is found
+
 
 
 
