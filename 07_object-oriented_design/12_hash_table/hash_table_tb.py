@@ -26,16 +26,7 @@ test_set_2 = [
     ('Nel', 'Ice')  # conflicts with Tim
     ]
 
-test_set_3 = [
-    ('Tim', 'Sand'),  # update Tim (head of the chain)
-    ('Bea', 'Snow'),  # update Bea (no chain)
-    ('Len', 'Fly'),  # update Len (within the chain)
-    ('Mit', 'Pym')  # update Mit (end of chain)
-    ]
-
-
 test_hash = Hash_Table(11)
-
 
 # for item in test_set_1:
 for item in test_set_2:
@@ -46,6 +37,15 @@ print('Original test hash')
 print(test_hash)
 print()
 
+# =============================================================================
+
+test_set_3 = [
+    ('Tim', 'Sand'),  # update Tim (head of the chain)
+    ('Bea', 'Snow'),  # update Bea (no chain)
+    ('Len', 'Fly'),  # update Len (within the chain)
+    ('Mit', 'Pym')  # update Mit (end of chain)
+    ]
+
 for item in test_set_3:
     key, value = (item)
     test_hash.insert(key, value)
@@ -54,6 +54,7 @@ print('Updating values')
 print(test_hash)
 print()
 
+# =============================================================================
 
 test_get = [
     'Ada',  # not found
@@ -63,13 +64,22 @@ test_get = [
     'Mit'  # end of the chain
     ]
 
-
 print('Getting values')
 for item in test_get:
     value = test_hash.get(item)
     print(value)
+print()
 
+# =============================================================================
 
+test_delete = [
+]
+
+print('Deleting keys')
+for item in test_delete:
+    deleted = test_hash.delete(item)
+    print(deleted)
+print()
 
 
 
