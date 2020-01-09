@@ -23,7 +23,10 @@ test_set_2 = [
     ('Sue', 'Steele'),  # conflicts with Mia
     ('Len', 'Bell'),  # conflicts with Tim
     ('Mit', 'Watt'),  # conflicts with Tim
-    ('Nel', 'Ice')  # conflicts with Tim
+    ('Nel', 'Ice'),  # conflicts with Tim
+    ('Jan', 'Graves'),
+    ('Liz', 'Barnes'),  # conflicts with Jan
+    ('Rex', 'Boon')  # conflicts with Jan
     ]
 
 test_hash = Hash_Table(11)
@@ -73,6 +76,8 @@ print()
 # =============================================================================
 
 test_delete = [
+    'Bea',  # only node
+    'Nel'  # last node
 ]
 
 print('Deleting keys')
