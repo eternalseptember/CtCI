@@ -77,7 +77,10 @@ print()
 
 test_delete = [
     'Bea',  # only node
-    'Nel'  # last node
+    'Mia',  # first node
+    'Nel',  # last node
+    'Len',  # middle node
+    'Geo'  # no-entry
 ]
 
 print('Deleting keys')
