@@ -99,18 +99,20 @@ class Hash_Table():
 
 
     def delete(self, key):
+        # Returns True if delete was successful.
         array_loc = self.hash(key)
         current_node = self.linked_list[array_loc]
 
         if current_node is None:
-            return None
+            return False
         else:
             # if root node is the only node, reset to none
             if current_node.key == key:
                 current_node = current_node.next
-                return
+                return True
             # break from the search once the item is found
 
+            return "Test"
 
 
 

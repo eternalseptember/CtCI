@@ -89,5 +89,9 @@ for item in test_delete:
     print(deleted)
 print()
 
+print('Hash after delete')
+print(test_hash)
+print()
+
 
 
