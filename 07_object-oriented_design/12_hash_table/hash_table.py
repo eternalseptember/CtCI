@@ -108,7 +108,7 @@ class Hash_Table():
         else:
             # if root node is the only node, reset to none
             if current_node.key == key:
-                current_node = current_node.next
+                self.linked_list[array_loc] = current_node.next
                 return True
             # break from the search once the item is found
 
