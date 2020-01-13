@@ -104,15 +104,23 @@ class Hash_Table():
         current_node = self.linked_list[array_loc]
 
         if current_node is None:
+            # This entry does not exist.
             return False
         else:
-            # if root node is the only node, reset to none
+            # still return False if entry is not within linked list
             if current_node.key == key:
                 self.linked_list[array_loc] = current_node.next
                 return True
-            # break from the search once the item is found
+            else:
+                while current_node is not None:
+                    prev_node = current_node
+                    current_node = current_node.next
+                    
+                    if current_node.key == key:
+                        prev_node.next = current_node.next
+                        return True
 
-            return "Test"
+                return "Test"
 
 
 

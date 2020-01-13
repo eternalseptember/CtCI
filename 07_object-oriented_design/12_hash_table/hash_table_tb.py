@@ -36,7 +36,7 @@ for item in test_set_2:
     key, value = (item)
     test_hash.insert(key, value)
 
-print('Original test hash')
+print('\t\tOriginal test hash')
 print(test_hash)
 print()
 
@@ -53,7 +53,7 @@ for item in test_set_3:
     key, value = (item)
     test_hash.insert(key, value)
 
-print('Updating values')
+print('\t\tUpdating values')
 print(test_hash)
 print()
 
@@ -67,7 +67,7 @@ test_get = [
     'Mit'  # end of the chain
     ]
 
-print('Getting values')
+print('\t\tGetting values')
 for item in test_get:
     value = test_hash.get(item)
     print(value)
@@ -83,15 +83,13 @@ test_delete = [
     'Geo'  # no-entry
 ]
 
-print('Deleting keys')
+print('\t\tDeleting keys')
 for item in test_delete:
     deleted = test_hash.delete(item)
-    print(deleted)
-print()
-
-print('Hash after delete')
-print(test_hash)
-print()
+    print('Deleting {0}: {1} ...'.format(item, deleted))
+    print('\tHash after delete')
+    print(test_hash)
+    print()
 
 
 
