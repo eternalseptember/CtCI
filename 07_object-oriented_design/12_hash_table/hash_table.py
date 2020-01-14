@@ -115,12 +115,12 @@ class Hash_Table():
                 while current_node is not None:
                     prev_node = current_node
                     current_node = current_node.next
-                    
+
                     if current_node.key == key:
                         prev_node.next = current_node.next
                         return True
 
-                return "Test"
+                return False
 
 
 
