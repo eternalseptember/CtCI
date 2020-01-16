@@ -15,9 +15,10 @@ class entry():
 
 
 class file():
-    def __init__(self, name, directory):
+    def __init__(self, name, directory, size):
         self.name = name
         self.directory = directory
+        self.size = size
 
 
 class directory():
