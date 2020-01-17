@@ -13,6 +13,9 @@ class entry():
         self.date_modified = date_modified
         self.parent = parent
 
+    def get_full_path(self):
+        return
+
 
 class file():
     def __init__(self, name, directory, size):
