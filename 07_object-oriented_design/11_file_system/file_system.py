@@ -6,7 +6,7 @@ in-memory file system. Illustrate with an example in code where possible.
 # What is the relationship between files and directories?
 
 
-class entry():
+class Entry():
     def __init__(self, name, date_created, date_modified, parent):
         self.name = name
         self.date_created = date_created
@@ -16,15 +16,18 @@ class entry():
     def get_full_path(self):
         return
 
+    def rename(self, new_name):
+        self.name = new_name
 
-class file():
+
+class File(Entry):
     def __init__(self, name, directory, size):
         self.name = name
         self.directory = directory
         self.size = size
 
 
-class directory():
+class Directory(Entry):
     def __init__(self):
         self.contents = []
 
