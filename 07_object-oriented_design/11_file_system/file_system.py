@@ -26,6 +26,10 @@ class File(Entry):
         self.directory = directory
         self.size = size
 
+    def __str__(self):
+        # print full path
+        return str(self.name)
+
 
 class Directory(Entry):
     def __init__(self):
