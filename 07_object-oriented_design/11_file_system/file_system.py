@@ -7,11 +7,12 @@ in-memory file system. Illustrate with an example in code where possible.
 
 
 class Entry():
-    def __init__(self, name, date_created, date_modified, parent):
+    def __init__(self, name, parent, date_created, date_modified):
         self.name = name
+        self.parent = parent
         self.date_created = date_created
         self.date_modified = date_modified
-        self.parent = parent
+
 
     def get_full_path(self):
         return
@@ -21,10 +22,10 @@ class Entry():
 
 
 class File(Entry):
-    def __init__(self, name, directory, size):
-        self.name = name
-        self.directory = directory
+    def __init__(self, name, directory, date_created, date_modified, size):
+        Entry.__init__(self, name, directory, date_created, date_modified)
         self.size = size
+
 
     def __str__(self):
         # print full path
