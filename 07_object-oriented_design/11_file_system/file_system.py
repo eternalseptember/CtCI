@@ -15,7 +15,9 @@ class Entry():
 
 
     def get_full_path(self):
-        return
+        if self.parent is None:
+            return self.name
+        # else get the parent's name and then add this name
 
     def rename(self, new_name):
         self.name = new_name
@@ -23,6 +25,7 @@ class Entry():
 
 class File(Entry):
     def __init__(self, name, directory, date_created, date_modified, size):
+        # have to spell out None if there's no parent directory
         Entry.__init__(self, name, directory, date_created, date_modified)
         self.size = size
 
