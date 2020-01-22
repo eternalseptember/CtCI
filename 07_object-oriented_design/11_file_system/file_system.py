@@ -9,7 +9,7 @@ in-memory file system. Illustrate with an example in code where possible.
 class Entry():
     def __init__(self, name, parent, date_created, date_modified):
         self.name = name
-        self.parent = parent
+        self.parent = parent  # directory object
         self.date_created = date_created
         self.date_modified = date_modified
 
@@ -17,7 +17,10 @@ class Entry():
     def get_full_path(self):
         if self.parent is None:
             return self.name
-        # else get the parent's name and then add this name
+        else:
+            # self.parent.get_full_path()
+            return '{0}/{1}'.format(self.parent, self.name)
+
 
     def rename(self, new_name):
         self.name = new_name
