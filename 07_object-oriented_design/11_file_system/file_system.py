@@ -7,11 +7,17 @@ in-memory file system. Illustrate with an example in code where possible.
 
 
 class Entry():
+    """
     def __init__(self, name, parent, date_created, date_modified):
         self.name = name
         self.parent = parent  # directory object
         self.date_created = date_created
         self.date_modified = date_modified
+    """
+
+    def __init__(self, name, parent):
+        self.name = name
+        self.parent = parent  # directory object
 
 
     def get_full_path(self):
@@ -27,9 +33,15 @@ class Entry():
 
 
 class File(Entry):
+    """
     def __init__(self, name, directory, date_created, date_modified, size):
         # have to spell out None if there's no parent directory
         Entry.__init__(self, name, directory, date_created, date_modified)
+        self.size = size
+    """
+
+    def __init__(self, name, directory, size):
+        Entry.__init__(self, name, directory)
         self.size = size
 
 
