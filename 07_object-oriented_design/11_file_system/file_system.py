@@ -55,4 +55,10 @@ class Directory(Entry):
         Entry.__init__(self, name, parent_dir)
         self.contents = []
 
+    def add_entry(self, item):
+        return None
+
+    def delete_entry(self, item):
+        return None
+
 
