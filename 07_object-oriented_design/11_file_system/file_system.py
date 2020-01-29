@@ -61,6 +61,10 @@ class Directory(Entry):
     def delete_entry(self, item):
         return None
 
+    def list_directory(self):
+        # like 'ls'
+        return None
+
     def __str__(self):
         # print full path of the directory
         return str(self.name)
