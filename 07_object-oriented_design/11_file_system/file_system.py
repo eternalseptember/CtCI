@@ -62,8 +62,13 @@ class Directory(Entry):
         return None
 
     def list_directory(self):
-        # like 'ls'
-        return None
+        content_str = ''
+
+        for content in self.contents:
+            content_str += str(contents)
+            content_str += '\n'
+
+        return content_str
 
     def __str__(self):
         # print full path of the directory
