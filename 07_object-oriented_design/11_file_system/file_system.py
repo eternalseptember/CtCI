@@ -54,11 +54,14 @@ class Directory(Entry):
     def __init__(self, name, parent_dir):
         Entry.__init__(self, name, parent_dir)
         self.contents = []
+        self.num_of_items = 0
 
     def add_entry(self, item):
+        self.num_of_items += 1
         return None
 
     def delete_entry(self, item):
+        self.num_of_items -= 1
         return None
 
     def list_directory(self):
