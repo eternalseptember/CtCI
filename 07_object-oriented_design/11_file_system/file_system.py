@@ -58,17 +58,18 @@ class Directory(Entry):
 
     def add_entry(self, item):
         self.num_of_items += 1
-        return None
+        self.contents.append(item)
 
     def delete_entry(self, item):
         self.num_of_items -= 1
+        # try catch
         return None
 
     def list_directory(self):
         content_str = ''
 
         for content in self.contents:
-            content_str += str(contents)
+            content_str += str(content)
             content_str += '\n'
 
         return content_str
