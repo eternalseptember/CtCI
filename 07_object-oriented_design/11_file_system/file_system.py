@@ -52,15 +52,18 @@ class File(Entry):
 
 class Directory(Entry):
     def __init__(self, name, parent_dir):
+        # because a folder and file can have the same name
+        # file_type is an int: 1 for file, 2 for folder
         Entry.__init__(self, name, parent_dir)
-        self.contents = []
+        self.contents = []  # (file_name, file_type)
         self.num_of_items = 0
 
-    def add_entry(self, item):
+    def add_entry(self, item, file_type):
         self.num_of_items += 1
-        self.contents.append(item)
+        entry = (item, file_type)
+        self.contents.append(entry)
 
-    def delete_entry(self, item):
+    def delete_entry(self, item, file_type):
         self.num_of_items -= 1
         # try catch
         return None
