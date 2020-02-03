@@ -58,15 +58,21 @@ class Directory(Entry):
         self.contents = []  # (file_name, file_type)
         self.num_of_items = 0
 
+
     def add_entry(self, item, file_type):
         self.num_of_items += 1
         entry = (item, file_type)
         self.contents.append(entry)
 
+
     def delete_entry(self, item, file_type):
         self.num_of_items -= 1
-        # try catch
-        return None
+        try:
+            entry = (item, file_type)
+            self.contents.remove(entry)
+        except:
+            print('File or folder does not exist.')
+
 
     def list_directory(self):
         content_str = ''
