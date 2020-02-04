@@ -64,6 +64,10 @@ class Directory(Entry):
         entry = (item, file_type)
         self.contents.append(entry)
 
+    def rename_entry(self, old_name, new_name, file_type):
+        old_entry = (old_name, file_type)
+        new_entry = (new_name, file_type)
+
 
     def delete_entry(self, item, file_type):
         self.num_of_items -= 1
