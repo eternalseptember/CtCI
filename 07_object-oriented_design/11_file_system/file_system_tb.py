@@ -12,4 +12,9 @@ file_1 = File("file_1", None, 32)
 print(file_1)
 print()
 
+print('Directory functions.')
+dir_1 = Directory("dir_1", None)
+print(dir_1)
+print()
+
 
