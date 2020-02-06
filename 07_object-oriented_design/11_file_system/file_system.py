@@ -52,21 +52,22 @@ class File(Entry):
 
 class Directory(Entry):
     def __init__(self, name, parent_dir):
-        # because a folder and file can have the same name
-        # file_type is an int: 1 for file, 2 for folder
+        # CHECK TYPING type()
         Entry.__init__(self, name, parent_dir)
         self.contents = []  # (file_name, file_type)
         self.num_of_items = 0
 
 
-    def add_entry(self, item, file_type):
+    def add_entry(self, item):
+        # because a folder and file can have the same name
+        # file_type is an int: 1 for file, 2 for folder
         self.num_of_items += 1
-        entry = (item, file_type)
-        self.contents.append(entry)
+        self.contents.append(item)
 
-    def rename_entry(self, old_name, new_name, file_type):
-        old_entry = (old_name, file_type)
-        new_entry = (new_name, file_type)
+        # what if multiple files with same name?
+        if item in self.contents:
+            print('file with that name exists')
+            return False
 
 
     def delete_entry(self, item, file_type):
