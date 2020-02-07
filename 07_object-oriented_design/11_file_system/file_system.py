@@ -32,6 +32,10 @@ class Entry():
         self.name = new_name
 
 
+    def __str__(self):
+        return str(self.name)
+
+
 class File(Entry):
     """
     def __init__(self, name, parent_dir, date_created, date_modified, size):
