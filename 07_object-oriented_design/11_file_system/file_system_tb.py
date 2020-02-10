@@ -14,6 +14,7 @@ def print_info(item, new_name=None):
 print('Entry functions.')
 entry_1 = Entry("entry_1", None)
 print_info(entry_1)
+print_into(entry_1, "entry_1_new_name")
 
 print('File functions.')
 file_1 = File("file_1", None, 32)
