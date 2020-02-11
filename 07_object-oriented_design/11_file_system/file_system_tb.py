@@ -14,14 +14,16 @@ def print_info(item, new_name=None):
 print('Entry functions.')
 entry_1 = Entry("entry_1", None)
 print_info(entry_1)
-print_into(entry_1, "entry_1_new_name")
+print_info(entry_1, "test_entry_1")
 
 print('File functions.')
 file_1 = File("file_1", None, 32)
 print_info(file_1)
+print_info(file_1, "test_file_1")
 
 print('Directory functions.')
 dir_1 = Directory("dir_1", None)
 print_info(dir_1)
+print_info(dir_1, "test_dir_1")
 
 
