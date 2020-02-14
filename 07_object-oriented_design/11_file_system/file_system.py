@@ -60,7 +60,9 @@ class Directory(Entry):
         Entry.__init__(self, name, parent_dir)
         self.contents = []  # (file_name, file_type)
         self.num_of_items = 0
-        parent_dir.add_entry(self)
+
+        if parent_dir is not None:
+            parent_dir.add_entry(self)
 
 
     def add_entry(self, item):
