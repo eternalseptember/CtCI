@@ -86,14 +86,15 @@ class Directory(Entry):
             print('File or folder does not exist.')
 
 
-    def list_directory(self):
+    def get_contents(self):
         content_str = ''
 
         for content in self.contents:
             content_str += str(content)
             content_str += '\n'
 
-        return content_str
+        print(content_str)
+
 
     def __str__(self):
         # print full path of the directory

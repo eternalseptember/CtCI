@@ -25,6 +25,9 @@ print('Directory functions.')
 dir_1 = Directory("dir_1", None)
 print_info(dir_1)
 # print_info(dir_1, "test_dir_1")
+print('List the contents of dir_1.')
+dir_1.get_contents()
+
 
 print('dir_2 is nested inside dir_1.')
 dir_2 = Directory("dir_2", dir_1)
