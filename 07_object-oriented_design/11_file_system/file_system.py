@@ -69,12 +69,14 @@ class Directory(Entry):
         # because a folder and file can have the same name
         # file_type is an int: 1 for file, 2 for folder
         self.num_of_items += 1
-        self.contents.append(item)
 
         # what if multiple files with same name?
         if item in self.contents:
-            print('file with that name exists')
+            print('File with that name exists.')
             return False
+        else:
+            self.contents.append(item)
+            return True
 
 
     def delete_entry(self, item, file_type):
