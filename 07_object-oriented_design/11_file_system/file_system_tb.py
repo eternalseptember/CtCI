@@ -33,3 +33,7 @@ dir_2 = Directory("dir_2", dir_1)
 print('Contents of dir_1:')
 dir_1.get_contents()
 
+
+print('Print the path of dir_2.')
+print(dir_2)
+
