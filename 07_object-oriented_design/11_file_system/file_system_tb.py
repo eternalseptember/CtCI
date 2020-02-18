@@ -36,4 +36,6 @@ dir_1.get_contents()
 
 print('Print the path of dir_2.')
 print(dir_2)
+print('get full path function')
+print(dir_2.get_full_path())
 
