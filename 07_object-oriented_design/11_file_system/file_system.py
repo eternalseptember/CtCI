@@ -56,9 +56,8 @@ class File(Entry):
 
 class Directory(Entry):
     def __init__(self, name, parent_dir):
-        # CHECK TYPING type()
         Entry.__init__(self, name, parent_dir)
-        self.contents = []  # (file_name, file_type)
+        self.contents = []
         self.num_of_items = 0
 
         if parent_dir is not None:
@@ -66,24 +65,20 @@ class Directory(Entry):
 
 
     def add_entry(self, item):
-        # because a folder and file can have the same name
-        # file_type is an int: 1 for file, 2 for folder
-        self.num_of_items += 1
-
-        # what if multiple files with same name?
         if item in self.contents:
             print('File with that name exists.')
             return False
         else:
             self.contents.append(item)
+            self.num_of_items += 1
             return True
 
 
     def delete_entry(self, item, file_type):
-        self.num_of_items -= 1
         try:
             entry = (item, file_type)
             self.contents.remove(entry)
+            self.num_of_items -= 1
         except:
             print('File or folder does not exist.')
 
