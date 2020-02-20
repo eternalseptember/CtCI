@@ -36,12 +36,20 @@ dir_1.get_contents()
 
 print('\tPrint the path of dir_2.')
 print(dir_2)  # should make this print the full path
-print('\tget_full_path function')
+print('\tget full path of dir_2')
 print(dir_2.get_full_path())
 print()
 
 
-
 print('\tThree folders deep.')
 dir_3 = Directory("dir_3", dir_2)
+print('\tget full path of dir_3')
+print(dir_3.get_full_path())
+
+
+
+
+
+
+
 
