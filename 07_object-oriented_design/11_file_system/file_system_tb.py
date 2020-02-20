@@ -7,10 +7,11 @@ def print_info(item, new_name=None):
 
     """
     if new_name is not None:
-        item.rename(new_name)
-        print(item)
-        print()	
+    item.rename(new_name)
+    print(item)
+    print()	
     """
+
 
 print('**************************************')
 print('\t\tEntry functions.')
@@ -40,16 +41,10 @@ print('\tget full path of dir_2')
 print(dir_2.get_full_path())
 print()
 
-
 print('\tThree folders deep.')
 dir_3 = Directory("dir_3", dir_2)
 print('\tget full path of dir_3')
 print(dir_3.get_full_path())
-
-
-
-
-
 
 
 
