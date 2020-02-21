@@ -27,24 +27,27 @@ dir_1 = Directory("dir_1", None)
 print_info(dir_1, "test_dir_1")
 
 print('**************************************')
-print('\tContents of dir_1:')
+print('\tContents of dir_1 before adding a folder:')
 dir_1.get_contents()
+print()
+
 print('\tdir_2 is nested inside dir_1.')
 dir_2 = Directory("dir_2", dir_1)
-print('\tContents of dir_1:')
-dir_1.get_contents()
-
-
-print('\tPrint the path of dir_2.')
-print(dir_2)  # should make this print the full path
 print('\tget full path of dir_2')
 print(dir_2.get_full_path())
 print()
+
 
 print('\tThree folders deep.')
 dir_3 = Directory("dir_3", dir_2)
 print('\tget full path of dir_3')
 print(dir_3.get_full_path())
+print()
+
+print('\tContents of dir_1 after adding a folder:')
+dir_1.get_contents()
+
+# renaming a folder updates the full path?
 
 
 

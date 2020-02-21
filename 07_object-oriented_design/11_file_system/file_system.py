@@ -24,8 +24,7 @@ class Entry():
         if self.parent_dir is None:
             return self.name
         else:
-            # self.parent_dir.get_full_path()
-            return '{0}/{1}'.format(self.parent_dir, self.name)
+            return '{0}/{1}'.format(self.parent_dir.get_full_path(), self.name)
 
 
     def rename(self, new_name):
@@ -47,11 +46,6 @@ class File(Entry):
     def __init__(self, name, parent_dir, size):
         Entry.__init__(self, name, parent_dir)
         self.size = size
-
-
-    def __str__(self):
-        # print full path
-        return str(self.name)
 
 
 class Directory(Entry):
@@ -93,8 +87,5 @@ class Directory(Entry):
         print(content_str)
 
 
-    def __str__(self):
-        # print full path of the directory
-        return str(self.name)
 
 
