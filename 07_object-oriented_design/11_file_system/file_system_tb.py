@@ -5,26 +5,24 @@ def print_info(item, new_name=None):
     print(item)
     print()
 
-    """
     if new_name is not None:
-    item.rename(new_name)
-    print(item)
-    print()	
-    """
+        item.rename(new_name)
+        print(item)
+        print()
 
 
 print('**************************************')
 print('\t\tEntry functions.')
 entry_1 = Entry("entry_1", None)
-print_info(entry_1, "test_entry_1")
+# print_info(entry_1, "test_entry_1")
 
 print('\t\tFile functions.')
 file_1 = File("file_1", None, 32)
-print_info(file_1, "test_file_1")
+# print_info(file_1, "test_file_1")
 
 print('\t\tDirectory functions.')
 dir_1 = Directory("dir_1", None)
-print_info(dir_1, "test_dir_1")
+# print_info(dir_1, "test_dir_1")
 
 print('**************************************')
 print('\tContents of dir_1 before adding a folder:')
@@ -46,8 +44,12 @@ print()
 
 print('\tContents of dir_1 after adding a folder:')
 dir_1.get_contents()
+print()
 
-# renaming a folder updates the full path?
-
+print('\t\tRenaming different folder levels')
+print_info(dir_1, "dir_1_new")
+print('\tget full path of dir_3')
+print(dir_3.get_full_path())
+print()
 
 
