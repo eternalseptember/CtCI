@@ -1,6 +1,7 @@
 from file_system import *
 
 
+"""
 def print_info(item, new_name=None):
     print(item)
     print()
@@ -11,20 +12,21 @@ def print_info(item, new_name=None):
         print()
 
 
-print('**************************************')
+# Testing rename
 print('\t\tEntry functions.')
 entry_1 = Entry("entry_1", None)
-# print_info(entry_1, "test_entry_1")
+print_info(entry_1, "test_entry_1")
 
 print('\t\tFile functions.')
 file_1 = File("file_1", None, 32)
-# print_info(file_1, "test_file_1")
+print_info(file_1, "test_file_1")
 
 print('\t\tDirectory functions.')
 dir_1 = Directory("dir_1", None)
-# print_info(dir_1, "test_dir_1")
+print_info(dir_1, "test_dir_1")
+"""
 
-print('**************************************')
+dir_1 = Directory("dir_1", None)
 print('\tContents of dir_1 before adding a folder:')
 dir_1.get_contents()
 print()
@@ -38,7 +40,7 @@ print()
 
 print('\tThree folders deep.')
 dir_3 = Directory("dir_3", dir_2)
-print('\tget full path of dir_3')
+print('\tGet full path of dir_3')
 print(dir_3.get_full_path())
 print()
 
@@ -47,9 +49,16 @@ dir_1.get_contents()
 print()
 
 print('\t\tRenaming different folder levels')
-print_info(dir_1, "dir_1_new")
-print('\tget full path of dir_3')
+print('\tRenaming dir_1.')
+dir_1.rename('dir_1_new')
+print('\tget full path of dir_3:')
 print(dir_3.get_full_path())
+print('\tContents of dir_1_new:')
+dir_1.get_contents()
+print('\tRenaming dir_2.')
+dir_2.rename('dir_2_new')
+print('\tContents of dir_1_new:')
+dir_1.get_contents()
 print()
 
 
