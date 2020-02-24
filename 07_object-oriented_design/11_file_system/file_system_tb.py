@@ -62,3 +62,9 @@ dir_1.get_contents()
 print()
 
 
+print('\tPut a file inside dir_1.')
+file_1 = File("file_1", dir_1, 32)
+print(file_1.get_full_path())
+# print the contents of dir_1
+print()
+
