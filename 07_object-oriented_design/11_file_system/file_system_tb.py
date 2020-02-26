@@ -67,6 +67,8 @@ file_1 = File("file_1", dir_1, 32)
 print(file_1.get_full_path())
 print('\tContents of dir_1_new:')
 dir_1.get_contents()
-# ??? file_1 is not listed?
 print()
+print('\tRenaming file_1.')
+dir_1.rename('file_1_new')
+
 

@@ -19,6 +19,9 @@ class Entry():
         self.name = name
         self.parent_dir = parent_dir  # directory object
 
+        if parent_dir is not None:
+            parent_dir.add_entry(self)
+
 
     def get_full_path(self):
         if self.parent_dir is None:
@@ -53,9 +56,6 @@ class Directory(Entry):
         Entry.__init__(self, name, parent_dir)
         self.contents = []
         self.num_of_items = 0
-
-        if parent_dir is not None:
-            parent_dir.add_entry(self)
 
 
     def add_entry(self, item):
