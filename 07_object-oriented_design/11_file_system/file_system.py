@@ -19,6 +19,7 @@ class Entry():
         self.name = name
         self.parent_dir = parent_dir  # directory object
 
+        # there should be error checking here.
         if parent_dir is not None:
             parent_dir.add_entry(self)
 
@@ -85,6 +86,10 @@ class Directory(Entry):
             content_str += '\n'
 
         print(content_str)
+
+
+    def get_num_of_items(self):
+        return self.num_of_items
 
 
 
