@@ -68,7 +68,10 @@ print(file_1.get_full_path())
 print('\tContents of dir_1_new:')
 dir_1.get_contents()
 print()
+print('\tNumber of items in dir_1:')
+print(dir_1.get_num_of_items())
 print('\tRenaming file_1.')
 dir_1.rename('file_1_new')
+
 
 
