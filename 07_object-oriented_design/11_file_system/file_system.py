@@ -52,6 +52,11 @@ class File(Entry):
         self.size = size
 
 
+    def delete_file(self):
+        # delete???
+        return None
+
+
 class Directory(Entry):
     def __init__(self, name, parent_dir):
         Entry.__init__(self, name, parent_dir)
@@ -69,10 +74,10 @@ class Directory(Entry):
             return True
 
 
-    def delete_entry(self, item, file_type):
+    def delete_entry(self, item):
+        # delete an item within the folder????
         try:
-            entry = (item, file_type)
-            self.contents.remove(entry)
+            self.contents.remove(item)
             self.num_of_items -= 1
         except:
             print('File or folder does not exist.')
