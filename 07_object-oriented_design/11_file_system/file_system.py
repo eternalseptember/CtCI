@@ -50,11 +50,15 @@ class File(Entry):
     def __init__(self, name, parent_dir, size):
         Entry.__init__(self, name, parent_dir)
         self.size = size
+        self.content = None
 
 
-    def delete_file(self):
-        # delete???
-        return None
+    def set_content(self, content):
+        self.content = content
+
+
+    def get_content(self):
+        return str(self.content)
 
 
 class Directory(Entry):
