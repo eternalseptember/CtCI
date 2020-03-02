@@ -71,7 +71,10 @@ print()
 print('\tNumber of items in dir_1:')
 print(dir_1.get_num_of_items())
 print('\tRenaming file_1.')
-dir_1.rename('file_1_new')
+file_1.rename('file_1_new')
+print('\tWriting to file_1:')
+file_1.set_content('test test test')
+print(file_1.get_content())
 
 
 
