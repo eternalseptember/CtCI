@@ -75,6 +75,9 @@ file_1.rename('file_1_new')
 print('\tWriting to file_1:')
 file_1.set_content('test test test')
 print(file_1.get_content())
+print('\tDeleting file_1:')
+dir_1.delete_entry(file_1)
+dir_1.get_contents()
 
 
 
