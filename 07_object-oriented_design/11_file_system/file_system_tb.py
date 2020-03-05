@@ -78,6 +78,7 @@ print(file_1.get_content())
 print('\tDeleting file_1:')
 dir_1.delete_entry(file_1)
 dir_1.get_contents()
-
+print('\tNumber of items in dir_1:')
+print(dir_1.get_num_of_items())
 
 

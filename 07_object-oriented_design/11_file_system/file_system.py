@@ -66,6 +66,7 @@ class Directory(Entry):
         Entry.__init__(self, name, parent_dir)
         self.contents = []
         self.num_of_items = 0
+        self.size = 0
 
 
     def add_entry(self, item):
@@ -75,6 +76,7 @@ class Directory(Entry):
         else:
             self.contents.append(item)
             self.num_of_items += 1
+            self.size += item.size
             return True
 
 
@@ -83,6 +85,7 @@ class Directory(Entry):
         try:
             self.contents.remove(item)
             self.num_of_items -= 1
+            self.size -= item.size
         except:
             print('File or folder does not exist.')
 
