@@ -62,11 +62,11 @@ class File(Entry):
 
 
 class Directory(Entry):
-    def __init__(self, name, parent_dir):
+    def __init__(self, name, parent_dir, size=0):
         Entry.__init__(self, name, parent_dir)
         self.contents = []
         self.num_of_items = 0
-        self.size = 0
+        self.size = size
 
 
     def add_entry(self, item):
@@ -102,6 +102,10 @@ class Directory(Entry):
 
     def get_num_of_items(self):
         return self.num_of_items
+
+
+    def get_size(self):
+        return self.size
 
 
 
