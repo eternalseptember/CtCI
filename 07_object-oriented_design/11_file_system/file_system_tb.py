@@ -32,11 +32,12 @@ dir_1.get_contents()
 print()
 print('\tSize of dir_1:')
 print(dir_1.get_size())
+# print(type(dir_1))
 
 
+""""
 print('\tdir_2 is nested inside dir_1.')
 dir_2 = Directory("dir_2", dir_1)
-"""
 print('\tget full path of dir_2')
 print(dir_2.get_full_path())
 print()
@@ -86,4 +87,8 @@ print(dir_1.get_num_of_items())
 print('\tSize of dir_1:')
 print(dir_1.get_size())
 """
+
+
+
+
 
