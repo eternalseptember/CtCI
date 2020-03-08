@@ -103,6 +103,9 @@ class Directory(Entry):
         for item in self.contents:
             if type(item) is File:
                 size += item.size
+            else:
+                # Get the size of the contents within that folder.
+                size += item.get_size()
         return size
 
     def get_num_of_items(self):
