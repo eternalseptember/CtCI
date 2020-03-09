@@ -1,75 +1,47 @@
 from file_system import *
 
 
-"""
-def print_info(item, new_name=None):
-    print(item)
-    print()
-
-    if new_name is not None:
-        item.rename(new_name)
-        print(item)
-        print()
-
-
-# Testing rename
-print('\t\tEntry functions.')
-entry_1 = Entry("entry_1", None)
-print_info(entry_1, "test_entry_1")
-
-print('\t\tFile functions.')
-file_1 = File("file_1", None, 32)
-print_info(file_1, "test_file_1")
-
-print('\t\tDirectory functions.')
 dir_1 = Directory("dir_1", None)
-print_info(dir_1, "test_dir_1")
-"""
-
-dir_1 = Directory("dir_1", None)
-print('\tContents of dir_1 before adding a folder:')
+print('\t\tContents of dir_1 before adding a folder:')
 dir_1.get_contents()
 print()
-print('\tSize of dir_1:')
-print(dir_1.get_size())
-# print(type(dir_1))
+# print('\tSize of dir_1:')
+# print(dir_1.get_size())
 
 
-""""
-print('\tdir_2 is nested inside dir_1.')
+print('\t\tdir_2 is nested inside dir_1.')
 dir_2 = Directory("dir_2", dir_1)
-print('\tget full path of dir_2')
 print(dir_2.get_full_path())
 print()
 
-print('\tThree folders deep.')
+print('\t\tContents of dir_1 after adding a folder:')
+dir_1.get_contents()
+print()
+
+print('\t\tThree folders deep.')
 dir_3 = Directory("dir_3", dir_2)
-print('\tGet full path of dir_3')
 print(dir_3.get_full_path())
 print()
 
-print('\tContents of dir_1 after adding a folder:')
-dir_1.get_contents()
-print()
 
-print('\t\tRenaming different folder levels')
-print('\tRenaming dir_1.')
+# Renaming different folder levels
+print('\t\tRenaming dir_1.')
 dir_1.rename('dir_1_new')
-print('\tget full path of dir_3:')
 print(dir_3.get_full_path())
-print('\tContents of dir_1_new:')
+print('\t\tContents of dir_1_new:')
 dir_1.get_contents()
-print('\tRenaming dir_2.')
+print('\t\tRenaming dir_2.')
 dir_2.rename('dir_2_new')
-print('\tContents of dir_1_new:')
+print(dir_3.get_full_path())
+print('\t\tContents of dir_1_new:')
 dir_1.get_contents()
 print()
 
-
-print('\tPut a file inside dir_1.')
-file_1 = File("file_1", dir_1, 32)
+# Adding files
+print('\t\tPut a file inside dir_1.')
+file_1 = File("file_1", dir_1)
 print(file_1.get_full_path())
-print('\tContents of dir_1_new:')
+print('\t\tContents of dir_1_new:')
 dir_1.get_contents()
 print()
 print('\tNumber of items in dir_1:')
@@ -78,6 +50,7 @@ print('\tRenaming file_1.')
 file_1.rename('file_1_new')
 print('\tWriting to file_1:')
 file_1.set_content('test test test')
+# get size
 print(file_1.get_content())
 print('\tDeleting file_1:')
 dir_1.delete_entry(file_1)
@@ -86,7 +59,7 @@ print('\tNumber of items in dir_1:')
 print(dir_1.get_num_of_items())
 print('\tSize of dir_1:')
 print(dir_1.get_size())
-"""
+
 
 
 

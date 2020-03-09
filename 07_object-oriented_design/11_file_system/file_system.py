@@ -41,20 +41,20 @@ class Entry():
 
 class File(Entry):
     """
-    def __init__(self, name, parent_dir, date_created, date_modified, size):
+    def __init__(self, name, parent_dir, date_created, date_modified):
         # have to spell out None if there's no parent directory
         Entry.__init__(self, name, parent_dir, date_created, date_modified)
-        self.size = size
     """
 
-    def __init__(self, name, parent_dir, size):
+    def __init__(self, name, parent_dir):
         Entry.__init__(self, name, parent_dir)
-        self.size = size
         self.content = None
+        self.size = 0
 
 
     def set_content(self, content):
         self.content = content
+        self.size = len(content)
 
 
     def get_content(self):
@@ -91,8 +91,11 @@ class Directory(Entry):
         content_str = ''
 
         for content in self.contents:
+            if len(content_str) > 0:
+                content_str += '\n'
+
             content_str += str(content)
-            content_str += '\n'
+            # content_str += '\n'
 
         print(content_str)
 
