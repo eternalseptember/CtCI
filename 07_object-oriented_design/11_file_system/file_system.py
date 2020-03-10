@@ -57,6 +57,10 @@ class File(Entry):
         self.size = len(content)
 
 
+    def get_size(self):
+        return str(self.size)
+
+
     def get_content(self):
         return str(self.content)
 
