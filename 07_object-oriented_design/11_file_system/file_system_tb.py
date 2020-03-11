@@ -38,9 +38,15 @@ dir_1.get_contents()
 print()
 
 # Adding files
-print('\t\tPut a file inside dir_1.')
+print('\t\tPut files inside dir_1.')
 file_1 = File("file_1", dir_1)
 print(file_1.get_full_path())
+# write to these files!
+file_2 = File("file_2", dir_1)
+print(file_2.get_full_path())
+file_3 = File("file_3", dir_1)
+print(file_3.get_full_path())
+
 print('\t\tContents of dir_1_new:')
 dir_1.get_contents()
 print()
