@@ -5,9 +5,6 @@ dir_1 = Directory("dir_1", None)
 print('\t\tContents of dir_1 before adding a folder:')
 dir_1.get_contents()
 print()
-# print('\tSize of dir_1:')
-# print(dir_1.get_size())
-
 
 print('\t\tdir_2 is nested inside dir_1.')
 dir_2 = Directory("dir_2", dir_1)

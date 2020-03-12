@@ -1,3 +1,5 @@
+# Testing rename
+
 from file_system import *
 
 
@@ -12,7 +14,6 @@ def print_info(item, new_name=None):
     print()
 
 
-# Testing rename
 print('\t\tEntry functions')
 entry_1 = Entry("entry_1", None)
 print_info(entry_1, "test_entry_1")
