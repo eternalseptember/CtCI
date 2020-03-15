@@ -73,6 +73,7 @@ class Directory(Entry):
 
 
     def add_entry(self, item):
+        """
         if item in self.contents:
             print('File with that name exists.')
             return False
@@ -80,6 +81,12 @@ class Directory(Entry):
             self.contents.append(item)
             self.num_of_items += 1
             return True
+        """
+
+        item_type = type(item)
+        item_name = item.name
+
+        # search through list
 
 
     def delete_entry(self, item):

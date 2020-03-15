@@ -12,3 +12,9 @@ file_2 = File("file_1", dir_1)
 dir_1.get_contents()
 
 
+"""
+print(type(dir_1))
+print(type(file_1))
+"""
+
+
