@@ -87,6 +87,15 @@ class Directory(Entry):
         item_name = item.name
 
         # search through list
+        for folder_item in self.contents:
+            if (folder_item.name == item_name) and (type(folder_item) == item_type):
+                print('File with that name exists.')
+                return False
+
+        # can add this item?
+        self.contents.append(item)
+        self.num_of_items += 1
+        return True
 
 
     def delete_entry(self, item):
