@@ -1,4 +1,4 @@
-# Testing basic file functions
+# Testing folder size
 
 from file_system import *
 
@@ -11,9 +11,15 @@ file_2 = File("file_2", dir_1)
 dir_1.get_contents()
 
 
-
 print('Size of dir_1:')
 print(dir_1.get_size())
+
+
+print('Writing to files:')
+file_1.set_content('hello world!')
+file_2.set_content('my name is __.')
+
+
 
 
 """

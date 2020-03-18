@@ -7,14 +7,6 @@ in-memory file system. Illustrate with an example in code where possible.
 
 
 class Entry():
-    """
-    def __init__(self, name, parent_dir, date_created, date_modified):
-        self.name = name
-        self.parent_dir = parent_dir  # directory object
-        self.date_created = date_created
-        self.date_modified = date_modified
-    """
-
     def __init__(self, name, parent_dir):
         self.name = name
         self.parent_dir = parent_dir  # directory object
@@ -39,13 +31,8 @@ class Entry():
         return str(self.name)
 
 
-class File(Entry):
-    """
-    def __init__(self, name, parent_dir, date_created, date_modified):
-        # have to spell out None if there's no parent directory
-        Entry.__init__(self, name, parent_dir, date_created, date_modified)
-    """
 
+class File(Entry):
     def __init__(self, name, parent_dir):
         Entry.__init__(self, name, parent_dir)
         self.content = None
@@ -63,6 +50,7 @@ class File(Entry):
 
     def get_content(self):
         return str(self.content)
+
 
 
 class Directory(Entry):
@@ -86,13 +74,13 @@ class Directory(Entry):
         item_type = type(item)
         item_name = item.name
 
-        # search through list
+        # Search through list.
         for folder_item in self.contents:
             if (folder_item.name == item_name) and (type(folder_item) == item_type):
                 print('File with that name exists.')
                 return False
 
-        # can add this item?
+        # Can add this item?
         self.contents.append(item)
         self.num_of_items += 1
         return True

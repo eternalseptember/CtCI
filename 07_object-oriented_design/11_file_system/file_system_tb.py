@@ -21,6 +21,7 @@ print(dir_3.get_full_path())
 print()
 
 
+
 # Renaming different folder levels
 print('\t\tRenaming dir_1.')
 dir_1.rename('dir_1_new')
@@ -33,6 +34,8 @@ print(dir_3.get_full_path())
 print('\t\tContents of dir_1_new:')
 dir_1.get_contents()
 print()
+
+
 
 # Adding files
 print('\t\tPut files inside dir_1.')
