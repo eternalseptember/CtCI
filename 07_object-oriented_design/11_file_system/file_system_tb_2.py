@@ -1,10 +1,17 @@
-# Testing basic file functions
+# Testing basic file functions.
 
 from file_system import *
 
 
 dir_1 = Directory("dir_1", None)
 file_1 = File("file_1", dir_1)
+
+
+
+print('New:')
+print(dir_1.get_full_path())
+print(file_1.get_full_path())
+print()
 
 
 
