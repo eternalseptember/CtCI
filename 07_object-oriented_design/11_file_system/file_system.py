@@ -44,12 +44,12 @@ class File(Entry):
         self.size = len(content)
 
 
-    def get_size(self):
-        return str(self.size)
-
-
     def get_content(self):
         return str(self.content)
+
+
+    def get_size(self):
+        return str(self.size)
 
 
 
@@ -61,16 +61,6 @@ class Directory(Entry):
 
 
     def add_entry(self, item):
-        """
-        if item in self.contents:
-            print('File with that name exists.')
-            return False
-        else:
-            self.contents.append(item)
-            self.num_of_items += 1
-            return True
-        """
-
         item_type = type(item)
         item_name = item.name
 
