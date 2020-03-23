@@ -33,8 +33,11 @@ print()
 
 
 print('Writing to files:')
-
-
+file_1.set_content('')
+file_2.set_content('')
+file_3.set_content('')
+file_4.set_content('')
+file_5.set_content('')
 print()
 
 
