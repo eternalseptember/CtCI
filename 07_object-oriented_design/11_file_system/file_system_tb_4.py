@@ -33,12 +33,22 @@ print()
 
 
 print('Writing to files:')
-file_1.set_content('')
-file_2.set_content('')
-file_3.set_content('')
-file_4.set_content('')
-file_5.set_content('')
+file_1.set_content('Do not go gentle into that good night,')
+file_2.set_content('Old age should burn and rave at close of day;')
+file_3.set_content('Rage, rage against the dying of the light.')
+file_4.set_content('Though wise men at their end know dark is right,')
+
+print(file_1.get_content())
+print(file_2.get_content())
+print(file_3.get_content())
+print(file_4.get_content())
 print()
+
+
+# file sizes
+
+
+
 
 
 
