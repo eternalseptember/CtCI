@@ -45,7 +45,14 @@ print(file_4.get_content())
 print()
 
 
-# file sizes
+
+print('File sizes:')
+print(file_1.get_size())
+print(file_2.get_size())
+print(file_3.get_size())
+print(file_4.get_size())
+
+
 
 
 
