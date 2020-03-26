@@ -52,8 +52,8 @@ print(file_2.get_size())
 print(file_3.get_size())
 print(file_4.get_size())
 
-
-
+print('Folder size:')
+print(dir_1.get_size())
 
 
 
