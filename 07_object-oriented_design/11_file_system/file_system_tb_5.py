@@ -33,3 +33,19 @@ file_2.set_content('Running out of ideas')
 
 
 
+print('Size of dir_1:')
+print(dir_1.get_size())
+
+print('File sizes:')
+print(file_1.get_size())
+print(file_2.get_size())
+
+
+
+
+
+
+
+
+
+
