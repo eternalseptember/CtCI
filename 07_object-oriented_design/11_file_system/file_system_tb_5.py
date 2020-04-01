@@ -29,7 +29,7 @@ print()
 
 print('Writing to files:')
 file_1.set_content('Day 1 of quarantine:')
-file_2.set_content('Running out of ideas')
+file_2.set_content('What?')
 print(file_1.get_content())
 print(file_2.get_content())
 print()
@@ -42,10 +42,15 @@ print(dir_1.get_size())
 print('File sizes:')
 print(file_1.get_size())
 print(file_2.get_size())
+print()
 
 
 
 # rewrite files
+print('Rewriting one file:')
+file_1.set_content('It was not actually day 1. Miscounted.')
+print(file_1.get_content())
+print()
 
 
 
