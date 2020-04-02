@@ -46,13 +46,21 @@ print()
 
 
 
-# rewrite files
 print('Rewriting one file:')
 file_1.set_content('It was not actually day 1. Miscounted.')
 print(file_1.get_content())
 print()
 
 
+
+print('Recalculate file sizes:')
+print('Size of dir_1:')
+print(dir_1.get_size())
+
+print('File sizes:')
+print(file_1.get_size())
+print(file_2.get_size())
+print()
 
 
 
