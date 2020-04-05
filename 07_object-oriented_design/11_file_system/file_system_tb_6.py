@@ -11,6 +11,7 @@ dir_3 = Directory("dir_3", dir_1)
 
 
 # How many items are in dir_1?
-
+print('Number of items in dir_1:')
+print(dir_1.get_num_of_items())
 
 
