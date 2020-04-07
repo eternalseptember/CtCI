@@ -1,4 +1,5 @@
 # Testing the effects of renaming files and folders.
+# How does it total sizes of nested folder structure?
 
 from file_system import *
 

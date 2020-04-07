@@ -57,7 +57,7 @@ class Directory(Entry):
     def __init__(self, name, parent_dir):
         Entry.__init__(self, name, parent_dir)
         self.contents = []
-        self.num_of_items = 0
+        # self.num_of_items = 0
 
 
     def add_entry(self, item):
@@ -72,7 +72,7 @@ class Directory(Entry):
 
         # Can add this item?
         self.contents.append(item)
-        self.num_of_items += 1
+        # self.num_of_items += 1
         return True
 
 
@@ -80,7 +80,7 @@ class Directory(Entry):
         # Delete an item in this folder.
         try:
             self.contents.remove(item)
-            self.num_of_items -= 1
+            # self.num_of_items -= 1
         except:
             print('File or folder does not exist.')
 
@@ -110,7 +110,7 @@ class Directory(Entry):
         return size
 
     def get_num_of_items(self):
-        return self.num_of_items
+        return len(self.contents)
 
 
 
