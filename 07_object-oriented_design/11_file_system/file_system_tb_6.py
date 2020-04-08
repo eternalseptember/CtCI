@@ -21,8 +21,14 @@ file_8 = File("file_8", dir_3)
 file_9 = File("file_9", dir_3)
 
 
-# How many items are in dir_1?
 print('Number of items in dir_1:')
 print(dir_1.get_num_of_items())
+print()
+
+
+
+print('How big is dir_1 so far?')
+print(dir_1.get_size())
+print()
 
 
