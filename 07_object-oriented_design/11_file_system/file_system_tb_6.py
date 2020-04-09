@@ -32,3 +32,12 @@ print(dir_1.get_size())
 print()
 
 
+
+print("What is inside dir_1?")
+dir_1.get_contents()
+print()
+
+
+
+
+
