@@ -39,5 +39,16 @@ print()
 
 
 
+print("Rename a file.")
+file_1.rename("new file")
+print()
+
+
+
+print("What is inside dir_1?")
+dir_1.get_contents()
+print()
+
+
 
 
