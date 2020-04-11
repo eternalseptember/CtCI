@@ -51,4 +51,14 @@ print()
 
 
 
+print("Get full paths:")
+print(dir_1.get_full_path())
+print(file_1.get_full_path())
+
+
+
+
+
+
+
 
