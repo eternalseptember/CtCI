@@ -54,10 +54,16 @@ print()
 print("Get full paths:")
 print(dir_1.get_full_path())
 print(file_1.get_full_path())
-
-
-
-
+print(file_2.get_full_path())
+print(dir_2.get_full_path())
+print(file_3.get_full_path())
+print(file_4.get_full_path())
+print(file_5.get_full_path())
+print(dir_3.get_full_path())
+print(file_6.get_full_path())
+print(file_7.get_full_path())
+print(file_8.get_full_path())
+print(file_9.get_full_path())
 
 
 
