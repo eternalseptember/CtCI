@@ -64,6 +64,15 @@ print(file_6.get_full_path())
 print(file_7.get_full_path())
 print(file_8.get_full_path())
 print(file_9.get_full_path())
+print()
+
+
+
+print('Write into all the files and calculate dir_1 file size.')
+
+file_8.get_content('')
+file_9.set_content('')
+print()
 
 
 
