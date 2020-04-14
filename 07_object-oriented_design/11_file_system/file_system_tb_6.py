@@ -69,9 +69,17 @@ print()
 
 
 print('Write into all the files and calculate dir_1 file size.')
+file_8.set_content('I want a rainbow unicorn.')
+file_9.set_content('The lemonade was too sour.')
 
-file_8.get_content('')
-file_9.set_content('')
+print('File sizes:')
+print(file_8.get_size())
+print(file_9.get_size())
+
+print('dir_3 total size:')
+print(dir_3.get_size())
+
+
 print()
 
 
