@@ -69,12 +69,22 @@ print()
 
 
 print('Write into all the files and calculate dir_1 file size.')
+file_3.set_content('Have some wine!')
+file_4.set_content('The thunderstorm came with hail.')
+file_5.set_content('')
+file_6.set_content('')
+file_7.set_content('')
 file_8.set_content('I want a rainbow unicorn.')
 file_9.set_content('The lemonade was too sour.')
 
 print('File sizes:')
+print(file_6.get_size())
+print(file_7.get_size())
 print(file_8.get_size())
 print(file_9.get_size())
+
+print('dir_2 total size:')
+print(dir_2.get_size())
 
 print('dir_3 total size:')
 print(dir_3.get_size())
