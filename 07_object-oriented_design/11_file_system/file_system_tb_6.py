@@ -85,12 +85,16 @@ print(file_6.get_size())
 print(file_7.get_size())
 print(file_8.get_size())
 print(file_9.get_size())
+print()
 
 print('dir_2 total size:')
 print(dir_2.get_size())
 
 print('dir_3 total size:')
 print(dir_3.get_size())
+
+print('dir_1 total size:')
+print(dir_1.get_size())
 
 
 print()
