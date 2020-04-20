@@ -69,13 +69,13 @@ print()
 
 
 print('Write into all the files and calculate dir_1 file size.')
-file_1.set_content('')
-file_2.set_content('')
+file_1.set_content('What would you like?')
+file_2.set_content('What is it?')
 file_3.set_content('Have some wine!')
 file_4.set_content('The thunderstorm came with hail.')
-file_5.set_content('')
-file_6.set_content('')
-file_7.set_content('')
+file_5.set_content('Pancakes, please.')
+file_6.set_content('If you could live anywhere, where would you live and why?')
+file_7.set_content('Want some?')
 file_8.set_content('I want a rainbow unicorn.')
 file_9.set_content('The lemonade was too sour.')
 
@@ -102,6 +102,10 @@ print(dir_1.get_size())
 
 
 print()
+
+
+
+# one more level of nested folders
 
 
 
