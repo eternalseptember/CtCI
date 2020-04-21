@@ -100,12 +100,21 @@ print(dir_3.get_size())
 print('dir_1 total size:')
 print(dir_1.get_size())
 
-
 print()
 
 
 
 # one more level of nested folders
+file_4 = File("file_4", dir_3)
+file_10 = File("file_10", dir_4)
+
+
+
+
+
+
+
+
 
 
 
