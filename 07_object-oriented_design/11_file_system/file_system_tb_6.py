@@ -107,6 +107,8 @@ print()
 # one more level of nested folders
 file_4 = File("file_4", dir_3)
 file_10 = File("file_10", dir_4)
+file_11 = File("file_11", dir_4)
+file_12 = File("file_12", dir_4)
 
 
 
