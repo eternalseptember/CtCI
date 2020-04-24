@@ -120,6 +120,9 @@ print("What is inside dir_3")
 dir_3.get_contents()
 print()
 
+print("WHat is inside dir_4")
+dir_4.get_contents()
+print()
 
 
 
