@@ -120,10 +120,17 @@ print("What is inside dir_3")
 dir_3.get_contents()
 print()
 
-print("WHat is inside dir_4")
+print("What is inside dir_4")
 dir_4.get_contents()
 print()
 
+
+
+print("Write to those files and then recalculate folder sizes.")
+file_10.set_content('')
+file_11.set_content('')
+file_12.set_content('')
+print()
 
 
 
