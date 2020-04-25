@@ -127,10 +127,13 @@ print()
 
 
 print("Write to those files and then recalculate folder sizes.")
-file_10.set_content('')
-file_11.set_content('')
-file_12.set_content('')
+file_10.set_content('Better days.')
+file_11.set_content('A complete guide for growing basil')
+file_12.set_content('G')
 print()
+
+
+# size of each file
 
 
 
