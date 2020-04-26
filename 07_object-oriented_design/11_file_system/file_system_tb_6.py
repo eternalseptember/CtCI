@@ -134,6 +134,11 @@ print()
 
 
 # size of each file
+print("Sizes of each file:")
+print(file_10.get_size())
+print(file_11.get_size())
+print(file_12.get_size())
+
 
 
 
