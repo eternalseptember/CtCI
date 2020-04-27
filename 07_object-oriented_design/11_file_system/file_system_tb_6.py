@@ -133,11 +133,16 @@ file_12.set_content('G')
 print()
 
 
-# size of each file
+
 print("Sizes of each file:")
 print(file_10.get_size())
 print(file_11.get_size())
 print(file_12.get_size())
+print()
+
+
+print("Size of dir_4.")
+print(dir_4.get_size())
 
 
 
