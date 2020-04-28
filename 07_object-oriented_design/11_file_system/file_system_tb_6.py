@@ -141,11 +141,12 @@ print(file_12.get_size())
 print()
 
 
-print("Size of dir_4.")
+print("Size of dir_4:")
 print(dir_4.get_size())
-
-
-
+print("Size of dir_3:")
+print(dir_3.get_size())
+print("Size of dir_1:")
+print(dir_1.get_size())
 
 
 
