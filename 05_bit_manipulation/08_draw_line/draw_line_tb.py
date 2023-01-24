@@ -18,19 +18,19 @@ width = 8
 
 # Draw a diagonal line: \
 for i in range(8):
-    x1 = i
-    x2 = i  # 1 pixel line
-    y = i
-    draw_line(screen, width, x1, x2, y)
+	x1 = i
+	x2 = i  # 1 pixel line
+	y = i
+	draw_line(screen, width, x1, x2, y)
 
 print_screen(screen, width)
 
 # Draw another diagonal line: /
 for i in range(7, -1, -1):
-    x1 = i
-    x2 = i  # 1 pixel line
-    y = 7 - i
-    draw_line(screen, width, x1, x2, y)
+	x1 = i
+	x2 = i  # 1 pixel line
+	y = 7 - i
+	draw_line(screen, width, x1, x2, y)
 
 print_screen(screen, width)
 
@@ -43,7 +43,7 @@ print_screen(screen, width)
 # A line across the screen is 2 consecutive bytes.
 # Each line of the array has a screen height of 4.
 screen = [0, 0, 0, 0, 0, 0, 0, 0,
-          0, 0, 0, 0, 0, 0, 0, 0]
+		  0, 0, 0, 0, 0, 0, 0, 0]
 width = 16
 
 # Line 1
@@ -75,9 +75,9 @@ print_screen(screen, width)
 # A line across the screen is 3 consecutive bytes.
 # Each line of the array has a screen height of 2.
 screen = [0, 0, 0, 0, 0, 0,
-          0, 0, 0, 0, 0, 0,
-          0, 0, 0, 0, 0, 0,
-          0, 0, 0, 0, 0, 0]
+		  0, 0, 0, 0, 0, 0,
+		  0, 0, 0, 0, 0, 0,
+		  0, 0, 0, 0, 0, 0]
 width = 24
 
 # Line 1
@@ -109,13 +109,13 @@ print_screen(screen, width)
 # A line across the screen is 6 consecutive bytes.
 # Each line of the array has a screen height of 2.
 screen = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+		  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+		  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+		  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+		  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+		  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+		  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+		  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 width = 48
 
 """

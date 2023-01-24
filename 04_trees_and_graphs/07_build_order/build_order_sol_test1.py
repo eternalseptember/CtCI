@@ -5,14 +5,14 @@
 from build_order_sol_2 import *
 
 def print_graph_details(comments, graph_object):
-    print('\t\t{0}'.format(comments))
-    print(graph_object)
+	print('\t\t{0}'.format(comments))
+	print(graph_object)
 
-    print('\n\nEach project object\'s details:')
-    for node in graph1.get_projects():
-        node.print_project_details()
+	print('\n\nEach project object\'s details:')
+	for node in graph1.get_projects():
+		node.print_project_details()
 
-    print('\n\n\n')
+	print('\n\n\n')
 
 
 # Use these lists to test build_graph().

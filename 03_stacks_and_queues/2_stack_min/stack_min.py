@@ -6,47 +6,47 @@ and min should all operate in O(1) time.
 
 
 class Stack:
-    def __init__(self):
-        self.stack = []
-        self.min_stack = []
+	def __init__(self):
+		self.stack = []
+		self.min_stack = []
 
 
-    def push(self, item):
-        self.stack.append(item)
+	def push(self, item):
+		self.stack.append(item)
 
-        if len(self.min_stack) == 0:
-            self.min_stack.append(item)
-        else:
-            if item <= self.min_stack[-1]:
-                self.min_stack.append(item)
-
-
-    def pop(self):
-        item = self.stack.pop()
-
-        if item == self.min_stack[-1]:
-            self.min_stack.pop()
-
-        return item
+		if len(self.min_stack) == 0:
+			self.min_stack.append(item)
+		else:
+			if item <= self.min_stack[-1]:
+				self.min_stack.append(item)
 
 
-    def peek(self):
-        try:
-            return self.stack[-1]
-        except IndexError:
-            return None
+	def pop(self):
+		item = self.stack.pop()
+
+		if item == self.min_stack[-1]:
+			self.min_stack.pop()
+
+		return item
 
 
-    def is_empty(self):
-        if len(self.stack) > 0:
-            return False
-        else:
-            return True
+	def peek(self):
+		try:
+			return self.stack[-1]
+		except IndexError:
+			return None
 
 
-    def print_min(self):
-        try:
-            print(self.min_stack[-1])
-        except IndexError:
-            print('No minimum')
+	def is_empty(self):
+		if len(self.stack) > 0:
+			return False
+		else:
+			return True
+
+
+	def print_min(self):
+		try:
+			print(self.min_stack[-1])
+		except IndexError:
+			print('No minimum')
 

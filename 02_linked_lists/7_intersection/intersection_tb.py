@@ -25,9 +25,9 @@ head_2 = linked_node_i
 intersection = find_intersection(head_1, head_2)
 
 if intersection is not None:
-    print_linked_list(intersection)
+	print_linked_list(intersection)
 else:
-    print('No intersection')
+	print('No intersection')
 print()
 """
 
@@ -58,9 +58,9 @@ head_2 = list_2_e
 intersection = find_intersection(head_1, head_2)
 
 if intersection is not None:
-    print_linked_list(intersection)
+	print_linked_list(intersection)
 else:
-    print('No intersection')
+	print('No intersection')
 print()
 """
 
@@ -71,9 +71,9 @@ print()
 # Question: Are these nodes the same?
 """
 if list_1_a == list_2_a:
-    print('these two nodes are the same')
+	print('these two nodes are the same')
 else:
-    print('these two nodes are different')
+	print('these two nodes are different')
 """
 
 # Question: Are these nodes intersected?

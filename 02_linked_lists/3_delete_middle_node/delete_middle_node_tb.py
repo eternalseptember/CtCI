@@ -9,11 +9,11 @@ head = None
 delete_this_node = None
 
 for value in values:
-    head, new_node = add(head, value)
+	head, new_node = add(head, value)
 
-    # set a value for testing
-    if value == 4:
-        delete_this_node = new_node
+	# set a value for testing
+	if value == 4:
+		delete_this_node = new_node
 
 
 print('linked list adding all nodes:')

@@ -13,31 +13,31 @@ test_values = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19
 test_queue = MyQueue()
 
 for op in test_op:
-    if op == 'push':
-        print('Add')
+	if op == 'push':
+		print('Add')
 
-        value = test_values.pop(0)
-        test_queue.add(value)
-    
-    elif op == 'pop':
-        print('Dequeue')
+		value = test_values.pop(0)
+		test_queue.add(value)
+	
+	elif op == 'pop':
+		print('Dequeue')
 
-        popped_item = test_queue.remove()
-        # print('popped item: {0}'.format(popped_item))
+		popped_item = test_queue.remove()
+		# print('popped item: {0}'.format(popped_item))
 
 
-    # After performing the operations, print queue info.
-    print('--------------------------------------------')
-    print('Newest queue: \t\t\t', end='')
-    test_queue.print_newest_queue()
-    print('Oldest queue: \t\t\t', end='')
-    test_queue.print_oldest_queue()
+	# After performing the operations, print queue info.
+	print('--------------------------------------------')
+	print('Newest queue: \t\t\t', end='')
+	test_queue.print_newest_queue()
+	print('Oldest queue: \t\t\t', end='')
+	test_queue.print_oldest_queue()
 
-    print('Queue is empty? \t\t{0}'.format(test_queue.is_empty()))
-    print('Queue size: \t\t\t{0}'.format(test_queue.size()))
-    print('Front of queue: \t\t{0}'.format(test_queue.peek()))
+	print('Queue is empty? \t\t{0}'.format(test_queue.is_empty()))
+	print('Queue size: \t\t\t{0}'.format(test_queue.size()))
+	print('Front of queue: \t\t{0}'.format(test_queue.peek()))
 
-    print('\n')
+	print('\n')
 
 
 print('\nFinal queue info:')

@@ -26,10 +26,10 @@ n & (n-1) checks if n is a power of 2 (or if n is 0).
 test_arr = [i for i in range(300)]
 
 for num in test_arr:
-    result = num & (num-1)
+	result = num & (num-1)
 
-    if result == 0:
-        print(num)
+	if result == 0:
+		print(num)
 
 
 

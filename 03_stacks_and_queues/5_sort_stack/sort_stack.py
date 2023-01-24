@@ -6,60 +6,60 @@ the following operations: push, pop, peek, and isEmpty().
 """
 
 class Stack:
-    def __init__(self):
-        self.stack = []
+	def __init__(self):
+		self.stack = []
 
 
-    def push(self, item):
-        self.stack.append(item)
+	def push(self, item):
+		self.stack.append(item)
 
 
-    def pop(self):
-        item = self.stack.pop()
-        return item
+	def pop(self):
+		item = self.stack.pop()
+		return item
 
 
-    def peek(self):
-        return self.stack[-1]
+	def peek(self):
+		return self.stack[-1]
 
 
-    def is_empty(self):
-        if len(self.stack) > 0:
-            return False
-        else:
-            return True
+	def is_empty(self):
+		if len(self.stack) > 0:
+			return False
+		else:
+			return True
 
-    def __str__(self):
-        return str(self.stack)
+	def __str__(self):
+		return str(self.stack)
 
 
 def sort(unsorted_stack):
-    # larger items are at the bottom
-    # O(N^2) time and O(N) space.
-    sorted_stack = Stack()
-    
-    while unsorted_stack.is_empty() is False:
-        item = unsorted_stack.pop()
+	# larger items are at the bottom
+	# O(N^2) time and O(N) space.
+	sorted_stack = Stack()
+	
+	while unsorted_stack.is_empty() is False:
+		item = unsorted_stack.pop()
 
-        if (sorted_stack.is_empty()) or (item <= sorted_stack.peek()):
-            sorted_stack.push(item)
-        else:
-            num_transferred = 0
+		if (sorted_stack.is_empty()) or (item <= sorted_stack.peek()):
+			sorted_stack.push(item)
+		else:
+			num_transferred = 0
 
-            # find the place to insert the item
-            while (sorted_stack.is_empty() is False) and (item > sorted_stack.peek()):
-                transfer_item = sorted_stack.pop()
-                unsorted_stack.push(transfer_item)
-                num_transferred += 1
+			# find the place to insert the item
+			while (sorted_stack.is_empty() is False) and (item > sorted_stack.peek()):
+				transfer_item = sorted_stack.pop()
+				unsorted_stack.push(transfer_item)
+				num_transferred += 1
 
-            # insert the item
-            sorted_stack.push(item)
+			# insert the item
+			sorted_stack.push(item)
 
-            # move the items back to the sorted stack
-            while num_transferred > 0:
-                transfer_item = unsorted_stack.pop()
-                sorted_stack.push(transfer_item)
-                num_transferred -= 1
+			# move the items back to the sorted stack
+			while num_transferred > 0:
+				transfer_item = unsorted_stack.pop()
+				sorted_stack.push(transfer_item)
+				num_transferred -= 1
 
-    return sorted_stack
+	return sorted_stack
 

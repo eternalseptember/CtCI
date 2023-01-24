@@ -9,7 +9,7 @@ from palindrome_permutation import *
 inp = ['Tact Coa', 'atco cta', 'tactcoapapa', 'llggo', 'logo']
 
 for phrase in inp:
-    permutations = check_palindrome(phrase)
-    print(permutations)
+	permutations = check_palindrome(phrase)
+	print(permutations)
 
 

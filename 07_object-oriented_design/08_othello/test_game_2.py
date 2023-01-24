@@ -3,9 +3,9 @@
 
 
 def place_piece(self, player, row, col):
-    self.print_move_checks()
-    player.place_piece(row, col)
-    self.move_checks.clear()
+	self.print_move_checks()
+	player.place_piece(row, col)
+	self.move_checks.clear()
 
 
 # Black goes first.

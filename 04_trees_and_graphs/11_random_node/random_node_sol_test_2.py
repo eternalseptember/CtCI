@@ -13,8 +13,8 @@ nodes_list = [20, 10, 30, 5, 3, 7, 15, 17, 35]
 head = Tree()
 
 for val in nodes_list:
-    head.insert_in_order(val)
-    # print('size of tree: {0}'.format(head.get_size()))
+	head.insert_in_order(val)
+	# print('size of tree: {0}'.format(head.get_size()))
 
 # print_tree(head)
 
@@ -50,7 +50,7 @@ print(found)
 
 # Testing the get random node function
 for i in range(20):
-    random_node = head.get_random_node()
-    print(random_node)
+	random_node = head.get_random_node()
+	print(random_node)
 
 

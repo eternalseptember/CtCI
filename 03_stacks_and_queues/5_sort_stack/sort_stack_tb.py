@@ -8,7 +8,7 @@ values_to_add = [1, 2, 7, 5, 9, 0, 3, 2, 7, 6, 6, 8]
 
 stack = Stack()
 for value in values_to_add:
-    stack.push(value)
+	stack.push(value)
 
 print('Unsorted stack:')
 print(stack)

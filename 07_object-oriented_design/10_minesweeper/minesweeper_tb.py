@@ -31,8 +31,8 @@ game.print_mine_loc()
 
 """
 def print_neigh_cells(game, row, col):
-    neigh_cells = game.list_neighboring_cells(row, col)
-    print(neigh_cells)
+	neigh_cells = game.list_neighboring_cells(row, col)
+	print(neigh_cells)
 
 
 # Testing list neighboring cells

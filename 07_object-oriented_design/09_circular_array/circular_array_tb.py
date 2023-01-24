@@ -2,18 +2,18 @@ from circular_array import *
 
 
 def print_queue_status(queue):
-    print(queue)
-    q_full = queue.is_full()
-    q_empty = queue.is_empty()
-    print('\tQueue full? {0}'.format(q_full))
-    print('\tQueue empty? {0}'.format(q_empty))
-    print()
+	print(queue)
+	q_full = queue.is_full()
+	q_empty = queue.is_empty()
+	print('\tQueue full? {0}'.format(q_full))
+	print('\tQueue empty? {0}'.format(q_empty))
+	print()
 
 
 def dequeue(queue):
-    item = queue.dequeue()
-    print('Item dequeued: {0}'.format(item))
-    print_queue_status(queue)
+	item = queue.dequeue()
+	print('Item dequeued: {0}'.format(item))
+	print_queue_status(queue)
 
 
 # Test case 1

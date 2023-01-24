@@ -8,5 +8,5 @@ from string_compression import *
 inp = ['aabcccccaaa', 'abcde']
 
 for string in inp:
-    print(compress(string))
+	print(compress(string))
 

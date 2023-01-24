@@ -12,265 +12,265 @@ from collections import deque
 
 
 class Puzzle_Solution():
-    def __init__(self, puzzle_size):
-        self.puzzle_size = puzzle_size  # N
-        self.solution = self.blank_puzzle_mat(puzzle_size)
-        self.corner_pieces = []
-        self.edge_pieces = deque()
-        self.interior_pieces = deque()
+	def __init__(self, puzzle_size):
+		self.puzzle_size = puzzle_size  # N
+		self.solution = self.blank_puzzle_mat(puzzle_size)
+		self.corner_pieces = []
+		self.edge_pieces = deque()
+		self.interior_pieces = deque()
 
 
-    def blank_puzzle_mat(self, puzzle_size):
-        # len(mat) is row; len(mat[0]) is col
-        blank_mat = [
-            [None for col in range(puzzle_size)] for row in range(puzzle_size)
-            ]
-        return blank_mat
+	def blank_puzzle_mat(self, puzzle_size):
+		# len(mat) is row; len(mat[0]) is col
+		blank_mat = [
+			[None for col in range(puzzle_size)] for row in range(puzzle_size)
+			]
+		return blank_mat
 
 
-    def print_sorted_pieces(self):
-        print('Corner pieces:')
-        for piece in self.corner_pieces:
-            print(piece)
+	def print_sorted_pieces(self):
+		print('Corner pieces:')
+		for piece in self.corner_pieces:
+			print(piece)
 
-        print()
-        print('Edge pieces:')
-        for piece in self.edge_pieces:
-            print(piece)
+		print()
+		print('Edge pieces:')
+		for piece in self.edge_pieces:
+			print(piece)
 
-        print()
-        print('Interior pieces:')
-        for piece in self.interior_pieces:
-            print(piece)
-
-
-    def print_solution(self):
-        # Prints the solution with pieces already placed.
-        for row in self.solution:
-            for col in row:
-                try:
-                    print('{0:>4}'.format(col.piece_num), end=' ')
-                except AttributeError:
-                    print('None', end=' ')
-            print()
+		print()
+		print('Interior pieces:')
+		for piece in self.interior_pieces:
+			print(piece)
 
 
-    def print_piece_details(self):
-        for row in self.solution:
-            for col in row:
-                print(col)
+	def print_solution(self):
+		# Prints the solution with pieces already placed.
+		for row in self.solution:
+			for col in row:
+				try:
+					print('{0:>4}'.format(col.piece_num), end=' ')
+				except AttributeError:
+					print('None', end=' ')
+			print()
 
 
-    def solve_puzzle(self, unsolved_puzzle):
-        self.sort_pieces(unsolved_puzzle)
-        self.place_corner_pieces()
-        self.place_edge_pieces()
-        self.place_interior_pieces()
-        print('Puzzle solved!')
+	def print_piece_details(self):
+		for row in self.solution:
+			for col in row:
+				print(col)
 
 
-    def fits_with(self, placed_piece, edge):
-        if edge == placed_piece:
-            return True
-        else:
-            return False
+	def solve_puzzle(self, unsolved_puzzle):
+		self.sort_pieces(unsolved_puzzle)
+		self.place_corner_pieces()
+		self.place_edge_pieces()
+		self.place_interior_pieces()
+		print('Puzzle solved!')
 
 
-    def sort_pieces(self, unsolved_puzzle):
-        # Sort corner, other, and interior pieces.
-        while len(unsolved_puzzle.puzzle_pieces) > 0:
-            piece = unsolved_puzzle.puzzle_pieces.pop()
-            edges = 0
-
-            if piece.top_edge is None:
-                edges += 1
-            if piece.right_edge is None:
-                edges += 1
-            if piece.bottom_edge is None:
-                edges += 1
-            if piece.left_edge is None:
-                edges += 1
-
-            if edges == 2:
-                self.corner_pieces.append(piece)
-            elif edges == 1:
-                self.edge_pieces.append(piece)
-            else:
-                self.interior_pieces.append(piece)
+	def fits_with(self, placed_piece, edge):
+		if edge == placed_piece:
+			return True
+		else:
+			return False
 
 
-    def place_corner_pieces(self):
-        # Going to pretend that corner pieces can be clearly identified,
-        # as if the corners are unique and that looking at the box art will
-        # yield the correct placement.
-        max_dim = self.puzzle_size - 1  # maximum array size
+	def sort_pieces(self, unsolved_puzzle):
+		# Sort corner, other, and interior pieces.
+		while len(unsolved_puzzle.puzzle_pieces) > 0:
+			piece = unsolved_puzzle.puzzle_pieces.pop()
+			edges = 0
 
-        while len(self.corner_pieces) > 0:
-            piece = self.corner_pieces.pop()
+			if piece.top_edge is None:
+				edges += 1
+			if piece.right_edge is None:
+				edges += 1
+			if piece.bottom_edge is None:
+				edges += 1
+			if piece.left_edge is None:
+				edges += 1
 
-            if piece.piece_num == 1:
-                # Top left corner
-                if (piece.bottom_edge is None):
-                    if (piece.right_edge is None):
-                        piece.rotate_clockwise()
-                    piece.rotate_clockwise()
-                else:
-                    if (piece.right_edge is None):
-                        piece.rotate_counterclockwise()
-
-                self.solution[0][0] = piece
-
-            elif piece.piece_num == self.puzzle_size:
-                # Top right corner
-                if (piece.bottom_edge is None):
-                    if (piece.left_edge is None):
-                        piece.rotate_counterclockwise()
-                    piece.rotate_counterclockwise()
-                else:
-                    if (piece.left_edge is None):
-                        piece.rotate_clockwise()
-
-                self.solution[0][max_dim] = piece
-
-            elif piece.piece_num == (self.puzzle_size * self.puzzle_size):
-                # Bottom right corner
-                if (piece.top_edge is None):
-                    if (piece.left_edge is None):
-                        piece.rotate_clockwise()
-                    piece.rotate_clockwise()
-                else:
-                    if (piece.left_edge is None):
-                        piece.rotate_counterclockwise()
-
-                self.solution[max_dim][max_dim] = piece
-
-            else:
-                # Bottom left corner
-                if (piece.top_edge is None):
-                    if (piece.right_edge is None):
-                        piece.rotate_counterclockwise()
-                    piece.rotate_counterclockwise()
-                else:
-                    if (piece.right_edge is None):
-                        piece.rotate_clockwise()
-
-                self.solution[max_dim][0] = piece
+			if edges == 2:
+				self.corner_pieces.append(piece)
+			elif edges == 1:
+				self.edge_pieces.append(piece)
+			else:
+				self.interior_pieces.append(piece)
 
 
-    def place_edge_pieces(self):
-        # Solving edge pieces.
-        max_dim = self.puzzle_size - 1  # maximum array size
+	def place_corner_pieces(self):
+		# Going to pretend that corner pieces can be clearly identified,
+		# as if the corners are unique and that looking at the box art will
+		# yield the correct placement.
+		max_dim = self.puzzle_size - 1  # maximum array size
 
-        # Going clockwise, starting with the top-left corner:
-        row = 0
-        col = 0
+		while len(self.corner_pieces) > 0:
+			piece = self.corner_pieces.pop()
 
-        while len(self.edge_pieces) > 0:
-            placed_piece = self.solution[row][col]
+			if piece.piece_num == 1:
+				# Top left corner
+				if (piece.bottom_edge is None):
+					if (piece.right_edge is None):
+						piece.rotate_clockwise()
+					piece.rotate_clockwise()
+				else:
+					if (piece.right_edge is None):
+						piece.rotate_counterclockwise()
 
-            # Where is the next spot?
-            if (row == 0):
-                if col == max_dim:
-                    # Top-right corner going down
-                    row += 1
-                else:
-                    # Top-left corner going right
-                    col += 1
+				self.solution[0][0] = piece
 
-            elif(row == max_dim):
-                if col == 0:
-                    # Bottom-left corner going up
-                    row -= 1
-                else:
-                    # Bottom-right corner going left
-                    col -= 1
+			elif piece.piece_num == self.puzzle_size:
+				# Top right corner
+				if (piece.bottom_edge is None):
+					if (piece.left_edge is None):
+						piece.rotate_counterclockwise()
+					piece.rotate_counterclockwise()
+				else:
+					if (piece.left_edge is None):
+						piece.rotate_clockwise()
 
-            else:
-                if (col == max_dim):
-                    # Top-right going down
-                    row += 1
-                elif (col == 0):
-                    # Bottom-left going up
-                    row -= 1
+				self.solution[0][max_dim] = piece
 
+			elif piece.piece_num == (self.puzzle_size * self.puzzle_size):
+				# Bottom right corner
+				if (piece.top_edge is None):
+					if (piece.left_edge is None):
+						piece.rotate_clockwise()
+					piece.rotate_clockwise()
+				else:
+					if (piece.left_edge is None):
+						piece.rotate_counterclockwise()
 
-            # Testing traveling along the edge clockwise.
-            # Checks to see if the next spot is empty:
-            while self.solution[row][col] is None:
-                edge_piece = self.edge_pieces.popleft()
+				self.solution[max_dim][max_dim] = piece
 
+			else:
+				# Bottom left corner
+				if (piece.top_edge is None):
+					if (piece.right_edge is None):
+						piece.rotate_counterclockwise()
+					piece.rotate_counterclockwise()
+				else:
+					if (piece.right_edge is None):
+						piece.rotate_clockwise()
 
-                if row == 0:
-                    while edge_piece.top_edge is not None:
-                        edge_piece.rotate_clockwise()
-                    edge = edge_piece.left_edge
-
-                elif row == max_dim:
-                    while edge_piece.bottom_edge is not None:
-                        edge_piece.rotate_clockwise()
-                    edge = edge_piece.right_edge
-
-                elif col == 0:
-                    while edge_piece.left_edge is not None:
-                        edge_piece.rotate_clockwise()
-                    edge = edge_piece.bottom_edge
-
-                elif col == max_dim:
-                    while edge_piece.right_edge is not None:
-                        edge_piece.rotate_clockwise()
-                    edge = edge_piece.top_edge
+				self.solution[max_dim][0] = piece
 
 
-                piece_fits = self.fits_with(placed_piece.piece_num, edge)
+	def place_edge_pieces(self):
+		# Solving edge pieces.
+		max_dim = self.puzzle_size - 1  # maximum array size
+
+		# Going clockwise, starting with the top-left corner:
+		row = 0
+		col = 0
+
+		while len(self.edge_pieces) > 0:
+			placed_piece = self.solution[row][col]
+
+			# Where is the next spot?
+			if (row == 0):
+				if col == max_dim:
+					# Top-right corner going down
+					row += 1
+				else:
+					# Top-left corner going right
+					col += 1
+
+			elif(row == max_dim):
+				if col == 0:
+					# Bottom-left corner going up
+					row -= 1
+				else:
+					# Bottom-right corner going left
+					col -= 1
+
+			else:
+				if (col == max_dim):
+					# Top-right going down
+					row += 1
+				elif (col == 0):
+					# Bottom-left going up
+					row -= 1
 
 
-                if piece_fits:
-                    self.solution[row][col] = edge_piece
-                else:
-                    self.edge_pieces.append(edge_piece)
+			# Testing traveling along the edge clockwise.
+			# Checks to see if the next spot is empty:
+			while self.solution[row][col] is None:
+				edge_piece = self.edge_pieces.popleft()
 
 
-    def place_interior_pieces(self):
-        # Solve interior pieces.
-        max_dim = self.puzzle_size - 1  # maximum array size
-        row = 0
-        col = 0
+				if row == 0:
+					while edge_piece.top_edge is not None:
+						edge_piece.rotate_clockwise()
+					edge = edge_piece.left_edge
 
-        while len(self.interior_pieces) > 0:
-            left_piece = self.solution[row][col]
+				elif row == max_dim:
+					while edge_piece.bottom_edge is not None:
+						edge_piece.rotate_clockwise()
+					edge = edge_piece.right_edge
 
-            # Next spot.
-            if col == max_dim:
-                row += 1
-                col = 0
-            else:
-                col += 1
+				elif col == 0:
+					while edge_piece.left_edge is not None:
+						edge_piece.rotate_clockwise()
+					edge = edge_piece.bottom_edge
 
-            top_piece = self.solution[row - 1][col]  # Top row is complete.
-
-
-            while self.solution[row][col] is None:
-                piece = self.interior_pieces.popleft()
+				elif col == max_dim:
+					while edge_piece.right_edge is not None:
+						edge_piece.rotate_clockwise()
+					edge = edge_piece.top_edge
 
 
-                # Check whether piece fits.
-                fits_left = self.fits_with(left_piece.piece_num, piece.left_edge)
-                fits_top = self.fits_with(top_piece.piece_num, piece.top_edge)
-                side = 1
-
-                while ((not fits_left) and (not fits_top) and (side < 4)):
-                    piece.rotate_clockwise()
-                    side += 1
-
-                    fits_left = self.fits_with(left_piece.piece_num, piece.left_edge)
-                    fits_top = self.fits_with(top_piece.piece_num, piece.top_edge)
+				piece_fits = self.fits_with(placed_piece.piece_num, edge)
 
 
-                # If piece does not fit here, then put it back into the pile.
-                if fits_left and fits_top:
-                    self.solution[row][col] = piece
-                else:
-                    self.interior_pieces.append(piece)
+				if piece_fits:
+					self.solution[row][col] = edge_piece
+				else:
+					self.edge_pieces.append(edge_piece)
+
+
+	def place_interior_pieces(self):
+		# Solve interior pieces.
+		max_dim = self.puzzle_size - 1  # maximum array size
+		row = 0
+		col = 0
+
+		while len(self.interior_pieces) > 0:
+			left_piece = self.solution[row][col]
+
+			# Next spot.
+			if col == max_dim:
+				row += 1
+				col = 0
+			else:
+				col += 1
+
+			top_piece = self.solution[row - 1][col]  # Top row is complete.
+
+
+			while self.solution[row][col] is None:
+				piece = self.interior_pieces.popleft()
+
+
+				# Check whether piece fits.
+				fits_left = self.fits_with(left_piece.piece_num, piece.left_edge)
+				fits_top = self.fits_with(top_piece.piece_num, piece.top_edge)
+				side = 1
+
+				while ((not fits_left) and (not fits_top) and (side < 4)):
+					piece.rotate_clockwise()
+					side += 1
+
+					fits_left = self.fits_with(left_piece.piece_num, piece.left_edge)
+					fits_top = self.fits_with(top_piece.piece_num, piece.top_edge)
+
+
+				# If piece does not fit here, then put it back into the pile.
+				if fits_left and fits_top:
+					self.solution[row][col] = piece
+				else:
+					self.interior_pieces.append(piece)
 
 
 

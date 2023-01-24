@@ -15,10 +15,10 @@ nodes_list = [20, 10, 30, 5, 3, 7, 15, 17]
 head = None
 
 for val in nodes_list:
-    if head is None:
-        head = Node(val)
-    else:
-        head.insert_in_order(val)
+	if head is None:
+		head = Node(val)
+	else:
+		head.insert_in_order(val)
 
 
 print_tree(head)

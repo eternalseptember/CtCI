@@ -4,10 +4,10 @@ from chat_server import *
 
 
 def print_users():
-    # User profile information.
-    user_1.print_user_summary()
-    user_2.print_user_summary()
-    user_3.print_user_summary()
+	# User profile information.
+	user_1.print_user_summary()
+	user_2.print_user_summary()
+	user_3.print_user_summary()
 
 
 # Begin test.

@@ -19,47 +19,47 @@ worst case runtime.
 
 
 class Node():
-    def __init__(self, data=None, left=None, right=None):
-        self.data = data
-        self.left = left
-        self.right = right
+	def __init__(self, data=None, left=None, right=None):
+		self.data = data
+		self.left = left
+		self.right = right
 
-    def __str__(self):
-        left = None
-        right = None
+	def __str__(self):
+		left = None
+		right = None
 
-        if self.left is not None:
-            left = self.left.data
-        if self.right is not None:
-            right = self.right.data
+		if self.left is not None:
+			left = self.left.data
+		if self.right is not None:
+			right = self.right.data
 
-        return 'data: {0}  left: {1}  right: {2}'.format(self.data, left, right)
+		return 'data: {0}  left: {1}  right: {2}'.format(self.data, left, right)
 
 
 def check_subtree(tree_1, tree_2):
-    if tree_2 is None:
-        return True  # The empty tree is always a subtree.
+	if tree_2 is None:
+		return True  # The empty tree is always a subtree.
 
-    return subtree(tree_1, tree_2)
+	return subtree(tree_1, tree_2)
 
 
 def subtree(tree_1, tree_2):
-    if tree_1 is None:
-        return False  # Big tree empty and subtree not found.
-    elif (tree_1.data == tree_2.data) and match_tree(tree_1, tree_2):
-        return True
-    return subtree(tree_1.left, tree_2) or subtree(tree_1.right, tree_2)
+	if tree_1 is None:
+		return False  # Big tree empty and subtree not found.
+	elif (tree_1.data == tree_2.data) and match_tree(tree_1, tree_2):
+		return True
+	return subtree(tree_1.left, tree_2) or subtree(tree_1.right, tree_2)
 
 
 def match_tree(tree_1, tree_2):
-    if (tree_1 is None) and (tree_2 is None):
-        return True  # Nothing left in subtree.
-    elif (tree_1 is None) or (tree_2 is None):
-        return False  # One tree is empty, therefore trees don't match.
-    elif tree_1.data != tree_2.data:
-        return False  # Data doesn't match.
-    else:
-        return match_tree(tree_1.left, tree_2.left) and match_tree(tree_1.right, tree_2.right)
+	if (tree_1 is None) and (tree_2 is None):
+		return True  # Nothing left in subtree.
+	elif (tree_1 is None) or (tree_2 is None):
+		return False  # One tree is empty, therefore trees don't match.
+	elif tree_1.data != tree_2.data:
+		return False  # Data doesn't match.
+	else:
+		return match_tree(tree_1.left, tree_2.left) and match_tree(tree_1.right, tree_2.right)
 
 
 

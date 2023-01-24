@@ -10,7 +10,7 @@ values = [7, 5, 3, 8, 1, 8, 0, 2, 5, 2, 4, 1]
 head = None
 
 for value in values:
-    head = insert(head, value)
+	head = insert(head, value)
 
 print('original tree')
 print_level_order(head)
@@ -69,8 +69,8 @@ print(found_status)
 
 # test 1 random node:
 for i in range(15):
-    random_node = get_random_node(head)
-    print(random_node)
-    print()
+	random_node = get_random_node(head)
+	print(random_node)
+	print()
 
 

@@ -8,5 +8,5 @@ from is_unique import *
 test_str = ['cat', 'dog', 'squirrel']
 
 for current_str in test_str:
-    print(check_characters(current_str))
+	print(check_characters(current_str))
 

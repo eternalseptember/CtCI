@@ -8,5 +8,5 @@ from palindrome import *
 test_cases = ['racecar', 'mom', 'noon', 'toot', 'cat', 'plop']
 
 for case in test_cases:
-    test_palindrome_function(case)
+	test_palindrome_function(case)
 

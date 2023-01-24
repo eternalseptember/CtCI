@@ -11,10 +11,10 @@ latest_node = None
 loop_node = None
 
 for value in values:
-    head, latest_node = add(head, value)
+	head, latest_node = add(head, value)
 
-    if value == 'C':
-        loop_node = latest_node
+	if value == 'C':
+		loop_node = latest_node
 
 # make a loop
 latest_node.next = loop_node
@@ -24,9 +24,9 @@ latest_node.next = loop_node
 print('Node at the beginning of loop: ')
 beg_loop_node = detect_loop(head)
 if beg_loop_node is not None:
-    print(beg_loop_node.data)
+	print(beg_loop_node.data)
 else:
-    print('No loop detected.')
+	print('No loop detected.')
 print()
 
 
@@ -38,13 +38,13 @@ head = None
 latest_node = None
 
 for value in values:
-    head, latest_node = add(head, value)
+	head, latest_node = add(head, value)
 
 print('Node at the beginning of loop: ')
 beg_loop_node = detect_loop(head)
 if beg_loop_node is not None:
-    print(beg_loop_node.data)
+	print(beg_loop_node.data)
 else:
-    print('No loop detected.')
+	print('No loop detected.')
 print()
 

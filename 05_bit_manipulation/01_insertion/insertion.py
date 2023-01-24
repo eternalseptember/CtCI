@@ -9,27 +9,27 @@ because M could not fully fit between bit 3 and bit 2.
 
 
 def insert_bits(N, M, i, j):
-    M_bit = [int(bit) for bit in str(M)]
-    N_bit = [int(bit) for bit in str(N)]
+	M_bit = [int(bit) for bit in str(M)]
+	N_bit = [int(bit) for bit in str(N)]
 
-    # In python, item[0] = item[-0], which is the first item,
-    # and item[-1] is the last item.
-    # Flip everything while doing the insert, then flip the final result.
-    start_pos = i  # i is lower index
-    end_pos = j
-    M_bit = M_bit[::-1]
-    N_bit = N_bit[::-1]
+	# In python, item[0] = item[-0], which is the first item,
+	# and item[-1] is the last item.
+	# Flip everything while doing the insert, then flip the final result.
+	start_pos = i  # i is lower index
+	end_pos = j
+	M_bit = M_bit[::-1]
+	N_bit = N_bit[::-1]
 
-    # Going through N, which is longer than M
-    for k in range(start_pos, end_pos+1):
-        bit_to_be_inserted = M_bit.pop(0)
-        N_bit[k] = bit_to_be_inserted
+	# Going through N, which is longer than M
+	for k in range(start_pos, end_pos+1):
+		bit_to_be_inserted = M_bit.pop(0)
+		N_bit[k] = bit_to_be_inserted
 
-    # Format the result to return
-    N_bit = N_bit[::-1]
-    N_str = ''.join(str(bit) for bit in N_bit)
+	# Format the result to return
+	N_bit = N_bit[::-1]
+	N_str = ''.join(str(bit) for bit in N_bit)
 
-    return int(N_str)
+	return int(N_str)
 
 
 

@@ -3,9 +3,9 @@ from pairwise_swap_sol import *
 
 
 def print_binary(num1, num2):
-    bin1 = bin(num1)[2:]
-    bin2 = bin(num2)[2:]
-    print('{0} <--> {1}'.format(bin1, bin2))
+	bin1 = bin(num1)[2:]
+	bin2 = bin(num2)[2:]
+	print('{0} <--> {1}'.format(bin1, bin2))
 
 
 # Testing
